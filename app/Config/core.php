@@ -4,18 +4,9 @@
  *
  * Use it to configure core behavior of Cake.
  *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       app.Config
  * @since         CakePHP(tm) v 0.2.9
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 /**
@@ -221,13 +212,11 @@
 
 /**
  * A random string used in security hashing methods.
- */
-	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi');
+ */	Configure::write('Security.salt', '550208b6f96cb4d3e9c67c67b20175b8d19dbbb1');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
- */
-	Configure::write('Security.cipherSeed', '76859309657453542496749683645');
+ */	Configure::write('Security.cipherSeed', '356466336439333964393233376339');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -268,14 +257,6 @@
  * any date & time related errors.
  */
 	//date_default_timezone_set('UTC');
-
-/**
- * `Config.timezone` is available in which you can set users' timezone string.
- * If a method of CakeTime class is called with $timezone parameter as null and `Config.timezone` is set,
- * then the value of `Config.timezone` will be used. This feature allows you to set users' timezone just
- * once instead of passing it each time in function calls.
- */
-	//Configure::write('Config.timezone', 'Europe/Paris')
 
 /**
  *
@@ -358,7 +339,7 @@ if (Configure::read('debug') > 0) {
 }
 
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
-$prefix = 'myapp_';
+$prefix = 'app_';
 
 /**
  * Configure the cache used for general framework caching. Path information,
