@@ -11,6 +11,10 @@ Par exemple, dans le terminal :
 	git clone git@github.com:digisquare/digisquare.git digisquare
 	
   - Attention ! Dans votre cas, vous devez cloner le dépôt de votre groupe, le fork donc, afin de pouvoir y pousser (push) vos changement. Vous n'aurez pas de droits en écriture sur le dépôt principal.
+  
+Vous aurez probablement besoin de rendre accessible en lecture / écriture le dossier `app/tmp`. Par exemple, dans le terminal :
+
+	sudo chmod -R 777 app/tmp
 
 ### 2) Configurer un vhost Apache
 
