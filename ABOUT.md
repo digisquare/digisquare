@@ -6,7 +6,7 @@
   
 ## Etudiants développeurs
 
-  - Rémi Santos, @kemcake
+  - Rémi Santos, @KemCake
 
   - Edouard Chusseau, @chudou
  
