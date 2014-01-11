@@ -8,4 +8,4 @@
 
   - Rémi Santos, @kemcake
 
-  - 
+  - Edouard Chusseau, @chudou
