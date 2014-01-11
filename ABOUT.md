@@ -9,3 +9,5 @@
   - Rémi Santos, @kemcake
 
   - Edouard Chusseau, @chudou
+ 
+  - Tony Launay, @launtony
