@@ -6,4 +6,6 @@
   
 ## Etudiants développeurs
 
+  - Rémi Santos, @kemcake
+
   - 
