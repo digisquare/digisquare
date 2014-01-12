@@ -6,4 +6,4 @@
   
 ## Etudiants développeurs
 
-  - 
+  - Quentin Rubini, @Wanted33 
