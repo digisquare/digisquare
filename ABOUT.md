@@ -13,3 +13,5 @@
   - Tony Launay, @launtony
 
   - Mathieu Bourgeois, @princelu
+
+  - Damien Audrezet, @DamdamTouch
