@@ -11,3 +11,5 @@
   - Edouard Chusseau, @chudou
  
   - Tony Launay, @launtony
+
+  - Mathieu Bourgeois, @princelu
