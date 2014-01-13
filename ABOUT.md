@@ -8,4 +8,4 @@
 
   - Quentin Rubini, @Wanted33 
   - Manon Reiter, @manonreiter
-  - toto
+  - Luc Romain, amnesik
