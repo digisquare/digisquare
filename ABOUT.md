@@ -9,3 +9,4 @@
   - Baptiste Cazaubon, @Gordfang
   - Romain Menard, @Aquakiss
   - Joanny Saillet, @AliceGarden
+  - Rémy Redon, @Bigbaddemon
