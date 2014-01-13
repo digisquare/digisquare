@@ -6,4 +6,4 @@
   
 ## Etudiants développeurs
 
-  - 
+  - David Etancelin, @davydoe
