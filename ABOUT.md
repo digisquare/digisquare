@@ -1,4 +1,4 @@
-# About / Crédits
+﻿# About / Crédits
 
 ## Chef de Projet
 
@@ -22,3 +22,11 @@
   - Edouard Chusseau, @chudou
   - Tony Launay, @launtony
   - Rémi Santos, @KemCake
+
+### Groupe editions
+
+  - Baptiste Cazaubon, @Gordfang
+  - Nicolas Estival, @Chaoskira
+  - Romain Menard, @Aquakiss
+  - Rémy Redon, @Bigbaddemon
+  - Joanny Saillet, @AliceGarden
