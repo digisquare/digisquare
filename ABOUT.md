@@ -10,3 +10,4 @@
   - Manon Reiter, @manonreiter
   - Luc Romain, amnesik
   - Damien Malineau, @Dame17
+  - Alexandre Nay, @alexandre33
