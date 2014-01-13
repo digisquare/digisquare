@@ -1,4 +1,4 @@
-# About / Crédits
+﻿# About / Crédits
 
 ## Chef de Projet
 
@@ -7,3 +7,4 @@
 ## Etudiants développeurs
 
   - Baptiste Cazaubon, @Gordfang
+  - Romain Menard, @Aquakiss
