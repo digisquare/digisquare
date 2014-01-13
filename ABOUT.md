@@ -1,10 +1,10 @@
 # About / Crédits
 
-Corentin Fagherazzi
 ## Chef de Projet
 
   - Damien Varron, @damusnet
   
 ## Etudiants développeurs
 
-  - 
+  - Corentin Fagherazzi
+  - Ludovic Caisso
