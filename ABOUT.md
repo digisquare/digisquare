@@ -7,3 +7,4 @@
 ## Etudiants développeurs
 
   - David Etancelin, @davydoe
+  - Guillaume Luneau @guillaumeluneau
