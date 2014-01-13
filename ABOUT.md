@@ -2,11 +2,10 @@
 
 ## Chef de Projet
 
-  - Damien Varron, @damusnet
+  - Baptiste Cazaubon, @Gordfang
   
 ## Etudiants développeurs
 
-  - Baptiste Cazaubon, @Gordfang
   - Romain Menard, @Aquakiss
   - Joanny Saillet, @AliceGarden
   - Rémy Redon, @Bigbaddemon
