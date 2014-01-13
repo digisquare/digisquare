@@ -9,3 +9,4 @@
   - Corentin Fagherazzi
   - Ludovic Caisso
   - Léo Godefroy 
+  - John DREYFUS
