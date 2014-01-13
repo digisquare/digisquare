@@ -7,6 +7,6 @@
 ## Etudiants développeurs
 
   - Corentin Fagherazzi
-  - Ludovic Caisso
   - Léo Godefroy 
   - John DREYFUS
+  - Ludovic Caisso
