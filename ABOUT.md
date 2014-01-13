@@ -6,9 +6,19 @@
   
 ## Etudiants développeurs
 
-  - Quentin Rubini, @Wanted33 
-  - Manon Reiter, @manonreiter
-  - Luc Romain, amnesik
+### Groupe events
+
+  - Mélissa Bergès, @Abs0lem
   - Damien Malineau, @Dame17
   - Alexandre Nay, @alexandre33
-  - Mélissa Bergès, @Abs0lem
+  - Manon Reiter, @manonreiter
+  - Luc Romain, amnesik
+  - Quentin Rubini, @Wanted33 
+
+### Groupe startups
+
+  - Damien Audrezet, @DamdamTouch
+  - Mathieu Bourgeois, @princelu
+  - Edouard Chusseau, @chudou
+  - Tony Launay, @launtony
+  - Rémi Santos, @KemCake
