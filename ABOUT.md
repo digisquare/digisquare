@@ -6,4 +6,4 @@
   
 ## Etudiants développeurs
 
-  - 
+  - Baptiste Cazaubon, @Gordfang
