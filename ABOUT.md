@@ -9,5 +9,5 @@
   - Corentin Fagherazzi
   - Léo Godefroy 
   - John DREYFUS
-  - Ludovic Caisso
+  - Ludovic Caisso, @Udolwa34
   - Matthieu Durindel, @Matthyeux
