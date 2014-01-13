@@ -10,3 +10,4 @@
   - Romain Menard, @Aquakiss
   - Joanny Saillet, @AliceGarden
   - Rémy Redon, @Bigbaddemon
+  - Nicolas Estival, @Chaoskira
