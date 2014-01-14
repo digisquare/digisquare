@@ -7,6 +7,6 @@
 ## Etudiants développeurs
 
   - David Etancelin, @davydoe
-  - Guillaume Luneau @guillaumeluneau
-  - James Rudelin @juniors74335
-  - Alexis Dupuy @AlexisDupuy
+  - Guillaume Luneau, @guillaumeluneau
+  - James Rudelin, @juniors74335
+  - Alexis Dupuy, @AlexisDupuy
