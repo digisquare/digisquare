@@ -30,3 +30,12 @@
   - Romain Menard, @Aquakiss
   - Rémy Redon, @Bigbaddemon
   - Joanny Saillet, @AliceGarden
+
+
+### Groupe places
+
+  - Ludovic Caisso, @Udolwa34
+  - John Dreyfus
+  - Matthieu Durindel, @Matthyeux
+  - Corentin Fagherazzi
+  - Léo Godefroy
