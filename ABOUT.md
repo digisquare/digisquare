@@ -44,3 +44,4 @@
 
   - Pierre-Lin Bonnemaison, @osaajani
   - Smaïl Boudou, @00D00B
+  - Romain Martinez, @Romain33
