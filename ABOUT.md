@@ -39,3 +39,12 @@
   - Matthieu Durindel, @Matthyeux
   - Corentin Fagherazzi
   - Léo Godefroy
+
+
+## Groupe tags
+
+  - David Etancelin, @davydoe
+  - Guillaume Luneau, @guillaumeluneau
+  - James Rudelin, @juniors74335
+  - Alexis Dupuy, @AlexisDupuy
+  - Thibault Audouit, @audouithibault
