@@ -4,7 +4,7 @@
 
   - Damien Varron, @damusnet
   
-## Etudiants développeurs
+## Groupe tags
 
   - David Etancelin, @davydoe
   - Guillaume Luneau, @guillaumeluneau
