@@ -10,4 +10,4 @@
   - Guillaume Luneau, @guillaumeluneau
   - James Rudelin, @juniors74335
   - Alexis Dupuy, @AlexisDupuy
-  - Thibault Audouit, @audouithibault
+  - Thibault Audouit, @Thibowdwi
