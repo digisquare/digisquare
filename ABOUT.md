@@ -46,3 +46,4 @@
   - Eliott Bureau, @Misterbural
   - Bastien Bourdin, @bat16
   - Pauline Capot, @PaulineCapot
+  - Davina Martinez, @davinamartinez
