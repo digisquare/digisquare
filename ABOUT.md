@@ -43,3 +43,4 @@
 ### Groupe users
 
   - Kévin Giret, @KGiret
+  - Eliott Bureau, @Misterbural
