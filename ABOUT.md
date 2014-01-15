@@ -43,6 +43,8 @@
 ## Groupe Organiseurs
 
   - Benoît Garreau, @Nagarian47
-  - Rémi Martin de abia, @shoxxdj
-  - Sylvain Toffoli, @ProTechGamer
   - Florian Hollécou, @Froomage
+  - Rémi Martin de abia, @shoxxdj
+  - Gillian Perard, @FaustGrimhill
+  - Sylvain Toffoli, @ProTechGamer
+  
