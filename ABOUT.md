@@ -42,4 +42,5 @@
 
 ## Groupe Organiseurs
 
+  - Benoît Garreau, @Nagarian47
   - Rémi Martin de abia, @shoxxdj
