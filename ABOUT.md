@@ -39,3 +39,11 @@
   - Matthieu Durindel, @Matthyeux
   - Corentin Fagherazzi
   - Léo Godefroy
+  
+### Groupe users
+
+  - Kévin Giret, @KGiret
+  - Eliott Bureau, @Misterbural
+  - Bastien Bourdin, @bat16
+  - Pauline Capot, @PaulineCapot
+  - Davina Martinez, @davinamartinez
