@@ -44,7 +44,14 @@
 
   - Benoît Garreau, @Nagarian47
   - Florian Hollécou, @Froomage
-  - Rémi Martin de abia, @shoxxdj
+  - Rémi Martin de Abia, @shoxxdj
   - Gillian Perard, @FaustGrimhill
   - Sylvain Toffoli, @ProTechGamer
   
+### Groupe users
+
+  - Bastien Bourdin, @bat16
+  - Eliott Bureau, @Misterbural
+  - Pauline Capot, @PaulineCapot
+  - Kévin Giret, @KGiret
+  - Davina Martinez, @davinamartinez
