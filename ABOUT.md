@@ -39,3 +39,12 @@
   - Matthieu Durindel, @Matthyeux
   - Corentin Fagherazzi
   - Léo Godefroy
+
+## Groupe Organiseurs
+
+  - Benoît Garreau, @Nagarian47
+  - Florian Hollécou, @Froomage
+  - Rémi Martin de abia, @shoxxdj
+  - Gillian Perard, @FaustGrimhill
+  - Sylvain Toffoli, @ProTechGamer
+  
