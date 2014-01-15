@@ -42,4 +42,4 @@
   
 ### Groupe organizations
 
-  - Pierre-Lin Bonnemaison, @OsaAjani
+  - Pierre-Lin Bonnemaison, @OsaAjanie
