@@ -40,7 +40,7 @@
   - Corentin Fagherazzi
   - Léo Godefroy
 
-## Groupe Organiseurs
+### Groupe organizers
 
   - Benoît Garreau, @Nagarian47
   - Florian Hollécou, @Froomage
