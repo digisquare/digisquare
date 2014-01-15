@@ -44,3 +44,4 @@
 
   - Benoît Garreau, @Nagarian47
   - Rémi Martin de abia, @shoxxdj
+  - Sylvain Toffoli, @ProTechGamer
