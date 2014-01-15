@@ -45,3 +45,4 @@
   - Kévin Giret, @KGiret
   - Eliott Bureau, @Misterbural
   - Bastien Bourdin, @bat16
+  - Pauline Capot, @PaulineCapot
