@@ -43,3 +43,4 @@
 ### Groupe organizations
 
   - Pierre-Lin Bonnemaison, @osaajani
+  - Smaïl Boudou, @00D00B
