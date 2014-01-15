@@ -39,3 +39,7 @@
   - Matthieu Durindel, @Matthyeux
   - Corentin Fagherazzi
   - Léo Godefroy
+  
+### Groupe organizations
+
+  - Pierre-Lin Bonnemaison, @osaajani
