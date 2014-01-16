@@ -4,8 +4,6 @@
 
   - Damien Varron, @damusnet
   
-## Etudiants développeurs
-
 ### Groupe events
 
   - Mélissa Bergès, @Abs0lem
@@ -61,3 +59,12 @@
   - Pierre-Lin Bonnemaison, @osaajani
   - Smaïl Boudou, @00D00B
   - Romain Martinez, @Romain33
+
+
+### Groupe tags
+
+  - Thibault Audouit, @Thibowdwi
+  - Alexis Dupuy, @AlexisDupuy
+  - David Etancelin, @davydoe
+  - Guillaume Luneau, @guillaumeluneau
+  - James Rudelin, @juniors74335
