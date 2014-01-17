@@ -42,4 +42,10 @@
   
 ### Groupe organizations
 
+<<<<<<< HEAD
   - Pierre-Lin Bonnemaison, @OsaAjani
+=======
+  - Pierre-Lin Bonnemaison, @osaajani
+  - Smaïl Boudou, @00D00B
+  - Romain Martinez, @Romain33
+>>>>>>> origin/master
