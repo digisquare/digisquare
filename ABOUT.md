@@ -4,8 +4,6 @@
 
   - Damien Varron, @damusnet
   
-## Etudiants développeurs
-
 ### Groupe events
 
   - Mélissa Bergès, @Abs0lem
@@ -39,13 +37,34 @@
   - Matthieu Durindel, @Matthyeux
   - Corentin Fagherazzi
   - Léo Godefroy
+
+### Groupe organizers
+
+  - Benoît Garreau, @Nagarian47
+  - Florian Hollécou, @Froomage
+  - Rémi Martin de Abia, @shoxxdj
+  - Gillian Perard, @FaustGrimhill
+  - Sylvain Toffoli, @ProTechGamer
+  
+### Groupe users
+
+  - Bastien Bourdin, @bat16
+  - Eliott Bureau, @Misterbural
+  - Pauline Capot, @PaulineCapot
+  - Kévin Giret, @KGiret
+  - Davina Martinez, @davinamartinez
   
 ### Groupe organizations
 
-<<<<<<< HEAD
-  - Pierre-Lin Bonnemaison, @OsaAjani
-=======
   - Pierre-Lin Bonnemaison, @osaajani
   - Smaïl Boudou, @00D00B
   - Romain Martinez, @Romain33
->>>>>>> origin/master
+
+
+### Groupe tags
+
+  - Thibault Audouit, @Thibowdwi
+  - Alexis Dupuy, @AlexisDupuy
+  - David Etancelin, @davydoe
+  - Guillaume Luneau, @guillaumeluneau
+  - James Rudelin, @juniors74335
