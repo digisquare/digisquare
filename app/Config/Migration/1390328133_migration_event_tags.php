@@ -20,7 +20,7 @@ class MigrationEventTags extends CakeMigration {
 
         'event_tags' => array(
 
-            'id' => array(
+			'id' => array(
 
               'type'    =>'integer',
 
@@ -53,6 +53,8 @@ class MigrationEventTags extends CakeMigration {
 			)
 			
 		)
+		
+	)
 		
 		'down' => array(
 		),
