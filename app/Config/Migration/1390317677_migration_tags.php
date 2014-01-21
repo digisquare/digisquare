@@ -16,8 +16,56 @@ class MigrationTags extends CakeMigration {
  * @access public
  */
 	public $migration = array(
-		'up' => array(
-		),
+		'up' => array('create_table' => array(
+
+        'tags' => array(
+
+            'id' => array(
+
+              'type'    =>'integer',
+
+              'null'    => false,
+
+              'length'  => 11,
+
+              'key'     => 'primary'),
+
+            'name' => array(
+
+              'type'    =>'string',
+
+              'length'  => 255,
+
+              'null'    => false),
+
+
+            'created' => array(
+
+              'type' => 'datetime',
+
+              'null'    => false),
+
+            'modified' => array(
+
+              'type' => 'datetime',
+
+              'null'    => false),
+
+            'indexes' => array(
+
+              'PRIMARY' => array(
+
+                'column' => 'id',
+
+               'unique' => 1)
+
+             )
+
+         )
+
+        )
+
+    ),  
 		'down' => array(
 		),
 	);
