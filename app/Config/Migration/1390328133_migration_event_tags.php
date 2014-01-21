@@ -55,7 +55,7 @@ class MigrationEventTags extends CakeMigration
                         
                 )
                 
-                )
+                
                 
         ),
                 
