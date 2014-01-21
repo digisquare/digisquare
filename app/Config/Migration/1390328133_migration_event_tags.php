@@ -49,6 +49,10 @@ class MigrationEventTags extends CakeMigration {
               'length'  => 11,
 
               'key'     => 'primary'),
+			  
+			)
+			
+		)
 		
 		'down' => array(
 		),
