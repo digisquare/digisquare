@@ -13,9 +13,7 @@ class StartupTagTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.startup_tag',
-		'app.startup',
-		'app.tag'
+		'app.startup_tag'
 	);
 
 /**
