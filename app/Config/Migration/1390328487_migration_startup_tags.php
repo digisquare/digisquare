@@ -54,9 +54,8 @@ class MigrationStartupTags extends CakeMigration {
 			
 		)
 		
-		)
-		
 	),
+	
 		
 		'down' => array(
 		),
