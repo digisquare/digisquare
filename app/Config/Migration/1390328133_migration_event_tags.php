@@ -18,9 +18,9 @@ class MigrationEventTags extends CakeMigration {
 	public $migration = array(
 		'up' => array('create_table' => array(
 
-        'event_tags' => array(
+		'event_tags' => array(
 
-            'id' => array(
+			'id' => array(
 
               'type'    =>'integer',
 
@@ -49,6 +49,10 @@ class MigrationEventTags extends CakeMigration {
               'length'  => 11,
 
               'key'     => 'primary'),
+						)
+					)
+				)
+
 		
 		'down' => array(
 		),
