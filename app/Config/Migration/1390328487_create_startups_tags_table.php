@@ -18,7 +18,7 @@ class CreateStartupsTagsTable extends CakeMigration {
 	public $migration = array(
 		'up' => array(
 			'create_table' => array(
-				'startup_tags' => array(
+				'startups_tags' => array(
 					'id' => array(
 						'type'    => 'integer',
 						'null'    => false,
