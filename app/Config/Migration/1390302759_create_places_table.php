@@ -76,11 +76,12 @@ public $migration = array(
 				'indexes' => array(
 					'PRIMARY' => array(
 						'column' => 'id',
-						'unique' => 1)
+						'unique' => 1
 					)
 				)
 			)
-		),	
+		)
+	),	
 	'down' => array(),
 );
 
