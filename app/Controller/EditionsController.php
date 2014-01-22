@@ -100,4 +100,5 @@ class EditionsController extends AppController {
 			$this->Session->setFlash(__('The edition could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

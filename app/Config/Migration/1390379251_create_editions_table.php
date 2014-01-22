@@ -1,5 +1,5 @@
 <?php
-class CreationTable extends CakeMigration {
+class CreateEditionsTable extends CakeMigration {
 
 /**
  * Migration description
@@ -7,7 +7,7 @@ class CreationTable extends CakeMigration {
  * @var string
  * @access public
  */
-	public $description = '';
+	public $description = 'Creates the Editions table';
 
 /**
  * Actions to be performed
@@ -20,28 +20,34 @@ class CreationTable extends CakeMigration {
 			'create_table' => array(
 				'editions' => array(
 					'id' => array(
-						'type'    =>'integer',
+						'type'    => 'integer',
 						'null'    => false,
 						'length'  => 11,
-						'key'     => 'PRIMARY'),
+						'key'     => 'PRIMARY'
+					),
 					'name' => array(
-						'type'    =>'string',
+						'type'    => 'string',
 						'null'    => false,
-						'default' => NULL,
-						'length'  => 255),
+						'length'  => 255
+					),
 					'created' => array(
 						'type'    => 'date',
 						'null'    => false,
-						'default' => NULL),
+					),
 					'modified' => array(
 						'type'    => 'date',
 						'null'    => false,
-						'default' => NULL)
+					),
+					'indexes' => array(
+						'PRIMARY' => array(
+							'column' => 'id',
+							'unique' => 1
+						),
+					),
 				),
-			)
+			),
 		),
-		'down' => array(
-		),
+		'down' => array(),
 	);
 
 /**
