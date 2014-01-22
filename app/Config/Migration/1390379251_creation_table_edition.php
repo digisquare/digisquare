@@ -37,7 +37,13 @@ class CreationTable extends CakeMigration {
 					'modified' => array(
 						'type'    => 'date',
 						'null'    => false,
-						'default' => NULL)
+						'default' => NULL),
+					'indexes' => array(
+   						 'PRIMARY' => array(
+   							 'column' => 'id',
+   							 'unique' => 1)
+
+					)
 				),
 			)
 		),

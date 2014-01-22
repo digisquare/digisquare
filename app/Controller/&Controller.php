@@ -1,12 +1,12 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Editions Controller
+ * & Controller
  *
- * @property Edition $Edition
+ * @property & $&
  * @property PaginatorComponent $Paginator
  */
-class EditionsController extends AppController {
+class &Controller extends AppController {
 
 /**
  * Components
