@@ -1,5 +1,4 @@
 <?php
-
 class CreateEventsTable extends CakeMigration {
 
 /**
