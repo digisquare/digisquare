@@ -22,9 +22,8 @@ class CreationTable extends CakeMigration {
 					'id' => array(
 						'type'    =>'integer',
 						'null'    => false,
-						'default' => NULL,
 						'length'  => 11,
-						'key'     => 'primary'),
+						'key'     => 'PRIMARY'),
 					'name' => array(
 						'type'    =>'string',
 						'null'    => false,
