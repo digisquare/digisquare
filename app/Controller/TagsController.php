@@ -3,14 +3,16 @@ App::uses('AppController', 'Controller');
 /**
  * Tags Controller
  *
+ * @property Tag $Tag
+ * @property PaginatorComponent $Paginator
  */
 class TagsController extends AppController {
 
 /**
- * Scaffold
+ * Components
  *
- * @var mixed
+ * @var array
  */
-	public $scaffold;
+	public $components = array('Paginator');
 
 }
