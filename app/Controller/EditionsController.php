@@ -3,16 +3,14 @@ App::uses('AppController', 'Controller');
 /**
  * Editions Controller
  *
- * @property Edition $Edition
- * @property PaginatorComponent $Paginator
  */
 class EditionsController extends AppController {
 
 /**
- * Components
+ * Scaffold
  *
- * @var array
+ * @var mixed
  */
-	public $components = array('Paginator');
+	public $scaffold;
 
 }
