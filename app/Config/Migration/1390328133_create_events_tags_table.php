@@ -29,13 +29,11 @@ class CreateEventsTagsTable extends CakeMigration {
 						'type'    => 'integer',
 						'null'    => false,
 						'length'  => 11,
-						'key'     => 'primary'
 					),
 					'tag_id' => array(
 						'type'    => 'integer',
 						'null'    => false,
 						'length'  => 11,
-						'key'     => 'primary'
 					),
 					'indexes' => array(
 						'PRIMARY' => array(
