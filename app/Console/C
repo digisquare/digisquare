@@ -1,0 +1,34 @@
+The Bake script generates controllers, views and models for your
+application. If run with no command line arguments, Bake guides the user
+through the class creation process. You can customize the generation
+process by telling Bake where different parts of your application are
+using command line arguments.
+
+[36mUsage:[0m
+cake bake [subcommand] [-h] [-v] [-q] [-c default] [-t]
+
+[36mSubcommands:[0m
+
+all         Bake a complete MVC. optional <name> of a Model
+project     Bake a new app folder in the path supplied or in current
+            directory if no path is specified
+plugin      Bake a new plugin folder in the path supplied or in current
+            directory if no path is specified.
+db_config   Bake a database.php file in config directory.
+model       Bake a model.
+view        Bake views for controllers.
+controller  Bake a controller.
+fixture     Bake a fixture.
+test        Bake a unit test.
+
+To see help on a subcommand use [36m`cake bake [subcommand] --help`[0m
+
+[36mOptions:[0m
+
+--help, -h        Display this help.
+--verbose, -v     Enable verbose output.
+--quiet, -q       Enable quiet output.
+--connection, -c  Database connection to use in conjunction with `bake
+                  all`. [34m(default: default)[0m
+--theme, -t       Theme to use when baking code.
+
