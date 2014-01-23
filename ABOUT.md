@@ -8,7 +8,6 @@
 
   - Mélissa Bergès, @Abs0lem
   - Damien Malineau, @Dame17
-  - Alexandre Nay, @alexandre33
   - Manon Reiter, @manonreiter
   - Luc Romain, amnesik
   - Quentin Rubini, @Wanted33 
@@ -59,7 +58,7 @@
   - Pierre-Lin Bonnemaison, @osaajani
   - Smaïl Boudou, @00D00B
   - Romain Martinez, @Romain33
-
+  - Alexandre Nay, @alexandre33
 
 ### Groupe tags
 
