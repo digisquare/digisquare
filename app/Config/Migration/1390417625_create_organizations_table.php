@@ -20,37 +20,36 @@ class CreateOrganizationsTable extends CakeMigration {
 			'create_table' => array(
 				'organizations' => array(
 					'id' => array(
-						'type' => 'integer',
-						'null' => false,
-						'key' => 'primary'
+						'type'    => 'integer',
+						'null'    => false,
+						'length'  => 11,
+						'key'     => 'primary',
 					),
 					'place_id' => array(
-						'type' => 'integer',
-						'null' => false,
+						'type'    => 'integer',
+						'null'    => false,
+						'length'  => 11,
 					),
 					'edition_id' => array(
-						'type' => 'integer',
-						'null' => false,
+						'type'    => 'integer',
+						'null'    => false,
+						'length'  => 11,
 					),
 					'name' => array(
 						'type' => 'string',
 						'null' => false,
-						'collate' => 'utf8_general_ci',
-						'charset' => 'utf8'
 					),
 					'descritpion' => array(
 						'type' => 'text',
 						'null' => false,
-						'collate' => 'utf8_general_ci',
-						'charset' => 'utf8'
 					),
 					'created' => array(
-						'type' => 'datetime',
-						'null' => false,
+						'type'    => 'datetime',
+						'null'    => false,
 					),
 					'modified' => array(
-						'type' => 'datetime',
-						'null' => false,
+						'type'    => 'datetime',
+						'null'    => false,
 					),
 					'indexes' => array(
 						'PRIMARY' => array(
@@ -72,26 +71,4 @@ class CreateOrganizationsTable extends CakeMigration {
 			),
 		),
 	);
-
-/**
- * Before migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function before($direction) {
-		return true;
-	}
-
-/**
- * After migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function after($direction) {
-		return true;
-	}
 }

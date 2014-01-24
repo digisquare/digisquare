@@ -23,7 +23,7 @@ class CreateEventsTagsTable extends CakeMigration {
 						'type'    => 'integer',
 						'null'    => false,
 						'length'  => 11,
-						'key'     => 'primary'
+						'key'     => 'primary',
 					),
 					'event_id' => array(
 						'type'    => 'integer',
@@ -35,37 +35,32 @@ class CreateEventsTagsTable extends CakeMigration {
 						'null'    => false,
 						'length'  => 11,
 					),
+					'created' => array(
+						'type'    => 'datetime',
+						'null'    => false,
+					),
+					'modified' => array(
+						'type'    => 'datetime',
+						'null'    => false,
+					),
 					'indexes' => array(
 						'PRIMARY' => array(
 							'column' => 'id',
 							'unique' => 1
 						),
 					),
+					'tableParameters' => array(
+						'charset' => 'utf8',
+						'collate' => 'utf8_general_ci',
+						'engine' => 'MyISAM'
+					),
 				),
 			),
 		),
-		'down' => array(),
+		'down' => array(
+			'drop_table' => array(
+				'events_tags'
+			),
+		),
 	);
-
-/**
- * Before migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function before($direction) {
-		return true;
-	}
-
-/**
- * After migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function after($direction) {
-		return true;
-	}
 }

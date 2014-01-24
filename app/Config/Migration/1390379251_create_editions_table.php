@@ -23,7 +23,7 @@ class CreateEditionsTable extends CakeMigration {
 						'type'    => 'integer',
 						'null'    => false,
 						'length'  => 11,
-						'key'     => 'PRIMARY'
+						'key'     => 'primary',
 					),
 					'name' => array(
 						'type'    => 'string',
@@ -31,11 +31,11 @@ class CreateEditionsTable extends CakeMigration {
 						'length'  => 255
 					),
 					'created' => array(
-						'type'    => 'date',
+						'type'    => 'datetime',
 						'null'    => false,
 					),
 					'modified' => array(
-						'type'    => 'date',
+						'type'    => 'datetime',
 						'null'    => false,
 					),
 					'indexes' => array(
@@ -47,28 +47,10 @@ class CreateEditionsTable extends CakeMigration {
 				),
 			),
 		),
-		'down' => array(),
+		'down' => array(
+			'drop_table' => array(
+				'editions'
+			),
+		),
 	);
-
-/**
- * Before migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function before($direction) {
-		return true;
-	}
-
-/**
- * After migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function after($direction) {
-		return true;
-	}
 }
