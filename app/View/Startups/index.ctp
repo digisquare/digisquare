@@ -14,7 +14,9 @@
 	<?php foreach ($startups as $startup): ?>
 	<tr>
 		<td><?php echo h($startup['Startup']['id']); ?>&nbsp;</td>
-		<td><?php echo h($startup['Startup']['edition_id']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($startup['Edition']['name'], array('controller' => 'editions', 'action' => 'view', $startup['Edition']['id'])); ?>
+		</td>
 		<td><?php echo h($startup['Startup']['name']); ?>&nbsp;</td>
 		<td><?php echo h($startup['Startup']['description']); ?>&nbsp;</td>
 		<td><?php echo h($startup['Startup']['contacts']); ?>&nbsp;</td>
@@ -46,5 +48,9 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Startup'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Tags'), array('controller' => 'tags', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Tag'), array('controller' => 'tags', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

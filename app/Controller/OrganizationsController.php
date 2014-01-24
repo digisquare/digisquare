@@ -55,6 +55,9 @@ class OrganizationsController extends AppController {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
 		}
+		$places = $this->Organization->Place->find('list');
+		$editions = $this->Organization->Edition->find('list');
+		$this->set(compact('places', 'editions'));
 	}
 
 /**
@@ -79,6 +82,9 @@ class OrganizationsController extends AppController {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 			$this->request->data = $this->Organization->find('first', $options);
 		}
+		$places = $this->Organization->Place->find('list');
+		$editions = $this->Organization->Edition->find('list');
+		$this->set(compact('places', 'editions'));
 	}
 
 /**

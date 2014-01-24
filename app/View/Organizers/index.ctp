@@ -12,8 +12,12 @@
 	<?php foreach ($organizers as $organizer): ?>
 	<tr>
 		<td><?php echo h($organizer['Organizer']['id']); ?>&nbsp;</td>
-		<td><?php echo h($organizer['Organizer']['event_id']); ?>&nbsp;</td>
-		<td><?php echo h($organizer['Organizer']['organization_id']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($organizer['Event']['name'], array('controller' => 'events', 'action' => 'view', $organizer['Event']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($organizer['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organizer['Organization']['id'])); ?>
+		</td>
 		<td><?php echo h($organizer['Organizer']['created']); ?>&nbsp;</td>
 		<td><?php echo h($organizer['Organizer']['modified']); ?>&nbsp;</td>
 		<td class="actions">
@@ -42,5 +46,9 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Organizer'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Events'), array('controller' => 'events', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Event'), array('controller' => 'events', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Organization'), array('controller' => 'organizations', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

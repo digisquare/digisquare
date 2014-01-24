@@ -55,6 +55,8 @@ class PlacesController extends AppController {
 				$this->Session->setFlash(__('The place could not be saved. Please, try again.'));
 			}
 		}
+		$editions = $this->Place->Edition->find('list');
+		$this->set(compact('editions'));
 	}
 
 /**
@@ -79,6 +81,8 @@ class PlacesController extends AppController {
 			$options = array('conditions' => array('Place.' . $this->Place->primaryKey => $id));
 			$this->request->data = $this->Place->find('first', $options);
 		}
+		$editions = $this->Place->Edition->find('list');
+		$this->set(compact('editions'));
 	}
 
 /**
@@ -100,5 +104,4 @@ class PlacesController extends AppController {
 			$this->Session->setFlash(__('The place could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-}
+	}}

@@ -55,6 +55,9 @@ class StartupsController extends AppController {
 				$this->Session->setFlash(__('The startup could not be saved. Please, try again.'));
 			}
 		}
+		$editions = $this->Startup->Edition->find('list');
+		$tags = $this->Startup->Tag->find('list');
+		$this->set(compact('editions', 'tags'));
 	}
 
 /**
@@ -79,6 +82,9 @@ class StartupsController extends AppController {
 			$options = array('conditions' => array('Startup.' . $this->Startup->primaryKey => $id));
 			$this->request->data = $this->Startup->find('first', $options);
 		}
+		$editions = $this->Startup->Edition->find('list');
+		$tags = $this->Startup->Tag->find('list');
+		$this->set(compact('editions', 'tags'));
 	}
 
 /**
@@ -100,5 +106,4 @@ class StartupsController extends AppController {
 			$this->Session->setFlash(__('The startup could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-}
+	}}

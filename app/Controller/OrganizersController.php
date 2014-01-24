@@ -55,6 +55,9 @@ class OrganizersController extends AppController {
 				$this->Session->setFlash(__('The organizer could not be saved. Please, try again.'));
 			}
 		}
+		$events = $this->Organizer->Event->find('list');
+		$organizations = $this->Organizer->Organization->find('list');
+		$this->set(compact('events', 'organizations'));
 	}
 
 /**
@@ -79,6 +82,9 @@ class OrganizersController extends AppController {
 			$options = array('conditions' => array('Organizer.' . $this->Organizer->primaryKey => $id));
 			$this->request->data = $this->Organizer->find('first', $options);
 		}
+		$events = $this->Organizer->Event->find('list');
+		$organizations = $this->Organizer->Organization->find('list');
+		$this->set(compact('events', 'organizations'));
 	}
 
 /**

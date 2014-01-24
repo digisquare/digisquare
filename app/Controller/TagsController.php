@@ -55,6 +55,9 @@ class TagsController extends AppController {
 				$this->Session->setFlash(__('The tag could not be saved. Please, try again.'));
 			}
 		}
+		$events = $this->Tag->Event->find('list');
+		$startups = $this->Tag->Startup->find('list');
+		$this->set(compact('events', 'startups'));
 	}
 
 /**
@@ -79,6 +82,9 @@ class TagsController extends AppController {
 			$options = array('conditions' => array('Tag.' . $this->Tag->primaryKey => $id));
 			$this->request->data = $this->Tag->find('first', $options);
 		}
+		$events = $this->Tag->Event->find('list');
+		$startups = $this->Tag->Startup->find('list');
+		$this->set(compact('events', 'startups'));
 	}
 
 /**

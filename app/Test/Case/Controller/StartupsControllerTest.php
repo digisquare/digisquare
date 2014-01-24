@@ -13,7 +13,15 @@ class StartupsControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.startup'
+		'app.startup',
+		'app.edition',
+		'app.event',
+		'app.place',
+		'app.organization',
+		'app.organizer',
+		'app.tag',
+		'app.events_tag',
+		'app.startups_tag'
 	);
 
 /**

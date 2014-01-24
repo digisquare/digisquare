@@ -55,6 +55,10 @@ class EventsController extends AppController {
 				$this->Session->setFlash(__('The event could not be saved. Please, try again.'));
 			}
 		}
+		$editions = $this->Event->Edition->find('list');
+		$places = $this->Event->Place->find('list');
+		$tags = $this->Event->Tag->find('list');
+		$this->set(compact('editions', 'places', 'tags'));
 	}
 
 /**
@@ -79,6 +83,10 @@ class EventsController extends AppController {
 			$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
 			$this->request->data = $this->Event->find('first', $options);
 		}
+		$editions = $this->Event->Edition->find('list');
+		$places = $this->Event->Place->find('list');
+		$tags = $this->Event->Tag->find('list');
+		$this->set(compact('editions', 'places', 'tags'));
 	}
 
 /**
@@ -100,5 +108,4 @@ class EventsController extends AppController {
 			$this->Session->setFlash(__('The event could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-}
+	}}
