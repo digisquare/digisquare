@@ -26,8 +26,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Tag'), array('action' => 'edit', $tag['Tag']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Tag'), array('action' => 'delete', $tag['Tag']['id']), null, __('Are you sure you want to delete # %s?', $tag['Tag']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Tag'), array('action' => 'edit', 'id' => $tag['Tag']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Tag'), array('action' => 'delete', 'id' => $tag['Tag']['id']), null, __('Are you sure you want to delete # %s?', $tag['Tag']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Tags'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Tag'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Events'), array('controller' => 'events', 'action' => 'index')); ?> </li>
@@ -68,7 +68,7 @@
 			<td><?php echo $event['created']; ?></td>
 			<td><?php echo $event['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'events', 'action' => 'view', $event['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'events', 'action' => 'view', 'id' => $event['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'events', 'action' => 'edit', $event['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'events', 'action' => 'delete', $event['id']), null, __('Are you sure you want to delete # %s?', $event['id'])); ?>
 			</td>
@@ -107,7 +107,7 @@
 			<td><?php echo $startup['created']; ?></td>
 			<td><?php echo $startup['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'startups', 'action' => 'view', $startup['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'startups', 'action' => 'view', 'id' => $startup['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'startups', 'action' => 'edit', $startup['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'startups', 'action' => 'delete', $startup['id']), null, __('Are you sure you want to delete # %s?', $startup['id'])); ?>
 			</td>

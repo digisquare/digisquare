@@ -19,10 +19,10 @@
 	<tr>
 		<td><?php echo h($event['Event']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($event['Edition']['name'], array('controller' => 'editions', 'action' => 'view', $event['Edition']['id'])); ?>
+			<?php echo $this->Html->link($event['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $event['Edition']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($event['Place']['name'], array('controller' => 'places', 'action' => 'view', $event['Place']['id'])); ?>
+			<?php echo $this->Html->link($event['Place']['name'], array('controller' => 'places', 'action' => 'view', 'id' => $event['Place']['id'])); ?>
 		</td>
 		<td><?php echo h($event['Event']['name']); ?>&nbsp;</td>
 		<td><?php echo h($event['Event']['description']); ?>&nbsp;</td>
@@ -33,9 +33,20 @@
 		<td><?php echo h($event['Event']['created']); ?>&nbsp;</td>
 		<td><?php echo h($event['Event']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $event['Event']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $event['Event']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $event['Event']['id']), null, __('Are you sure you want to delete # %s?', $event['Event']['id'])); ?>
+			<?php echo $this->Html->link(
+				__('View'),
+				array('action' => 'view', 'id' => $event['Event']['id'])
+			); ?>
+			<?php echo $this->Html->link(
+				__('Edit'),
+				array('action' => 'edit', 'id' => $event['Event']['id'])
+			); ?>
+			<?php echo $this->Form->postLink(
+				__('Delete'),
+				array('action' => 'delete', 'id' => $event['Event']['id']),
+				null,
+				__('Are you sure you want to delete # %s?', $event['Event']['id'])
+			); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

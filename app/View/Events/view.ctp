@@ -8,12 +8,12 @@
 		</dd>
 		<dt><?php echo __('Edition'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($event['Edition']['name'], array('controller' => 'editions', 'action' => 'view', $event['Edition']['id'])); ?>
+			<?php echo $this->Html->link($event['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $event['Edition']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Place'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($event['Place']['name'], array('controller' => 'places', 'action' => 'view', $event['Place']['id'])); ?>
+			<?php echo $this->Html->link($event['Place']['name'], array('controller' => 'places', 'action' => 'view', 'id' => $event['Place']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -61,8 +61,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Event'), array('action' => 'edit', $event['Event']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Event'), array('action' => 'delete', $event['Event']['id']), null, __('Are you sure you want to delete # %s?', $event['Event']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Event'), array('action' => 'edit', 'id' => $event['Event']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Event'), array('action' => 'delete', 'id' => $event['Event']['id']), null, __('Are you sure you want to delete # %s?', $event['Event']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Events'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Event'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
@@ -95,7 +95,7 @@
 			<td><?php echo $organizer['created']; ?></td>
 			<td><?php echo $organizer['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'organizers', 'action' => 'view', $organizer['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'organizers', 'action' => 'view', 'id' => $organizer['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'organizers', 'action' => 'edit', $organizer['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'organizers', 'action' => 'delete', $organizer['id']), null, __('Are you sure you want to delete # %s?', $organizer['id'])); ?>
 			</td>
@@ -128,7 +128,7 @@
 			<td><?php echo $tag['created']; ?></td>
 			<td><?php echo $tag['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'tags', 'action' => 'view', $tag['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'tags', 'action' => 'view', 'id' => $tag['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'tags', 'action' => 'edit', $tag['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'tags', 'action' => 'delete', $tag['id']), null, __('Are you sure you want to delete # %s?', $tag['id'])); ?>
 			</td>

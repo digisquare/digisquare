@@ -24,17 +24,17 @@
 				<td class="actions">
 					<?php echo $this->Html->link(
 						__('View'),
-						array('action' => 'view', $edition['Edition']['id']),
+						array('action' => 'view', 'id' => $edition['Edition']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Html->link(
 						__('Edit'),
-						array('action' => 'edit', $edition['Edition']['id']),
+						array('action' => 'edit', 'id' => $edition['Edition']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Form->postLink(
 						__('Delete'),
-						array('action' => 'delete', $edition['Edition']['id']),
+						array('action' => 'delete', 'id' => $edition['Edition']['id']),
 						array('class' => 'btn btn-default btn-sm'),
 						__('Are you sure you want to delete # %s?', $edition['Edition']['id'])
 					); ?>

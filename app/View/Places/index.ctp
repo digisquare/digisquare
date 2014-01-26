@@ -19,7 +19,7 @@
 	<tr>
 		<td><?php echo h($place['Place']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($place['Edition']['name'], array('controller' => 'editions', 'action' => 'view', $place['Edition']['id'])); ?>
+			<?php echo $this->Html->link($place['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $place['Edition']['id'])); ?>
 		</td>
 		<td><?php echo h($place['Place']['name']); ?>&nbsp;</td>
 		<td><?php echo h($place['Place']['address']); ?>&nbsp;</td>
@@ -31,9 +31,20 @@
 		<td><?php echo h($place['Place']['created']); ?>&nbsp;</td>
 		<td><?php echo h($place['Place']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $place['Place']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $place['Place']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $place['Place']['id']), null, __('Are you sure you want to delete # %s?', $place['Place']['id'])); ?>
+			<?php echo $this->Html->link(
+				__('View'),
+				array('action' => 'view', 'id' => $place['Place']['id'])
+			); ?>
+			<?php echo $this->Html->link(
+				__('Edit'),
+				array('action' => 'edit', 'id' => $place['Place']['id'])
+			); ?>
+			<?php echo $this->Form->postLink(
+				__('Delete'),
+				array('action' => 'delete', 'id' => $place['Place']['id']),
+				null,
+				__('Are you sure you want to delete # %s?', $place['Place']['id'])
+			); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

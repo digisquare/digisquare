@@ -15,19 +15,30 @@
 	<tr>
 		<td><?php echo h($organization['Organization']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($organization['Place']['name'], array('controller' => 'places', 'action' => 'view', $organization['Place']['id'])); ?>
+			<?php echo $this->Html->link($organization['Place']['name'], array('controller' => 'places', 'action' => 'view', 'id' => $organization['Place']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($organization['Edition']['name'], array('controller' => 'editions', 'action' => 'view', $organization['Edition']['id'])); ?>
+			<?php echo $this->Html->link($organization['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $organization['Edition']['id'])); ?>
 		</td>
 		<td><?php echo h($organization['Organization']['name']); ?>&nbsp;</td>
 		<td><?php echo h($organization['Organization']['descritpion']); ?>&nbsp;</td>
 		<td><?php echo h($organization['Organization']['created']); ?>&nbsp;</td>
 		<td><?php echo h($organization['Organization']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $organization['Organization']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $organization['Organization']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $organization['Organization']['id']), null, __('Are you sure you want to delete # %s?', $organization['Organization']['id'])); ?>
+			<?php echo $this->Html->link(
+				__('View'),
+				array('action' => 'view', 'id' => $organization['Organization']['id'])
+			); ?>
+			<?php echo $this->Html->link(
+				__('Edit'),
+				array('action' => 'edit', 'id' => $organization['Organization']['id'])
+			); ?>
+			<?php echo $this->Form->postLink(
+				__('Delete'),
+				array('action' => 'delete', 'id' => $organization['Organization']['id']),
+				null,
+				__('Are you sure you want to delete # %s?', $organization['Organization']['id'])
+			); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

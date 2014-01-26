@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Edition'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($startup['Edition']['name'], array('controller' => 'editions', 'action' => 'view', $startup['Edition']['id'])); ?>
+			<?php echo $this->Html->link($startup['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $startup['Edition']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -41,8 +41,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Startup'), array('action' => 'edit', $startup['Startup']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Startup'), array('action' => 'delete', $startup['Startup']['id']), null, __('Are you sure you want to delete # %s?', $startup['Startup']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Startup'), array('action' => 'edit', 'id' => $startup['Startup']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Startup'), array('action' => 'delete', 'id' => $startup['Startup']['id']), null, __('Are you sure you want to delete # %s?', $startup['Startup']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Startups'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Startup'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
@@ -69,7 +69,7 @@
 			<td><?php echo $tag['created']; ?></td>
 			<td><?php echo $tag['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'tags', 'action' => 'view', $tag['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'tags', 'action' => 'view', 'id' => $tag['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'tags', 'action' => 'edit', $tag['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'tags', 'action' => 'delete', $tag['id']), null, __('Are you sure you want to delete # %s?', $tag['id'])); ?>
 			</td>

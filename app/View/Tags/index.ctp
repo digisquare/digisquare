@@ -15,9 +15,20 @@
 		<td><?php echo h($tag['Tag']['created']); ?>&nbsp;</td>
 		<td><?php echo h($tag['Tag']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $tag['Tag']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $tag['Tag']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $tag['Tag']['id']), null, __('Are you sure you want to delete # %s?', $tag['Tag']['id'])); ?>
+			<?php echo $this->Html->link(
+				__('View'),
+				array('action' => 'view', 'id' => $tag['Tag']['id'])
+			); ?>
+			<?php echo $this->Html->link(
+				__('Edit'),
+				array('action' => 'edit', 'id' => $tag['Tag']['id'])
+			); ?>
+			<?php echo $this->Form->postLink(
+				__('Delete'),
+				array('action' => 'delete', 'id' => $tag['Tag']['id']),
+				null,
+				__('Are you sure you want to delete # %s?', $tag['Tag']['id'])
+			); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

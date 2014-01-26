@@ -15,7 +15,7 @@
 	<tr>
 		<td><?php echo h($startup['Startup']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($startup['Edition']['name'], array('controller' => 'editions', 'action' => 'view', $startup['Edition']['id'])); ?>
+			<?php echo $this->Html->link($startup['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $startup['Edition']['id'])); ?>
 		</td>
 		<td><?php echo h($startup['Startup']['name']); ?>&nbsp;</td>
 		<td><?php echo h($startup['Startup']['description']); ?>&nbsp;</td>
@@ -23,9 +23,20 @@
 		<td><?php echo h($startup['Startup']['created']); ?>&nbsp;</td>
 		<td><?php echo h($startup['Startup']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $startup['Startup']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $startup['Startup']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $startup['Startup']['id']), null, __('Are you sure you want to delete # %s?', $startup['Startup']['id'])); ?>
+			<?php echo $this->Html->link(
+				__('View'),
+				array('action' => 'view', 'id' => $startup['Startup']['id'])
+			); ?>
+			<?php echo $this->Html->link(
+				__('Edit'),
+				array('action' => 'edit', 'id' => $startup['Startup']['id'])
+			); ?>
+			<?php echo $this->Form->postLink(
+				__('Delete'),
+				array('action' => 'delete', 'id' => $startup['Startup']['id']),
+				null,
+				__('Are you sure you want to delete # %s?', $startup['Startup']['id'])
+			); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
