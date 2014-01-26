@@ -1,5 +1,10 @@
 <div role="main">
 	<div class="page-header">
+		<?php echo $this->Html->link(
+			'<i class="icon-plus-sign icon-white"></i> ' . __('New Edition'),
+			array('controller' => 'editions', 'action' => 'add'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+		); ?>
 		<h1><?php echo __('Editions'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
@@ -17,14 +22,27 @@
 				<td><?php echo h($edition['Edition']['created']); ?>&nbsp;</td>
 				<td><?php echo h($edition['Edition']['modified']); ?>&nbsp;</td>
 				<td class="actions">
-					<?php echo $this->Html->link(__('View'), array('action' => 'view', $edition['Edition']['id'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $edition['Edition']['id'])); ?>
-					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $edition['Edition']['id']), null, __('Are you sure you want to delete # %s?', $edition['Edition']['id'])); ?>
+					<?php echo $this->Html->link(
+						__('View'),
+						array('action' => 'view', $edition['Edition']['id']),
+						array('class' => 'btn btn-default btn-sm')
+					); ?>
+					<?php echo $this->Html->link(
+						__('Edit'),
+						array('action' => 'edit', $edition['Edition']['id']),
+						array('class' => 'btn btn-default btn-sm')
+					); ?>
+					<?php echo $this->Form->postLink(
+						__('Delete'),
+						array('action' => 'delete', $edition['Edition']['id']),
+						array('class' => 'btn btn-default btn-sm'),
+						__('Are you sure you want to delete # %s?', $edition['Edition']['id'])
+					); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
 	</table>
-	<?php echo $this->Paginator->pagination(array(
-		'ul' => 'pagination'
-	)); ?>
+	<?php echo $this->Paginator->pagination(
+		array('ul' => 'pagination')
+	); ?>
 </div>
