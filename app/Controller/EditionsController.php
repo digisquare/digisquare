@@ -1,37 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Editions Controller
- *
- * @property Edition $Edition
- * @property PaginatorComponent $Paginator
- */
+
 class EditionsController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
-
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->Edition->recursive = 0;
 		$this->set('editions', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->Edition->exists($id)) {
 			throw new NotFoundException(__('Invalid edition'));
@@ -40,11 +16,6 @@ class EditionsController extends AppController {
 		$this->set('edition', $this->Edition->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Edition->create();
@@ -57,13 +28,6 @@ class EditionsController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Edition->exists($id)) {
 			throw new NotFoundException(__('Invalid edition'));
@@ -81,13 +45,6 @@ class EditionsController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Edition->id = $id;
 		if (!$this->Edition->exists()) {
@@ -100,4 +57,6 @@ class EditionsController extends AppController {
 			$this->Session->setFlash(__('The edition could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+}

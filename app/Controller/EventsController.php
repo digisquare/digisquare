@@ -1,37 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Events Controller
- *
- * @property Event $Event
- * @property PaginatorComponent $Paginator
- */
+
 class EventsController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
-
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->Event->recursive = 0;
 		$this->set('events', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Invalid event'));
@@ -40,11 +16,6 @@ class EventsController extends AppController {
 		$this->set('event', $this->Event->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Event->create();
@@ -61,13 +32,6 @@ class EventsController extends AppController {
 		$this->set(compact('editions', 'places', 'tags'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Invalid event'));
@@ -89,13 +53,6 @@ class EventsController extends AppController {
 		$this->set(compact('editions', 'places', 'tags'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Event->id = $id;
 		if (!$this->Event->exists()) {
@@ -108,4 +65,6 @@ class EventsController extends AppController {
 			$this->Session->setFlash(__('The event could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+}

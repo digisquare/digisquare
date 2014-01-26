@@ -6,7 +6,7 @@ class AppController extends Controller {
 	public $components = array(
 		'Session',
 		'Auth',
-		'Paginator'
+		'Paginator' => array('paramType' => 'querystring'),
 	);
 
 	public $helpers = array(
