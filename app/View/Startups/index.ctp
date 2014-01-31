@@ -1,6 +1,13 @@
 <div class="startups index">
-	<h2><?php echo __('Startups'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<div class="page-header">
+		<?php echo $this->Html->link(
+			'<i class="icon-plus-sign icon-white"></i> ' . __('New Startup'),
+			array('controller' => 'startups', 'action' => 'add'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+		); ?>
+		<h1><?php echo __('Startups'); ?></h1>
+	</div>
+	<table class="table table-bordered table-striped">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('edition_id'); ?></th>
@@ -25,43 +32,60 @@
 		<td class="actions">
 			<?php echo $this->Html->link(
 				__('View'),
-				array('action' => 'view', 'id' => $startup['Startup']['id'])
+				array('action' => 'view', 'id' => $startup['Startup']['id']),
+				array('class' => 'btn btn-default btn-sm')
 			); ?>
 			<?php echo $this->Html->link(
 				__('Edit'),
-				array('action' => 'edit', 'id' => $startup['Startup']['id'])
+				array('action' => 'edit', 'id' => $startup['Startup']['id']),
+				array('class' => 'btn btn-default btn-sm')
 			); ?>
 			<?php echo $this->Form->postLink(
 				__('Delete'),
 				array('action' => 'delete', 'id' => $startup['Startup']['id']),
-				null,
+				array('class' => 'btn btn-default btn-sm'),
 				__('Are you sure you want to delete # %s?', $startup['Startup']['id'])
 			); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+	<?php echo $this->Paginator->pagination(
+		array('ul' => 'pagination')
+	); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Startup'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Tags'), array('controller' => 'tags', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Tag'), array('controller' => 'tags', 'action' => 'add')); ?> </li>
+	<ul class="list-unstyled">
+		<li><?php echo $this->Html->link(
+				__('New Startup'), 
+				array('action' => 'add'),
+				array('class' => 'btn btn-primary btn-xs')
+			); ?>
+		</li>
+		<li><?php echo $this->Html->link(
+				__('List Editions'), 
+				array('controller' => 'editions', 'action' => 'index'),
+				array('class' => 'btn btn-primary btn-xs')
+			); ?>
+		</li>
+		<li><?php echo $this->Html->link(
+				__('New Edition'), 
+				array('controller' => 'editions', 'action' => 'add'),
+				array('class' => 'btn btn-primary btn-xs')
+			); ?>
+		</li>
+		<li><?php echo $this->Html->link(
+				__('List Tags'), 
+				array('controller' => 'tags', 'action' => 'index'),
+				array('class' => 'btn btn-primary btn-xs')
+			); ?>
+		</li>
+		<li><?php echo $this->Html->link(
+				__('New Tag'), 
+				array('controller' => 'tags', 'action' => 'add'),
+				array('class' => 'btn btn-primary btn-xs')
+			); ?>
+		</li>
 	</ul>
 </div>
