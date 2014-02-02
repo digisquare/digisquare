@@ -230,5 +230,51 @@
             "auth",
             "facebook"
         ]
+    },
+    {
+        "name": "opauth/twitter",
+        "version": "0.3.1",
+        "version_normalized": "0.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/opauth/twitter.git",
+            "reference": "24792d512ccc67e7d11e9249737616f039551c11"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/opauth/twitter/zipball/24792d512ccc67e7d11e9249737616f039551c11",
+            "reference": "24792d512ccc67e7d11e9249737616f039551c11",
+            "shasum": ""
+        },
+        "require": {
+            "opauth/opauth": ">=0.2.0",
+            "php": ">=5.2.0"
+        },
+        "time": "2013-06-12 07:50:11",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "": "."
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "U-Zyn Chua",
+                "email": "chua@uzyn.com",
+                "homepage": "http://uzyn.com"
+            }
+        ],
+        "description": "Twitter strategy for Opauth",
+        "homepage": "http://opauth.org",
+        "keywords": [
+            "Authentication",
+            "auth",
+            "twitter"
+        ]
     }
 ]
