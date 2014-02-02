@@ -1,0 +1,5 @@
+{
+    "require": {
+        "uzyn/cakephp-opauth": "*"
+    }
+}
