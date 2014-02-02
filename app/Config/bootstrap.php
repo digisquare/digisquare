@@ -2,7 +2,9 @@
 
 Cache::config('default', array('engine' => 'File'));
 
-CakePlugin::loadAll();
+CakePlugin::load('BoostCake');
+CakePlugin::load('Migrations');
+CakePlugin::load('Opauth', array('bootstrap' => true));
 
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
@@ -22,3 +24,21 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+/*
+ * OAuth Keys
+ */
+
+if (isset($_SERVER) && isset($_SERVER['DIGI_FB_APP_ID'])) {
+	Configure::write('Opauth.Strategy.Facebook', array(
+		'app_id' => $_SERVER['DIGI_FB_APP_ID'],
+		'app_secret' => $_SERVER['DIGI_FB_SECRET']
+	));
+}
+
+if (isset($_SERVER) && isset($_SERVER['DIGI_TWITTER_KEY'])) {
+	Configure::write('Opauth.Strategy.Twitter', array(
+		'key' => $_SERVER['DIGI_TWITTER_KEY'],
+		'secret' => $_SERVER['DIGI_TWITTER_SECRET']
+	));
+}
