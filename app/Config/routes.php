@@ -5,8 +5,9 @@ Router::connect('/',						array('controller' => 'editions', 'action' => 'index')
 /**
  * Opauth Plugin Routing
  */
-Router::connect('/auth/callback',			array('plugin' => 'Opauth', 'controller' => 'Opauth', 'action' => 'callback'));
-Router::connect('/auth/*',					array('plugin' => 'Opauth', 'controller' => 'Opauth', 'action' => 'index'));
+Router::connect('/auth/callback',			array('plugin' => 'Opauth', 'controller' => 'opauth', 'action' => 'callback'));
+Router::connect('/auth/*',					array('plugin' => 'Opauth', 'controller' => 'opauth', 'action' => 'index'));
+Router::connect('/opauth-complete/*',		array('controller' => 'authentications', 'action' => 'callback'));
 
 /**
  * App Routing
