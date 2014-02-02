@@ -276,5 +276,51 @@
             "auth",
             "twitter"
         ]
+    },
+    {
+        "name": "opauth/meetup",
+        "version": "0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/damusnet/opauth-meetup.git",
+            "reference": "62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/damusnet/opauth-meetup/zipball/62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23",
+            "reference": "62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23",
+            "shasum": ""
+        },
+        "require": {
+            "opauth/opauth": ">=0.2.0",
+            "php": ">=5.2.0"
+        },
+        "time": "2014-02-01 14:08:30",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "": "."
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Damien Varron",
+                "email": "damien.varron@effervea.com",
+                "homepage": "http://www.effervea.com"
+            }
+        ],
+        "description": "Meetup strategy for Opauth",
+        "homepage": "http://opauth.org",
+        "keywords": [
+            "Authentication",
+            "auth",
+            "meetup"
+        ]
     }
 ]

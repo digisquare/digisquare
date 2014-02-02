@@ -2,6 +2,7 @@
     "require": {
         "uzyn/cakephp-opauth": "*",
         "opauth/facebook": "*",
-        "opauth/twitter": "*"
+        "opauth/twitter": "*",
+        "opauth/meetup": "*"
     }
 }

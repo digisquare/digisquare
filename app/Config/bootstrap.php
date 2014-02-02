@@ -42,3 +42,11 @@ if (isset($_SERVER) && isset($_SERVER['DIGI_TWITTER_KEY'])) {
 		'secret' => $_SERVER['DIGI_TWITTER_SECRET']
 	));
 }
+
+if (isset($_SERVER) && isset($_SERVER['DIGI_MEETUP_KEY'])) {
+	Configure::write('Opauth.Strategy.Meetup', array(
+		'key' => $_SERVER['DIGI_MEETUP_KEY'],
+		'secret' => $_SERVER['DIGI_MEETUP_SECRET'],
+		'scope' => 'ageless',
+	));
+}

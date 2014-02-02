@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4987e35b720b7ecb1141f20623426772",
+    "hash": "67eb0cb2238b0c156265cfaee484fa83",
     "packages": [
         {
             "name": "composer/installers",
@@ -130,6 +130,50 @@
                 "facebook"
             ],
             "time": "2012-09-21 04:47:35"
+        },
+        {
+            "name": "opauth/meetup",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/damusnet/opauth-meetup.git",
+                "reference": "62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/damusnet/opauth-meetup/zipball/62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23",
+                "reference": "62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23",
+                "shasum": ""
+            },
+            "require": {
+                "opauth/opauth": ">=0.2.0",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damien Varron",
+                    "email": "damien.varron@effervea.com",
+                    "homepage": "http://www.effervea.com"
+                }
+            ],
+            "description": "Meetup strategy for Opauth",
+            "homepage": "http://opauth.org",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "meetup"
+            ],
+            "time": "2014-02-01 14:08:30"
         },
         {
             "name": "opauth/opauth",
