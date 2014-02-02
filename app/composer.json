@@ -1,5 +1,6 @@
 {
     "require": {
-        "uzyn/cakephp-opauth": "*"
+        "uzyn/cakephp-opauth": "*",
+        "opauth/facebook": "*"
     }
 }

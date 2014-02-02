@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "45873f17986ef7955d4df92b1130d1d9",
+    "hash": "9d2d9374a0ac7352d7d539e657ab4ace",
     "packages": [
         {
             "name": "composer/installers",
@@ -86,6 +86,50 @@
                 "zikula"
             ],
             "time": "2014-01-27 03:45:57"
+        },
+        {
+            "name": "opauth/facebook",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opauth/facebook.git",
+                "reference": "28c0e53393a03a66cbfea03073d1d6aacfaddb69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opauth/facebook/zipball/28c0e53393a03a66cbfea03073d1d6aacfaddb69",
+                "reference": "28c0e53393a03a66cbfea03073d1d6aacfaddb69",
+                "shasum": ""
+            },
+            "require": {
+                "opauth/opauth": ">=0.2.0",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "U-Zyn Chua",
+                    "email": "chua@uzyn.com",
+                    "homepage": "http://uzyn.com"
+                }
+            ],
+            "description": "Facebook strategy for Opauth",
+            "homepage": "http://opauth.org",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "facebook"
+            ],
+            "time": "2012-09-21 04:47:35"
         },
         {
             "name": "opauth/opauth",
