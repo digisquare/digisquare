@@ -6,7 +6,7 @@
 		echo $this->Form->input('place_id');
 		echo $this->Form->input('edition_id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('descritpion');
+		echo $this->Form->input('description');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -6,7 +6,7 @@
 			<th><?php echo $this->Paginator->sort('place_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('edition_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('descritpion'); ?></th>
+			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -21,7 +21,7 @@
 			<?php echo $this->Html->link($organization['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $organization['Edition']['id'])); ?>
 		</td>
 		<td><?php echo h($organization['Organization']['name']); ?>&nbsp;</td>
-		<td><?php echo h($organization['Organization']['descritpion']); ?>&nbsp;</td>
+		<td><?php echo h($organization['Organization']['description']); ?>&nbsp;</td>
 		<td><?php echo h($organization['Organization']['created']); ?>&nbsp;</td>
 		<td><?php echo h($organization['Organization']['modified']); ?>&nbsp;</td>
 		<td class="actions">
