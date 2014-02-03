@@ -1,6 +1,14 @@
 <div class="organizations index">
-	<h2><?php echo __('Organizations'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+		<div class="page-header">
+		<?php echo $this->Html->link(
+			'<i class="icon-plus-sign icon-white"></i> ' . __('New Organizations'),
+			array('controller' => 'organizations', 'action' => 'add'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+	  	); ?>
+		<h1><?php echo __('Organizations'); ?></h1>
+	</div>
+	
+	<table class="table table-bordered table-striped">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('place_id'); ?></th>
@@ -43,29 +51,23 @@
 	</tr>
 <?php endforeach; ?>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+	
+	
+	<?php echo $this->Paginator->pagination(
+		array('ul' => 'pagination')
+	); ?>
 </div>
+  	
 <div class="actions">
+	  	
 	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Organization'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Places'), array('controller' => 'places', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Place'), array('controller' => 'places', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Organizers'), array('controller' => 'organizers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Organizer'), array('controller' => 'organizers', 'action' => 'add')); ?> </li>
+	<ul class="list-unstyled">
+		<li><?php echo $this->Html->link(__('New Organization'), array('action' => 'add'),array('class' => 'btn btn-primary btn-xs') ); ?></li>
+		<li><?php echo $this->Html->link(__('List Places'), array('controller' => 'places', 'action' => 'index'),array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Place'), array('controller' => 'places', 'action' => 'add'),array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index'),array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add'),array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Organizers'), array('controller' => 'organizers', 'action' => 'index'),array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Organizer'), array('controller' => 'organizers', 'action' => 'add'),array('class' => 'btn btn-primary btn-xs')); ?> </li>
 	</ul>
 </div>
