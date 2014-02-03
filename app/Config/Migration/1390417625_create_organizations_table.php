@@ -39,7 +39,7 @@ class CreateOrganizationsTable extends CakeMigration {
 						'type' => 'string',
 						'null' => false,
 					),
-					'descritpion' => array(
+					'description' => array(
 						'type' => 'text',
 						'null' => false,
 					),

@@ -22,6 +22,14 @@ class User extends AppModel {
 		),
 	);
 
+	public $hasMany = array(
+		'Authentication' => array(
+			'className' => 'Authentication',
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+		),
+	);
+
 	public function beforeSave($options = array()) {
 		if (isset($this->data['User']['password'])) {
 			$passwordHasher = new SimplePasswordHasher();

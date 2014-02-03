@@ -1,20 +1,45 @@
-<div class="users form">
-	<?php echo $this->Session->flash('auth'); ?>
-	<?php echo $this->Form->create('User'); ?>
-		<fieldset>
-			<legend>
-				<?php echo __('Please enter your username and password'); ?>
-			</legend>
-			<?php echo $this->Form->input('username');
-			echo $this->Form->input('password');
-		?>
-		</fieldset>
-	<?php echo $this->Form->end(__('Login')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-	</ul>
+<div role="main">
+	<div class="users form">
+		<h1><?php echo __('Login'); ?></h1>
+		<?php echo $this->Session->flash('auth'); ?>
+		<?php echo $this->Form->create('User', array(
+			'inputDefaults' => array(
+				'div' => 'form-group',
+				'label' => array(
+					'class' => 'col col-md-3 control-label'
+				),
+				'wrapInput' => 'col col-md-9',
+				'class' => 'form-control'
+			),
+			'class' => 'well form-horizontal col col-md-5'
+		)); ?>
+			<?php echo $this->Form->input('username'); ?>
+			<?php echo $this->Form->input('password'); ?>
+			<div class="form-group">
+				<div class="col col-md-3 col-md-offset-3">
+					<?php echo $this->Form->submit('Login', array(
+						'class' => 'btn btn-primary'
+					)); ?>
+				</div>
+			</div>
+		<?php echo $this->Form->end(); ?>
+	</div>
+	<div class="well col col-md-6 col-md-offset-1">
+		<?php $providers = array('facebook', 'twitter', 'meetup'); ?>
+		<ul>
+			<?php foreach ($providers as $provider): ?>
+				<li>
+					<?php echo $this->Html->link(
+						__('%s Connect', ucfirst($provider)),
+						array(
+							'plugin' => 'Opauth',
+							'controller' => 'opauth',
+							'action' => 'index',
+							$provider
+						)
+					); ?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
 </div>

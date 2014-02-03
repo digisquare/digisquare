@@ -107,7 +107,7 @@
 			<td><?php echo $organization['place_id']; ?></td>
 			<td><?php echo $organization['edition_id']; ?></td>
 			<td><?php echo $organization['name']; ?></td>
-			<td><?php echo $organization['descritpion']; ?></td>
+			<td><?php echo $organization['description']; ?></td>
 			<td><?php echo $organization['created']; ?></td>
 			<td><?php echo $organization['modified']; ?></td>
 			<td class="actions">
