@@ -5,7 +5,7 @@
 	<div class="row">
 		<?php foreach ($badges as $badge): ?>
 			<div class="thumbnail col-md-2">
-		      <img src="../img/badges/<?php echo h($badge['Badge']['icon']); ?>" alt="...">
+		      <img src="../img/badges/<?php echo h($badge['Badge']['icon']); ?>" alt="..." class="notBadged">
 		      <div class="caption">
 		        <h3><?php echo h($badge['Badge']['name']); ?></h3>
 		        <p><?php echo h($badge['Badge']['description']); ?></p>
