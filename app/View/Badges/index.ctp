@@ -14,9 +14,3 @@
 	<?php endforeach; ?>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul class="list-unlisted">
-		<li><?php echo $this->Html->link(__('New Badge'), array('action' => 'add'), array('class' => 'btn btn-primary btn-xs')); ?></li>
-	</ul>
-</div>

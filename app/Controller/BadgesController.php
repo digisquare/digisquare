@@ -24,6 +24,11 @@ class BadgesController extends AppController {
 		$this->Badge->recursive = 0;
 		$this->set('badges', $this->Paginator->paginate());
 	}
+	
+	public function manage() {
+		$this->Badge->recursive = 0;
+		$this->set('badges', $this->Paginator->paginate());
+	}
 
 /**
  * view method
