@@ -55,7 +55,7 @@ class BadgesController extends AppController {
 			$this->Badge->create();
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'manage'));
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
@@ -76,7 +76,7 @@ class BadgesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'manage'));
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
@@ -104,5 +104,5 @@ class BadgesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'manage'));
 	}}
