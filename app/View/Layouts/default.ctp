@@ -48,6 +48,7 @@
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
 				          <ul class="dropdown-menu">
 				            <li><?php echo $this->Html->link(__('Badges'), array('controller' => 'badges', 'action' => 'index')); ?></li>
+				            <li><?php echo $this->Html->link(__('Manage badges'), array('controller' => 'badges', 'action' => 'manage')); ?></li>
 						<li><?php echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				          </ul>
 				        </li>
