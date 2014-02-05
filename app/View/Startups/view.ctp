@@ -1,54 +1,64 @@
 <div class="startups view">
 <h2><?php echo __('Startup'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
+	<table class="table">
+	<tr>
+		<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('Edition'); ?></th>
+		<th><?php echo __('Name'); ?></th>
+		<th><?php echo __('Description'); ?></th>
+		<th><?php echo __('Contacts'); ?></th>
+		<th><?php echo __('Created'); ?></th>
+		<th><?php echo __('Modified'); ?></th>
+	</tr>
+	<tr>
+		<th>
 			<?php echo h($startup['Startup']['id']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Edition'); ?></dt>
-		<dd>
+		</th>
+		
+		<th>
 			<?php echo $this->Html->link($startup['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $startup['Edition']['id'])); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
+		</th>
+		
+		<th>
 			<?php echo h($startup['Startup']['name']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
+		</th>
+		
+		<th>
 			<?php echo h($startup['Startup']['description']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Contacts'); ?></dt>
-		<dd>
+		</th>
+		
+		<th>
 			<?php echo h($startup['Startup']['contacts']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
+		</th>
+		
+		<th>
 			<?php echo h($startup['Startup']['created']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
+		</th>
+		
+		<th>
 			<?php echo h($startup['Startup']['modified']); ?>
 			&nbsp;
-		</dd>
-	</dl>
+		</th>
+	</tr>
+	</table>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Startup'), array('action' => 'edit', 'id' => $startup['Startup']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Startup'), array('action' => 'delete', 'id' => $startup['Startup']['id']), null, __('Are you sure you want to delete # %s?', $startup['Startup']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Startups'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Startup'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Tags'), array('controller' => 'tags', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Tag'), array('controller' => 'tags', 'action' => 'add')); ?> </li>
+	<ul class="list-inline">
+		<li><?php echo $this->Html->link(__('Edit Startup'), array('action' => 'edit', 'id' => $startup['Startup']['id']), array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Startup'), array('action' => 'delete', 'id' => $startup['Startup']['id']), array('class' => 'btn btn-primary btn-xs'), __('Are you sure you want to delete # %s?', $startup['Startup']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List Startups'), array('action' => 'index'), array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Startup'), array('action' => 'add'), array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index'), array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add'), array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Tags'), array('controller' => 'tags', 'action' => 'index'), array('class' => 'btn btn-primary btn-xs')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Tag'), array('controller' => 'tags', 'action' => 'add' ), array('class' => 'btn btn-primary btn-xs')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -80,7 +90,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Tag'), array('controller' => 'tags', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Tag'), array('controller' => 'tags', 'action' => 'add'), array('class' => 'btn btn-primary btn-xs')); ?> </li>
 		</ul>
 	</div>
 </div>
