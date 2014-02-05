@@ -15,32 +15,26 @@
 			<?php echo h($startup['Startup']['id']); ?>
 			&nbsp;
 		</th>
-		
 		<th>
 			<?php echo $this->Html->link($startup['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $startup['Edition']['id'])); ?>
 			&nbsp;
 		</th>
-		
 		<th>
 			<?php echo h($startup['Startup']['name']); ?>
 			&nbsp;
 		</th>
-		
 		<th>
 			<?php echo h($startup['Startup']['description']); ?>
 			&nbsp;
 		</th>
-		
 		<th>
 			<?php echo h($startup['Startup']['contacts']); ?>
 			&nbsp;
 		</th>
-		
 		<th>
 			<?php echo h($startup['Startup']['created']); ?>
 			&nbsp;
 		</th>
-		
 		<th>
 			<?php echo h($startup['Startup']['modified']); ?>
 			&nbsp;
