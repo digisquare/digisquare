@@ -69,7 +69,7 @@ class StartupsController extends AppController {
 
 	public function feed() {
 	    $startups = $this->Startup->find('all',array(
-	        'limit' => 3,
+	        'limit' => 10,
 	        'order' => 'Startup.created DESC'
 	        ));
 	    $this->set(compact('startups'));

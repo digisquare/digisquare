@@ -1,15 +1,22 @@
 <?php 
 
 	$this->set('channel', array(
-	    'title' => 'Derniers Ajout de Startup',
+	    'title' => __('Latest Startup'),
 	    'link' => $this->Html->url('/', true),
-	    'description' => 'Derniers Ajout de Startup',
+	    'description' => __('Top 10 Latest Startup'),
 	    'lang' => 'fr-fr'
 	));
 	
 	
 	foreach($startups as $startup){
-	    $link = $this->Html->url(array('controller' => 'Startups', 'action' => './', $startup['Startup']['id']),true);
+	    $link = $this->Html->url(
+			array(
+				'controller' => 'startups',
+				'action' => 'view',
+				'id' => $startup['Startup']['id']
+			),
+			true
+		);
 	    echo $this->Rss->item(array(),array(
 	        'title' => $startup['Startup']['name'],
 	        'link' => $link,
