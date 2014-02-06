@@ -1,4 +1,4 @@
-<div class="tags index">
+<div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
 			'<i class="icon-plus-sign icon-white"></i> ' . __('New Tag'), 
@@ -9,11 +9,11 @@
 	</div>
 	<table class="table table-bordered table-striped">
 		<tr>
-				<th><?php echo $this->Paginator->sort('id'); ?></th>
-				<th><?php echo $this->Paginator->sort('name'); ?></th>
-				<th><?php echo $this->Paginator->sort('created'); ?></th>
-				<th><?php echo $this->Paginator->sort('modified'); ?></th>
-				<th class="actions"><?php echo __('Actions'); ?></th>
+			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('created'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($tags as $tag): ?>
 			<tr>
