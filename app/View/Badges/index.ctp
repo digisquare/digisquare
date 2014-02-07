@@ -4,13 +4,17 @@
 	</div>
 	<div class="row">
 		<?php foreach ($badges as $badge): ?>
-			<div class="thumbnail col-md-2">
-		      <img src="../img/badges/<?php echo h($badge['Badge']['icon']); ?>" alt="..." class="notBadged">
-		      <div class="caption">
-		        <h3><?php echo h($badge['Badge']['name']); ?></h3>
-		        <p><?php echo h($badge['Badge']['description']); ?></p>
-		      </div>
-		    </div>
+			<a class="thumbnail col-md-2 <?php echo h($badge['Badge']['class_badged']); ?>" rel="tooltip" data-toggle="hover" title="<?php echo h($badge['Badge']['description']); ?>">
+		      <img src="../img/badges/<?php echo h($badge['Badge']['icon']); ?>" alt="..." >
+		    </a>
 	<?php endforeach; ?>
 	</div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+
+<script>  
+$(function ()  
+{ $(".thumbnail").tooltip();  
+});  
+</script>

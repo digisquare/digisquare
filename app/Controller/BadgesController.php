@@ -22,9 +22,40 @@ class BadgesController extends AppController {
  */
 	public function index() {
 		$this->Badge->recursive = 0;
-		$this->set('badges', $this->Paginator->paginate());
+		$badges = $this->Paginator->paginate();
+
+		$this->loadModel('Edition');
+		$this->loadModel('Startup');
+		$this->loadModel('Place');
+		
+		foreach ($badges as $key => $badge):
+			$badges[$key]['Badge']['class_badged'] = 'notBadged';
+			$type = $badge['Badge']['type'];
+			$minimum = $badge['Badge']['minimum'];
+			$options = array('conditions' => array($type.'name' => ''));
+			if($type == "Edition"){
+				$total = $this->Edition->find('count');
+			}
+			else if($type == "Startup"){
+				$total = $this->Startup->find('count');
+			}
+			if($type == "Place"){
+				$total = $this->Place->find('count');
+			}
+			
+        	if ($total >= $minimum){
+				$badges[$key]['Badge']['class_badged'] = 'Badged';
+        	}
+		endforeach;
+		
+				
+		$this->set(compact('badges'));
 	}
-	
+/**
+ * manage method
+ *
+ * @return void
+ */
 	public function manage() {
 		$this->Badge->recursive = 0;
 		$this->set('badges', $this->Paginator->paginate());
