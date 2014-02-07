@@ -42,6 +42,12 @@
 				array('action' => 'edit', 'id' => $event['Event']['id'])
 			); ?>
 			<?php echo $this->Form->postLink(
+				__('Participate'),
+				array('action' => 'Participate', 'id' => $event['Event']['id']),
+				null,
+				__('Are you sure you want to participate to # %s?', $event['Event']['id'])
+			); ?>
+			<?php echo $this->Form->postLink(
 				__('Delete'),
 				array('action' => 'delete', 'id' => $event['Event']['id']),
 				null,
