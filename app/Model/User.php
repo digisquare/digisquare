@@ -28,6 +28,19 @@ class User extends AppModel {
 			'foreignKey' => 'user_id',
 			'dependent' => true,
 		),
+		'Participants' => array(
+			'className' => 'Participant',
+			'foreignKey' => 'event_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
 	);
 
 	public function beforeSave($options = array()) {
