@@ -1,4 +1,4 @@
-<div class="events index">
+<div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
 			'<i class="icon-plus-sign icon-white"></i> ' .__('New Event'), 
@@ -13,11 +13,8 @@
 			<th><?php echo $this->Paginator->sort('edition_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('place_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('start_at'); ?></th>
 			<th><?php echo $this->Paginator->sort('end_at'); ?></th>
-			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th><?php echo $this->Paginator->sort('url'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -40,11 +37,8 @@
 					);
 				?></td>
 				<td><?php echo h($event['Event']['name']); ?>&nbsp;</td>
-				<td><?php echo h($event['Event']['description']); ?>&nbsp;</td>
 				<td><?php echo h($event['Event']['start_at']); ?>&nbsp;</td>
 				<td><?php echo h($event['Event']['end_at']); ?>&nbsp;</td>
-				<td><?php echo h($event['Event']['status']); ?>&nbsp;</td>
-				<td><?php echo h($event['Event']['url']); ?>&nbsp;</td>
 				<td><?php echo h($event['Event']['created']); ?>&nbsp;</td>
 				<td><?php echo h($event['Event']['modified']); ?>&nbsp;</td>
 				<td class="actions">
@@ -60,7 +54,7 @@
 					); ?>
 					<?php echo $this->Form->postLink(
 						__('Participate'),
-						array('action' => 'Participate', 'id' => $event['Event']['id']),
+						array('action' => 'participate', 'id' => $event['Event']['id']),
 						array('class' => 'btn btn-default btn-sm'),
 						__('Are you sure you want to participate to # %s?', $event['Event']['id'])
 					); ?>

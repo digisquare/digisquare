@@ -2,8 +2,8 @@
 App::uses('AppController', 'Controller');
 
 class EventsController extends AppController {
-public
-	 function index() {
+
+	public function index() {
 		$this->Event->recursive = 0;
 		$this->set('events', $this->Paginator->paginate());
 	}
@@ -67,24 +67,22 @@ public
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	public function Participate($id){
+	public function participate($id = null){
 		$this->Event->id = $id;
 		if (!$this->Event->exists()) {
 			throw new NotFoundException(__('Invalid event'));	
 		}
-		$part = array(
+		$participant = array(
 			'Participant' => array(
 				'event_id' => $id,
-				'user_id' => $this->Auth->user(id)
+				'user_id' => $this->Auth->user('id')
 			)
 		);
-		if ($this->Event->Participant->save($part)) {
-			$this->Session->setFlash(__('You participate to this event.'));
+		if ($this->Event->Participant->save($participant)) {
+			$this->Session->setFlash(__('Your participation to this event has been saved.'));
 		} else {
-			$this->Session->setFlash(__('An error occurred'));
+			$this->Session->setFlash(__('Your participation to this event could not been saved. Please, try again.'));
 		}
-
 		return $this->redirect(array('action' => 'index'));
 	}
 }
-
