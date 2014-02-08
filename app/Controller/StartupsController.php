@@ -64,5 +64,14 @@ class StartupsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	public $components = array('RequestHandler');
 
+	public function feed() {
+	    $startups = $this->Startup->find('all',array(
+	        'limit' => 10,
+	        'order' => 'Startup.created DESC'
+	        ));
+	    $this->set(compact('startups'));
+	}
 }
