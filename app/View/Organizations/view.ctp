@@ -23,7 +23,7 @@
 		</dd>
 		<dt><?php echo __('Descritpion'); ?></dt>
 		<dd>
-			<?php echo h($organization['Organization']['description']); ?>
+			<?php echo h($organization['Organization']['descritpion']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
