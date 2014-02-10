@@ -7,6 +7,7 @@ class AppController extends Controller {
 		'Session',
 		'Auth',
 		'Paginator' => array('paramType' => 'querystring'),
+		'RequestHandler',
 	);
 
 	public $helpers = array(
@@ -17,7 +18,7 @@ class AppController extends Controller {
 	);
 
 	public function beforeFilter() {
-		$this->Auth->allow('index', 'view');
+		$this->Auth->allow('index', 'feed', 'view');
 	}
 
 }

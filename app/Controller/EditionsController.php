@@ -58,5 +58,16 @@ class EditionsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	public function organizations($id = null) {
+		if (!$this->Edition->exists($id)) {
+			throw new NotFoundException(__('Invalid edition'));
+		}
+		$organizations = $this->Edition->Organization->find('all', array(
+			'conditions' => array('Organization.edition_id' => $id)
+		));
+		$this->set(compact('organizations'));
+		$this->set('organization', $this->Paginator->paginate());
+	}
 
 }

@@ -8,6 +8,16 @@ class StartupsController extends AppController {
 		$this->set('startups', $this->Paginator->paginate());
 	}
 
+	public function feed() {
+		$startups = $this->Startup->find('all', array(
+			'contain' => array(),
+			'limit' => 10,
+			'order' => array('Startup.created' => 'DESC')
+		));
+		$this->set(compact('startups'));
+		$this->RequestHandler->renderAs($this, 'rss');
+	}
+
 	public function view($id = null) {
 		if (!$this->Startup->exists($id)) {
 			throw new NotFoundException(__('Invalid startup'));
@@ -64,5 +74,4 @@ class StartupsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
 }
