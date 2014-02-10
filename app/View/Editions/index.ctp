@@ -38,6 +38,11 @@
 						array('class' => 'btn btn-default btn-sm'),
 						__('Are you sure you want to delete # %s?', $edition['Edition']['id'])
 					); ?>
+					<?php echo $this->Html->link(
+						__('Organizations'),
+						array('action' => 'organizations', 'id' => $edition['Edition']['id']),
+						array('class' => 'btn btn-default btn-sm')
+					); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
