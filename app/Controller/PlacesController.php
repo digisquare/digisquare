@@ -62,5 +62,14 @@ class PlacesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
+	
+	public function organization($id = null) {
+		if (!$this->Place->exists($id)) {
+			throw new NotFoundException(__('Invalid place'));
+		}
+		$options = array('conditions' => array('Organization.place_id' => $id));
+		$this->set('organizations', $this->Place->Organization->find('all', $options));
+		$this->set('places', $this->Paginator->paginate());
+	}
+	
 }
