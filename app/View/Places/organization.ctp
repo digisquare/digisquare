@@ -30,7 +30,7 @@
 				); ?>
 			</td>
 			<td><?php echo h($organization['Organization']['name']); ?>&nbsp;</td>
-			<td><?php echo h($organization['Organization']['descritpion']); ?>&nbsp;</td>
+			<td><?php echo h($organization['Organization']['description']); ?>&nbsp;</td>
 			<td><?php echo h($organization['Organization']['created']); ?>&nbsp;</td>
 			<td><?php echo h($organization['Organization']['modified']); ?>&nbsp;</td>
 		</tr>

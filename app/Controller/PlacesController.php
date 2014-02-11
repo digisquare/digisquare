@@ -68,8 +68,7 @@ class PlacesController extends AppController {
 			throw new NotFoundException(__('Invalid place'));
 		}
 		$options = array('conditions' => array('Organization.place_id' => $id));
-		$this->set('organizations', $this->Place->Organization->find('all', $options));
-		$this->set('places', $this->Paginator->paginate());
+		$this->set('organizations', $this->Place->Organization->find('all', $options), $this->Paginator->paginate());
 	}
 	
 }
