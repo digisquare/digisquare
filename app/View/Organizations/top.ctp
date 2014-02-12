@@ -5,21 +5,16 @@
 			array('controller' => 'organizations', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 	  	); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Top 10'),
-			array('controller' => 'organizations', 'action' => 'top'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
-		); ?>
-		<h1><?php echo __('Organizations'); ?></h1>
-	</div>
+		<h1><?php echo __('Organizations top 10'); ?></h1>
+	</div>	
 	<table class="table table-bordered table-striped">
 		<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('place_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('edition_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th><?php echo 'id'; ?></th>
+			<th><?php echo 'place_id'; ?></th>
+			<th><?php echo 'edition_id'; ?></th>
+			<th><?php echo 'name'; ?></th>
+			<th><?php echo 'created'; ?></th>
+			<th><?php echo 'modified'; ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($organizations as $organization): ?>
@@ -36,8 +31,9 @@
 						$organization['Edition']['name'],
 						array('controller' => 'editions', 'action' => 'view', 'id' => $organization['Edition']['id'])
 					); ?>
-				</td>
+				</td>				
 				<td><?php echo h($organization['Organization']['name']); ?>&nbsp;</td>
+				<td><?php echo h($organization[0]['count']); ?>&nbsp;</td>
 				<td><?php echo h($organization['Organization']['created']); ?>&nbsp;</td>
 				<td><?php echo h($organization['Organization']['modified']); ?>&nbsp;</td>
 				<td class="actions">
