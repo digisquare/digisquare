@@ -62,6 +62,18 @@ class PlacesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	public $components = array('RequestHandler');
+
+	public function feed(){
+		$places = $this->Place->find('all',
+			array(
+				'limit' => 10,
+				'order' => 'Place.created DESC'
+			)
+		);
+		$this->set(compact('places'));
+	}
 
 	public function top() {
 		$places = $this->Place->find('all', array(
