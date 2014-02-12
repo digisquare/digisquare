@@ -5,25 +5,22 @@
 			array('controller' => 'editions', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Top 10'),
-			array('controller' => 'editions', 'action' => 'top'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
-		); ?>
-		<h1><?php echo __('Editions'); ?></h1>
+		<h1><?php echo __('Editions - top 10'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
 		<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th><?php echo 'Id'; ?></th>
+			<th><?php echo 'Name'; ?></th>
+			<th><?php echo 'Events'; ?></th>
+			<th><?php echo 'Created'; ?></th>
+			<th><?php echo 'Modified'; ?></th>
+			<th><?php echo 'Action'; ?></th>
 		</tr>
 		<?php foreach ($editions as $edition): ?>
 			<tr>
 				<td><?php echo h($edition['Edition']['id']); ?>&nbsp;</td>
 				<td><?php echo h($edition['Edition']['name']); ?>&nbsp;</td>
+				<td><?php echo h($edition[0]['count']); ?>&nbsp;</td>
 				<td><?php echo h($edition['Edition']['created']); ?>&nbsp;</td>
 				<td><?php echo h($edition['Edition']['modified']); ?>&nbsp;</td>
 				<td class="actions">
@@ -52,7 +49,4 @@
 			</tr>
 		<?php endforeach; ?>
 	</table>
-	<?php echo $this->Paginator->pagination(
-		array('ul' => 'pagination')
-	); ?>
 </div>
