@@ -5,6 +5,11 @@
 			array('controller' => 'editions', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
+		<?php echo $this->Html->link(
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Top 10'),
+			array('controller' => 'editions', 'action' => 'top'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+		); ?>
 		<h1><?php echo __('Editions'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
