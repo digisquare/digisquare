@@ -67,4 +67,16 @@ class EventsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
+	public $components = array('RequestHandler');
+
+	public function feed(){
+		$events = $this->Event->find('all',
+			array(
+				'limit' => 10,
+				'order' => 'Event.created DESC'
+			)
+		);
+		$this->set(compact('events'));
+	}
+
 }
