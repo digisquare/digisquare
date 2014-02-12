@@ -12,25 +12,19 @@ Router::parseExtensions('rss');
  * @since         CakePHP(tm) v 0.2.9
  */
 
-/**
- * Here, we are connecting '/' (base path) to controller called 'Pages',
- * its action called 'display', and we pass a param to select the view file
- * to use (in this case, /app/View/Pages/home.ctp)...
- */
-	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-/**
- * ...and connect the rest of 'Pages' controller's URLs.
- */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+Router::connect('/',						array('controller' => 'editions', 'action' => 'index'));
 
 /**
- * Load all plugin routes. See the CakePlugin documentation on
- * how to customize the loading of plugin routes.
+ * Opauth Plugin Routing
  */
-	CakePlugin::routes();
+Router::connect('/auth/callback',			array('plugin' => 'Opauth', 'controller' => 'opauth', 'action' => 'callback'));
+Router::connect('/auth/*',					array('plugin' => 'Opauth', 'controller' => 'opauth', 'action' => 'index'));
+Router::connect('/opauth-complete/*',		array('controller' => 'authentications', 'action' => 'callback'));
 
 /**
- * Load the CakePHP default routes. Only remove this if you do not want to use
- * the built-in default routes.
+ * App Routing
  */
-	require CAKE . 'Config' . DS . 'routes.php';
+Router::connect('/:controller',				array('action' => 'index'));
+Router::connect('/:controller/:id',			array('action' => 'view'), array('pass' => array('id'), 'id' => '[0-9]+'));
+Router::connect('/:controller/:id/:action',	array(), array('pass' => array('id'), 'id' => '[0-9]+'));
+Router::connect('/:controller/:action',		array());

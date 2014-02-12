@@ -1,37 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Organizations Controller
- *
- * @property Organization $Organization
- * @property PaginatorComponent $Paginator
- */
+
 class OrganizationsController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
-
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->Organization->recursive = 0;
 		$this->set('organizations', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
@@ -40,11 +16,6 @@ class OrganizationsController extends AppController {
 		$this->set('organization', $this->Organization->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Organization->create();
@@ -55,15 +26,11 @@ class OrganizationsController extends AppController {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
 		}
+		$places = $this->Organization->Place->find('list');
+		$editions = $this->Organization->Edition->find('list');
+		$this->set(compact('places', 'editions'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
@@ -79,15 +46,11 @@ class OrganizationsController extends AppController {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 			$this->request->data = $this->Organization->find('first', $options);
 		}
+		$places = $this->Organization->Place->find('list');
+		$editions = $this->Organization->Edition->find('list');
+		$this->set(compact('places', 'editions'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Organization->id = $id;
 		if (!$this->Organization->exists()) {

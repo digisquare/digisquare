@@ -13,7 +13,15 @@ class PlacesControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.place'
+		'app.place',
+		'app.edition',
+		'app.event',
+		'app.organizer',
+		'app.organization',
+		'app.tag',
+		'app.events_tag',
+		'app.startup',
+		'app.startups_tag'
 	);
 
 /**

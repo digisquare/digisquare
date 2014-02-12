@@ -1,0 +1,326 @@
+[
+    {
+        "name": "opauth/opauth",
+        "version": "0.4.4",
+        "version_normalized": "0.4.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/opauth/opauth.git",
+            "reference": "436fb98c2374c9e8ae4d8adddf83214bee4d9c72"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/opauth/opauth/zipball/436fb98c2374c9e8ae4d8adddf83214bee4d9c72",
+            "reference": "436fb98c2374c9e8ae4d8adddf83214bee4d9c72",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0"
+        },
+        "suggest": {
+            "opauth/facebook": "Allows Facebook authentication",
+            "opauth/google": "Allows Google authentication",
+            "opauth/twitter": "Allows Twitter authentication"
+        },
+        "time": "2013-05-10 09:01:52",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "lib/Opauth/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "U-Zyn Chua",
+                "email": "chua@uzyn.com",
+                "homepage": "http://uzyn.com"
+            }
+        ],
+        "description": "Multi-provider authentication framework for PHP",
+        "homepage": "http://opauth.org",
+        "keywords": [
+            "Authentication",
+            "OpenId",
+            "auth",
+            "facebook",
+            "google",
+            "oauth",
+            "omniauth",
+            "twitter"
+        ]
+    },
+    {
+        "name": "composer/installers",
+        "version": "v1.0.9",
+        "version_normalized": "1.0.9.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/composer/installers.git",
+            "reference": "8e3e734c50b8f60228baf439d5ab16c57d67f6ce"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/composer/installers/zipball/8e3e734c50b8f60228baf439d5ab16c57d67f6ce",
+            "reference": "8e3e734c50b8f60228baf439d5ab16c57d67f6ce",
+            "shasum": ""
+        },
+        "replace": {
+            "shama/baton": "*"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev",
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2014-01-27 03:45:57",
+        "type": "composer-installer",
+        "extra": {
+            "class": "Composer\\Installers\\Installer",
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Composer\\Installers\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle Robinson Young",
+                "email": "kyle@dontkry.com",
+                "homepage": "https://github.com/shama",
+                "role": "Developer"
+            }
+        ],
+        "description": "A multi-framework Composer library installer",
+        "homepage": "http://composer.github.com/installers/",
+        "keywords": [
+            "Hurad",
+            "MODX Evo",
+            "OXID",
+            "agl",
+            "annotatecms",
+            "cakephp",
+            "codeigniter",
+            "concrete5",
+            "croogo",
+            "drupal",
+            "elgg",
+            "fuelphp",
+            "installer",
+            "joomla",
+            "kohana",
+            "laravel",
+            "lithium",
+            "magento",
+            "mako",
+            "mediawiki",
+            "modulework",
+            "phpbb",
+            "piwik",
+            "ppi",
+            "shopware",
+            "silverstripe",
+            "symfony",
+            "typo3",
+            "wordpress",
+            "zend",
+            "zikula"
+        ]
+    },
+    {
+        "name": "uzyn/cakephp-opauth",
+        "version": "1.0.7",
+        "version_normalized": "1.0.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/uzyn/cakephp-opauth.git",
+            "reference": "108e02622f78c38c5f3c46654cd6761a30ead97e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/uzyn/cakephp-opauth/zipball/108e02622f78c38c5f3c46654cd6761a30ead97e",
+            "reference": "108e02622f78c38c5f3c46654cd6761a30ead97e",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "1.*",
+            "opauth/opauth": ">=0.2.0",
+            "php": ">=5.2.0"
+        },
+        "time": "2013-06-27 09:33:59",
+        "type": "cakephp-plugin",
+        "extra": {
+            "installer-name": "Opauth"
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "U-Zyn Chua",
+                "email": "chua@uzyn.com",
+                "homepage": "http://uzyn.com"
+            }
+        ],
+        "description": "Opauth plugin for CakePHP v2.x, allowing simple plug-n-play 3rd-party authentication with CakePHP",
+        "homepage": "http://opauth.org",
+        "keywords": [
+            "Authentication",
+            "OPAuth",
+            "auth",
+            "cakephp",
+            "oauth"
+        ]
+    },
+    {
+        "name": "opauth/facebook",
+        "version": "0.2.1",
+        "version_normalized": "0.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/opauth/facebook.git",
+            "reference": "28c0e53393a03a66cbfea03073d1d6aacfaddb69"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/opauth/facebook/zipball/28c0e53393a03a66cbfea03073d1d6aacfaddb69",
+            "reference": "28c0e53393a03a66cbfea03073d1d6aacfaddb69",
+            "shasum": ""
+        },
+        "require": {
+            "opauth/opauth": ">=0.2.0",
+            "php": ">=5.2.0"
+        },
+        "time": "2012-09-21 04:47:35",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "": "."
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "U-Zyn Chua",
+                "email": "chua@uzyn.com",
+                "homepage": "http://uzyn.com"
+            }
+        ],
+        "description": "Facebook strategy for Opauth",
+        "homepage": "http://opauth.org",
+        "keywords": [
+            "Authentication",
+            "auth",
+            "facebook"
+        ]
+    },
+    {
+        "name": "opauth/twitter",
+        "version": "0.3.1",
+        "version_normalized": "0.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/opauth/twitter.git",
+            "reference": "24792d512ccc67e7d11e9249737616f039551c11"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/opauth/twitter/zipball/24792d512ccc67e7d11e9249737616f039551c11",
+            "reference": "24792d512ccc67e7d11e9249737616f039551c11",
+            "shasum": ""
+        },
+        "require": {
+            "opauth/opauth": ">=0.2.0",
+            "php": ">=5.2.0"
+        },
+        "time": "2013-06-12 07:50:11",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "": "."
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "U-Zyn Chua",
+                "email": "chua@uzyn.com",
+                "homepage": "http://uzyn.com"
+            }
+        ],
+        "description": "Twitter strategy for Opauth",
+        "homepage": "http://opauth.org",
+        "keywords": [
+            "Authentication",
+            "auth",
+            "twitter"
+        ]
+    },
+    {
+        "name": "opauth/meetup",
+        "version": "0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/damusnet/opauth-meetup.git",
+            "reference": "62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/damusnet/opauth-meetup/zipball/62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23",
+            "reference": "62d0e3187b4ae9ff4fc5c7ff6c5c259930641a23",
+            "shasum": ""
+        },
+        "require": {
+            "opauth/opauth": ">=0.2.0",
+            "php": ">=5.2.0"
+        },
+        "time": "2014-02-01 14:08:30",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "": "."
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Damien Varron",
+                "email": "damien.varron@effervea.com",
+                "homepage": "http://www.effervea.com"
+            }
+        ],
+        "description": "Meetup strategy for Opauth",
+        "homepage": "http://opauth.org",
+        "keywords": [
+            "Authentication",
+            "auth",
+            "meetup"
+        ]
+    }
+]

@@ -1,33 +1,56 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * User Model
- *
- */
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
+
 class User extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'username';
-
-/**
- * Validation rules
- *
- * @var array
- */
 	public $validate = array(
+		'username' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+			),
+		),
+		'password' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+			),
+		),
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+		),
+	);
+
+	public $hasMany = array(
+		'Authentication' => array(
+			'className' => 'Authentication',
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+		),
+		'Participants' => array(
+			'className' => 'Participant',
+			'foreignKey' => 'event_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
+
+	public function beforeSave($options = array()) {
+		if (isset($this->data['User']['password'])) {
+			$passwordHasher = new SimplePasswordHasher();
+			$this->data['User']['password'] = $passwordHasher->hash(
+				$this->data['User']['password']
+			);
+		}
+		return true;
+	}
+
 }

@@ -1,52 +1,68 @@
-<?php
-/**
- *
- *
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-?>
 <!DOCTYPE html>
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('cake.generic');
-
+		echo $this->Html->css('bootstrap.min');
+		echo $this->Html->css('style');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+	<div id="wrap">
+	<header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<?php echo $this->Html->link('Digisquare', '/', array('class' => 'navbar-brand')); ?>
+			</div>
+			<nav class="collapse navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<?php $links = ['editions', 'places', 'events', 'organizations', 'tags', 'startups', 'users'] ?>
+					<?php foreach ($links as $link): ?>
+						<li>
+							<?php echo $this->Html->link(ucfirst($link), array(
+								'controller' => $link,
+								'action' => 'index'
+							)); ?>
+						</li>						
+					<?php endforeach; ?>
+				</ul>
+				<?php if ($this->Session->check('Auth.User')): ?>
+					<p class="navbar-text navbar-right">
+						Signed in as <?php echo $this->Session->read('Auth.User.username'); ?>
+					</p>
+					<ul class="nav navbar-nav navbar-right">
+						<li><?php echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+					</ul>
+				<?php else: ?>
+					<ul class="nav navbar-nav navbar-right">
+						<li><?php echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login')); ?></li>
+					</ul>
+				<?php endif; ?>
+			</nav>
 		</div>
-		<div id="content">
-
+	</header>
+	<div class="container">
 			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<footer id="footer">
+		<?php echo $this->element('sql_dump'); ?>
+	</footer>
+	<?php echo $this->Html->script('http://code.jquery.com/jquery-2.1.0.min.js'); ?>
+	<?php echo $this->Html->script('bootstrap.min'); ?>
+	<?php echo $this->fetch('script'); ?>
 </body>
 </html>

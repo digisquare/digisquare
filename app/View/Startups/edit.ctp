@@ -8,6 +8,7 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('contacts');
+		echo $this->Form->input('Tag');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -16,7 +17,11 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Startup.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Startup.id'))); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', 'id' => $this->Form->value('Startup.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Startup.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Startups'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Tags'), array('controller' => 'tags', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Tag'), array('controller' => 'tags', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

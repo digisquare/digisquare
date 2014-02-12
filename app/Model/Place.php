@@ -3,15 +3,11 @@ App::uses('AppModel', 'Model');
 /**
  * Place Model
  *
+ * @property Edition $Edition
+ * @property Event $Event
+ * @property Organization $Organization
  */
 class Place extends AppModel {
-
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'name';
 
 /**
  * Validation rules
@@ -100,4 +96,56 @@ class Place extends AppModel {
 			),
 		),
 	);
+
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Edition' => array(
+			'className' => 'Edition',
+			'foreignKey' => 'edition_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Event' => array(
+			'className' => 'Event',
+			'foreignKey' => 'place_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Organization' => array(
+			'className' => 'Organization',
+			'foreignKey' => 'place_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 }

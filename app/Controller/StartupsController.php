@@ -1,37 +1,23 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Startups Controller
- *
- * @property Startup $Startup
- * @property PaginatorComponent $Paginator
- */
+
 class StartupsController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
-
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->Startup->recursive = 0;
 		$this->set('startups', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	public function feed() {
+		$startups = $this->Startup->find('all', array(
+			'contain' => array(),
+			'limit' => 10,
+			'order' => array('Startup.created' => 'DESC')
+		));
+		$this->set(compact('startups'));
+		$this->RequestHandler->renderAs($this, 'rss');
+	}
+
 	public function view($id = null) {
 		if (!$this->Startup->exists($id)) {
 			throw new NotFoundException(__('Invalid startup'));
@@ -40,11 +26,6 @@ class StartupsController extends AppController {
 		$this->set('startup', $this->Startup->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Startup->create();
@@ -55,15 +36,11 @@ class StartupsController extends AppController {
 				$this->Session->setFlash(__('The startup could not be saved. Please, try again.'));
 			}
 		}
+		$editions = $this->Startup->Edition->find('list');
+		$tags = $this->Startup->Tag->find('list');
+		$this->set(compact('editions', 'tags'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Startup->exists($id)) {
 			throw new NotFoundException(__('Invalid startup'));
@@ -79,15 +56,11 @@ class StartupsController extends AppController {
 			$options = array('conditions' => array('Startup.' . $this->Startup->primaryKey => $id));
 			$this->request->data = $this->Startup->find('first', $options);
 		}
+		$editions = $this->Startup->Edition->find('list');
+		$tags = $this->Startup->Tag->find('list');
+		$this->set(compact('editions', 'tags'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Startup->id = $id;
 		if (!$this->Startup->exists()) {

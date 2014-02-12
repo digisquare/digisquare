@@ -28,7 +28,6 @@
   - Rémy Redon, @Bigbaddemon
   - Joanny Saillet, @AliceGarden
 
-
 ### Groupe places
 
   - Ludovic Caisso, @Udolwa34

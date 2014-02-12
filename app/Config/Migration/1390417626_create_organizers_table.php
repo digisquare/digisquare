@@ -20,25 +20,28 @@ class CreateOrganizersTable extends CakeMigration {
 			'create_table' => array(
 				'organizers' => array(
 					'id' => array(
-						'type' => 'integer',
-						'null' => false,
-						'key' => 'primary'
+						'type'    => 'integer',
+						'null'    => false,
+						'length'  => 11,
+						'key'     => 'primary',
 					),
 					'event_id' => array(
-						'type' => 'integer',
-						'null' => false,
+						'type'    => 'integer',
+						'null'    => false,
+						'length'  => 11,
 					),
 					'organization_id' => array(
-						'type' => 'integer',
-						'null' => false,
+						'type'    => 'integer',
+						'null'    => false,
+						'length'  => 11,
 					),
 					'created' => array(
-						'type' => 'datetime',
-						'null' => false,
+						'type'    => 'datetime',
+						'null'    => false,
 					),
 					'modified' => array(
-						'type' => 'datetime',
-						'null' => false,
+						'type'    => 'datetime',
+						'null'    => false,
 					),
 					'indexes' => array(
 						'PRIMARY' => array(
@@ -60,26 +63,4 @@ class CreateOrganizersTable extends CakeMigration {
 			),
 		),
 	);
-
-/**
- * Before migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function before($direction) {
-		return true;
-	}
-
-/**
- * After migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function after($direction) {
-		return true;
-	}
 }

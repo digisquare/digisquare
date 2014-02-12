@@ -1,37 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Organizers Controller
- *
- * @property Organizer $Organizer
- * @property PaginatorComponent $Paginator
- */
+
 class OrganizersController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
-
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->Organizer->recursive = 0;
 		$this->set('organizers', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->Organizer->exists($id)) {
 			throw new NotFoundException(__('Invalid organizer'));
@@ -40,11 +16,6 @@ class OrganizersController extends AppController {
 		$this->set('organizer', $this->Organizer->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Organizer->create();
@@ -55,15 +26,11 @@ class OrganizersController extends AppController {
 				$this->Session->setFlash(__('The organizer could not be saved. Please, try again.'));
 			}
 		}
+		$events = $this->Organizer->Event->find('list');
+		$organizations = $this->Organizer->Organization->find('list');
+		$this->set(compact('events', 'organizations'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Organizer->exists($id)) {
 			throw new NotFoundException(__('Invalid organizer'));
@@ -79,15 +46,11 @@ class OrganizersController extends AppController {
 			$options = array('conditions' => array('Organizer.' . $this->Organizer->primaryKey => $id));
 			$this->request->data = $this->Organizer->find('first', $options);
 		}
+		$events = $this->Organizer->Event->find('list');
+		$organizations = $this->Organizer->Organization->find('list');
+		$this->set(compact('events', 'organizations'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Organizer->id = $id;
 		if (!$this->Organizer->exists()) {
@@ -100,4 +63,6 @@ class OrganizersController extends AppController {
 			$this->Session->setFlash(__('The organizer could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+}

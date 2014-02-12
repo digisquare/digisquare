@@ -1,37 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Tags Controller
- *
- * @property Tag $Tag
- * @property PaginatorComponent $Paginator
- */
+
 class TagsController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
-
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->Tag->recursive = 0;
 		$this->set('tags', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->Tag->exists($id)) {
 			throw new NotFoundException(__('Invalid tag'));
@@ -40,11 +16,6 @@ class TagsController extends AppController {
 		$this->set('tag', $this->Tag->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Tag->create();
@@ -55,15 +26,11 @@ class TagsController extends AppController {
 				$this->Session->setFlash(__('The tag could not be saved. Please, try again.'));
 			}
 		}
+		$events = $this->Tag->Event->find('list');
+		$startups = $this->Tag->Startup->find('list');
+		$this->set(compact('events', 'startups'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Tag->exists($id)) {
 			throw new NotFoundException(__('Invalid tag'));
@@ -79,15 +46,11 @@ class TagsController extends AppController {
 			$options = array('conditions' => array('Tag.' . $this->Tag->primaryKey => $id));
 			$this->request->data = $this->Tag->find('first', $options);
 		}
+		$events = $this->Tag->Event->find('list');
+		$startups = $this->Tag->Startup->find('list');
+		$this->set(compact('events', 'startups'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Tag->id = $id;
 		if (!$this->Tag->exists()) {
@@ -100,4 +63,6 @@ class TagsController extends AppController {
 			$this->Session->setFlash(__('The tag could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+}

@@ -1,19 +1,26 @@
-<div class="editions form">
-<?php echo $this->Form->create('Edition'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Edition'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Edition.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Edition.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Editions'), array('action' => 'index')); ?></li>
-	</ul>
+<div role="main">
+	<div class="editions form">
+		<h1><?php echo __('Add Edition'); ?></h1>
+		<?php echo $this->Form->create('Edition', array(
+			'inputDefaults' => array(
+				'div' => 'form-group',
+				'label' => array(
+					'class' => 'col col-md-3 control-label'
+				),
+				'wrapInput' => 'col col-md-9',
+				'class' => 'form-control'
+			),
+			'class' => 'well form-horizontal'
+		)); ?>
+			<?php echo $this->Form->input('id'); ?>
+			<?php echo $this->Form->input('name'); ?>
+			<div class="form-group">
+				<div class="col col-md-9 col-md-offset-3">
+					<?php echo $this->Form->submit('Save changes', array(
+						'class' => 'btn btn-primary'
+					)); ?>
+				</div>
+			</div>
+		<?php echo $this->Form->end(); ?>
+	</div>
 </div>

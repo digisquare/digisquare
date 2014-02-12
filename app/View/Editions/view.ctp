@@ -1,34 +1,30 @@
-<div class="editions view">
-<h2><?php echo __('Edition'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($edition['Edition']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($edition['Edition']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($edition['Edition']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($edition['Edition']['modified']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Edition'), array('action' => 'edit', $edition['Edition']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Edition'), array('action' => 'delete', $edition['Edition']['id']), null, __('Are you sure you want to delete # %s?', $edition['Edition']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Editions'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Edition'), array('action' => 'add')); ?> </li>
-	</ul>
+<div role="main">
+	<div class="page-header">
+		<?php echo $this->Html->link(
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Edit'),
+			array('action' => 'edit', 'id' => $edition['Edition']['id']),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+		); ?>
+		<?php echo $this->Form->postLink(
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Delete'),
+			array('action' => 'delete', 'id' => $edition['Edition']['id']), 
+			array('escape' => false, 'class' => 'btn btn-danger pull-right', 'style' => 'margin-right:10px;'),
+			__('Are you sure you want to delete # %s?', $edition['Edition']['id'])
+		); ?>
+		<h1><?php echo h($edition['Edition']['name']); ?></h1>
+	</div>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td><?php echo __('Id'); ?></td>
+			<td><?php echo h($edition['Edition']['id']); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo __('Created'); ?></td>
+			<td><?php echo h($edition['Edition']['created']); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo __('Modified'); ?></td>
+			<td><?php echo h($edition['Edition']['modified']); ?></td>
+		</tr>
+	</table>
 </div>

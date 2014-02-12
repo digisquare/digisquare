@@ -1,0 +1,23 @@
+{
+	"name": "opauth/meetup",
+	"description": "Meetup strategy for Opauth",
+	"keywords": ["authentication","auth","meetup"],
+	"homepage": "http://opauth.org",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Damien Varron",
+			"email": "damien.varron@effervea.com",
+			"homepage": "http://www.effervea.com"
+		}
+	],
+	"require": {
+		"php": ">=5.2.0",
+		"opauth/opauth": ">=0.2.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"": "."
+		}
+	}
+}

@@ -23,52 +23,39 @@ class CreateTagsTable extends CakeMigration {
 						'type'    => 'integer',
 						'null'    => false,
 						'length'  => 11,
-						'key'     => 'primary'
+						'key'     => 'primary',
 					),
 					'name' => array(
 						'type'    => 'string',
+						'null'    => false,
 						'length'  => 255,
-						'null'    => false
 					),
 					'created' => array(
 						'type'    => 'datetime',
-						'null'    => false
+						'null'    => false,
 					),
 					'modified' => array(
 						'type'    => 'datetime',
-						'null'    => false
+						'null'    => false,
 					),
 					'indexes' => array(
 						'PRIMARY' => array(
 							'column' => 'id',
 							'unique' => 1
-						)
-					)
-				)
-			)
+						),
+					),
+					'tableParameters' => array(
+						'charset' => 'utf8',
+						'collate' => 'utf8_general_ci',
+						'engine' => 'MyISAM'
+					),
+				),
+			),
 		),  
-		'down' => array(),
+		'down' => array(
+			'drop_table' => array(
+				'tags'
+			),
+		),
 	);
-
-/**
- * Before migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function before($direction) {
-		return true;
-	}
-
-/**
- * After migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function after($direction) {
-		return true;
-	}
 }

@@ -12,14 +12,29 @@
 	<?php foreach ($organizers as $organizer): ?>
 	<tr>
 		<td><?php echo h($organizer['Organizer']['id']); ?>&nbsp;</td>
-		<td><?php echo h($organizer['Organizer']['event_id']); ?>&nbsp;</td>
-		<td><?php echo h($organizer['Organizer']['organization_id']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($organizer['Event']['name'], array('controller' => 'events', 'action' => 'view', 'id' => $organizer['Event']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($organizer['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', 'id' => $organizer['Organization']['id'])); ?>
+		</td>
 		<td><?php echo h($organizer['Organizer']['created']); ?>&nbsp;</td>
 		<td><?php echo h($organizer['Organizer']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $organizer['Organizer']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $organizer['Organizer']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $organizer['Organizer']['id']), null, __('Are you sure you want to delete # %s?', $organizer['Organizer']['id'])); ?>
+			<?php echo $this->Html->link(
+				__('View'),
+				array('action' => 'view', 'id' => $organizer['Organizer']['id'])
+			); ?>
+			<?php echo $this->Html->link(
+				__('Edit'),
+				array('action' => 'edit', 'id' => $organizer['Organizer']['id'])
+			); ?>
+			<?php echo $this->Form->postLink(
+				__('Delete'),
+				array('action' => 'delete', 'id' => $organizer['Organizer']['id']),
+				null,
+				__('Are you sure you want to delete # %s?', $organizer['Organizer']['id'])
+			); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -42,5 +57,9 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Organizer'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Events'), array('controller' => 'events', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Event'), array('controller' => 'events', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Organization'), array('controller' => 'organizations', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
