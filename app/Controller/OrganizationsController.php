@@ -64,5 +64,14 @@ class OrganizationsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	public function feed(){
+		$components = array('RequestHandler');
+		$organizations = $this->Organization->find('all', array(
+			'limit' => 10,
+			'order' => 'organization.created DESC'
+		));
+		$this->set(compact('organization'));
+	}
 
 }
