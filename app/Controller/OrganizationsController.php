@@ -100,4 +100,17 @@ class OrganizationsController extends AppController {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+	
+	public function feed(){
+		//$components = array('RequestHandler');
+	
+		$organizations = $this->Organization->find('all', array(
+			'limit' => 10,
+			'order' => 'Organization.created DESC'			
+		));
+	$this->set(compact('organizations'));
+	
+	
+	}
+}

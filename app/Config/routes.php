@@ -1,4 +1,5 @@
 <?php
+Router::parseExtensions('rss');
 /**
  * Routes configuration
  *
