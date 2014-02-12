@@ -5,6 +5,11 @@
 			array('controller' => 'tags', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
+		<?php echo $this->Html->link(
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Top'), 
+			array('controller' => 'tags', 'action' => 'top'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+		); ?>
 		<h1><?php echo __('Tags'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
