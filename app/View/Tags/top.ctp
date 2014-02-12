@@ -5,25 +5,22 @@
 			array('controller' => 'tags', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Top'), 
-			array('controller' => 'tags', 'action' => 'top'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
-		); ?>
-		<h1><?php echo __('Tags'); ?></h1>
+		<h1><?php echo __('Tags - Top 10'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
 		<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Events</th>
+			<th>Created</th>
+			<th>Modified</th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($tags as $tag): ?>
 			<tr>
 				<td><?php echo h($tag['Tag']['id']); ?>&nbsp;</td>
 				<td><?php echo h($tag['Tag']['name']); ?>&nbsp;</td>
+				<td><?php echo h($tag[0]['count']); ?>&nbsp;</td>
 				<td><?php echo h($tag['Tag']['created']); ?>&nbsp;</td>
 				<td><?php echo h($tag['Tag']['modified']); ?>&nbsp;</td>
 				<td class="actions">
@@ -48,7 +45,4 @@
 			</tr>
 		<?php endforeach; ?>
 	</table>
-	<?php echo $this->Paginator->pagination(
-		array('ul' => 'pagination')
-	); ?>
 </div>
