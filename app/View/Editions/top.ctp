@@ -1,4 +1,4 @@
-div role="main">
+<div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
 			'<i class="icon-plus-sign icon-white"></i> ' . __('New Edition'),
