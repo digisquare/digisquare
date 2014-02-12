@@ -5,20 +5,16 @@
 			array('controller' => 'places', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Top ten'),
-			array('controller' => 'places', 'action' => 'top'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
-		); ?>
-		<h1><?php echo __('Places'); ?></h1>
+		<h1><?php echo __('Places - Top 10'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
 		<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('edition_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th>Id</th>
+			<th>Edition</th>
+			<th>Name</th>
+			<th>Nombre</th>
+			<th>Created</th>
+			<th>Modified</th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($places as $place): ?>
@@ -30,11 +26,12 @@
 						array(
 							'controller' => 'editions',
 							'action' => 'view',
-							'id' => $place['Edition']['id']
+							'name' => $place['Edition']['name']
 						)
 					); ?>
 				</td>
 				<td><?php echo h($place['Place']['name']); ?>&nbsp;</td>
+				<td><?php echo h($place[0]['count']); ?>&nbsp;</td>
 				<td><?php echo h($place['Place']['created']); ?>&nbsp;</td>
 				<td><?php echo h($place['Place']['modified']); ?>&nbsp;</td>
 				<td class="actions">
@@ -58,7 +55,4 @@
 			</tr>
 		<?php endforeach; ?>
 	</table>
-	<?php echo $this->Paginator->pagination(
-		array('ul' => 'pagination')
-	); ?>
 </div>
