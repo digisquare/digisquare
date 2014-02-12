@@ -19,13 +19,13 @@ class ContactsController extends AppController
 			else 
 			{
 		        	// Nettoyage de la saisie
-				App::import('Sanitize');
+				App::uses('Sanitize','Utility');
 				$this->data = Sanitize::clean($this->data);
  
 				$this->set('data', $this->data);
  
 				$this->Email->charset  = 'ISO-8859-1';
-				$this->Email->to       = 'Damien.VARRON@y-nov.com';
+				$this->Email->to       = 'david.etancelin@y-nov.com';
 				$this->Email->bcc      = array($this->data['Contact']['email']);
 				$this->Email->from     = $this->data['Contact']['email'];
 				$this->Email->sendAs   = 'both';
