@@ -70,7 +70,7 @@ class EventsController extends AppController {
 	public $components = array('RequestHandler');
 
 	public function feed(){
-		$places = $this->Event->find('all',
+		$events = $this->Event->find('all',
 			array(
 				'limit' => 10,
 				'order' => 'Event.created DESC'
