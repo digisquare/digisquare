@@ -64,5 +64,14 @@ class OrganizationsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	public $components = array('Paginator');
 
+	public $paginate = array(
+		'Organization' => array('Organization.tag'),
+		'paramType' => 'tag',
+		'limit' => 25
+	);
+	$this->Paginator->settings = $this->paginate;
+	$organizations = $this->Paginator->paginate('Organization', array('Organization.tag' => $tag));
+	$this->set('organizations',$organizations);
 }
