@@ -1,5 +1,5 @@
 <?php
-
+Router::parseExtensions('rss');
 Router::connect('/',						array('controller' => 'editions', 'action' => 'index'));
 
 /**

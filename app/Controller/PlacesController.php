@@ -3,6 +3,16 @@ App::uses('AppController', 'Controller');
 
 class PlacesController extends AppController {
 
+	public $components = array('RequestHandler');
+
+	public function feed(){
+		$places = $this->Place->find('all', array(
+			'limit' => 10,
+			'order' => 'Place.created DESC'
+			));
+		$this->set(compact('places'));
+	}
+
 	public function index() {
 		$this->Place->recursive = 0;
 		$this->set('places', $this->Paginator->paginate());
