@@ -5,9 +5,10 @@ class PlacesController extends AppController {
 
 	public $components = array('RequestHandler');
 
-	public function datfeed(){
+	public function feed(){
 		$places = $this->Place->find('all', array(
-			'limit' => 10
+			'limit' => 10,
+			'order' => 'Place.created DESC'
 			));
 		$this->set(compact('places'));
 	}
