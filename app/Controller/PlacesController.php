@@ -64,14 +64,12 @@ class PlacesController extends AppController {
 	}
 	
 	
-	public function organization($id = null) {
+	public function organizations($id = null) {
 		if (!$this->Place->exists($id)) {
 			throw new NotFoundException(__('Invalid place'));
 		}
-		$paginate = array('Organization' => array('Organization.place_id'));
-		$this->Paginator->settings = $this->paginate;
-		$organizations = $this->Paginator->paginate('Organization',array('Organization.place_id' => $id));	
-		$this->set('organizations', $organizations);
+		$organizations = $this->Paginator->paginate('Organization', array('Organization.place_id' => $id));	
+		$this->set(compact('organizations', $organizations));
 	}
 	
 }

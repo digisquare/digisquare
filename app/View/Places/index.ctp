@@ -44,8 +44,8 @@
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Html->link(
-						__('Organization'),
-						array('action' => 'organization', 'id' => $place['Place']['id']),
+						__('Organizations'),
+						array('action' => 'organizations', 'id' => $place['Place']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Form->postLink(

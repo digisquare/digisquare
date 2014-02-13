@@ -6,13 +6,13 @@
 		
 	<table class="table table-bordered table-striped">
 	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('place_id'); ?></th>
-		<th><?php echo __('edition_id'); ?></th>
-		<th><?php echo __('name'); ?></th>
-		<th><?php echo __('description'); ?></th>
-		<th><?php echo __('created'); ?></th>
-		<th><?php echo __('modified'); ?></th>
+		<th><?php echo $this->Paginator->sort('Id'); ?></th>
+		<th><?php echo $this->Paginator->sort('Place_id'); ?></th>
+		<th><?php echo $this->Paginator->sort('Edition_id'); ?></th>
+		<th><?php echo $this->Paginator->sort('Name'); ?></th>
+		<th><?php echo $this->Paginator->sort('Description'); ?></th>		
+		<th><?php echo $this->Paginator->sort('Created'); ?></th>
+		<th><?php echo $this->Paginator->sort('Modified'); ?></th>
 	</tr>
 	<?php foreach ($organizations as $organization): ?>
 		<tr>
