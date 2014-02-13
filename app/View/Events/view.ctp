@@ -73,6 +73,53 @@
 		<li><?php echo $this->Html->link(__('New Organizer'), array('controller' => 'organizers', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Tags'), array('controller' => 'tags', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Tag'), array('controller' => 'tags', 'action' => 'add')); ?> </li>
+		<?php
+			//Formating event's date in order to export to Google Calendar, Yahoo Calendar and Outlook Calendar
+			$startdate1 = date("Ymd", strtotime($event['Event']['start_at']));
+			$startdate2 = date("His", strtotime($event['Event']['start_at']));
+			$enddate1 = date("Ymd", strtotime($event['Event']['end_at']));
+			$enddate2 = date("His", strtotime($event['Event']['end_at']));
+			$interval = date_diff(date_create($event['Event']['start_at']), date_create($event['Event']['end_at']));
+			$DURmin = $interval->format('%I');
+			$DURheure = ($interval->format('%d')*24)+$interval->format('%H');
+			$location = $event['Place']['name']." ".$event['Place']['address']." ".$event['Place']['zipcode']." ".$event['Place']['city']." ".$event['Place']['country_code'];
+		?>
+		<li>
+			<?php echo $this->Html->link(__('Export to Google Calendar'), 
+				('http://www.google.com/calendar/event?action=TEMPLATE
+				&text='.$event['Event']['name'].'
+				&dates=' . $startdate1 . 'T' . $startdate2 . '/' . $enddate1 . 'T' . $enddate2 . '
+				&details=' . $event['Event']['description'] . '
+				&location=' . $location . '
+				&trp=false&sprop=' . $event['Event']['url'] . '
+				&sprop=name:' . $event['Event']['url'] ), 
+				array('class' => 'button', 'target' => '_blank')); 
+			?> 
+		</li>
+		<li>
+			<?php echo $this->Html->link(__('Export to Yahoo Calendar'), 
+				('http://calendar.yahoo.com/?v=60&VIEW=d
+				&in_loc=' . $location . '
+				&type=20
+				&TITLE=' . $event['Event']['name'] . '
+				&ST=' . $startdate1 . 'T' . $startdate2 . '
+				&DUR=' . $DURheure . $DURmin . '
+				&URL=' . $event['Event']['url'] . '
+				&DESC=' . $event['Event']['description'] ), 
+				array('class' => 'button', 'target' => '_blank')); 
+			?> 
+		</li>
+		<li>
+			<?php echo $this->Html->link(__('Export to Outlook Calendar'), 
+				('http://calendar.live.com/calendar/calendar.aspx?rru=addevent
+				&dtstart=' . $startdate1 . 'T' . $startdate2 . '
+				&dtend=' . $enddate1 . 'T' . $enddate2 . '
+				&summary=' . $event['Event']['name'] . '
+				&location=' . $location . '
+				&description=' . $event['Event']['description']), 
+				array('target' => '_blank')); 
+			?> 
+		</li>
 	</ul>
 </div>
 <div class="related">
