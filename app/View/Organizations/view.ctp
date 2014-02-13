@@ -17,6 +17,7 @@
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
+		
 		<dd>
 			<?php echo h($organization['Organization']['name']); ?>
 			&nbsp;
