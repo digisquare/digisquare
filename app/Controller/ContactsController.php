@@ -1,46 +1,37 @@
 <?php
-class ContactsController extends AppController
-{
-	var $name = 'Contacts';
- 
-	var $components = array('Email');
- 
-	function index()
-	{
-		if(!empty($this->data))
-		{
+App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
+
+class ContactsController extends AppController {
+
+	public $components = array('Email');
+
+	public function index() {
+		if(!empty($this->data)) {
 			$this->Contact->create($this->data);
  
-			if(!$this->Contact->validates())
-			{
-				$this->Session->setFlash("Veuillez corriger les erreurs mentionnées.", 'message_notice');
+			if (!$this->Contact->validates()) {
+				$this->Session->setFlash('Veuillez corriger les erreurs mentionnées.');
 				$this->validateErrors($this->Contact);
-			}
-			else 
-			{
-		        	// Nettoyage de la saisie
-				App::uses('Sanitize','Utility');
-				$this->data = Sanitize::clean($this->data);
- 
-				$this->set('data', $this->data);
- 
-				$this->Email->charset  = 'ISO-8859-1';
-				$this->Email->to       = 'david.etancelin@y-nov.com';
-				$this->Email->bcc      = array($this->data['Contact']['email']);
-				$this->Email->from     = $this->data['Contact']['email'];
-				$this->Email->sendAs   = 'both';
-				$this->Email->subject  = "Formulaire de contact";
-				$this->Email->template = 'contact';
- 
-				// Envoi de l'email
-				$this->Email->send();
- 
-				$this->redirect(array('action' => 'confirmation'));
+			} else {
+				CakeEmail::deliver(
+					'bordeaux@digisquare.net',
+					'De : ' . $this->data['Contact']['first_name'] . ' ' . $this->data['Contact']['last_name'],
+					'Email : ' . $this->data['Contact']['email'] . "\n"
+						. 'Message : ' . "\n"
+						. $this->data['Contact']['message'],
+					array('from' => 'website@digisquare.net')
+				);
+
+				$this->Session->setFlash('Votre message a été envoyé.');
+				$this->redirect(array('action' => 'index'));
 			}
 		}
 	}
- 
-	// Page de remerciement
-	function confirmation() {}
+
+	public function confirmation() {
+
+	}
+
 }
 ?>
