@@ -13,6 +13,7 @@
 			'class' => 'well form-horizontal'
 		)); ?>
 			<?php
+				echo $this->Form->input('id');
 				echo $this->Form->input('name');
 				$types = array('Event' => __('Event'), 'Startup' => __('Startup'), 'Place' => __('Place'),'Participant' => __('Participant'));
 				echo $this->Form->input('type', array('options' => $types, 'default' => 'Event'));
