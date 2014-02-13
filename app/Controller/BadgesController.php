@@ -16,6 +16,7 @@ class BadgesController extends AppController {
 			$badges[$key]['Badge']['class_badged'] = 'notBadged';
 			$type = $badge['Badge']['type'];
 			$minimum = $badge['Badge']['minimum'];
+			$total = 0;
 			if($type == "Edition"){
 				$total = $this->Edition->find('count');
 			}
@@ -52,7 +53,7 @@ class BadgesController extends AppController {
 			{
 			 	$filename = WWW_ROOT.'img'.DS.'badges'.DS.$this->request->data['Badge']['icon']; 
 			 	move_uploaded_file($this->request->data['Badge']['file']['tmp_name'],$filename);
-			 }
+			}
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
 				return $this->redirect(array('action' => 'manage'));
