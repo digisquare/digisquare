@@ -75,33 +75,40 @@ class PlacesController extends AppController {
 
 	public function top() {
 		$places = $this->Place->find('all', array(
-				'fields' => array(
-								'count(Event.place_id) AS count',
-								'Place.id',
-								'Edition.name',
-								'Place.name',
-								'Place.created',
-								'Place.modified'
+			'fields' => array(
+				'count(Event.place_id) AS count',
+				'Place.id',
+				'Edition.name',
+				'Place.name',
+				'Place.created',
+				'Place.modified'
+			),
+			'conditions' => 'Event.end_at > NOW()',
+			'limit' => 10,
+			'joins' => array(
+				array(
+					'table' => 'events',
+					'alias' => 'Event',
+					'conditions' => 'Event.place_id = Place.id'
 				),
-				'conditions' => 'Event.end_at > NOW()',
-				'limit' => 10,
-				'joins' => array(
-							array(
-								'table' => 'events',
-								'alias' => 'Event',
-								'conditions' => 'Event.place_id = Place.id'
-							),
-							array(
-								'table' => 'editions',
-								'alias' => 'City',
-								'conditions' => 'City.id = Place.edition_id'
-							)
-				),
-				'group' => 'Place.id',
-				'order' => 'count DESC'
-			)
-		);
-		$this->set('places', $places);
+				array(
+					'table' => 'editions',
+					'alias' => 'City',
+					'conditions' => 'City.id = Place.edition_id'
+				)
+			),
+			'group' => 'Place.id',
+			'order' => 'count DESC'
+		));
+		$this->set(compact('places'));
 	}
-
+	
+	public function organizations($id = null) {
+		if (!$this->Place->exists($id)) {
+			throw new NotFoundException(__('Invalid place'));
+		}
+		$organizations = $this->Paginator->paginate('Organization', array('Organization.place_id' => $id));	
+		$this->set(compact('organizations'));
+	}
+	
 }
