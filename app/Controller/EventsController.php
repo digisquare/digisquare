@@ -66,7 +66,6 @@ class EventsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
 	public function participate($id = null){
 		$this->Event->id = $id;
 		if (!$this->Event->exists()) {
@@ -85,4 +84,15 @@ class EventsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function feed(){
+		$events = $this->Event->find('all', array(
+			'contain' => array(),
+			'limit' => 10,
+			'order' => array('Event.created' => 'DESC'),
+		));
+		$this->set(compact('events'));
+		$this->RequestHandler->renderAs($this, 'rss');
+	}
+
 }
