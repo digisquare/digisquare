@@ -1,25 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Badges Controller
- *
- * @property Badge $Badge
- * @property PaginatorComponent $Paginator
- */
+
 class BadgesController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
-
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->Badge->recursive = 0;
 		$badges = $this->Paginator->paginate();
@@ -27,22 +10,26 @@ class BadgesController extends AppController {
 		$this->loadModel('Edition');
 		$this->loadModel('Startup');
 		$this->loadModel('Place');
+		$this->loadModel('Participant');
 		
 		foreach ($badges as $key => $badge):
 			$badges[$key]['Badge']['class_badged'] = 'notBadged';
 			$type = $badge['Badge']['type'];
 			$minimum = $badge['Badge']['minimum'];
-			$options = array('conditions' => array($type.'name' => ''));
 			if($type == "Edition"){
 				$total = $this->Edition->find('count');
 			}
 			else if($type == "Startup"){
 				$total = $this->Startup->find('count');
 			}
+			else if($type == "Participant"){
+				$options = array('conditions' => array('Participant.user_id' => $this->Session->read('Auth.User.id')));
+				$total = $this->Participant->find('count');
+			}
 			if($type == "Place"){
 				$total = $this->Place->find('count');
 			}
-			
+
         	if ($total >= $minimum){
 				$badges[$key]['Badge']['class_badged'] = 'Badged';
         	}
@@ -51,23 +38,13 @@ class BadgesController extends AppController {
 				
 		$this->set(compact('badges'));
 	}
-/**
- * manage method
- *
- * @return void
- */
+
 	public function manage() {
 		$this->Badge->recursive = 0;
 		$this->set('badges', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function view($id = null) {
 		if (!$this->Badge->exists($id)) {
 			throw new NotFoundException(__('Invalid badge'));
@@ -76,14 +53,15 @@ class BadgesController extends AppController {
 		$this->set('badge', $this->Badge->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Badge->create();
+						
+			if(!empty($this->request->data['Badge']['file']))
+			{
+			 	$filename = WWW_ROOT.'img'.DS.'badges'.DS.$this->request->data['Badge']['icon']; 
+			 	move_uploaded_file($this->request->data['Badge']['file']['tmp_name'],$filename);
+			 }
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
 				return $this->redirect(array('action' => 'manage'));
@@ -93,13 +71,6 @@ class BadgesController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Badge->exists($id)) {
 			throw new NotFoundException(__('Invalid badge'));
@@ -117,13 +88,6 @@ class BadgesController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Badge->id = $id;
 		if (!$this->Badge->exists()) {

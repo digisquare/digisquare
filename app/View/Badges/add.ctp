@@ -10,15 +10,17 @@
 				'wrapInput' => 'col col-md-9',
 				'class' => 'form-control'
 			),
-			'class' => 'well form-horizontal'
+			'class' => 'well form-horizontal',
+			'type' => 'file'
 		)); ?>
 			<?php
 				echo $this->Form->input('name');
-				$types = array('Event' => __('Event'), 'Startup' => __('Startup'), 'Place' => __('Place'));
+				$types = array('Event' => __('Event'), 'Startup' => __('Startup'), 'Place' => __('Place'),'Participant' => __('Participant'));
 				echo $this->Form->input('type', array('options' => $types, 'default' => 'events'));
 				echo $this->Form->input('minimum');
 				echo $this->Form->input('description');
 				echo $this->Form->input('icon');
+				echo $this->Form->input('file', array('type' => 'file'));
 			?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">

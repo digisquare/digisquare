@@ -1,6 +1,6 @@
 <div class="badges index">
 	<div class="page-header">
-		<h1><?php echo __('Badges'); ?></h1>
+		<h1><?php echo __('Badges');?></h1>
 	</div>
 	<div class="row">
 		<?php foreach ($badges as $badge): ?>
