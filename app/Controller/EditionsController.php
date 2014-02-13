@@ -12,7 +12,7 @@ class EditionsController extends AppController {
 		$editions = $this->Edition->find('all', array(
 			'contain' => array(),
 			'limit' => 10,
-			'order' => array('edition.created' => 'DESC')
+			'order' => array('Edition.created' => 'DESC')
 		));
 		$this->set(compact('editions'));
 		$this->RequestHandler->renderAs($this, 'rss');
