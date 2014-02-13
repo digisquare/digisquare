@@ -65,22 +65,17 @@ class OrganizationsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 	
-	public function top() 
-	{
-		$organizations = $this->Organization->find('all', array
-		(
-			'fields' => array
-			(
+	public function top() {
+		$organizations = $this->Organization->find('all', array(
+			'fields' => array(
 				'count(Orga.id) AS count',
 				'Organization.id',
 				'Organization.name',
 				'Organization.created',
 				'Organization.modified'
 			),
-			'joins' => array
-			(
-				array
-				(
+			'joins' => array(
+				array(
 					'table' => 'organizers',
 					'alias' => 'Orga',
 					'conditions' => 'Orga.organization_id = Organization.id'
