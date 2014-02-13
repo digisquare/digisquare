@@ -11,3 +11,7 @@ html, body {
 	background-color: #f5f5f5;
 	padding: 10px;
 }
+
+.notBadged {
+	opacity:0.5;
+}
