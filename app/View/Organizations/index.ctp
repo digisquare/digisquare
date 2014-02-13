@@ -54,10 +54,10 @@
 						__('Are you sure you want to delete # %s?', $organization['Organization']['id'])
 					); ?>
 					<?php echo $this->Form->postLink(
-						__('Member'),
-						array('action' => 'member', 'id' => $organization['Organization']['id']),
+						__('Register'),
+						array('action' => 'register', 'id' => $organization['Organization']['id']),
 						array('class' => 'btn btn-default btn-sm'),
-						__('Are you sure you want to member to # %s?', $organization['Organization']['name'])
+						__('Are you sure you want to register to # %s?', $organization['Organization']['name'])
 					); ?>
 				</td>
 			</tr>

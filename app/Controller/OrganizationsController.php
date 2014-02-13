@@ -65,7 +65,7 @@ class OrganizationsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 	
-	public function member($id = null){
+	public function register($id = null){
 		$this->Organization->id = $id;
 		if (!$this->Organization->exists()) {
 			throw new NotFoundException(__('Invalid organization'));	
