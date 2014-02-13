@@ -87,4 +87,14 @@ class OrganizationsController extends AppController {
 		));
 		$this->set('organizations', $organizations);
 	}
+
+	public function feed() {
+		$organizations = $this->Organization->find('all', array(
+			'limit' => 10,
+			'order' => array('Organization.created' => 'DESC')
+		));
+		$this->set(compact('organizations'));
+		$this->RequestHandler->renderAs($this, 'rss');
+	}
+
 }
