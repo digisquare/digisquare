@@ -30,10 +30,10 @@ class StartupsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Startup->create();
 			if ($this->Startup->save($this->request->data)) {
-				$this->Session->setFlash(__('The startup has been saved.'));
+				$this->Session->setFlash(__('The startup has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The startup could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The startup could not be saved. Please, try again.'), 'message_error');
 			}
 		}
 		$editions = $this->Startup->Edition->find('list');
@@ -47,10 +47,10 @@ class StartupsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Startup->save($this->request->data)) {
-				$this->Session->setFlash(__('The startup has been saved.'));
+				$this->Session->setFlash(__('The startup has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The startup could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The startup could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
 			$options = array('conditions' => array('Startup.' . $this->Startup->primaryKey => $id));
@@ -68,9 +68,9 @@ class StartupsController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Startup->delete()) {
-			$this->Session->setFlash(__('The startup has been deleted.'));
+			$this->Session->setFlash(__('The startup has been deleted.'), 'message_success');
 		} else {
-			$this->Session->setFlash(__('The startup could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The startup could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

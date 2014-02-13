@@ -20,10 +20,10 @@ class OrganizationsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Organization->create();
 			if ($this->Organization->save($this->request->data)) {
-				$this->Session->setFlash(__('The organization has been saved.'));
+				$this->Session->setFlash(__('The organization has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'), 'message_error');
 			}
 		}
 		$places = $this->Organization->Place->find('list');
@@ -37,10 +37,10 @@ class OrganizationsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Organization->save($this->request->data)) {
-				$this->Session->setFlash(__('The organization has been saved.'));
+				$this->Session->setFlash(__('The organization has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
@@ -58,9 +58,9 @@ class OrganizationsController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Organization->delete()) {
-			$this->Session->setFlash(__('The organization has been deleted.'));
+			$this->Session->setFlash(__('The organization has been deleted.'), 'message_success');
 		} else {
-			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

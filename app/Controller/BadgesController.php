@@ -55,10 +55,10 @@ class BadgesController extends AppController {
 			 	move_uploaded_file($this->request->data['Badge']['file']['tmp_name'],$filename);
 			}
 			if ($this->Badge->save($this->request->data)) {
-				$this->Session->setFlash(__('The badge has been saved.'));
+				$this->Session->setFlash(__('The badge has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'manage'));
 			} else {
-				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'), 'message_error');
 			}
 		}
 	}
@@ -69,10 +69,10 @@ class BadgesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Badge->save($this->request->data)) {
-				$this->Session->setFlash(__('The badge has been saved.'));
+				$this->Session->setFlash(__('The badge has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'manage'));
 			} else {
-				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
 			$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
@@ -87,9 +87,9 @@ class BadgesController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Badge->delete()) {
-			$this->Session->setFlash(__('The badge has been deleted.'));
+			$this->Session->setFlash(__('The badge has been deleted.'), 'message_success');
 		} else {
-			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'manage'));
 	}}

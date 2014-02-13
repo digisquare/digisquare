@@ -20,10 +20,10 @@ class OrganizersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Organizer->create();
 			if ($this->Organizer->save($this->request->data)) {
-				$this->Session->setFlash(__('The organizer has been saved.'));
+				$this->Session->setFlash(__('The organizer has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The organizer could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The organizer could not be saved. Please, try again.'), 'message_error');
 			}
 		}
 		$events = $this->Organizer->Event->find('list');
@@ -37,10 +37,10 @@ class OrganizersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Organizer->save($this->request->data)) {
-				$this->Session->setFlash(__('The organizer has been saved.'));
+				$this->Session->setFlash(__('The organizer has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The organizer could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The organizer could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
 			$options = array('conditions' => array('Organizer.' . $this->Organizer->primaryKey => $id));
@@ -58,9 +58,9 @@ class OrganizersController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Organizer->delete()) {
-			$this->Session->setFlash(__('The organizer has been deleted.'));
+			$this->Session->setFlash(__('The organizer has been deleted.'), 'message_success');
 		} else {
-			$this->Session->setFlash(__('The organizer could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The organizer could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
