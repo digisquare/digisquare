@@ -16,6 +16,7 @@ class BadgesController extends AppController {
 			$badges[$key]['Badge']['class_badged'] = 'notBadged';
 			$type = $badge['Badge']['type'];
 			$minimum = $badge['Badge']['minimum'];
+			$total = 0;
 			if($type == "Edition"){
 				$total = $this->Edition->find('count');
 			}
