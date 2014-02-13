@@ -1,17 +1,34 @@
 <?php
-
 $this->set('channel', array(
-	'title' => 'Last Places !',
-	'link' => $this->Html->url('/', true),
-	'description' => 'Vous trouverez ici les dernières Places enregistrées'
-	));
+	'title' => __('Latest Places on Digisquare'),
+	'link' => $this->Html->url(
+		array(
+			'controller' => 'places',
+			'action' => 'index',
+		),
+		true
+	),
+	'description' => __('Latest Places on Digisqure'),
+	'lang' => 'fr-fr'
+));
 
 foreach ($places as $place) {
-
-	echo $this->Rss->item(array(), array(
-		'title' => $place['Place']['name'],
-		'link' =>  '/places/' . $place['Place']['id'],
-		'description' => $place['Place']['address'] . '<br>' . $place['Place']['city'],
-		'pubDate' => $place['Place']['created']
-		));
+	$link = $this->Html->url(
+		array(
+			'controller' => 'places',
+			'action' => 'view',
+			'id' => $place['Place']['id']
+		),
+		true
+	);
+	echo $this->Rss->item(
+		array(),
+		array(
+			'title'=> $place['Place']['name'],
+			'link' => $link,
+			'description' => $place['Place']['address'] . '<br>' . $place['Place']['city'],
+			'guid' => array('url' => $link, 'isPermaLink' => 'true'),
+			'pubDate' => $place['Place']['created']
+		)
+	);	
 }
