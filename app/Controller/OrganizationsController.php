@@ -64,7 +64,7 @@ class OrganizationsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-	
+
 	public function top() {
 		$organizations = $this->Organization->find('all', array(
 			'fields' => array(
@@ -95,6 +95,25 @@ class OrganizationsController extends AppController {
 		));
 		$this->set(compact('organizations'));
 		$this->RequestHandler->renderAs($this, 'rss');
+	}
+
+	public function register($id = null){
+		$this->Organization->id = $id;
+		if (!$this->Organization->exists()) {
+			throw new NotFoundException(__('Invalid organization'));	
+		}
+		$member = array(
+			'Member' => array(
+				'organization_id' => $id,
+				'user_id' => $this->Auth->user('id')
+			)
+		);
+		if ($this->Organization->Member->save($member)) {
+			$this->Session->setFlash(__('Your registration to this organization has been saved.'));
+		} else {
+			$this->Session->setFlash(__('Your registration to this organization could not been saved. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
 	}
 
 }

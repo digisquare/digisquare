@@ -58,6 +58,12 @@
 						null,
 						__('Are you sure you want to delete # %s?', $organization['Organization']['id'])
 					); ?>
+					<?php echo $this->Form->postLink(
+						__('Register'),
+						array('action' => 'register', 'id' => $organization['Organization']['id']),
+						array('class' => 'btn btn-default btn-sm'),
+						__('Are you sure you want to register to # %s?', $organization['Organization']['name'])
+					); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
