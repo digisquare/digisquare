@@ -23,11 +23,6 @@
 				<td><?php echo h($badge['Badge']['description']); ?>&nbsp;</td>
 				<td class="actions">
 					<?php echo $this->Html->link(
-						__('View'),
-						array('action' => 'view', 'id' => $badge['Badge']['id']),
-						array('class' => 'btn btn-default btn-sm')
-					); ?>
-					<?php echo $this->Html->link(
 						__('Edit'),
 						array('action' => 'edit', 'id' => $badge['Badge']['id']),
 						array('class' => 'btn btn-default btn-sm')

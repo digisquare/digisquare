@@ -44,15 +44,6 @@ class BadgesController extends AppController {
 		$this->set('badges', $this->Paginator->paginate());
 	}
 
-
-	public function view($id = null) {
-		if (!$this->Badge->exists($id)) {
-			throw new NotFoundException(__('Invalid badge'));
-		}
-		$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
-		$this->set('badge', $this->Badge->find('first', $options));
-	}
-
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Badge->create();
