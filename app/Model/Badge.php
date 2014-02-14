@@ -1,13 +1,10 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Organization Model
+ * Badge Model
  *
- * @property Place $Place
- * @property Edition $Edition
- * @property Organizer $Organizer
  */
-class Organization extends AppModel {
+class Badge extends AppModel {
 
 /**
  * Validation rules
@@ -15,17 +12,7 @@ class Organization extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'place_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'edition_id' => array(
+		'badge_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -55,6 +42,36 @@ class Organization extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'type' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'minimum' => array(
+			'numeric' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'icon' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -65,54 +82,14 @@ class Organization extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Place' => array(
-			'className' => 'Place',
-			'foreignKey' => 'place_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Edition' => array(
-			'className' => 'Edition',
-			'foreignKey' => 'edition_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
 	);
 
 /**
- * hasMany associations
+ * hasAndBelongsToMany associations
  *
  * @var array
  */
-	public $hasMany = array(
-		'Organizer' => array(
-			'className' => 'Organizer',
-			'foreignKey' => 'organization_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Member' => array(
-			'className' => 'Member',
-			'foreignKey' => 'organization_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
+	public $hasAndBelongsToMany = array(
 	);
 
 }

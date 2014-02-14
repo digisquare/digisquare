@@ -48,6 +48,11 @@
 						array('action' => 'edit', 'id' => $place['Place']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
+					<?php echo $this->Html->link(
+						__('Organizations'),
+						array('action' => 'organizations', 'id' => $place['Place']['id']),
+						array('class' => 'btn btn-default btn-sm')
+					); ?>
 					<?php echo $this->Form->postLink(
 						__('Delete'),
 						array('action' => 'delete', 'id' => $place['Place']['id']),

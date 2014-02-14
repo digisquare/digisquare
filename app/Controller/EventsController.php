@@ -20,10 +20,10 @@ class EventsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Event->create();
 			if ($this->Event->save($this->request->data)) {
-				$this->Session->setFlash(__('The event has been saved.'));
+				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
 			}
 		}
 		$editions = $this->Event->Edition->find('list');
@@ -38,10 +38,10 @@ class EventsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Event->save($this->request->data)) {
-				$this->Session->setFlash(__('The event has been saved.'));
+				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
 			$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
@@ -60,13 +60,12 @@ class EventsController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Event->delete()) {
-			$this->Session->setFlash(__('The event has been deleted.'));
+			$this->Session->setFlash(__('The event has been deleted.'), 'message_success');
 		} else {
-			$this->Session->setFlash(__('The event could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The event could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
 	public function participate($id = null){
 		$this->Event->id = $id;
 		if (!$this->Event->exists()) {
@@ -79,10 +78,21 @@ class EventsController extends AppController {
 			)
 		);
 		if ($this->Event->Participant->save($participant)) {
-			$this->Session->setFlash(__('Your participation to this event has been saved.'));
+			$this->Session->setFlash(__('Your participation to this event has been saved.'), 'message_success');
 		} else {
-			$this->Session->setFlash(__('Your participation to this event could not been saved. Please, try again.'));
+			$this->Session->setFlash(__('Your participation to this event could not been saved. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function feed(){
+		$events = $this->Event->find('all', array(
+			'contain' => array(),
+			'limit' => 10,
+			'order' => array('Event.created' => 'DESC'),
+		));
+		$this->set(compact('events'));
+		$this->RequestHandler->renderAs($this, 'rss');
+	}
+
 }

@@ -42,9 +42,17 @@
 					<p class="navbar-text navbar-right">
 						Signed in as <?php echo $this->Session->read('Auth.User.username'); ?>
 					</p>
+					
 					<ul class="nav navbar-nav navbar-right">
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+				          <ul class="dropdown-menu">
+				            <li><?php echo $this->Html->link(__('Badges'), array('controller' => 'badges', 'action' => 'index')); ?></li>
+				            <li><?php echo $this->Html->link(__('Manage badges'), array('controller' => 'badges', 'action' => 'manage')); ?></li>
 						<li><?php echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout')); ?></li>
-					</ul>
+				          </ul>
+				        </li>
+				     </ul>
 				<?php else: ?>
 					<ul class="nav navbar-nav navbar-right">
 						<li><?php echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login')); ?></li>

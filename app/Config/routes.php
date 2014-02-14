@@ -1,5 +1,4 @@
 <?php
-
 Router::connect('/',						array('controller' => 'editions', 'action' => 'index'));
 
 /**

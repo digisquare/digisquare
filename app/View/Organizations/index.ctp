@@ -5,8 +5,13 @@
 			array('controller' => 'organizations', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 	  	); ?>
+		<?php echo $this->Html->link(
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Top 10'),
+			array('controller' => 'organizations', 'action' => 'top'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+		); ?>
 		<h1><?php echo __('Organizations'); ?></h1>
-	</div>	
+	</div>
 	<table class="table table-bordered table-striped">
 		<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -52,6 +57,12 @@
 						array('class' => 'btn btn-default'),
 						null,
 						__('Are you sure you want to delete # %s?', $organization['Organization']['id'])
+					); ?>
+					<?php echo $this->Form->postLink(
+						__('Register'),
+						array('action' => 'register', 'id' => $organization['Organization']['id']),
+						array('class' => 'btn btn-default btn-sm'),
+						__('Are you sure you want to register to # %s?', $organization['Organization']['name'])
 					); ?>
 				</td>
 			</tr>

@@ -8,6 +8,16 @@ class EditionsController extends AppController {
 		$this->set('editions', $this->Paginator->paginate());
 	}
 
+	public function feed() {
+		$editions = $this->Edition->find('all', array(
+			'contain' => array(),
+			'limit' => 10,
+			'order' => array('Edition.created' => 'DESC')
+		));
+		$this->set(compact('editions'));
+		$this->RequestHandler->renderAs($this, 'rss');
+	}
+
 	public function view($id = null) {
 		if (!$this->Edition->exists($id)) {
 			throw new NotFoundException(__('Invalid edition'));
@@ -20,10 +30,10 @@ class EditionsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Edition->create();
 			if ($this->Edition->save($this->request->data)) {
-				$this->Session->setFlash(__('The edition has been saved.'));
+				$this->Session->setFlash(__('The edition has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The edition could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The edition could not be saved. Please, try again.'), 'message_error');
 			}
 		}
 	}
@@ -34,10 +44,10 @@ class EditionsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Edition->save($this->request->data)) {
-				$this->Session->setFlash(__('The edition has been saved.'));
+				$this->Session->setFlash(__('The edition has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The edition could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The edition could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
 			$options = array('conditions' => array('Edition.' . $this->Edition->primaryKey => $id));
@@ -52,9 +62,9 @@ class EditionsController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Edition->delete()) {
-			$this->Session->setFlash(__('The edition has been deleted.'));
+			$this->Session->setFlash(__('The edition has been deleted.'), 'message_success');
 		} else {
-			$this->Session->setFlash(__('The edition could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The edition could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

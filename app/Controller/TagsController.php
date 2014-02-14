@@ -16,14 +16,39 @@ class TagsController extends AppController {
 		$this->set('tag', $this->Tag->find('first', $options));
 	}
 
+	public function startups($id = null) {
+		if (!$this->Tag->exists($id)) {
+			throw new NotFoundException(__('Invalid tag'));
+		}
+		$startups = $this->Startup->find('all', array(
+			'fields' => array(
+				'Startup.id',
+				'Startup.name',
+				),
+			//'conditions' => 'Startup.id = startups_tags.startups_id',
+			'joins' => array(
+				array(
+					'table' => 'startups_tags',
+					'alias' => 'StartupTag',
+					'conditions' => 'Startup.id = StartupTag.startups_id'),
+				array(
+					'table' => 'tags',
+					'alias' => 'Tag',
+					'conditions' => 'StartupTag.tags_id = Tag.id'),
+				),
+			)
+		);
+		$this->set('tags', $tags);
+	}
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Tag->create();
 			if ($this->Tag->save($this->request->data)) {
-				$this->Session->setFlash(__('The tag has been saved.'));
+				$this->Session->setFlash(__('The tag has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The tag could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The tag could not be saved. Please, try again.'), 'message_error');
 			}
 		}
 		$events = $this->Tag->Event->find('list');
@@ -37,10 +62,10 @@ class TagsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Tag->save($this->request->data)) {
-				$this->Session->setFlash(__('The tag has been saved.'));
+				$this->Session->setFlash(__('The tag has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The tag could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The tag could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
 			$options = array('conditions' => array('Tag.' . $this->Tag->primaryKey => $id));
@@ -58,9 +83,9 @@ class TagsController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Tag->delete()) {
-			$this->Session->setFlash(__('The tag has been deleted.'));
+			$this->Session->setFlash(__('The tag has been deleted.'), 'message_success');
 		} else {
-			$this->Session->setFlash(__('The tag could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The tag could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

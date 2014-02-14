@@ -29,12 +29,14 @@
 				<td class="actions">
 					<?php echo $this->Html->link(
 						__('View'),
-						array('action' => 'view', 'id' => $tag['Tag']['id']),
+						array('action' => 'view', 
+							'id' => $tag['Tag']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Html->link(
 						__('Edit'),
-						array('action' => 'edit', 'id' => $tag['Tag']['id']),
+						array('action' => 'edit', 
+							'id' => $tag['Tag']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Form->postLink(
@@ -43,6 +45,12 @@
 						array('class' => 'btn btn-default btn-sm'),
 						null,
 						__('Are you sure you want to delete # %s?', $tag['Tag']['id'])
+					); ?>
+					<?php echo $this->Html->link(
+						__('Startups'),
+						array('action' => 'startups', 
+							'id' => $tag['Tag']['id']),
+						array('class' => 'btn btn-default btn-sm')
 					); ?>
 				</td>
 			</tr>
