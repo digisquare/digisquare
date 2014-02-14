@@ -8,13 +8,13 @@ class EditionsController extends AppController {
 		$this->set('editions', $this->Paginator->paginate());
 	}
 
-	public function feed() {
-		$editions = $this->Edition->find('all', array(
-			'contain' => array(),
-			'limit' => 10,
-			'order' => array('edition.created' => 'DESC')
-		));
-		$this->set(compact('editions'));
+	public function feed($id = null) {
+		if (!$this->Edition->exists($id)) {
+			throw new NotFoundException(__('Invalid edition'));
+		}
+		$events = $this->Edition->Event->find('all', array(
+			'conditions' => array('Event.edition_id' => $id)));
+		$this->set(compact('events'));
 		$this->RequestHandler->renderAs($this, 'rss');
 	}
 

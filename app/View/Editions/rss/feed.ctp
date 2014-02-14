@@ -1,6 +1,6 @@
 <?php
 $this->set('channel', array(
-	'title' => __('Latest Editions on Digisquare'),
+	'title' => __('Latest Events by for Editions on Digisquare'),
 	'link' => $this->Html->url(
 		array(
 			'controller' => 'editions',
@@ -8,16 +8,16 @@ $this->set('channel', array(
 		),
 		true
 	),
-	'description' => __('Latest Editions on Digisqure'),
+	'description' => __('Latest Events by Editions on Digisqure'),
 	'lang' => 'fr-fr'
 ));
 
-foreach ($editions as $edition) {
+foreach ($events as $event) {
 	$link = $this->Html->url(
 		array(
-			'controller' => 'editions',
+			'controller' => 'events',
 			'action' => 'view',
-			'id' => $edition['Edition']['id']
+			'id' => $event['Event']['id']
 		),
 		true
 	);
@@ -25,10 +25,11 @@ foreach ($editions as $edition) {
 	echo $this->Rss->item(
 		array(),
 		array(
-			'title'=> $edition['Edition']['name'],
+			'title'=> $event['Event']['name'],
 			'link' => $link,
 			'guid' => array('url' => $link, 'isPermaLink' => 'true'),
-			'pubDate' => $edition['Edition']['created']
+			'description' => $this->Text->truncate($event['Event']['description'], 100),
+			'pubDate' => $event['Event']['created']
 		)
 	);
 	
