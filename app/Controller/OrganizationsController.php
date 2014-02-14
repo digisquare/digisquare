@@ -70,7 +70,7 @@ class OrganizationsController extends AppController {
 			throw new NotFoundException(__('Invalid organization'));
 		}
 		$events_id = $this->Organization->Organizer->find('list', array(
-			'containt' => array(
+			'contain' => array(
 				'Event' => array(
 					'Edition','Place'
 				)
@@ -78,7 +78,7 @@ class OrganizationsController extends AppController {
 			'fields' => array(
 				'Organizer.Event_id'
 			),
-			'condition' => array(
+			'conditions' => array(
 				'Organizer.organization_id' => $id,
 				'Event.end_at >= NOW()'
 			)
