@@ -77,7 +77,6 @@ class EditionsController extends AppController {
 			'conditions' => array('Organization.edition_id' => $id)
 		));
 		$this->set(compact('organizations'));
-		$this->set('organization', $this->Paginator->paginate());
 	}
 
 	public function top() {
@@ -95,7 +94,16 @@ class EditionsController extends AppController {
 			'order' => 'count DESC',			
 			'limit' => 10
 		));
-		$this->set('editions', $editions);
+		$this->set(compact('editions'));
 	}
 
+	public function places($id = null) {
+		if (!$this->Edition->exists($id)) {
+			throw new NotFoundException(__('Invalid edition'));
+		}
+		$places = $this->Paginator->paginate('Place', array(
+			'Place.edition_id' => $id
+		));
+		$this->set(compact('places'));
+	}
 }
