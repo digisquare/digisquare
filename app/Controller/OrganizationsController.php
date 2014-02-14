@@ -69,7 +69,7 @@ class OrganizationsController extends AppController {
 		
 		$organizations = $this->Organization->find('all', array(
 			'limit' => 10,
-			'order' => 'organization.created DESC'
+			'order' => 'Organization.created DESC'
 		));
 		$this->set(compact('organizations'));
 	}

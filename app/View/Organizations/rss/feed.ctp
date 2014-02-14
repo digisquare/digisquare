@@ -8,7 +8,7 @@ $this->set('channel', array(
 );
 
 foreach ($organizations as $organization) {
-	$link = $this->Html->url(array('controller' => 'Organizations', 'action' => 'view', $organization['Organization']['id']), true);
+	$link = $this->Html->url(array('controller' => 'Organizations', 'action' => 'view', 'id' => $organization['Organization']['id']), true);
 	echo $this->Rss->item(array(), array(
 		'title' => $organization['Organization']['name'],
 		'link' => $link,
