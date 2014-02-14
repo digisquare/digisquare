@@ -74,11 +74,9 @@ class EditionsController extends AppController {
 		if (!$this->Edition->exists($id)) {
 			throw new NotFoundException(__('Invalid edition'));
 		}
-		else {
-			$this->loadModel('Place');
-			$options = array('conditions' => array('Place.edition_id' => $id));
-			$this->set('places', $this->Place->find('all', $options));
-			$this->set('place', $this->Paginator->paginate());
-		}
+		$places = $this->Paginator->paginate('Place', array(
+			'Place.edition_id' => $id
+		));
+		$this->set(compact('places'));
 	}
 }
