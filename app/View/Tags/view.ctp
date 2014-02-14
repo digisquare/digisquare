@@ -108,10 +108,10 @@
 			<td><?php echo $startup['created']; ?></td>
 			<td><?php echo $startup['modified']; ?></td>
 			<td class="actions">
-				<?/*php echo $this->Html->link(__('View'), array('controller' => 'startups', 'action' => 'view', 'id' => $startup['id'])); */?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'startups', 'action' => 'view', 'id' => $startup['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'startups', 'action' => 'edit', $startup['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'startups', 'action' => 'delete', $startup['id']), null, __('Are you sure you want to delete # %s?', $startup['id'])); ?>
 				<?php echo $this->Html->Link(__('Startup'), ); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'startups', 'action' => 'delete', $startup['id']), null, __('Are you sure you want to delete # %s?', $startup['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

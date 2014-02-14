@@ -2,8 +2,10 @@
 	<div class="page-header">
 		<?php echo $this->Html->link(
 			'<i class="icon-plus-sign icon-white"></i> ' . __('startups'), 
-			array('controller' => 'tags', 'action' => 'startups'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			array('controller' => 'tags', 
+				'action' => 'startups'),
+			array('escape' => false, 
+				'class' => 'btn btn-primary pull-right')
 		); ?>
 		<h1><?php echo __('Startups'); ?></h1>
 	</div>

@@ -16,31 +16,6 @@ class TagsController extends AppController {
 		$this->set('tag', $this->Tag->find('first', $options));
 	}
 
-	public function startups($id = null) {
-		if (!$this->Tag->exists($id)) {
-			throw new NotFoundException(__('Invalid tag'));
-		}
-		$startups = $this->Startup->find('all', array(
-			'fields' => array(
-				'Startup.id',
-				'Startup.name',
-				),
-			//'conditions' => 'Startup.id = startups_tags.startups_id',
-			'joins' => array(
-				array(
-					'table' => 'startups_tags',
-					'alias' => 'StartupTag',
-					'conditions' => 'Startup.id = StartupTag.startups_id'),
-				array(
-					'table' => 'tags',
-					'alias' => 'Tag',
-					'conditions' => 'StartupTag.tags_id = Tag.id'),
-				),
-			)
-		);
-		$this->set('tags', $tags);
-	}
-
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Tag->create();
@@ -115,5 +90,32 @@ class TagsController extends AppController {
 		);
 		$this->set('tags', $tags);
 	}
+
+
+	public function startups($id = null) {
+		if (!$this->Tag->exists($id)) {
+			throw new NotFoundException(__('Invalid tag'));
+		}
+		$startups = $this->Startup->find('all', array(
+			'fields' => array(
+				'Startup.id',
+				'Startup.name',
+				),
+			//'conditions' => 'Startup.id = startups_tags.startups_id',
+			'joins' => array(
+				array(
+					'table' => 'startups_tags',
+					'alias' => 'StartupTag',
+					'conditions' => 'Startup.id = StartupTag.startups_id'),
+				array(
+					'table' => 'tags',
+					'alias' => 'Tag',
+					'conditions' => 'StartupTag.tags_id = Tag.id'),
+				),
+			)
+		);
+		$this->set('tags', $tags);
+	}
+
 
 }
