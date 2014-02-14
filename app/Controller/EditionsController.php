@@ -81,26 +81,20 @@ class EditionsController extends AppController {
 	}
 
 	public function top() {
-		$editions = $this->Edition->find('all', array(
-				'fields' => array(
-						'count(Event.edition_id) AS count',
-						'Edition.id',
-						'Edition.name',
-						'Edition.created',
-						'Edition.modified'
-				),
-				'joins' => array(
-						array(
-							'table' => 'events',
-							'alias' => 'Event',
-							'conditions' => 'Event.edition_id = Edition.id'
-						)
-				),
-				'conditions' => 'Event.end_at > NOW()',
-				'group' => 'Edition.id',
-				'order' => 'count DESC',			
-				'limit' => 10
-			));
+		$editions = $this->Edition->Event->find('all', array(
+			'fields' => array(
+				'count(Event.edition_id) AS count',
+				'Edition.id',
+				'Edition.name',
+				'Edition.created',
+				'Edition.modified'
+			),
+			'contain' => array('Event'),
+			'conditions' => 'Event.end_at > NOW()',
+			'group' => 'Edition.id',
+			'order' => 'count DESC',			
+			'limit' => 10
+		));
 		$this->set('editions', $editions);
 	}
 
