@@ -15,6 +15,9 @@ class EditionsController extends AppController {
 		$events = $this->Edition->Event->find('all', array(
 			'conditions' => array('Event.edition_id' => $id)));
 		$this->set(compact('events'));
+		$editions = $this->Edition->find('first', array(
+			'conditions' => array('id' => $id)));
+		$this->set(compact('editions'));
 		$this->RequestHandler->renderAs($this, 'rss');
 	}
 
