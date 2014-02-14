@@ -20,18 +20,17 @@
 			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($events as $event): ?>
-		<?php print_r($event);echo'</br>';?>
 			<tr>
 				<td><?php echo h($event['Organizer'][0]['event_id']); ?>&nbsp;</td>
 				<td><?php echo $this->Html->link(
-					$event['Editions']['name'], array(
+					$event['Edition']['name'], array(
 						'controller' => 'organizations', 
 						'action' => 'view', 
 						'id' => $event['Event']['id'])
 					); 
 				?></td>
 				<td><?php echo $this->Html->link(
-					$event['Places']['name'], array(
+					$event['Place']['name'], array(
 						'controller' => 'organizations', 
 						'action' => 'view', 
 						'id' => $event['Event']['id'])

@@ -65,49 +65,26 @@ class OrganizationsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 	public function pastevents($id = null) {
-		$events = $this->Organization->Organizer->Event->find('all', array(
-					'fields' => array(
-						'Event.id',
-						'Event.name',
-						'Event.created',
-						'Event.modified',
-						'Event.end_at',
-						'Event.start_at',
-						'Event.edition_id',
-						'Event.place_id',
-						'Editions.name',
-						'Places.name'
-					),
-						'joins' => array(
-								array(
-								'table' => 'organizers',
-								'alias' => 'Organizers',
-								'conditions' => 'Organizers.event_id = Event.id'
-								),
-								array(
-								'table' => 'organizations',
-								'alias' => 'Organizations',
-								'conditions' => 'Organizers.organization_id = Organizations.id'
-								),
-								array(
-								'table' => 'editions',
-								'alias' => 'Editions',
-								'conditions' => 'Event.edition_id = Editions.id'
-								),
-								array(
-								'table' => 'places',
-								'alias' => 'Places',
-								'conditions' => 'Event.place_id = Places.id'
-								)
-							),
+		$event_ids = $this->Organization->Organizer->find('list', array(
+			'contain' => array(
+				'Event' => array(
+					'Edition',
+					'Place'
+					)
+				),
+				'fields' => array(
+						'Organizer.Event_id'
+					),						
 				'conditions' => array(
-					'Event.end_at > NOW()',
-					'Organizers.organization_id' => $id
+					'Event.end_at < NOW()',
+					'Organizer.organization_id' => $id
 				)
-
 			));
-
-$this->set(compact('events',$this->Paginator->paginate()));
+		$this->loadModel('Event');
+		$events = $this->Paginator->paginate('Event', array(
+				'Event.id' => $event_ids
+			));
+	$this->set(compact('events'));
 	}
 
 }
