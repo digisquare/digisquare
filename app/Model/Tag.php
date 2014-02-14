@@ -28,6 +28,14 @@ class Tag extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+	public $hasMany = array(
+		'EventsTag' => array(
+			'className' => 'EventsTag',
+			'foreignKey' => 'tag_id',
+			'dependent' => false,
+		),
+	);
+
 /**
  * hasAndBelongsToMany associations
  *
@@ -59,7 +67,7 @@ class Tag extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		)
+		),
 	);
 
 }
