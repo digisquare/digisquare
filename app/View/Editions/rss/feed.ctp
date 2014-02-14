@@ -28,10 +28,8 @@ foreach ($events as $event) {
 			'title'=> $event['Event']['name'],
 			'link' => $link,
 			'guid' => array('url' => $link, 'isPermaLink' => 'true'),
-			'description' => $this->Text->truncate($event['Event']['description'], 200),
+			'description' => ' Du '.$event['Event']['start_at'].' au '.$event['Event']['end_at'].'<br/>'.nl2br($this->Text->truncate($event['Event']['description'], 200)),
 			'pubDate' => $event['Event']['created'],
-			'debut' => $event['Event']['start_at'],
-			'fin' => $event['Event']['end_at'],
 		)
 	);
 	
