@@ -153,6 +153,11 @@ class Event extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'EventsTag' => array(
+			'className' => 'EventsTag',
+			'foreignKey' => 'event_id',
+			'dependent' => false
 		)
 	);
 
