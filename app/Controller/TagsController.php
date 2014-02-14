@@ -66,7 +66,7 @@ class TagsController extends AppController {
 	}
 
 	public function top() {
-		$tags = $this->Tag->find('all', array(
+		$tags = $this->Tag->EventsTag->find('all', array(
 			'fields' => array(
 				'count(EventsTag.tag_id) AS count',
 				'Tag.id',
@@ -74,16 +74,7 @@ class TagsController extends AppController {
 				'Tag.created',
 				'Tag.modified'),
 			'conditions' => 'Event.end_at > NOW()',
-			'joins' => array(
-				array(
-					'table' => 'events_tags',
-					'alias' => 'EventsTag',
-					'conditions' => 'EventsTag.tag_id = Tag.id'),
-				array(
-					'table' => 'events',
-					'alias' => 'Event',
-					'conditions' => 'EventsTag.event_id = Event.id')
-				),
+			'contain' => array('Tag', 'Event'),
 			'limit' => 10,
 			'group' => 'Tag.id',
 			'order' => 'count DESC')
