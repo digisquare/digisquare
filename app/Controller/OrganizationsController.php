@@ -116,4 +116,25 @@ class OrganizationsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
+	public function pastevents($id = null) {
+		if (!$this->Organization->exists($id)) {
+			throw new NotFoundException(__('Invalid organization'));
+		}
+		$event_ids = $this->Organization->Organizer->find('list', array(
+			'fields' => array('Organizer.event_id'),
+			'conditions' => array('Organizer.organization_id' => $id)
+		));
+		$this->loadModel('Event');
+		$this->Paginator->settings = array(
+			'Event' => array(
+				'contain' => array('Edition', 'Place'),
+			),
+		);
+		$events = $this->Paginator->paginate('Event', array(
+			'Event.id' => $event_ids,
+			'Event.end_at < NOW()',
+		));
+		$this->set(compact('events'));
+	}
+
 }

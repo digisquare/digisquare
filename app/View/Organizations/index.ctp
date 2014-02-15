@@ -47,6 +47,11 @@
 						array('class' => 'btn btn-default')
 					); ?>
 					<?php echo $this->Html->link(
+						__('Past Events'),
+						array('action' => 'pastevents', 'id' => $organization['Organization']['id']),
+						array('class' => 'btn btn-default')
+					); ?>
+					<?php echo $this->Html->link(
 						__('Edit'),
 						array('action' => 'edit', 'id' => $organization['Organization']['id']),
 						array('class' => 'btn btn-default')

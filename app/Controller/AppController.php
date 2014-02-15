@@ -18,7 +18,7 @@ class AppController extends Controller {
 	);
 
 	public function beforeFilter() {
-		$this->Auth->allow('index', 'feed', 'view', 'top');
+		$this->Auth->allow('index', 'feed', 'view', 'top', 'pastevents');
 	}
 
 }
