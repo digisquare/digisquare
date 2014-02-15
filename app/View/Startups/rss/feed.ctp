@@ -1,17 +1,9 @@
 <?php
-$this->set('channel', array(
+$this->set('channelData', array(
 	'title' => __('Latest Startups on Digisquare'),
-	'link' => $this->Html->url(
-		array(
-			'controller' => 'startups',
-			'action' => 'index',
-		),
-		true
-	),
+	'link' => $this->here,
 	'description' => __('Latest Startups on Digisqure'),
-	'lang' => 'fr-fr'
 ));
-
 foreach ($startups as $startup) {
 	$link = $this->Html->url(
 		array(
@@ -27,7 +19,11 @@ foreach ($startups as $startup) {
 			'title' => $startup['Startup']['name'],
 			'link' => $link,
 			'guid' => array('url' => $link, 'isPermalink' => true),
-			'description' => $this->Text->truncate($startup['Startup']['description'], 100),
+			'description' => array(
+				'value' => nl2br($startup['Startup']['description']),
+				'convertEntities' => false,
+				'cdata' => true,
+			),
 			'pubDate' => $startup['Startup']['created']
 		)
 	);

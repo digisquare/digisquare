@@ -1,34 +1,29 @@
 <?php
-$this->set('channel', array(
+$this->set('channelData', array(
 	'title' => __('Latest Organizations on Digisquare'),
-	'link' => $this->Html->url(
-		array(
-			'controller' => 'organizations',
-			'action' => 'index',
-		),
-		true
-	),
+	'link' => $this->here,
 	'description' => __('Latest Organizations on Digisquare'),
-	'lang' => 'fr-fr'
 ));
-
 foreach ($organizations as $organization) {
 	$link = $this->Html->url(
 		array(
-			'controller' => 'Organizations',
+			'controller' => 'organizations',
 			'action' => 'view',
 			'id' => $organization['Organization']['id']
 		),
 		true
 	);
-
 	echo $this->Rss->item(
 		array(),
 		array(
 			'title' => $organization['Organization']['name'],
 			'link' => $link,
 			'guid' => array('url' => $link, 'isPermalink' => true),
-			'description' => $organization['Organization']['description'],
+			'description' => array(
+				'value' => nl2br($organization['Organization']['description']),
+				'convertEntities' => false,
+				'cdata' => true,
+			),
 			'pubDate' => $organization['Organization']['created']
 		)
 	);
