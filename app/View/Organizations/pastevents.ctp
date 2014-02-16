@@ -21,19 +21,19 @@
 		</tr>
 		<?php foreach ($events as $event): ?>
 			<tr>
-				<td><?php echo h($event['Organizer'][0]['event_id']); ?>&nbsp;</td>
+				<td><?php echo h($event['Event']['id']); ?>&nbsp;</td>
 				<td><?php echo $this->Html->link(
 					$event['Edition']['name'], array(
 						'controller' => 'organizations', 
 						'action' => 'view', 
-						'id' => $event['Event']['id'])
+						'id' => $event['Edition']['id'])
 					); 
 				?></td>
 				<td><?php echo $this->Html->link(
 					$event['Place']['name'], array(
-						'controller' => 'organizations', 
+						'controller' => 'places', 
 						'action' => 'view', 
-						'id' => $event['Event']['id'])
+						'id' => $event['Place']['id'])
 					);
 				?></td>
 				<td><?php echo h($event['Event']['name']); ?>&nbsp;</td>
