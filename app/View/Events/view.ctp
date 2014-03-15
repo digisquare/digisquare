@@ -60,6 +60,23 @@
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
+	<?php if ($user_participant[0][0]['count'] == 1){
+		echo $this->Form->postLink(
+			__('Don\'t participate to this event'),
+			array('action' => 'participate', 'id' => $event['Event']['id'], 'participation' => 0),
+			array('class' => 'btn btn-default btn-sm'),
+			__('Are you sure you don\'t want to participate to # %s?', $event['Event']['id'])
+		);
+	} else {
+		echo $this->Form->postLink(
+			__('Participate to this event'),
+			array('action' => 'participate', 'id' => $event['Event']['id'], 'participation' => 1),
+			array('class' => 'btn btn-default btn-sm'),
+			__('Are you sure you want to participate to # %s?', $event['Event']['id'])
+		);
+	}
+
+	 ?>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Event'), array('action' => 'edit', 'id' => $event['Event']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Event'), array('action' => 'delete', 'id' => $event['Event']['id']), null, __('Are you sure you want to delete # %s?', $event['Event']['id'])); ?> </li>
