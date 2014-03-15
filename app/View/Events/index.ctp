@@ -53,12 +53,6 @@
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Form->postLink(
-						__('Participate'),
-						array('action' => 'participate', 'id' => $event['Event']['id']),
-						array('class' => 'btn btn-default btn-sm'),
-						__('Are you sure you want to participate to # %s?', $event['Event']['id'])
-					); ?>
-					<?php echo $this->Form->postLink(
 						__('Delete'),
 						array('action' => 'delete', 'id' => $event['Event']['id']),
 						array('class' => 'btn btn-default btn-sm'),

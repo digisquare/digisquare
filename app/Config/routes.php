@@ -14,4 +14,5 @@ Router::connect('/opauth-complete/*',		array('controller' => 'authentications', 
 Router::connect('/:controller',				array('action' => 'index'));
 Router::connect('/:controller/:id',			array('action' => 'view'), array('pass' => array('id'), 'id' => '[0-9]+'));
 Router::connect('/:controller/:id/:action',	array(), array('pass' => array('id'), 'id' => '[0-9]+'));
+Router::connect('/:controller/:id/:participation/:action',	array(), array('pass' => array('id', 'participation'), 'id' => '[0-9]+', 'participation' => '[0-9]+'));
 Router::connect('/:controller/:action',		array());

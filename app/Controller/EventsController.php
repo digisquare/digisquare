@@ -12,8 +12,24 @@ class EventsController extends AppController {
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Invalid event'));
 		}
+		$participant = array(
+			'Participant' => array(
+				'event_id' => $id,
+				'user_id' => $this->Auth->user('id')
+			)
+		);
+		$user_participant = $this->Event->Participant->find('all', array(
+			'fields' => array(
+				'count(Participant.id) AS count'
+			),
+			'conditions' => array(
+				'Participant.event_id' => $participant['Participant']['event_id'],
+				'Participant.user_id' => $participant['Participant']['user_id']
+			)
+		));
 		$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
 		$this->set('event', $this->Event->find('first', $options));
+		$this->set('user_participant', $user_participant);
 	}
 
 	public function add() {
@@ -66,7 +82,8 @@ class EventsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-	public function participate($id = null){
+
+	public function participate($id = null, $participation){
 		$this->Event->id = $id;
 		if (!$this->Event->exists()) {
 			throw new NotFoundException(__('Invalid event'));	
@@ -77,12 +94,30 @@ class EventsController extends AppController {
 				'user_id' => $this->Auth->user('id')
 			)
 		);
-		if ($this->Event->Participant->save($participant)) {
-			$this->Session->setFlash(__('Your participation to this event has been saved.'), 'message_success');
+		if ($participation == 0){
+			$exist_participant = $this->Event->Participant->find('all', array(
+				'fields' => array(
+					'(Participant.id)'
+				),
+				'conditions' => array(
+					'Participant.event_id' => $participant['Participant']['event_id'],
+					'Participant.user_id' => $participant['Participant']['user_id']
+				)
+			));
+			if ($this->Event->Participant->delete($exist_participant[0]['Participant']['id'])) {
+				$this->Session->setFlash(__('Your participation to this event has been removed.'), 'message_success');
+			} else {
+				$this->Session->setFlash(__('Your participation to this event could not been removed. Please, try again.'), 'message_error');
+			}
 		} else {
-			$this->Session->setFlash(__('Your participation to this event could not been saved. Please, try again.'), 'message_error');
+			if ($this->Event->Participant->save($participant)) {
+				$this->Session->setFlash(__('Your participation to this event has been saved.'), 'message_success');
+			} else {
+				$this->Session->setFlash(__('Your participation to this event could not been saved. Please, try again.'), 'message_error');
+			}
 		}
-		return $this->redirect(array('action' => 'index'));
+		
+		return $this->redirect(array('id' => $id, 'action' => 'view'));
 	}
 
 	public function feed(){
