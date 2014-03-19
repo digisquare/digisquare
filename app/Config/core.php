@@ -23,7 +23,11 @@ Configure::write('App.encoding', 'UTF-8');
 //Configure::write('Cache.check', true);
 
 Configure::write('Session', array(
-	'defaults' => 'php'
+	'defaults' => 'php',
+	'timeout' => 36000,
+	'checkAgent' => false,
+	'autoRegenerate' => true,
+	'cookie' => 'digisquare',
 ));
 
 Configure::write('Security.salt', '550208b6f96cb4d3e9c67c67b20175b8d19dbbb1');
