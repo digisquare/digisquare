@@ -80,8 +80,8 @@ class EditionsController extends AppController {
 		if (!$this->Edition->exists($id)) {
 			throw new NotFoundException(__('Invalid edition'));
 		}
-		$organizations = $this->Edition->Organization->find('all', array(
-			'conditions' => array('Organization.edition_id' => $id)
+		$organizations = $this->Paginator->paginate('Organization', array(
+			'Organization.edition_id' => $id
 		));
 		$this->set(compact('organizations'));
 	}
