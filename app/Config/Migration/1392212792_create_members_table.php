@@ -1,5 +1,5 @@
 <?php
-class CreateMemberTable extends CakeMigration {
+class CreateMembersTable extends CakeMigration {
 
 /**
  * Migration description
