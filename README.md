@@ -1,4 +1,4 @@
-# Digisquare
+﻿# Digisquare
 
 ## Manuel d'installation
 
@@ -53,3 +53,11 @@ Par exemple sous Mac OSX ou linux, on ajoute `127.0.0.1 digisquare.loc` dans le 
 
 Normalement, après avoir suivi ces instructions, en pointant votre navigateur sur `http://digisquare.loc` vous avez accès à la page d'accueil de CakePHP. Bon courage, prévenez-moi si vous rencontrez des difficultés afin de compléter ce guide.
 Je suis pilote, coucou thibaltHello dit Joanny
+Quand on commence on ne peut plus s’arrêter
+ 
+L’alcool est normalement superflu.  
+Lorsque le corps a besoin d’aliments solides, l’esprit reçoit un message qui s’appelle la faim.  
+Lorsque le corps a besoin d’aliments liquides, l’esprit reçoit un message qui s’appelle la soif.  
+Lorsque le signal de faim se manifeste, on pense de plus en plus à manger. On finit même par ne penser plus qu’à ça si le repas se fait attendre.
+ 
+Mais ces signaux de faim et soif ont leurs contraires : les "signaux de satiété". 
