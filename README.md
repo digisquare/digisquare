@@ -52,6 +52,4 @@ Par exemple sous Mac OSX ou linux, on ajoute `127.0.0.1 digisquare.loc` dans le 
 ### 4) C'est tout !
 
 Normalement, après avoir suivi ces instructions, en pointant votre navigateur sur `http://digisquare.loc` vous avez accès à la page d'accueil de CakePHP. Bon courage, prévenez-moi si vous rencontrez des difficultés afin de compléter ce guide.
-coucou thibalt
 -Hello dit Joanny
- 
