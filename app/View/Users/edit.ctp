@@ -1,21 +1,30 @@
-<div class="users form">
-<?php echo $this->Form->create('User'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit User'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('username');
-		echo $this->Form->input('password');
-		echo $this->Form->input('email');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', 'id' => $this->Form->value('User.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-	</ul>
+<div role="main">
+	<div class="users form">
+		<h1><?php echo __('Edit User'); ?></h1>
+		<?php echo $this->Form->create('User', array(
+			'inputDefaults' => array(
+				'div' => 'form-group',
+				'label' => array(
+					'class' => 'col col-md-3 control-label'
+				),
+				'wrapInput' => 'col col-md-9',
+				'class' => 'form-control'
+			),
+			'class' => 'well form-horizontal'
+		)); ?>
+			<?php 
+				echo $this->Form->input('id'); 
+				echo $this->Form->input('username');
+				echo $this->Form->input('password');
+				echo $this->Form->input('email');
+			?>
+			<div class="form-group">
+				<div class="col col-md-9 col-md-offset-3">
+					<?php echo $this->Form->submit('Save changes', array(
+						'class' => 'btn btn-primary'
+					)); ?>
+				</div>
+			</div>
+		<?php echo $this->Form->end(); ?>
+	</div>
 </div>
