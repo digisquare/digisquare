@@ -1,6 +1,6 @@
 <div role="main">
 	<div class="editions form">
-		<h1><?php echo __('Add Edition'); ?></h1>
+		<h1><?php echo __('Edit Edition'); ?></h1>
 		<?php echo $this->Form->create('Edition', array(
 			'inputDefaults' => array(
 				'div' => 'form-group',
