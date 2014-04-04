@@ -15,12 +15,12 @@
 			<?php
 				echo $this->Form->input('edition_id');
 				echo $this->Form->input('name');
-				echo $this->Form->input('Address');
-				echo $this->Form->input('Zipcode');
-				echo $this->Form->input('City');
-				echo $this->Form->input('Country Code');
-				echo $this->Form->input('Latitude');
-				echo $this->Form->input('Longitude');
+				echo $this->Form->input('address');
+				echo $this->Form->input('zipcode');
+				echo $this->Form->input('city');
+				echo $this->Form->input('country_code');
+				echo $this->Form->input('latitude');
+				echo $this->Form->input('longitude');
 			?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
