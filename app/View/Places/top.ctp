@@ -22,11 +22,11 @@
 				<td><?php echo h($place['Place']['id']); ?>&nbsp;</td>
 				<td>
 					<?php echo $this->Html->link(
-						$place['Edition']['name'],
+						$place['City']['name'],
 						array(
 							'controller' => 'editions',
 							'action' => 'view',
-							'name' => $place['Edition']['name']
+							'name' => $place['City']['name']
 						)
 					); ?>
 				</td>

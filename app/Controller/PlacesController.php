@@ -74,20 +74,31 @@ class PlacesController extends AppController {
 	}
 
 	public function top() {
-		$places = $this->Place->Event->find('all', array(
+		$places = $this->Place->find('all', array(
 			'fields' => array(
 				'count(Event.place_id) AS count',
 				'Place.id',
-				'Edition.name',
+				'City.name',
 				'Place.name',
 				'Place.created',
 				'Place.modified'
 			),
 			'conditions' => 'Event.end_at > NOW()',
 			'limit' => 10,
-			'contain' => array('Place'),
-			'group' => 'Event.place_id',
-			'order' => array('count' => 'DESC')
+			'joins' => array(
+				array(
+					'table' => 'events',
+					'alias' => 'Event',
+					'conditions' => 'Event.place_id = Place.id'
+				),
+				array(
+					'table' => 'editions',
+					'alias' => 'City',
+					'conditions' => 'City.id = Place.edition_id'
+				)
+			),
+			'group' => 'Place.id',
+			'order' => 'count DESC'
 		));
 		$this->set(compact('places'));
 	}
