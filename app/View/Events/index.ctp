@@ -1,6 +1,11 @@
 <div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
+			'<i class="icon-plus-sign icon-white"></i> ' .__('Import Event'), 
+			array('controller' => 'events', 'action' => 'upload'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+		); ?> 
+		<?php echo $this->Html->link(
 			'<i class="icon-plus-sign icon-white"></i> ' .__('New Event'), 
 			array('controller' => 'events', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
