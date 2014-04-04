@@ -13,6 +13,7 @@
 			'class' => 'well form-horizontal'
 		)); ?>
 			<?php
+				echo $this->Form->input('id');
 				echo $this->Form->input('edition_id');
 				echo $this->Form->input('name');
 				echo $this->Form->input('address');
