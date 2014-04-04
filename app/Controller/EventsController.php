@@ -95,4 +95,20 @@ class EventsController extends AppController {
 		$this->RequestHandler->renderAs($this, 'rss');
 	}
 
+	public function import() {
+		if ($this->request->is('post')) {
+			$this->Event->create();
+			if ($this->Event->save($this->request->data)) {
+				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
+			}
+		}
+		$editions = $this->Event->Edition->find('list');
+		$places = $this->Event->Place->find('list');
+		$tags = $this->Event->Tag->find('list');
+		$this->set(compact('editions', 'places', 'tags'));
+	}
+
 }
