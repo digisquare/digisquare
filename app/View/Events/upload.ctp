@@ -3,8 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('Import Event'); ?></legend>
 	<?php
-		echo $this->Form->input('Import_file');
-		echo $this->Form->input('URL');
+		echo $this->Form->input('file', array('label' => 'Import file', 'type' => 'file'));
+		echo $this->Form->input('Url');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
