@@ -15,8 +15,6 @@
 			<?php
 				echo $this->Form->input('id');
 				echo $this->Form->input('name');
-				echo $this->Form->input('Event');
-				echo $this->Form->input('Startup');
 			?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
