@@ -1,28 +1,31 @@
-<div class="organizations form">
-<?php echo $this->Form->create('Organization'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Organization'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('place_id');
-		echo $this->Form->input('edition_id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', 'id' => $this->Form->value('Organization.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Organization.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Organizations'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Places'), array('controller' => 'places', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Place'), array('controller' => 'places', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Organizers'), array('controller' => 'organizers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Organizer'), array('controller' => 'organizers', 'action' => 'add')); ?> </li>
-	</ul>
+<div role="main">
+	<div class="organizations form">
+		<h1><?php echo __('Edit Organization'); ?></h1>
+		<?php echo $this->Form->create('Organization', array(
+			'inputDefaults' => array(
+				'div' => 'form-group',
+				'label' => array(
+					'class' => 'col col-md-3 control-label'
+				),
+				'wrapInput' => 'col col-md-9',
+				'class' => 'form-control'
+			),
+			'class' => 'well form-horizontal'
+		)); ?>
+			<?php
+				echo $this->Form->input('id');
+				echo $this->Form->input('place_id');
+				echo $this->Form->input('edition_id');
+				echo $this->Form->input('name');
+				echo $this->Form->input('description');
+			?>
+			<div class="form-group">
+				<div class="col col-md-9 col-md-offset-3">
+					<?php echo $this->Form->submit('Save changes', array(
+						'class' => 'btn btn-primary'
+					)); ?>
+				</div>
+			</div>
+		<?php echo $this->Form->end(); ?>
+	</div>
 </div>

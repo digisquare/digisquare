@@ -1,30 +1,34 @@
-<div class="places form">
-<?php echo $this->Form->create('Place'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Place'); ?></legend>
-	<?php
-		echo $this->Form->input('edition_id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('address');
-		echo $this->Form->input('zipcode');
-		echo $this->Form->input('city');
-		echo $this->Form->input('country_code');
-		echo $this->Form->input('latitude');
-		echo $this->Form->input('longitude');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Places'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Editions'), array('controller' => 'editions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Edition'), array('controller' => 'editions', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Events'), array('controller' => 'events', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Event'), array('controller' => 'events', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Organization'), array('controller' => 'organizations', 'action' => 'add')); ?> </li>
-	</ul>
+<div role="main">
+	<div class="startups form">
+		<h1><?php echo __('Add Place'); ?></h1>
+		<?php echo $this->Form->create('Place', array(
+			'inputDefaults' => array(
+				'div' => 'form-group',
+				'label' => array(
+					'class' => 'col col-md-3 control-label'
+				),
+				'wrapInput' => 'col col-md-9',
+				'class' => 'form-control'
+			),
+			'class' => 'well form-horizontal'
+		)); ?>
+			<?php
+				echo $this->Form->input('edition_id');
+				echo $this->Form->input('name');
+				echo $this->Form->input('address');
+				echo $this->Form->input('zipcode');
+				echo $this->Form->input('city');
+				echo $this->Form->input('country_code');
+				echo $this->Form->input('latitude');
+				echo $this->Form->input('longitude');
+			?>
+			<div class="form-group">
+				<div class="col col-md-9 col-md-offset-3">
+					<?php echo $this->Form->submit('Save changes', array(
+						'class' => 'btn btn-primary'
+					)); ?>
+				</div>
+			</div>
+		<?php echo $this->Form->end(); ?>
+	</div>
 </div>
