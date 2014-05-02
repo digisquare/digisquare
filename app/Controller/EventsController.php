@@ -97,7 +97,7 @@ class EventsController extends AppController {
 
 	public function upload() {
 		if ($this->request->is('post')) {
-			$this->Event->create();			
+			$this->Event->create();		
 			$extension = pathinfo($this->request->data['Event']['ical_file']['name'],PATHINFO_EXTENSION);
 			$file = $this->request->data['Event']['ical_file'];
 			if (!empty($this->request->data['Event']['ical_file']['tmp_name']) 
