@@ -1,4 +1,4 @@
-
+----------------------------------------------------------------
     DTSTART: Start At
     DTEND: End At
     SUMMARY: Name
@@ -9,4 +9,4 @@
     TRANSP: inutil
     SEQUENCE: inutil
     URL;VALUE=URI: URL
-	
+---------------------------------------------------------------------	
