@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Sabre','application.vendors.Sabre');
+
 
 class EventsController extends AppController {
 
@@ -101,8 +103,12 @@ class EventsController extends AppController {
 			$extension = pathinfo($this->request->data['Event']['ical_file']['name'],PATHINFO_EXTENSION);
 			$file = $this->request->data['Event']['ical_file'];
 			if (!empty($this->request->data['Event']['ical_file']['tmp_name']) 
-				&& in_array($extension, array('ics', 'txt', 'csv'))) {
+				&& in_array($extension, array('ics', 'csv'))) {
 				//Ici function pour ouvrir et traiter notre fichier.
+				$file = new File($this->request->data['Event']['ical_file']['tmp_name']);		
+				$contents = $file->read(false,'rb');
+				$calendar = Sabre\VObject\Reader::read($contents); // ne pas oublier sabre devant.
+				die(debug($contents));
 				if ($this->Event->save($this->request->data)) {
 					$this->Session->setFlash(__('The event has been saved.'), 'message_success');
 					return $this->redirect(array('action' => 'index'));
