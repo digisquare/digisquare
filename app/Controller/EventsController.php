@@ -97,13 +97,20 @@ class EventsController extends AppController {
 
 	public function upload() {
 		if ($this->request->is('post')) {
-			$this->Event->create();
-			if ($this->Event->save($this->request->data)) {
-				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
-				return $this->redirect(array('action' => 'index'));
+			$this->Event->create();			
+			$extension = pathinfo($this->request->data['Event']['ical_file']['name'],PATHINFO_EXTENSION);
+			$file = $this->request->data['Event']['ical_file'];
+			if (!empty($this->request->data['Event']['ical_file']['tmp_name']) 
+				&& in_array($extension, array('ics', 'txt', 'csv'))) {
+				//Ici function pour ouvrir et traiter notre fichier.
+				if ($this->Event->save($this->request->data)) {
+					$this->Session->setFlash(__('The event has been saved.'), 'message_success');
+					return $this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
 			}
+			
 		}
 	}
 
