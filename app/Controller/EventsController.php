@@ -100,7 +100,7 @@ class EventsController extends AppController {
 
 	public function upload() {
 		if ($this->request->is('post')) {
-					
+			$places = $this->Event->Place->find('list');		
 			$extension = pathinfo($this->request->data['Event']['ical_file']['name'],PATHINFO_EXTENSION);
 			$file = $this->request->data['Event']['ical_file'];
 			if (!empty($this->request->data['Event']['ical_file']['tmp_name']) 
@@ -108,25 +108,34 @@ class EventsController extends AppController {
 				//Ici function pour ouvrir et traiter notre fichier.
 				$file = new File($this->request->data['Event']['ical_file']['tmp_name']);		
 				$contents = $file->read();
-				$calendar = Sabre\VObject\Reader::read($contents); // ne pas oublier sabre devant.
-				//if(isset($calendar->TZID)){
-				//	echo($calendar->TZID);
-				//}
-				//else{echo("raté");}				
+				$calendar = Sabre\VObject\Reader::read($contents); // ne pas oublier sabre devant.			
 				foreach($calendar->VEVENT as $vevent){
-					//echo "Name as : ",(string)$vevent->SUMMARY, "<br>";
 					$this->Event->create();
-					//die(debug($vevent->DTSTART->getDateTime()->format('Y-m-d H:i:s')));
+					$loca = $vevent->LOCATION;
+					//echo $loca,"r", "<br>";
+					$i = 1;
+					$j = 0;
+					foreach($places as $placeName)
+					{
+						//echo $placeName, "<br>";
+						if(trim(ucfirst($placeName)) == trim(ucfirst($loca)))
+						{
+							$j = $i;
+							//echo "merde";
+						}
+						$i ++;
+					}
+					//$this->Place->create();
 					$event = array(
 						'Event' => array(
 							'edition_id' => '1',
-							'place_id' => '1',
+							'place_id' => $j,
 							'name' => $vevent->SUMMARY,
 							'description' => 'vide',
 							'start_at' => $vevent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
 							'end_at' => $vevent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
-							'status' => '1',
-							'url' => ' '
+							'status' => $vevent->STATUS,
+							'url' => (string)$vevent->URL
 						),
 						'Tag' => array(
 							'Tag' => ''
@@ -145,5 +154,7 @@ class EventsController extends AppController {
 					return $this->redirect(array('action' => 'index'));			
 			}		
 		}
+		$editions = $this->Event->Edition->find('list');
+		$this->set(compact('editions'));
 	}
 }
