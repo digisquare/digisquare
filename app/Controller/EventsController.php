@@ -20,8 +20,9 @@ class EventsController extends AppController {
 
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->Event->create();
+			$this->Event->create();			
 			if ($this->Event->save($this->request->data)) {
+				die(debug($this->request->data));
 				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -99,25 +100,50 @@ class EventsController extends AppController {
 
 	public function upload() {
 		if ($this->request->is('post')) {
-			$this->Event->create();			
+					
 			$extension = pathinfo($this->request->data['Event']['ical_file']['name'],PATHINFO_EXTENSION);
 			$file = $this->request->data['Event']['ical_file'];
 			if (!empty($this->request->data['Event']['ical_file']['tmp_name']) 
 				&& in_array($extension, array('ics', 'csv'))) {
 				//Ici function pour ouvrir et traiter notre fichier.
 				$file = new File($this->request->data['Event']['ical_file']['tmp_name']);		
-				$contents = $file->read(false,'rb');
+				$contents = $file->read();
 				$calendar = Sabre\VObject\Reader::read($contents); // ne pas oublier sabre devant.
-				die(debug($contents));
-				if ($this->Event->save($this->request->data)) {
-					$this->Session->setFlash(__('The event has been saved.'), 'message_success');
+				//if(isset($calendar->TZID)){
+				//	echo($calendar->TZID);
+				//}
+				//else{echo("raté");}				
+				foreach($calendar->VEVENT as $vevent){
+					//echo "Name as : ",(string)$vevent->SUMMARY, "<br>";
+					$this->Event->create();
+					//die(debug($vevent->DTSTART->getDateTime()->format('Y-m-d H:i:s')));
+					$event = array(
+						'Event' => array(
+							'edition_id' => '1',
+							'place_id' => '1',
+							'name' => $vevent->SUMMARY,
+							'description' => 'vide',
+							'start_at' => $vevent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
+							'end_at' => $vevent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
+							'status' => '1',
+							'url' => ' '
+						),
+						'Tag' => array(
+							'Tag' => ''
+						)
+					);				
+					if ($this->Event->save($event)) {
+						//$this->Session->setFlash(__('The event has been saved.'), 'message_success');
+						//return $this->redirect(array('action' => 'index'));
+					}
+					else{
+					$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
 					return $this->redirect(array('action' => 'index'));
+					}
 				}
-			} else {
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
-			}
-			
+					$this->Session->setFlash(__('The event has been saved.'), 'message_success');
+					return $this->redirect(array('action' => 'index'));			
+			}		
 		}
 	}
-
 }
