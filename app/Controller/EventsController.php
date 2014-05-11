@@ -113,18 +113,41 @@ class EventsController extends AppController {
 					$this->Event->create();
 					$loca = $vevent->LOCATION;
 					//echo $loca,"r", "<br>";
-					$i = 1;
-					$j = 0;
-					foreach($places as $placeName)
-					{
-						//echo $placeName, "<br>";
-						if(trim(ucfirst($placeName)) == trim(ucfirst($loca)))
+					if ($loca != ''){
+						$i = 1;
+						$j = 0;
+						foreach($places as $placeName)
 						{
-							$j = $i;
-							//echo "merde";
+							//echo $placeName, "<br>";
+							if(trim(ucfirst($placeName)) == trim(ucfirst($loca)))
+							{
+								$j = $i;
+								//echo "merde";
+							}
+							$i ++;
 						}
-						$i ++;
+						if($j == 0)
+						{
+							$this->Place->create();
+							$place = array(
+								'Place' => array(
+									'edition_id' => '1',
+									'name' => $loca,
+									'address' => ' ',
+									'zipcode' => ' ',
+									'city' => ' ',
+									'country_code' => '0',
+									'latitude' => '0',
+									'longitude' => '0'
+								)
+							)
+							$this->Place->save($place);
+							$j = $i;
+						}
 					}
+					else{
+						$j = 1;
+					}					
 					//$this->Place->create();
 					$event = array(
 						'Event' => array(
