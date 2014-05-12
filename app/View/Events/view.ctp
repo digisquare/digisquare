@@ -13,6 +13,55 @@
 		); ?>
 		<h1><?php echo h($event['Event']['name']); ?></h1>
 	</div>
+	<p>
+		<p style="background:#dcedcf; padding:10px; font-size:16px; text-align:right;">
+			<?php 
+			if ($userid != null) { // User is logged
+				$table_affiliation['1']['Rang'] = '1';
+				$table_affiliation['1']['Nom'] = 'Watch';
+				$table_affiliation['1']['Action'] = 'watch';
+				$table_affiliation['2']['Rang'] = '2';
+				$table_affiliation['2']['Nom'] = 'Like';
+				$table_affiliation['2']['Action'] = 'like';
+				$table_affiliation['3']['Rang'] = '3';
+				$table_affiliation['3']['Nom'] = 'Miss';
+				$table_affiliation['3']['Action'] = 'miss';
+				$table_affiliation['4']['Rang'] = '4';
+				$table_affiliation['4']['Nom'] = 'Attend';
+				$table_affiliation['4']['Action'] = 'attend';
+				$table_affiliation['5']['Rang'] = '5';
+				$table_affiliation['5']['Nom'] = 'Attend maybe';
+				$table_affiliation['5']['Action'] = 'attend_maybe';
+				$table_affiliation['6']['Rang'] = '6';
+				$table_affiliation['6']['Nom'] = 'Speak at';
+				$table_affiliation['6']['Action'] = 'speak_at';
+				$table_affiliation['7']['Rang'] = '7';
+				$table_affiliation['7']['Nom'] = 'Organize';
+				$table_affiliation['7']['Action'] = 'organize';
+				$table_affiliation['8']['Rang'] = '8';
+				$table_affiliation['8']['Nom'] = 'Manage';
+				$table_affiliation['8']['Action'] = 'manage';
+				foreach ($table_affiliation as $t => $tab) {
+					$not = "";
+					$btn = "btn-primary";
+					foreach ($affiliations as $a => $aff) {
+						if ($aff['Affiliation']['status'] == $tab['Rang']) {
+							$not = __("Not ");
+							$btn = "btn-danger";
+							break;
+						}
+					}
+					echo $this->Html->link(
+						'<i class="icon-plus-sign "></i> ' . $not . __($tab['Nom']),
+						array('action' => $tab['Action'], 'id' => $event['Event']['id']),
+						array('escape' => false, 'class' => 'btn ' . $btn)
+					);
+				}
+			} else { // User is not logged
+				echo __("You're not logged. Please ".$this->Html->link(__('log in'), array('controller' => 'users', 'action' => 'login'))." to participate.");
+			}?>
+		</p>
+	</p>
 	<table class="table table-bordered table-striped">
 		<tr>
 			<td><?php echo __('Id'); ?></td>
