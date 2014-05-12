@@ -68,7 +68,7 @@ class EventsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-	public function participate($id = null){
+	public function participate($id = null) {
 		$this->Event->id = $id;
 		if (!$this->Event->exists()) {
 			throw new NotFoundException(__('Invalid event'));	
@@ -87,7 +87,7 @@ class EventsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	public function feed(){
+	public function feed() {
 		$events = $this->Event->find('all', array(
 			'contain' => array(),
 			'limit' => 10,
@@ -99,7 +99,9 @@ class EventsController extends AppController {
 
 	public function upload() {
 		if ($this->request->is('post')) {
-			$this->Event->create();						$places = $this->Event->Place->find('list');					$extension = pathinfo($this->request->data['Event']['ical_file']['name'],PATHINFO_EXTENSION);
+			$this->Event->create();						
+			$places = $this->Event->Place->find('list');					
+			$extension = pathinfo($this->request->data['Event']['ical_file']['name'],PATHINFO_EXTENSION);
 			$file = $this->request->data['Event']['ical_file'];
 			if (!empty($this->request->data['Event']['ical_file']['tmp_name']) 
 				&& in_array($extension, array('ics', 'csv'))) {
@@ -107,25 +109,22 @@ class EventsController extends AppController {
 				$file = new File($this->request->data['Event']['ical_file']['tmp_name']);		
 				$contents = $file->read();
 				$calendar = Sabre\VObject\Reader::read($contents); // ne pas oublier sabre devant.			
-				foreach($calendar->VEVENT as $vevent){
+				foreach($calendar->VEVENT as $vevent) {
 					$this->Event->create();
 					$loca = $vevent->LOCATION;
 					//echo $loca,"r", "<br>";
-					if ($loca != ''){
+					if ($loca != '') {
 						$i = 1;
 						$j = 0;
-						foreach($places as $placeName)
-						{
+						foreach($places as $placeName) {
 							//echo $placeName, "<br>";
-							if(trim(ucfirst($placeName)) == trim(ucfirst($loca)))
-							{
+							if(trim(ucfirst($placeName)) == trim(ucfirst($loca))) {
 								$j = $i;
-								//echo "merde";
+								//echo "mere";
 							}
 							$i ++;
 						}
-						if($j == 0)
-						{
+						if($j == 0)	{
 							$this->Place->create();
 							$place = array(
 								'Place' => array(
@@ -166,16 +165,16 @@ class EventsController extends AppController {
 						//$this->Session->setFlash(__('The event has been saved.'), 'message_success');
 						//return $this->redirect(array('action' => 'index'));
 					}
-					else{
-					$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
-					return $this->redirect(array('action' => 'index'));
+					else {
+						$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
+						return $this->redirect(array('action' => 'index'));
 					}
 				}
 					$this->Session->setFlash(__('The event has been saved.'), 'message_success');
 					return $this->redirect(array('action' => 'index'));			
 			}		
 		}
-		$editions = $this->Event->Edition->find('list');
-		$this->set(compact('editions'));
+			$editions = $this->Event->Edition->find('list');
+			$this->set(compact('editions'));
 	}
 }
