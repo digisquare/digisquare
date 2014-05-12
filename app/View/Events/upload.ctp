@@ -3,8 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('Import Event'); ?></legend>
 	<?php
+		echo $this->Form->input('edition_id');
 		echo $this->Form->input('ical_file', array('label' => 'Import file', 'type' => 'file'));
-		echo $this->Form->input('Url');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
