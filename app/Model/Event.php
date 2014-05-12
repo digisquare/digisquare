@@ -158,6 +158,13 @@ class Event extends AppModel {
 			'className' => 'EventsTag',
 			'foreignKey' => 'event_id',
 			'dependent' => false
+		),
+		'Affiliation' => array(
+			'className' => 'Affiliation',
+			'conditions' => array('Affiliation.model' => 'Events'),
+			'foreignKey' => 'foreign_key',
+			'order' => 'Affiliation.status ASC',
+			'dependent' => false
 		)
 	);
 
