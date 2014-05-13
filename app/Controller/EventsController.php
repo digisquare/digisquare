@@ -17,7 +17,8 @@ class EventsController extends AppController {
 			$affiliations = $this->Event->Affiliation->find("all", array(
 					'conditions' => array(
 						'Affiliation.foreign_key' => $id,
-						'Affiliation.user_id' => $user['id'] 
+						'Affiliation.user_id' => $user['id'],
+						'Affiliation.model' => 'Events'
 					)
 				)
 			);
