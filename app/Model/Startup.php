@@ -81,7 +81,6 @@ class Startup extends AppModel {
 	public $hasMany = array(
 		'Affiliation' => array(
 			'className' => 'Affiliation',
-			'conditions' => array('Affiliation.model' => 'Startups'),
 			'foreignKey' => 'foreign_key',
 			'order' => 'Affiliation.status ASC',
 			'dependent' => false
