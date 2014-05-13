@@ -148,7 +148,6 @@ class Place extends AppModel {
 		),
 		'Affiliation' => array(
 			'className' => 'Affiliation',
-			'conditions' => array('Affiliation.model' => 'Places'),
 			'foreignKey' => 'foreign_key',
 			'order' => 'Affiliation.status ASC',
 			'dependent' => false
