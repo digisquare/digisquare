@@ -74,6 +74,21 @@ class Startup extends AppModel {
 	);
 
 /**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Affiliation' => array(
+			'className' => 'Affiliation',
+			'conditions' => array('Affiliation.model' => 'Startups'),
+			'foreignKey' => 'foreign_key',
+			'order' => 'Affiliation.status ASC',
+			'dependent' => false
+		)
+	);
+
+/**
  * hasAndBelongsToMany associations
  *
  * @var array
