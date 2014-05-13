@@ -22,6 +22,18 @@ class PlacesController extends AppController {
 		if (!$this->Place->exists($id)) {
 			throw new NotFoundException(__('Invalid place'));
 		}
+		$user = $this->Session->read("Auth.User");
+		if ($user != null){
+			$affiliations = $this->Place->Affiliation->find("all", array(
+					'conditions' => array(
+						'Affiliation.foreign_key' => $id,
+						'Affiliation.user_id' => $user['id'] 
+					)
+				)
+			);
+			$this->set('affiliations', $affiliations);
+		}		
+		$this->set('userid', $user['id']);
 		$options = array('conditions' => array('Place.' . $this->Place->primaryKey => $id));
 		$this->set('place', $this->Place->find('first', $options));
 	}
@@ -110,5 +122,153 @@ class PlacesController extends AppController {
 		$organizations = $this->Paginator->paginate('Organization', array('Organization.place_id' => $id));	
 		$this->set(compact('organizations'));
 	}
+
+/**
+ * Méthodes d'affiliation
+ */
+
+	public function watch($id = null) {
+		if (!$this->Place->exists($id)) {
+			throw new NotFoundException(__('Invalid place'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '1',
+				'model' => 'Places',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Place->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Place->Affiliation->create();
+			$this->Place->Affiliation->save($affiliation);
+		} else {
+			$this->Place->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'places', 'action' => 'view', 'id' => $id));
+	}
+
+	public function like($id = null) {
+		if (!$this->Place->exists($id)) {
+			throw new NotFoundException(__('Invalid place'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '2',
+				'model' => 'Places',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Place->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Place->Affiliation->create();
+			$this->Place->Affiliation->save($affiliation);
+		} else {
+			$this->Place->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'places', 'action' => 'view', 'id' => $id));
+	}
 	
+	public function visit($id = null) {
+		if (!$this->Place->exists($id)) {
+			throw new NotFoundException(__('Invalid place'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '4',
+				'model' => 'Places',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Place->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Place->Affiliation->create();
+			$this->Place->Affiliation->save($affiliation);
+		} else {
+			$this->Place->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'places', 'action' => 'view', 'id' => $id));
+	}
+
+	public function run($id = null) {
+		if (!$this->Place->exists($id)) {
+			throw new NotFoundException(__('Invalid place'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '7',
+				'model' => 'Places',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Place->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Place->Affiliation->create();
+			$this->Place->Affiliation->save($affiliation);
+		} else {
+			$this->Place->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'places', 'action' => 'view', 'id' => $id));
+	}
+
+	public function manage($id = null) {
+		if (!$this->Place->exists($id)) {
+			throw new NotFoundException(__('Invalid place'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '8',
+				'model' => 'Places',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Place->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Place->Affiliation->create();
+			$this->Place->Affiliation->save($affiliation);
+		} else {
+			$this->Place->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'places', 'action' => 'view', 'id' => $id));
+	}
 }
