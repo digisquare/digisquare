@@ -145,6 +145,13 @@ class Place extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'Affiliation' => array(
+			'className' => 'Affiliation',
+			'conditions' => array('Affiliation.model' => 'Places'),
+			'foreignKey' => 'foreign_key',
+			'order' => 'Affiliation.status ASC',
+			'dependent' => false
 		)
 	);
 
