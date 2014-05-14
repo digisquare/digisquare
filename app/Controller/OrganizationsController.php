@@ -18,7 +18,7 @@ class OrganizationsController extends AppController {
 					'conditions' => array(
 						'Affiliation.foreign_key' => $id,
 						'Affiliation.user_id' => $user['id'],
-						'Affiliation.model' => 'Organization'
+						'Affiliation.model' => 'Organizations'
 					)
 				)
 			);
@@ -163,7 +163,7 @@ class OrganizationsController extends AppController {
 			'Affiliation' => array(
 				'user_id'	=>	$user['id'],
 				'status' => '1',
-				'model' => 'Organization',
+				'model' => 'Organizations',
 				'foreign_key' => $id
 			)
 		);
@@ -192,7 +192,7 @@ class OrganizationsController extends AppController {
 			'Affiliation' => array(
 				'user_id'	=>	$user['id'],
 				'status' => '2',
-				'model' => 'Organization',
+				'model' => 'Organizations',
 				'foreign_key' => $id
 			)
 		);
@@ -221,7 +221,7 @@ class OrganizationsController extends AppController {
 			'Affiliation' => array(
 				'user_id'	=>	$user['id'],
 				'status' => '4',
-				'model' => 'Organization',
+				'model' => 'Organizations',
 				'foreign_key' => $id
 			)
 		);
@@ -251,7 +251,7 @@ class OrganizationsController extends AppController {
 			'Affiliation' => array(
 				'user_id'	=>	$user['id'],
 				'status' => '7',
-				'model' => 'Organization',
+				'model' => 'Organizations',
 				'foreign_key' => $id
 			)
 		);
@@ -280,7 +280,7 @@ class OrganizationsController extends AppController {
 			'Affiliation' => array(
 				'user_id'	=>	$user['id'],
 				'status' => '8',
-				'model' => 'Organization',
+				'model' => 'Organizations',
 				'foreign_key' => $id
 			)
 		);
