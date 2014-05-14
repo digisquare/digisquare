@@ -12,6 +12,19 @@ class OrganizationsController extends AppController {
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
 		}
+		$user = $this->Session->read("Auth.User");
+		if ($user != null){
+			$affiliations = $this->Organization->Affiliation->find("all", array(
+					'conditions' => array(
+						'Affiliation.foreign_key' => $id,
+						'Affiliation.user_id' => $user['id'],
+						'Affiliation.model' => 'Organization'
+					)
+				)
+			);
+			$this->set('affiliations', $affiliations);
+		}		
+		$this->set('userid', $user['id']);
 		$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 		$this->set('organization', $this->Organization->find('first', $options));
 	}
@@ -136,5 +149,154 @@ class OrganizationsController extends AppController {
 		));
 		$this->set(compact('events'));
 	}
+	
+/**
+* Méthodes d'affiliation
+*/
 
+	public function watch($id = null) {
+		if (!$this->Organization->exists($id)) {
+			throw new NotFoundException(__('Invalid organization'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '1',
+				'model' => 'Organization',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Organization->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Organization->Affiliation->create();
+			$this->Organization->Affiliation->save($affiliation);
+		} else {
+			$this->Organization->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'organizations', 'action' => 'view', 'id' => $id));
+	}
+
+	public function like($id = null) {
+		if (!$this->Organization->exists($id)) {
+			throw new NotFoundException(__('Invalid organization'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '2',
+				'model' => 'Organization',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Organization->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Organization->Affiliation->create();
+			$this->Organization->Affiliation->save($affiliation);
+		} else {
+			$this->Organization->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'organizations', 'action' => 'view', 'id' => $id));
+	}
+
+	public function enroll($id = null) {
+		if (!$this->Organization->exists($id)) {
+			throw new NotFoundException(__('Invalid organization'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '4',
+				'model' => 'Organization',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Organization->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Organization->Affiliation->create();
+			$this->Organization->Affiliation->save($affiliation);
+		} else {
+			$this->Organization->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'organizations', 'action' => 'view', 'id' => $id));
+	}
+	
+
+	public function run($id = null) {
+		if (!$this->Organization->exists($id)) {
+			throw new NotFoundException(__('Invalid organization'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '7',
+				'model' => 'Organization',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Organization->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Organization->Affiliation->create();
+			$this->Organization->Affiliation->save($affiliation);
+		} else {
+			$this->Organization->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'organizations', 'action' => 'view', 'id' => $id));
+	}
+
+	public function manage($id = null) {
+		if (!$this->Organization->exists($id)) {
+			throw new NotFoundException(__('Invalid organization'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '8',
+				'model' => 'Organization',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Organization->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Organization->Affiliation->create();
+			$this->Organization->Affiliation->save($affiliation);
+		} else {
+			$this->Organization->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'organizations', 'action' => 'view', 'id' => $id));
+	}
 }
