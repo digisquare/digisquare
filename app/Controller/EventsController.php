@@ -109,8 +109,7 @@ class EventsController extends AppController {
 				$file = new File($this->request->data['Event']['ical_file']['tmp_name']);		
 				$contents = $file->read();
 				$calendar = Sabre\VObject\Reader::read($contents); // ne pas oublier sabre devant.			
-				foreach($calendar->VEVENT as $vevent) {
-					$this->Event->create();
+				foreach($calendar->VEVENT as $vevent) {					
 					$loca = $vevent->LOCATION;
 					//echo $loca,"r", "<br>";
 					if ($loca != '') {
@@ -120,12 +119,12 @@ class EventsController extends AppController {
 							//echo $placeName, "<br>";
 							if(trim(ucfirst($placeName)) == trim(ucfirst($loca))) {
 								$j = $i;
-								//echo "mere";
+								echo $j;
 							}
 							$i ++;
 						}
 						if($j == 0)	{
-							$this->Place->create();
+							//$this->Place->create();
 							$place = array(
 								'Place' => array(
 									'edition_id' => '1',
@@ -137,8 +136,8 @@ class EventsController extends AppController {
 									'latitude' => '0',
 									'longitude' => '0'
 								)
-							)
-							$this->Place->save($place);
+							);
+							//$this->Place->save($place);
 							$j = $i;
 						}
 					}
@@ -146,26 +145,29 @@ class EventsController extends AppController {
 						$j = 1;
 					}					
 					//$this->Place->create();
+					$this->Event->create();
+					//echo (string)$vevent->STATUS;
 					$event = array(
 						'Event' => array(
-							'edition_id' => '1',
+							'edition_id' => 1,
 							'place_id' => $j,
 							'name' => $vevent->SUMMARY,
 							'description' => 'vide',
 							'start_at' => $vevent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
 							'end_at' => $vevent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
-							'status' => $vevent->STATUS,
+							'status' => '0',
 							'url' => (string)$vevent->URL
 						),
 						'Tag' => array(
 							'Tag' => ''
 						)
-					);				
+					);
 					if ($this->Event->save($event)) {
+						//echo 'ok';
 						//$this->Session->setFlash(__('The event has been saved.'), 'message_success');
 						//return $this->redirect(array('action' => 'index'));
 					}
-					else {
+					else {		
 						$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
 						return $this->redirect(array('action' => 'index'));
 					}
