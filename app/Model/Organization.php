@@ -112,6 +112,12 @@ class Organization extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'Affiliation' => array(
+			'className' => 'Affiliation',
+			'foreignKey' => 'foreign_key',
+			'order' => 'Affiliation.status ASC',
+			'dependent' => false
 		)
 	);
 

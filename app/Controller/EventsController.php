@@ -12,6 +12,19 @@ class EventsController extends AppController {
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Invalid event'));
 		}
+		$user = $this->Session->read("Auth.User");
+		if ($user != null){
+			$affiliations = $this->Event->Affiliation->find("all", array(
+					'conditions' => array(
+						'Affiliation.foreign_key' => $id,
+						'Affiliation.user_id' => $user['id'],
+						'Affiliation.model' => 'Events'
+					)
+				)
+			);
+			$this->set('affiliations', $affiliations);
+		}		
+		$this->set('userid', $user['id']);
 		$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
 		$this->set('event', $this->Event->find('first', $options));
 	}
@@ -93,6 +106,287 @@ class EventsController extends AppController {
 		));
 		$this->set(compact('events'));
 		$this->RequestHandler->renderAs($this, 'rss');
+	}
+
+/**
+ * Méthodes d'affiliation
+ */
+
+	public function watch($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '1',
+				'model' => 'Events',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Event->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Event->Affiliation->create();
+			$this->Event->Affiliation->save($affiliation);
+		} else {
+			$this->Event->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'events', 'action' => 'view', 'id' => $id));
+	}
+
+	public function like($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '2',
+				'model' => 'Events',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Event->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Event->Affiliation->create();
+			$this->Event->Affiliation->save($affiliation);
+		} else {
+			$this->Event->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'events', 'action' => 'view', 'id' => $id));
+	}
+
+	public function miss($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$user = $this->Session->read('Auth.User');
+
+		$affiliation_Miss = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'model' => 'Events',
+				'foreign_key' => $id,
+				'status' => '3'
+			)
+		);
+		$affiliation_Att_Myb = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'model' => 'Events',
+				'foreign_key' => $id,
+				'or' => array( 
+					array('status' => '4'),
+					array('status' => '5')
+				)
+			)
+		);
+
+		$affiliations = $this->Event->Affiliation->find('all', array(
+			'conditions' => $affiliation_Miss['Affiliation']
+			)
+		);
+
+
+		if ($affiliations == null) {
+			$this->Event->Affiliation->create();
+			$this->Event->Affiliation->save($affiliation_Miss);
+			$this->Event->Affiliation->deleteAll($affiliation_Att_Myb['Affiliation']);	
+		} else {
+			$this->Event->Affiliation->deleteAll($affiliation_Miss['Affiliation']);
+			$this->Event->Affiliation->deleteAll($affiliation_Att_Myb['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'events', 'action' => 'view', 'id' => $id));
+	}
+
+	public function attend($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$user = $this->Session->read('Auth.User');
+
+		$affiliation_Att = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'model' => 'Events',
+				'foreign_key' => $id,
+				'status' => '4'
+			)
+		);
+		$affiliation_Miss_Att_Myb = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'model' => 'Events',
+				'foreign_key' => $id,
+				'or' => array( 
+					array('status' => '3'),
+					array('status' => '5')
+				)
+			)
+		);
+
+		$affiliations = $this->Event->Affiliation->find('all', array(
+			'conditions' => $affiliation_Att['Affiliation']
+			)
+		);
+
+
+		if ($affiliations == null) {
+			$this->Event->Affiliation->create();
+			$this->Event->Affiliation->save($affiliation_Att);
+			$this->Event->Affiliation->deleteAll($affiliation_Miss_Att_Myb['Affiliation']);	
+		} else {
+			$this->Event->Affiliation->deleteAll($affiliation_Att['Affiliation']);
+			$this->Event->Affiliation->deleteAll($affiliation_Miss_Att_Myb['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'events', 'action' => 'view', 'id' => $id));
+	}
+
+	public function attend_maybe($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$user = $this->Session->read('Auth.User');
+
+		$affiliation_Att_Myb = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'model' => 'Events',
+				'foreign_key' => $id,
+				'status' => '5'
+			)
+		);
+		$affiliation_Miss_Att = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'model' => 'Events',
+				'foreign_key' => $id,
+				'or' => array( 
+					array('status' => '3'),
+					array('status' => '4')
+				)
+			)
+		);
+
+		$affiliations = $this->Event->Affiliation->find('all', array(
+			'conditions' => $affiliation_Att_Myb['Affiliation']
+			)
+		);
+
+
+		if ($affiliations == null) {
+			$this->Event->Affiliation->create();
+			$this->Event->Affiliation->save($affiliation_Att_Myb);
+			$this->Event->Affiliation->deleteAll($affiliation_Miss_Att['Affiliation']);	
+		} else {
+			$this->Event->Affiliation->deleteAll($affiliation_Att_Myb['Affiliation']);
+			$this->Event->Affiliation->deleteAll($affiliation_Miss_Att['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'events', 'action' => 'view', 'id' => $id));
+	}
+
+	public function speak_at($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '6',
+				'model' => 'Events',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Event->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Event->Affiliation->create();
+			$this->Event->Affiliation->save($affiliation);
+		} else {
+			$this->Event->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'events', 'action' => 'view', 'id' => $id));
+	}
+
+	public function organize($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '7',
+				'model' => 'Events',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Event->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Event->Affiliation->create();
+			$this->Event->Affiliation->save($affiliation);
+		} else {
+			$this->Event->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'events', 'action' => 'view', 'id' => $id));
+	}
+
+	public function manage($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '8',
+				'model' => 'Events',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Event->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Event->Affiliation->create();
+			$this->Event->Affiliation->save($affiliation);
+		} else {
+			$this->Event->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'events', 'action' => 'view', 'id' => $id));
 	}
 
 }

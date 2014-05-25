@@ -29,6 +29,19 @@ class EditionsController extends AppController {
 		if (!$this->Edition->exists($id)) {
 			throw new NotFoundException(__('Invalid edition'));
 		}
+		$user = $this->Session->read("Auth.User");
+		if ($user != null){
+			$affiliations = $this->Edition->Affiliation->find("all", array(
+					'conditions' => array(
+						'Affiliation.foreign_key' => $id,
+						'Affiliation.user_id' => $user['id'],
+						'Affiliation.model' => 'Editions'
+					)
+				)
+			);
+			$this->set('affiliations', $affiliations);
+		}		
+		$this->set('userid', $user['id']);
 		$options = array('conditions' => array('Edition.' . $this->Edition->primaryKey => $id));
 		$this->set('edition', $this->Edition->find('first', $options));
 	}
@@ -119,4 +132,97 @@ class EditionsController extends AppController {
 		));
 		$this->set(compact('places'));
 	}
+	
+/**
+ * Méthodes d'affiliation
+ */
+
+	public function watch($id = null) {
+		if (!$this->Edition->exists($id)) {
+			throw new NotFoundException(__('Invalid edition'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '1',
+				'model' => 'Editions',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Edition->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Edition->Affiliation->create();
+			$this->Edition->Affiliation->save($affiliation);
+		} else {
+			$this->Edition->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'editions', 'action' => 'view', 'id' => $id));
+	}
+
+	public function like($id = null) {
+		if (!$this->Edition->exists($id)) {
+			throw new NotFoundException(__('Invalid edition'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '2',
+				'model' => 'Editions',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Edition->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Edition->Affiliation->create();
+			$this->Edition->Affiliation->save($affiliation);
+		} else {
+			$this->Edition->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'editions', 'action' => 'view', 'id' => $id));
+	}
+
+	public function manage($id = null) {
+		if (!$this->Edition->exists($id)) {
+			throw new NotFoundException(__('Invalid edition'));
+		}
+		$user = $this->Session->read('Auth.User');
+		$affiliation = array(
+			'Affiliation' => array(
+				'user_id'	=>	$user['id'],
+				'status' => '8',
+				'model' => 'Editions',
+				'foreign_key' => $id
+			)
+		);
+
+		$affiliations = $this->Edition->Affiliation->find('all', array(
+				'conditions' => $affiliation['Affiliation']
+				)
+		);
+
+		if ($affiliations == null) {
+			$this->Edition->Affiliation->create();
+			$this->Edition->Affiliation->save($affiliation);
+		} else {
+			$this->Edition->Affiliation->deleteAll($affiliation['Affiliation']);
+		}
+
+		return $this->redirect(array('controller' => 'editions', 'action' => 'view', 'id' => $id));
+	}
+
 }
+
