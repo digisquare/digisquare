@@ -393,85 +393,53 @@ class EventsController extends AppController {
 
 	public function upload() {
 		if ($this->request->is('post')) {
-			$this->Event->create();
-			$places = $this->Event->Place->find('list');
-			$extension = pathinfo($this->request->data['Event']['ical_file']['name'],PATHINFO_EXTENSION);
-			$file = $this->request->data['Event']['ical_file'];
-			if (!empty($this->request->data['Event']['ical_file']['tmp_name'])
-				&& in_array($extension, array('ics', 'csv'))) {
-				//Ici function pour ouvrir et traiter notre fichier.
+
+			if (empty($this->request->data['Event']['ical_file']['tmp_name'])) {
+				$this->Session->setFlash(__('Please select a file.'), 'message_error');
+				return $this->redirect(array('action' => 'upload'));
+			}
+
+			try {
 				$file = new File($this->request->data['Event']['ical_file']['tmp_name']);
 				$contents = $file->read();
-				$calendar = Sabre\VObject\Reader::read($contents); // ne pas oublier sabre devant.
-				foreach($calendar->VEVENT as $vevent) {
-					$loca = $vevent->LOCATION;
-					//echo $loca,"r", "<br>";
-					if ($loca != '') {
-						$i = 1;
-						$j = 0;
-						foreach($places as $placeName) {
-							//echo $placeName, "<br>";
-							if(trim(ucfirst($placeName)) == trim(ucfirst($loca))) {
-								$j = $i;
-								echo $j;
-							}
-							$i ++;
-						}
-						if($j == 0)	{
-							//$this->Place->create();
-							$place = array(
-								'Place' => array(
-									'edition_id' => '1',
-									'name' => $loca,
-									'address' => ' ',
-									'zipcode' => ' ',
-									'city' => ' ',
-									'country_code' => '0',
-									'latitude' => '0',
-									'longitude' => '0'
-								)
-							);
-							//$this->Place->save($place);
-							$j = $i;
-						}
-					}
-					else{
-						$j = 1;
-					}					
-					//$this->Place->create();
-					$this->Event->create();
-					//echo (string)$vevent->STATUS;
-					$event = array(
-						'Event' => array(
-							'edition_id' => 1,
-							'place_id' => $j,
-							'name' => $vevent->SUMMARY,
-							'description' => 'vide',
-							'start_at' => $vevent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
-							'end_at' => $vevent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
-							'status' => '0',
-							'url' => (string)$vevent->URL
-						),
-						'Tag' => array(
-							'Tag' => ''
-						)
-					);
-					if ($this->Event->save($event)) {
-						//echo 'ok';
-						//$this->Session->setFlash(__('The event has been saved.'), 'message_success');
-						//return $this->redirect(array('action' => 'index'));
-					}
-					else {		
-						$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
-						return $this->redirect(array('action' => 'index'));
-					}
-				}
-					$this->Session->setFlash(__('The event has been saved.'), 'message_success');
-					return $this->redirect(array('action' => 'index'));
-			}		
+				$calendar = Sabre\VObject\Reader::read($contents, Sabre\VObject\Reader::OPTION_FORGIVING);
+			} catch (Exception $e) {
+				$this->Session->setFlash($e->getMessage(), 'message_error');
+				return $this->redirect(array('action' => 'upload'));
+			}
+
+			foreach($calendar->VEVENT as $vevent) {
+				$location = $vevent->LOCATION;
+				$events[] = array(
+					'Event' => array(
+						'edition_id' => 1,
+						'place_id' => 0,
+						'name' => (string)$vevent->SUMMARY,
+						'description' => (string)$vevent->DESCRIPTION,
+						'start_at' => (string)$vevent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
+						'end_at' => (string)$vevent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
+						'status' => '0',
+						'url' => (string)$vevent->URL
+					)
+				);
+			}
+
+			die(debug($events));
+
+			$this->Event->create();
+			if ($this->Event->saveAll($events)) {
+				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
+				return $this->redirect(array('action' => 'index'));
+			} else {		
+				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
+				return $this->redirect(array('action' => 'index'));
+			}
+
 		}
-			$editions = $this->Event->Edition->find('list');
-			$this->set(compact('editions'));
+
+		$editions = $this->Event->Edition->find('list');
+		$this->set(compact('editions'));
+
 	}
 
 }
