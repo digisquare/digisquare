@@ -1,5 +1,5 @@
 /tmp/*
-/lib/Cake/Console/Templates/skel/tmp/
+/Vendor/*
 
 # OS generated files #
 ######################
