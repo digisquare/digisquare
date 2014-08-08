@@ -4,6 +4,8 @@
         "opauth/facebook": "*",
         "opauth/twitter": "*",
         "opauth/meetup": "*",
-        "sabre/vobject": "3.2.*"
+        "sabre/vobject": "3.2.*",
+        "willdurand/geocoder": "2.5.*",
+        "guzzle/guzzle": "3.9.*"
     }
 }
