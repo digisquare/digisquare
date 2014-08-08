@@ -1,20 +1,8 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Event Model
- *
- * @property Edition $Edition
- * @property Place $Place
- * @property Organizer $Organizer
- * @property Tag $Tag
- */
+
 class Event extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
 	public $validate = array(
 		'edition_id' => array(
 			'numeric' => array(
@@ -98,13 +86,6 @@ class Event extends AppModel {
 		),
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
 	public $belongsTo = array(
 		'Edition' => array(
 			'className' => 'Edition',
@@ -122,11 +103,6 @@ class Event extends AppModel {
 		)
 	);
 
-/**
- * hasMany associations
- *
- * @var array
- */
 	public $hasMany = array(
 		'Organizer' => array(
 			'className' => 'Organizer',
@@ -167,12 +143,6 @@ class Event extends AppModel {
 		)
 	);
 
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
 	public $hasAndBelongsToMany = array(
 		'Tag' => array(
 			'className' => 'Tag',
@@ -188,5 +158,23 @@ class Event extends AppModel {
 			'finderQuery' => '',
 		)
 	);
+
+	public function parseVCalendar($vCalendar) {
+		foreach($vCalendar->VEVENT as $vEvent) {
+			$events[] = array(
+				'Event' => array(
+					'edition_id' => 1,
+					'place_id' => $this->Place->findOrCreateFromName($vEvent->LOCATION, $vEvent->GEO),
+					'name' => (string)$vEvent->SUMMARY,
+					'description' => (string)$vEvent->DESCRIPTION,
+					'start_at' => (string)$vEvent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
+					'end_at' => (string)$vEvent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
+					'status' => '0',
+					'url' => (string)$vEvent->URL
+				)
+			);
+		}
+		return $events;
+	}
 
 }

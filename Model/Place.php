@@ -1,19 +1,8 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Place Model
- *
- * @property Edition $Edition
- * @property Event $Event
- * @property Organization $Organization
- */
+
 class Place extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
 	public $validate = array(
 		'edition_id' => array(
 			'numeric' => array(
@@ -97,13 +86,6 @@ class Place extends AppModel {
 		),
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
 	public $belongsTo = array(
 		'Edition' => array(
 			'className' => 'Edition',
@@ -114,11 +96,6 @@ class Place extends AppModel {
 		)
 	);
 
-/**
- * hasMany associations
- *
- * @var array
- */
 	public $hasMany = array(
 		'Event' => array(
 			'className' => 'Event',
@@ -153,5 +130,9 @@ class Place extends AppModel {
 			'dependent' => false
 		)
 	);
+
+	public function findOrCreateFromName($name, $geo = null) {
+
+	}
 
 }

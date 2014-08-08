@@ -402,37 +402,21 @@ class EventsController extends AppController {
 			try {
 				$file = new File($this->request->data['Event']['ical_file']['tmp_name']);
 				$contents = $file->read();
-				$calendar = Sabre\VObject\Reader::read($contents, Sabre\VObject\Reader::OPTION_FORGIVING);
+				$vCalendar = Sabre\VObject\Reader::read($contents, Sabre\VObject\Reader::OPTION_FORGIVING);
 			} catch (Exception $e) {
 				$this->Session->setFlash($e->getMessage(), 'message_error');
 				return $this->redirect(array('action' => 'upload'));
 			}
 
-			foreach($calendar->VEVENT as $vevent) {
-				$location = $vevent->LOCATION;
-				$events[] = array(
-					'Event' => array(
-						'edition_id' => 1,
-						'place_id' => 0,
-						'name' => (string)$vevent->SUMMARY,
-						'description' => (string)$vevent->DESCRIPTION,
-						'start_at' => (string)$vevent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
-						'end_at' => (string)$vevent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
-						'status' => '0',
-						'url' => (string)$vevent->URL
-					)
-				);
-			}
+			$events = $this->Event->parseVCalendar($vCalendar);
 
 			die(debug($events));
 
-			$this->Event->create();
 			if ($this->Event->saveAll($events)) {
 				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {		
 				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
-				return $this->redirect(array('action' => 'index'));
 			}
 
 		}
