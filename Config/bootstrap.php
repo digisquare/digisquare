@@ -1,5 +1,7 @@
 <?php
 
+App::import('Vendor', 'autoload');
+
 Cache::config('default', array('engine' => 'File'));
 
 CakePlugin::load('BoostCake');
