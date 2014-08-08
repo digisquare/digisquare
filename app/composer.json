@@ -3,6 +3,7 @@
         "uzyn/cakephp-opauth": "*",
         "opauth/facebook": "*",
         "opauth/twitter": "*",
-        "opauth/meetup": "*"
+        "opauth/meetup": "*",
+        "sabre/vobject": "3.2.*"
     }
 }
