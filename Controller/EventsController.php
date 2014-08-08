@@ -1,7 +1,5 @@
 <?php
 App::uses('AppController', 'Controller');
-App::uses('Sabre','application.vendors.Sabre');
-
 
 class EventsController extends AppController {
 
@@ -410,13 +408,11 @@ class EventsController extends AppController {
 
 			$events = $this->Event->parseVCalendar($vCalendar);
 
-			die(debug($events));
-
 			if ($this->Event->saveAll($events)) {
-				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
+				$this->Session->setFlash(__('The events have been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {		
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
+				$this->Session->setFlash(__('The events could not be saved. Please, try again.'), 'message_error');
 			}
 
 		}

@@ -164,7 +164,7 @@ class Event extends AppModel {
 			$events[] = array(
 				'Event' => array(
 					'edition_id' => 1,
-					'place_id' => $this->Place->findOrCreateFromName($vEvent->LOCATION, $vEvent->GEO),
+					'place_id' => $this->Place->findOrCreate($vEvent->LOCATION),
 					'name' => (string)$vEvent->SUMMARY,
 					'description' => (string)$vEvent->DESCRIPTION,
 					'start_at' => (string)$vEvent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
