@@ -1,14 +1,14 @@
 <div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('New Edition'),
-			array('controller' => 'editions', 'action' => 'add'),
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Reset'),
+			array('controller' => 'editions', 'action' => 'reset'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
 		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Top 10'),
-			array('controller' => 'editions', 'action' => 'top'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Create'),
+			array('controller' => 'editions', 'action' => 'add'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
 		); ?>
 		<h1><?php echo __('Editions'); ?></h1>
 	</div>

@@ -7,51 +7,6 @@ class Place extends AppModel {
 		'name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'address' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'zipcode' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'city' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'country_code' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'latitude' => array(
@@ -109,18 +64,24 @@ class Place extends AppModel {
 			'order' => 'Affiliation.status ASC',
 			'dependent' => false
 		),
-		// 'Hash' => array(
-		// 	'className' => 'Hash',
-		// 	'foreignKey' => 'place_id',
-		// 	'dependent' => true
-		// )
+		'Placealtname' => array(
+			'className' => 'Placealtname',
+			'foreignKey' => 'place_id',
+			'dependent' => true
+		)
 	);
 
 	public function findOrCreate($name) {
 		if (empty($name)) {
 			return 0;
 		}
-		// TODO: Essayer de trouver le lieu via un UID (md5 du nom brut ?) stocké en bdd
+		$place = $this->Placealtname->find('first', array(
+			'contain' => array('Place'),
+			'conditions' => array('Placealtname.name' => $name)
+		));
+		if ($place) {
+			return $place['Place']['id'];
+		}
 		$address = $this->extractAddress($name);
 		$cleanedUpName = $this->cleanUpName($name);
 		try {
@@ -131,11 +92,18 @@ class Place extends AppModel {
 		$place = $this->find('first', array(
 			'contain' => array(),
 			'conditions' => array(
-				'latitude' => $geocodedPlace->getLatitude(),
-				'longitude' => $geocodedPlace->getLongitude()
+				'latitude' => round($geocodedPlace->getLatitude(), 6),
+				'longitude' => round($geocodedPlace->getLongitude(), 6)
 			)
 		));
 		if ($place) {
+			$this->Placealtname->create();
+			$this->Placealtname->save(array(
+				'Placealtname' => array(
+					'place_id' => $place['Place']['id'],
+					'name' => $name
+				)
+			));
 			return $place['Place']['id'];
 		}
 		$place = array(
@@ -145,12 +113,14 @@ class Place extends AppModel {
 				'zipcode' => $geocodedPlace->getZipcode(),
 				'city' => $geocodedPlace->getCity(),
 				'country_code' => $geocodedPlace->getCountryCode(),
-				'latitude' => $geocodedPlace->getLatitude(),
-				'longitude' => $geocodedPlace->getLongitude(),
+				'latitude' => round($geocodedPlace->getLatitude(), 6),
+				'longitude' => round($geocodedPlace->getLongitude(), 6),
+			),
+			'Placealtname' => array(
+				array('name' => $name)
 			)
 		);
-		$this->create();
-		if ($this->save($place)) {
+		if ($this->saveAssociated($place)) {
 			return $this->id;
 		}
 	}
@@ -179,6 +149,9 @@ class Place extends AppModel {
 		$adapter = new \Geocoder\HttpAdapter\GuzzleHttpAdapter();
 		$geocoder = new \Geocoder\Geocoder();
 		$geocoder->registerProviders(array(
+			new \Geocoder\Provider\GoogleMapsProvider(
+				$adapter, 'fr', 'fr', true
+			),
 			new \Geocoder\Provider\NominatimProvider(
 				$adapter, 'http://open.mapquestapi.com/nominatim/v1/'
 			),
@@ -195,10 +168,10 @@ class Place extends AppModel {
 			array('Event.place_id' => $data['Place']['place_id_1']),
 			array('Event.place_id' => $data['Place']['place_id_2'])
 		);
-		// $this->Hash->updateAll(
-		// 	array('Event.place_id' => $place_id_1),
-		// 	array('Event.place_id' => $place_id_2)
-		// );
+		$this->Placealtname->updateAll(
+			array('Placealtname.place_id' => $data['Place']['place_id_1']),
+			array('Placealtname.place_id' => $data['Place']['place_id_2'])
+		);
 		$data['Place']['id'] = $data['Place']['place_id_1'];
 		if ($this->save($data)) {
 			$this->delete($data['Place']['place_id_2']);

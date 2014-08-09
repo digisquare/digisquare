@@ -68,8 +68,6 @@ class PlacesController extends AppController {
 			$options = array('conditions' => array('Place.' . $this->Place->primaryKey => $id));
 			$this->request->data = $this->Place->find('first', $options);
 		}
-		$editions = $this->Place->Edition->find('list');
-		$this->set(compact('editions'));
 	}
 
 	public function delete($id = null) {

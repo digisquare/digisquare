@@ -71,6 +71,7 @@
 	</footer>
 	<?php echo $this->Html->script('http://code.jquery.com/jquery-2.1.0.min.js'); ?>
 	<?php echo $this->Html->script('bootstrap.min'); ?>
+	<?php echo $this->Html->script('script'); ?>
 	<?php echo $this->fetch('script'); ?>
 </body>
 </html>

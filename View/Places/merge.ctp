@@ -79,6 +79,12 @@
 						<td><?php echo h($place_2['Place']['longitude']); ?></td>
 					</tr>
 					<tr>
+						<td colspan="3">
+							<a onclick="toggle_visibility('mapIframe');">Coordonnées GPS Manuelles</a>
+							<iframe id="mapIframe" style="display:none;" src="http://www.mapcoordinates.net/fr" width="100%" height="600px"></iframe>
+						</td>
+					</tr>
+					<tr>
 						<td><?php echo __('Events'); ?></td>
 						<td><?php echo h($place_1['Place']['event_count']); ?></td>
 						<td><?php echo h($place_2['Place']['event_count']); ?></td>
