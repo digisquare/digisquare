@@ -1,5 +1,5 @@
 <div role="main">
-	<div class="startups form">
+	<div class="places form">
 		<h1><?php echo __('Add Place'); ?></h1>
 		<?php echo $this->Form->create('Place', array(
 			'inputDefaults' => array(

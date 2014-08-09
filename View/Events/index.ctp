@@ -1,14 +1,14 @@
 <div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' .__('Import Event'), 
+			'<i class="icon-plus-sign icon-white"></i> ' .__('Upload'),
 			array('controller' => 'events', 'action' => 'upload'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?> 
 		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' .__('New Event'), 
+			'<i class="icon-plus-sign icon-white"></i> ' .__('Create'), 
 			array('controller' => 'events', 'action' => 'add'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
 		); ?> 	
 		<h1><?php echo __('Events'); ?></h1>
 	</div>	
@@ -56,12 +56,6 @@
 						__('Edit'),
 						array('action' => 'edit', 'id' => $event['Event']['id']),
 						array('class' => 'btn btn-default btn-sm')
-					); ?>
-					<?php echo $this->Form->postLink(
-						__('Participate'),
-						array('action' => 'participate', 'id' => $event['Event']['id']),
-						array('class' => 'btn btn-default btn-sm'),
-						__('Are you sure you want to participate to # %s?', $event['Event']['id'])
 					); ?>
 					<?php echo $this->Form->postLink(
 						__('Delete'),

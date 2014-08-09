@@ -51,20 +51,12 @@
 	</p>
 	<table class="table table-bordered table-striped">
 		<tr>
-			<td><?php echo __('Id'); ?></td>
-			<td><?php echo h($event['Event']['id']); ?></td>
-		</tr>
-		<tr>
 			<td><?php echo __('Edition'); ?></td>
 			<td><?php echo $this->Html->link($event['Edition']['name'], array('controller' => 'editions', 'action' => 'view', 'id' => $event['Edition']['id'])); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo __('Place'); ?></td>
 			<td><?php echo $this->Html->link($event['Place']['name'], array('controller' => 'places', 'action' => 'view', 'id' => $event['Place']['id'])); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo __('Name'); ?></td>
-			<td><?php echo h($event['Event']['name']); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo __('Description'); ?></td>
@@ -84,7 +76,7 @@
 		</tr>
 		<tr>
 			<td><?php echo __('Url'); ?></td>
-			<td><?php echo h($event['Event']['url']); ?></td>
+			<td><?php echo $this->Text->autoLinkUrls(h($event['Event']['url'])); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo __('Created'); ?></td>

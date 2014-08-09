@@ -11,7 +11,16 @@ Router::connect('/opauth-complete/*',		array('controller' => 'authentications', 
 /**
  * App Routing
  */
-Router::connect('/:controller',				array('action' => 'index'));
-Router::connect('/:controller/:id',			array('action' => 'view'), array('pass' => array('id'), 'id' => '[0-9]+'));
-Router::connect('/:controller/:id/:action',	array(), array('pass' => array('id'), 'id' => '[0-9]+'));
-Router::connect('/:controller/:action',		array());
+$controllers = array('editions', 'places', 'events', 'organizations', 'tags', 'startups', 'users');
+foreach ($controllers as $controller) {
+	Router::connect('/' . $controller,					array('controller' => $controller, 'action' => 'index'));
+	Router::connect('/' . $controller . '/:id',			array('controller' => $controller, 'action' => 'view'), array('pass' => array('id'), 'id' => '[0-9]+'));
+	Router::connect('/' . $controller . '/:id/:action',	array('controller' => $controller), array('pass' => array('id'), 'id' => '[0-9]+'));
+	Router::connect('/' . $controller . '/:action',		array('controller' => $controller));
+}
+
+Router::connect(
+	'/:slug',
+	array('controller' => 'editions', 'action' => 'view'),
+	array('pass' => array('slug'), 'slug' => '[a-zA-Z0-9_-]+')
+);

@@ -48,27 +48,6 @@
 	</p>
 	<table class="table table-bordered table-striped">
 		<tr>
-			<td><?php echo __('Id'); ?></td>
-			<td><?php echo h($place['Place']['id']); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo __('Edition'); ?></td>
-			<td>
-				<?php echo $this->Html->link(
-					$place['Edition']['name'],
-					array(
-						'controller' => 'editions',
-						'action' => 'view',
-						'id' => $place['Edition']['id']
-					)
-				); ?>
-			</td>
-		</tr>
-		<tr>
-			<td><?php echo __('Name'); ?></td>
-			<td><?php echo h($place['Place']['name']); ?></td>
-		</tr>
-		<tr>
 			<td><?php echo __('Address'); ?></td>
 			<td><?php echo h($place['Place']['address']); ?></td>
 		</tr>

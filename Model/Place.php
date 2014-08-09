@@ -108,7 +108,12 @@ class Place extends AppModel {
 			'foreignKey' => 'foreign_key',
 			'order' => 'Affiliation.status ASC',
 			'dependent' => false
-		)
+		),
+		// 'Hash' => array(
+		// 	'className' => 'Hash',
+		// 	'foreignKey' => 'place_id',
+		// 	'dependent' => true
+		// )
 	);
 
 	public function findOrCreate($name) {
@@ -181,4 +186,25 @@ class Place extends AppModel {
 		return $geocoder->geocode($address);
 	}
 
+	public function merge($data) {
+		$this->Organization->updateAll(
+			array('Organization.place_id' => $data['Place']['place_id_1']),
+			array('Organization.place_id' => $data['Place']['place_id_2'])
+		);
+		$this->Event->updateAll(
+			array('Event.place_id' => $data['Place']['place_id_1']),
+			array('Event.place_id' => $data['Place']['place_id_2'])
+		);
+		// $this->Hash->updateAll(
+		// 	array('Event.place_id' => $place_id_1),
+		// 	array('Event.place_id' => $place_id_2)
+		// );
+		$data['Place']['id'] = $data['Place']['place_id_1'];
+		if ($this->save($data)) {
+			$this->delete($data['Place']['place_id_2']);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

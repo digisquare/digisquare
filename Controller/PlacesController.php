@@ -272,4 +272,36 @@ class PlacesController extends AppController {
 
 		return $this->redirect(array('controller' => 'places', 'action' => 'view', 'id' => $id));
 	}
+
+	public function merge() {
+		if ($this->request->is('post') && isset($this->request->data['Place']['merge'])) {
+			if ($this->Place->merge($this->request->data)) {
+				$this->Session->setFlash(__('The places were merged.'), 'message_success');
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The places could not be merged. Please, try again.'), 'message_error');
+			}
+		} else if ($this->request->is('post')) {
+			if ($this->request->data['Place']['place_id_1'] > $this->request->data['Place']['place_id_2']) {
+				$temp_place_id = $this->request->data['Place']['place_id_1'];
+				$this->request->data['Place']['place_id_1'] = $this->request->data['Place']['place_id_2'];
+				$this->request->data['Place']['place_id_2'] = $temp_place_id;
+			}
+			$place_1 = $this->Place->find('first', array(
+				'contain' => array(),
+				'conditions' => array(
+					'Place.id' => $this->request->data['Place']['place_id_1']
+				)
+			));
+			$place_2 = $this->Place->find('first', array(
+				'contain' => array(),
+				'conditions' => array(
+					'Place.id' => $this->request->data['Place']['place_id_2']
+				)
+			));
+			$this->set(compact('place_1', 'place_2'));
+		}
+		$places = $this->Place->find('list', array('order' => array('Place.name' => 'ASC')));
+		$this->set(compact('places'));
+	}
 }

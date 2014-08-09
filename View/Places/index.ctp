@@ -1,21 +1,20 @@
 <div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('New Place'),
-			array('controller' => 'places', 'action' => 'add'),
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Merge'),
+			array('controller' => 'places', 'action' => 'merge'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
 		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Top ten'),
-			array('controller' => 'places', 'action' => 'top'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			'<i class="icon-plus-sign icon-white"></i> ' . __('Create'),
+			array('controller' => 'places', 'action' => 'add'),
+			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
 		); ?>
 		<h1><?php echo __('Places'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
 		<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('edition_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -24,16 +23,6 @@
 		<?php foreach ($places as $place): ?>
 			<tr>
 				<td><?php echo h($place['Place']['id']); ?>&nbsp;</td>
-				<td>
-					<?php echo $this->Html->link(
-						$place['Edition']['name'],
-						array(
-							'controller' => 'editions',
-							'action' => 'view',
-							'id' => $place['Edition']['id']
-						)
-					); ?>
-				</td>
 				<td><?php echo h($place['Place']['name']); ?>&nbsp;</td>
 				<td><?php echo h($place['Place']['created']); ?>&nbsp;</td>
 				<td><?php echo h($place['Place']['modified']); ?>&nbsp;</td>

@@ -29,7 +29,7 @@
 				<td class="actions">
 					<?php echo $this->Html->link(
 						__('View'),
-						array('action' => 'view', 'id' => $edition['Edition']['id']),
+						array('action' => 'view', 'slug' => $edition['Edition']['slug']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Html->link(

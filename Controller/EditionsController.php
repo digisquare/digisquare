@@ -25,25 +25,15 @@ class EditionsController extends AppController {
 		$this->RequestHandler->renderAs($this, 'rss');
 	}
 
-	public function view($id = null) {
-		if (!$this->Edition->exists($id)) {
+	public function view($slug) {
+		$edition = $this->Edition->find('first', array(
+			'contain' => array(),
+			'conditions' => array('slug' => $slug)
+		));
+		if (!$edition) {
 			throw new NotFoundException(__('Invalid edition'));
 		}
-		$user = $this->Session->read("Auth.User");
-		if ($user != null){
-			$affiliations = $this->Edition->Affiliation->find("all", array(
-					'conditions' => array(
-						'Affiliation.foreign_key' => $id,
-						'Affiliation.user_id' => $user['id'],
-						'Affiliation.model' => 'Editions'
-					)
-				)
-			);
-			$this->set('affiliations', $affiliations);
-		}		
-		$this->set('userid', $user['id']);
-		$options = array('conditions' => array('Edition.' . $this->Edition->primaryKey => $id));
-		$this->set('edition', $this->Edition->find('first', $options));
+		$this->set(compact('edition'));
 	}
 
 	public function add() {
@@ -231,7 +221,13 @@ class EditionsController extends AppController {
 			'Aix-en-Provence', 'Brest', 'Limoges', 'Tours', 'Amiens', 'Metz', 'Perpignan'
 		);
 		foreach ($villes as $key => $ville) {
-			$editions[] = array('Edition' => array('id' => $key + 1, 'name' => $ville));
+			$editions[] = array(
+				'Edition' => array(
+					// 'id' => $key + 1,
+					'name' => $ville,
+					'slug' => strtolower(Inflector::slug($ville, '-'))
+				)
+			);
 		}
 		$this->Edition->saveAll($editions);
 		$this->Edition->query('ALTER TABLE  `editions` ORDER BY  `id` ;');
