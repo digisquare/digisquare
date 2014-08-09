@@ -1,20 +1,8 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Edition Model
- *
- * @property Event $Event
- * @property Organization $Organization
- * @property Place $Place
- * @property Startup $Startup
- */
+
 class Edition extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
 	public $validate = array(
 		'name' => array(
 			'notEmpty' => array(
@@ -28,18 +16,11 @@ class Edition extends AppModel {
 		),
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * hasMany associations
- *
- * @var array
- */
 	public $hasMany = array(
 		'Event' => array(
 			'className' => 'Event',
 			'foreignKey' => 'edition_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -52,7 +33,7 @@ class Edition extends AppModel {
 		'Organization' => array(
 			'className' => 'Organization',
 			'foreignKey' => 'edition_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -65,7 +46,7 @@ class Edition extends AppModel {
 		'Place' => array(
 			'className' => 'Place',
 			'foreignKey' => 'edition_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -78,7 +59,7 @@ class Edition extends AppModel {
 		'Startup' => array(
 			'className' => 'Startup',
 			'foreignKey' => 'edition_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -92,7 +73,7 @@ class Edition extends AppModel {
 			'className' => 'Affiliation',
 			'foreignKey' => 'foreign_key',
 			'order' => 'Affiliation.status ASC',
-			'dependent' => false
+			'dependent' => true
 		)
 	);
 

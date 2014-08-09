@@ -90,9 +90,7 @@ class Place extends AppModel {
 		'Edition' => array(
 			'className' => 'Edition',
 			'foreignKey' => 'edition_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			'counterCache' => true,
 		)
 	);
 
@@ -138,7 +136,11 @@ class Place extends AppModel {
 		// TODO: Essayer de trouver le lieu via un UID (md5 du nom brut ?) stocké en bdd
 		$address = $this->extractAddress($name);
 		$cleanedUpName = $this->cleanUpName($name);
-		$geocodedPlace = $this->geocode($address);
+		try {
+			$geocodedPlace = $this->geocode($address);
+		} catch (Exception $e) {
+			return 0;
+		}
 		$place = $this->find('first', array(
 			'contain' => array(),
 			'conditions' => array(

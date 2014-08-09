@@ -90,16 +90,12 @@ class Event extends AppModel {
 		'Edition' => array(
 			'className' => 'Edition',
 			'foreignKey' => 'edition_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			'counterCache' => true,
 		),
 		'Place' => array(
 			'className' => 'Place',
 			'foreignKey' => 'place_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			'counterCache' => true,
 		)
 	);
 
@@ -161,20 +157,45 @@ class Event extends AppModel {
 
 	public function parseVCalendar($vCalendar) {
 		foreach($vCalendar->VEVENT as $vEvent) {
-			$events[] = array(
-				'Event' => array(
-					'edition_id' => 1,
-					'place_id' => $this->Place->findOrCreate($vEvent->LOCATION),
-					'name' => (string)$vEvent->SUMMARY,
-					'description' => (string)$vEvent->DESCRIPTION,
-					'start_at' => (string)$vEvent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
-					'end_at' => (string)$vEvent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
-					'status' => '0',
-					'url' => (string)$vEvent->URL
-				)
-			);
+			$event = $this->find('first', array(
+				'contain' => array(),
+				'conditions' => array('Event.uid' => $vEvent->UID)
+			));
+
+			if ($event) {
+				$event['Event'] = array_merge($event['Event'], $this->format($vEvent));
+			} else {
+				$event['Event'] = $this->format($vEvent);
+			}
+
+			$events[] = $event;
+
 		}
+
 		return $events;
+	}
+
+	public function format($vEvent) {
+		$place_id = $this->Place->findOrCreate($vEvent->LOCATION);
+
+		$description = (string)$vEvent->DESCRIPTION;
+		if ($place_id == 0 && !empty($vEvent->LOCATION)) {
+			$description .= "\r\nLieu : " . $vEvent->LOCATION;
+		}
+
+		$event = array(
+			'edition_id' => 1,
+			'place_id' => $place_id,
+			'uid' => (string)$vEvent->UID,
+			'name' => (string)$vEvent->SUMMARY,
+			'description' => $description,
+			'start_at' => (string)$vEvent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
+			'end_at' => (string)$vEvent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
+			'status' => '0',
+			'url' => (string)$vEvent->URL
+		);
+
+		return $event;
 	}
 
 }

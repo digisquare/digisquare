@@ -50,6 +50,10 @@
 			<td><?php echo h($edition['Edition']['id']); ?></td>
 		</tr>
 		<tr>
+			<td><?php echo __('Event Count'); ?></td>
+			<td><?php echo h($edition['Edition']['event_count']); ?></td>
+		</tr>
+		<tr>
 			<td><?php echo __('Created'); ?></td>
 			<td><?php echo h($edition['Edition']['created']); ?></td>
 		</tr>

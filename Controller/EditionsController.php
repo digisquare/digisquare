@@ -210,9 +210,8 @@ class EditionsController extends AppController {
 		);
 
 		$affiliations = $this->Edition->Affiliation->find('all', array(
-				'conditions' => $affiliation['Affiliation']
-				)
-		);
+			'conditions' => $affiliation['Affiliation']
+		));
 
 		if ($affiliations == null) {
 			$this->Edition->Affiliation->create();
@@ -222,6 +221,20 @@ class EditionsController extends AppController {
 		}
 
 		return $this->redirect(array('controller' => 'editions', 'action' => 'view', 'id' => $id));
+	}
+
+	public function reset() {
+		$this->Edition->deleteAll(array('Edition.id >' => 0));
+		$villes = array('Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Strasbourg',
+			'Montpellier', 'Bordeaux', 'Lille', 'Rennes', 'Reims', 'Le Havre', 'Saint-Étienne', 'Toulon',
+			'Grenoble', 'Dijon', 'Angers', 'Saint-Denis', 'Villeurbanne', 'Nîmes', 'Le Mans', 'Clermont-Ferrand',
+			'Aix-en-Provence', 'Brest', 'Limoges', 'Tours', 'Amiens', 'Metz', 'Perpignan'
+		);
+		foreach ($villes as $key => $ville) {
+			$editions[] = array('Edition' => array('id' => $key + 1, 'name' => $ville));
+		}
+		$this->Edition->saveAll($editions);
+		$this->Edition->query('ALTER TABLE  `editions` ORDER BY  `id` ;');
 	}
 
 }
