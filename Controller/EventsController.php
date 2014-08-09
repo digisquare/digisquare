@@ -410,7 +410,7 @@ class EventsController extends AppController {
 
 			if ($this->Event->saveAll($events)) {
 				$this->Session->setFlash(__('The events have been saved.'), 'message_success');
-				// return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {		
 				$this->Session->setFlash(__('The events could not be saved. Please, try again.'), 'message_error');
 			}

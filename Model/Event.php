@@ -38,7 +38,7 @@ class Event extends AppModel {
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -176,11 +176,13 @@ class Event extends AppModel {
 	}
 
 	public function format($vEvent, $edition_id) {
-		$place_id = $this->Place->findOrCreate($vEvent->LOCATION);
-
+		$location = (string)$vEvent->LOCATION;
 		$description = (string)$vEvent->DESCRIPTION;
-		if ($place_id == 0 && !empty($vEvent->LOCATION)) {
-			$description .= "\r\nLieu : " . $vEvent->LOCATION;
+
+		$place_id = $this->Place->findOrCreate($location);
+
+		if (!empty($location) && $place_id == 0) {
+			$description .= "\r\nLieu : " . $location;
 		}
 
 		$event = array(
