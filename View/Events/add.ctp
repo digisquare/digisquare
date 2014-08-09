@@ -1,5 +1,3 @@
-
-
 <div role="main">
 	<div class="startups form">
 		<h1><?php echo __('Add Event'); ?></h1>
@@ -35,8 +33,3 @@
 		<?php echo $this->Form->end(); ?>
 	</div>
 </div>
-
-
-
-
-

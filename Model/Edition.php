@@ -43,19 +43,6 @@ class Edition extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Place' => array(
-			'className' => 'Place',
-			'foreignKey' => 'edition_id',
-			'dependent' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'Startup' => array(
 			'className' => 'Startup',
 			'foreignKey' => 'edition_id',

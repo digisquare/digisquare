@@ -4,16 +4,6 @@ App::uses('AppModel', 'Model');
 class Place extends AppModel {
 
 	public $validate = array(
-		'edition_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
@@ -86,14 +76,6 @@ class Place extends AppModel {
 		),
 	);
 
-	public $belongsTo = array(
-		'Edition' => array(
-			'className' => 'Edition',
-			'foreignKey' => 'edition_id',
-			'counterCache' => true,
-		)
-	);
-
 	public $hasMany = array(
 		'Event' => array(
 			'className' => 'Event',
@@ -153,7 +135,6 @@ class Place extends AppModel {
 		}
 		$place = array(
 			'Place' => array(
-				'edition_id' => 1,
 				'name' => $cleanedUpName,
 				'address' => $geocodedPlace->getStreetNumber() . ' ' . $geocodedPlace->getStreetName(),
 				'zipcode' => $geocodedPlace->getZipcode(),

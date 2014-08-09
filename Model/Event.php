@@ -155,7 +155,7 @@ class Event extends AppModel {
 		)
 	);
 
-	public function parseVCalendar($vCalendar) {
+	public function parseVCalendar($vCalendar, $edition_id) {
 		foreach($vCalendar->VEVENT as $vEvent) {
 			$event = $this->find('first', array(
 				'contain' => array(),
@@ -163,9 +163,9 @@ class Event extends AppModel {
 			));
 
 			if ($event) {
-				$event['Event'] = array_merge($event['Event'], $this->format($vEvent));
+				$event['Event'] = array_merge($event['Event'], $this->format($vEvent, $edition_id));
 			} else {
-				$event['Event'] = $this->format($vEvent);
+				$event['Event'] = $this->format($vEvent, $edition_id);
 			}
 
 			$events[] = $event;
@@ -175,8 +175,8 @@ class Event extends AppModel {
 		return $events;
 	}
 
-	public function format($vEvent) {
-		$place_id = $this->Place->findOrCreate($vEvent->LOCATION);
+	public function format($vEvent, $edition_id) {
+		$place_id = $this->Place->findOrCreate($vEvent->LOCATION, $edition_id);
 
 		$description = (string)$vEvent->DESCRIPTION;
 		if ($place_id == 0 && !empty($vEvent->LOCATION)) {
@@ -184,7 +184,7 @@ class Event extends AppModel {
 		}
 
 		$event = array(
-			'edition_id' => 1,
+			'edition_id' => $edition_id,
 			'place_id' => $place_id,
 			'uid' => (string)$vEvent->UID,
 			'name' => (string)$vEvent->SUMMARY,

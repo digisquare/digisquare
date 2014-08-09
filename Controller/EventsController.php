@@ -392,13 +392,13 @@ class EventsController extends AppController {
 	public function upload() {
 		if ($this->request->is('post')) {
 
-			if (empty($this->request->data['Event']['ical_file']['tmp_name'])) {
+			if (empty($this->request->data['Event']['file']['tmp_name'])) {
 				$this->Session->setFlash(__('Please select a file.'), 'message_error');
 				return $this->redirect(array('action' => 'upload'));
 			}
 
 			try {
-				$file = new File($this->request->data['Event']['ical_file']['tmp_name']);
+				$file = new File($this->request->data['Event']['file']['tmp_name']);
 				$contents = $file->read();
 				$vCalendar = Sabre\VObject\Reader::read($contents, Sabre\VObject\Reader::OPTION_FORGIVING);
 			} catch (Exception $e) {
@@ -406,11 +406,11 @@ class EventsController extends AppController {
 				return $this->redirect(array('action' => 'upload'));
 			}
 
-			$events = $this->Event->parseVCalendar($vCalendar);
+			$events = $this->Event->parseVCalendar($vCalendar, $this->request->data['Event']['edition_id']);
 
 			if ($this->Event->saveAll($events)) {
 				$this->Session->setFlash(__('The events have been saved.'), 'message_success');
-				// return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {		
 				$this->Session->setFlash(__('The events could not be saved. Please, try again.'), 'message_error');
 			}
