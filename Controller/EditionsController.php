@@ -26,10 +26,7 @@ class EditionsController extends AppController {
 	}
 
 	public function view($slug) {
-		$edition = $this->Edition->find('first', array(
-			'contain' => array(),
-			'conditions' => array('slug' => $slug)
-		));
+		$edition = $this->Edition->findBySlug($slug);
 		if (!$edition) {
 			throw new NotFoundException(__('Invalid edition'));
 		}
@@ -79,10 +76,8 @@ class EditionsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 	
-	public function organizations($id = null) {
-		if (!$this->Edition->exists($id)) {
-			throw new NotFoundException(__('Invalid edition'));
-		}
+	public function organizations($slug) {
+		$edition = $this->Edition->findBySlug($slug);
 		$organizations = $this->Paginator->paginate('Organization', array(
 			'Organization.edition_id' => $id
 		));
@@ -113,14 +108,22 @@ class EditionsController extends AppController {
 		$this->set(compact('editions'));
 	}
 
-	public function places($id = null) {
-		if (!$this->Edition->exists($id)) {
-			throw new NotFoundException(__('Invalid edition'));
-		}
-		$places = $this->Paginator->paginate('Place', array(
-			'Place.edition_id' => $id
+	public function places($slug) {
+		$edition = $this->Edition->findBySlug($slug);
+		$event_place_ids = $this->Edition->Event->find('list', array(
+			'fields' => array('Event.place_id', 'Event.place_id'),
+			'conditions' => array('Event.edition_id' => $edition['Edition']['id'])
 		));
-		$this->set(compact('places'));
+		$organization_place_ids = $this->Edition->Organization->find('list', array(
+			'fields' => array('Organization.place_id', 'Organization.place_id'),
+			'conditions' => array('Organization.edition_id' => $edition['Edition']['id'])
+		));
+		$place_ids = array_merge($event_place_ids, $organization_place_ids);
+		$this->loadModel('Place');
+		$places = $this->Paginator->paginate('Place', array(
+			'Place.id' => $place_ids
+		));
+		$this->set(compact('edition', 'places'));
 	}
 	
 /**

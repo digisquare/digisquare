@@ -19,8 +19,18 @@ foreach ($controllers as $controller) {
 	Router::connect('/' . $controller . '/:action',		array('controller' => $controller));
 }
 
+/**
+ * Editions Routing
+ */
 Router::connect(
 	'/:slug',
 	array('controller' => 'editions', 'action' => 'view'),
 	array('pass' => array('slug'), 'slug' => '[a-zA-Z0-9_-]+')
 );
+
+Router::connect(
+	'/:slug/:action',
+	array('controller' => 'editions'),
+	array('pass' => array('slug'), 'slug' => '[a-zA-Z0-9_-]+')
+);
+

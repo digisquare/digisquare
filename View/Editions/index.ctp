@@ -45,12 +45,12 @@
 					); ?>
 					<?php echo $this->Html->link(
 						__('Organizations'),
-						array('action' => 'organizations', 'id' => $edition['Edition']['id']),
+						array('action' => 'organizations', 'slug' => $edition['Edition']['slug']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Html->link(
 						__('Places'),
-						array('action' => 'places', 'id' => $edition['Edition']['id']),
+						array('action' => 'places', 'slug' => $edition['Edition']['slug']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 				</td>
