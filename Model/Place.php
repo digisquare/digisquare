@@ -64,8 +64,8 @@ class Place extends AppModel {
 			'order' => 'Affiliation.status ASC',
 			'dependent' => false
 		),
-		'Placealtname' => array(
-			'className' => 'Placealtname',
+		'Slug' => array(
+			'className' => 'Slug',
 			'foreignKey' => 'place_id',
 			'dependent' => true
 		)
@@ -75,9 +75,10 @@ class Place extends AppModel {
 		if (empty($name)) {
 			return 0;
 		}
-		$place = $this->Placealtname->find('first', array(
+		$sluggedName = $this->Slug->slugifyName($name);
+		$place = $this->Slug->find('first', array(
 			'contain' => array('Place'),
-			'conditions' => array('Placealtname.name' => $name)
+			'conditions' => array('Slug.name' => $sluggedName)
 		));
 		if ($place) {
 			return $place['Place']['id'];
@@ -97,11 +98,11 @@ class Place extends AppModel {
 			)
 		));
 		if ($place) {
-			$this->Placealtname->create();
-			$this->Placealtname->save(array(
-				'Placealtname' => array(
+			$this->Slug->create();
+			$this->Slug->save(array(
+				'Slug' => array(
 					'place_id' => $place['Place']['id'],
-					'name' => $name
+					'name' => $sluggedName
 				)
 			));
 			return $place['Place']['id'];
@@ -116,8 +117,8 @@ class Place extends AppModel {
 				'latitude' => round($geocodedPlace->getLatitude(), 6),
 				'longitude' => round($geocodedPlace->getLongitude(), 6),
 			),
-			'Placealtname' => array(
-				array('name' => $name)
+			'Slug' => array(
+				array('name' => $sluggedName)
 			)
 		);
 		if ($this->saveAssociated($place)) {
@@ -168,9 +169,9 @@ class Place extends AppModel {
 			array('Event.place_id' => $data['Place']['place_id_1']),
 			array('Event.place_id' => $data['Place']['place_id_2'])
 		);
-		$this->Placealtname->updateAll(
-			array('Placealtname.place_id' => $data['Place']['place_id_1']),
-			array('Placealtname.place_id' => $data['Place']['place_id_2'])
+		$this->Slug->updateAll(
+			array('Slug.place_id' => $data['Place']['place_id_1']),
+			array('Slug.place_id' => $data['Place']['place_id_2'])
 		);
 		$data['Place']['id'] = $data['Place']['place_id_1'];
 		if ($this->save($data)) {
