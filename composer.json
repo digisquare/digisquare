@@ -6,6 +6,7 @@
         "opauth/meetup": "*",
         "sabre/vobject": "3.2.*",
         "willdurand/geocoder": "2.5.*",
-        "guzzle/guzzle": "3.9.*"
+        "guzzle/guzzle": "3.9.*",
+        "google/apiclient": "1.0.*@beta"
     }
 }
