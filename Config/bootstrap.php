@@ -52,3 +52,12 @@ if (isset($_SERVER) && isset($_SERVER['DIGI_MEETUP_KEY'])) {
 		'scope' => 'ageless',
 	));
 }
+
+if (isset($_SERVER) && isset($_SERVER['DIGI_GOOGLE_KEY'])) {
+	Configure::write('Opauth.Strategy.Google', array(
+		'client_id' => $_SERVER['DIGI_GOOGLE_KEY'],
+		'client_secret' => $_SERVER['DIGI_GOOGLE_SECRET'],
+		'scope' => 'openid profile email https://www.googleapis.com/auth/calendar',
+		'access_type' => 'offline',
+	));
+}

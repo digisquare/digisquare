@@ -25,7 +25,7 @@
 		<?php echo $this->Form->end(); ?>
 	</div>
 	<div class="well col col-md-6 col-md-offset-1">
-		<?php $providers = array('facebook', 'twitter', 'meetup'); ?>
+		<?php $providers = array('facebook', 'twitter', 'meetup', 'google'); ?>
 		<ul>
 			<?php foreach ($providers as $provider): ?>
 				<li>

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "04a21da2ebe96486f959560a541f1053",
+    "hash": "746c3cb762dc718bd756ccfeedf9b6d9",
     "packages": [
         {
             "name": "composer/installers",
@@ -266,6 +266,50 @@
                 "facebook"
             ],
             "time": "2012-09-21 04:47:35"
+        },
+        {
+            "name": "opauth/google",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opauth/google.git",
+                "reference": "35df77684c14acb346a8c3753ae3809852d1a47e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opauth/google/zipball/35df77684c14acb346a8c3753ae3809852d1a47e",
+                "reference": "35df77684c14acb346a8c3753ae3809852d1a47e",
+                "shasum": ""
+            },
+            "require": {
+                "opauth/opauth": ">=0.2.0",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "U-Zyn Chua",
+                    "email": "chua@uzyn.com",
+                    "homepage": "http://uzyn.com"
+                }
+            ],
+            "description": "Google strategy for Opauth",
+            "homepage": "http://opauth.org",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "google"
+            ],
+            "time": "2012-10-18 14:39:52"
         },
         {
             "name": "opauth/meetup",
