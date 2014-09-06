@@ -20,7 +20,7 @@ class AuthenticationsController extends AppController {
 			return $this->redirect($this->Auth->redirect());
 		}
 
-		$user = $this->Authentication->findOrAddUser($this->data['auth']);
+		$user = $this->Authentication->updateOrCreateUser($this->data['auth']);
 
 		if ($this->Auth->login($user['User'])) {
 			$this->Session->setFlash(__('You are logged in.'));
