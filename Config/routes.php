@@ -11,7 +11,7 @@ Router::connect('/opauth-complete/*',		array('controller' => 'authentications', 
 /**
  * App Routing
  */
-$controllers = array('editions', 'places', 'events', 'organizations', 'tags', 'startups', 'users');
+$controllers = array('editions', 'places', 'events', 'organizations', 'tags', 'startups', 'users', 'google_calendar_events');
 foreach ($controllers as $controller) {
 	Router::connect('/' . $controller,					array('controller' => $controller, 'action' => 'index'));
 	Router::connect('/' . $controller . '/:id',			array('controller' => $controller, 'action' => 'view'), array('pass' => array('id'), 'id' => '[0-9]+'));
