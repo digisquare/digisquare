@@ -9,7 +9,7 @@ class Event extends AppModel {
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -19,7 +19,7 @@ class Event extends AppModel {
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -163,9 +163,9 @@ class Event extends AppModel {
 			));
 
 			if ($event) {
-				$event['Event'] = array_merge($event['Event'], $this->format($vEvent, $edition_id));
+				$event['Event'] = array_merge($event['Event'], $this->formatVEvent($vEvent, $edition_id));
 			} else {
-				$event['Event'] = $this->format($vEvent, $edition_id);
+				$event['Event'] = $this->formatVEvent($vEvent, $edition_id);
 			}
 
 			$events[] = $event;
@@ -175,7 +175,7 @@ class Event extends AppModel {
 		return $events;
 	}
 
-	public function format($vEvent, $edition_id) {
+	public function formatVEvent($vEvent, $edition_id) {
 		$location = (string)$vEvent->LOCATION;
 		$description = (string)$vEvent->DESCRIPTION;
 

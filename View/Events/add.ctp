@@ -12,17 +12,15 @@
 			),
 			'class' => 'well form-horizontal'
 		)); ?>
-			<?php
-				echo $this->Form->input('edition_id');
-				echo $this->Form->input('place_id');
-				echo $this->Form->input('name');
-				echo $this->Form->input('description');
-				echo $this->Form->input('start_at');
-				echo $this->Form->input('end_at');
-				echo $this->Form->input('status');
-				echo $this->Form->input('url');
-				echo $this->Form->input('Tag');
-			?>
+			<?php echo $this->Form->input('edition_id', array('empty' => true)); ?>
+			<?php echo $this->Form->input('place_id', array('empty' => true)); ?>
+			<?php echo $this->Form->input('name'); ?>
+			<?php echo $this->Form->input('description'); ?>
+			<?php echo $this->Form->input('start_at'); ?>
+			<?php echo $this->Form->input('end_at'); ?>
+			<?php echo $this->Form->input('status'); ?>
+			<?php echo $this->Form->input('url'); ?>
+			<?php echo $this->Form->input('Tag'); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
 					<?php echo $this->Form->submit('Save changes', array(
