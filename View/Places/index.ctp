@@ -16,6 +16,7 @@
 		<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('event_count'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -23,7 +24,22 @@
 		<?php foreach ($places as $place): ?>
 			<tr>
 				<td><?php echo h($place['Place']['id']); ?>&nbsp;</td>
-				<td><?php echo h($place['Place']['name']); ?>&nbsp;</td>
+				<td>
+					<?php echo h($place['Place']['name']); ?> <br>
+					<?php echo h($place['Place']['address']); ?> <br>
+					<?php echo h($place['Place']['zipcode']); ?>&nbsp;<?php echo h($place['Place']['city']); ?>
+				</td>
+				<td>
+					<?php echo $this->Html->link(
+						h($place['Place']['event_count']),
+						array(
+							'controller' => 'events', 'action' => 'index', '?' => array(
+								'place_id' => $place['Place']['id']
+							)
+						),
+						array('class' => 'btn btn-default btn-sm')
+					); ?>
+				</td>
 				<td><?php echo h($place['Place']['created']); ?>&nbsp;</td>
 				<td><?php echo h($place['Place']['modified']); ?>&nbsp;</td>
 				<td class="actions">

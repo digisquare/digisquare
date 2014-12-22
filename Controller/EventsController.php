@@ -4,8 +4,13 @@ App::uses('AppController', 'Controller');
 class EventsController extends AppController {
 
 	public function index() {
-		$this->Event->recursive = 0;
-		$this->set('events', $this->Paginator->paginate());
+		if (isset($this->request->query['place_id'])) {
+			$this->Paginator->settings = array(
+				'conditions' => array('Event.place_id' => $this->request->query['place_id'])
+			);
+		}
+		$events = $this->Paginator->paginate('Event');
+		$this->set(compact('events'));
 	}
 
 	public function view($id = null) {
