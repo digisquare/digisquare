@@ -107,20 +107,18 @@ class Place extends AppModel {
 			));
 			return $place['Place']['id'];
 		}
-		$place = array(
-			'Place' => array(
-				'name' => $cleanedUpName,
-				'address' => $geocodedPlace->getStreetNumber() . ' ' . $geocodedPlace->getStreetName(),
-				'zipcode' => $geocodedPlace->getZipcode(),
-				'city' => $geocodedPlace->getCity(),
-				'country_code' => $geocodedPlace->getCountryCode(),
-				'latitude' => round($geocodedPlace->getLatitude(), 6),
-				'longitude' => round($geocodedPlace->getLongitude(), 6),
+		$place = array_replace_recursive(
+			array(
+				'Place' => array(
+					'name' => $cleanedUpName
+				),
+				'Slug' => array(
+					array('name' => $sluggedName)
+				)
 			),
-			'Slug' => array(
-				array('name' => $sluggedName)
-			)
+			$this->explodeAddress($geocodedPlace)
 		);
+
 		if ($this->saveAssociated($place)) {
 			return $this->id;
 		}
@@ -158,6 +156,28 @@ class Place extends AppModel {
 			),
 		));
 		return $geocoder->geocode($address);
+	}
+
+	public function implodeAddress($place) {
+		return implode(',', [
+			$place['Place']['name'],
+			$place['Place']['address'],
+			$place['Place']['zipcode'],
+			$place['Place']['city']
+		]);
+	}
+
+	public function explodeAddress($geocodedPlace) {
+		return array(
+			'Place' => array(
+				'address' => $geocodedPlace->getStreetNumber() . ' ' . $geocodedPlace->getStreetName(),
+				'zipcode' => $geocodedPlace->getZipcode(),
+				'city' => $geocodedPlace->getCity(),
+				'country_code' => $geocodedPlace->getCountryCode(),
+				'latitude' => round($geocodedPlace->getLatitude(), 6),
+				'longitude' => round($geocodedPlace->getLongitude(), 6),
+			)
+		);
 	}
 
 	public function merge($data) {
