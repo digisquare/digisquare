@@ -1,5 +1,8 @@
 /tmp/*
 /Vendor/*
+/node_modules
+/bower_components
+/.sass-cache
 
 # OS generated files #
 ######################

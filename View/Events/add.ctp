@@ -12,12 +12,48 @@
 			),
 			'class' => 'well form-horizontal'
 		)); ?>
-			<?php echo $this->Form->input('edition_id', array('empty' => true)); ?>
-			<?php echo $this->Form->input('place_id', array('empty' => true)); ?>
+			<?php echo $this->Form->input('edition_id', array('empty' => true, 'class' => 'form-control chzn-select')); ?>
+			<?php echo $this->Form->input('place_id', array('empty' => true, 'class' => 'form-control chzn-select')); ?>
 			<?php echo $this->Form->input('name'); ?>
 			<?php echo $this->Form->input('description'); ?>
-			<?php echo $this->Form->input('start_at'); ?>
-			<?php echo $this->Form->input('end_at'); ?>
+			<div class="form-group required">
+				<label for="EventStartAt" class="col col-md-3 control-label">Start At</label>
+				<div class="col col-md-3 required">
+					<div class='input-group date' id='datetimepicker_startat_date'>
+						<input type='text' class="form-control" />
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+				<div class="col col-md-3 required">
+					<div class='input-group date' id='datetimepicker_startat_time'>
+						<input type='text' class="form-control" />
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-time"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group required">
+				<label for="EventStartAt" class="col col-md-3 control-label">End At</label>
+				<div class="col col-md-3 required">
+					<div class='input-group date' id='datetimepicker_endat_date'>
+						<input type='text' class="form-control" />
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+				<div class="col col-md-3 required">
+					<div class='input-group date' id='datetimepicker_endat_time'>
+						<input type='text' class="form-control" />
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-time"></span>
+						</span>
+					</div>
+				</div>
+			</div>
 			<?php echo $this->Form->input('status'); ?>
 			<?php echo $this->Form->input('url'); ?>
 			<?php echo $this->Form->input('Tag'); ?>

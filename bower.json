@@ -1,0 +1,14 @@
+{
+  "name": "digisquare",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "chosen_v1.3.0": "https://github.com/harvesthq/chosen/releases/download/v1.3.0/chosen_v1.3.0.zip",
+    "eonasdan-bootstrap-datetimepicker": "~3.1.3"
+  }
+}

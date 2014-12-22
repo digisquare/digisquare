@@ -5,13 +5,16 @@
 	<title>
 		<?php echo $title_for_layout; ?>
 	</title>
-	<?php
-		echo $this->Html->meta('icon');
-		echo $this->Html->css('bootstrap.min');
-		echo $this->Html->css('style');
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-	?>
+	<?php echo $this->Html->meta('icon'); ?>
+	<?php if (Configure::read('debug') < 2) {
+		$css_rev_manifest = file_get_contents(WWW_ROOT . 'generated/css/rev-manifest.json');
+		$css_version = json_decode($css_rev_manifest, true);
+		echo $this->Html->css('/generated/css/' . $css_version['main.min.css']);
+	} else {
+		echo $this->Html->css('/generated/css/main');
+	} ?>
+	<?php echo $this->fetch('meta'); ?>
+	<?php echo $this->fetch('css'); ?>
 </head>
 <body>
 	<div id="wrap">
@@ -69,9 +72,13 @@
 	<footer id="footer">
 		<?php echo $this->element('sql_dump'); ?>
 	</footer>
-	<?php echo $this->Html->script('http://code.jquery.com/jquery-2.1.0.min.js'); ?>
-	<?php echo $this->Html->script('bootstrap.min'); ?>
-	<?php echo $this->Html->script('script'); ?>
+	<?php if (Configure::read('debug') < 2) {
+		$js_rev_manifest = file_get_contents(WWW_ROOT . 'generated/js/rev-manifest.json');
+		$js_version = json_decode($js_rev_manifest, true);
+		echo $this->Html->script('/generated/js/' . $js_version['main.min.js']);
+	} else {
+		echo $this->Html->script('/generated/js/main');
+	} ?>
 	<?php echo $this->fetch('script'); ?>
 </body>
 </html>
