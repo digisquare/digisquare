@@ -14,8 +14,20 @@
 		)); ?>
 			<?php echo $this->Form->input('edition_id', array('empty' => true, 'class' => 'form-control chzn-select')); ?>
 			<?php echo $this->Form->input('place_id', array('empty' => true, 'class' => 'form-control chzn-select')); ?>
+			<div class="form-group">
+				<div class="col col-md-9 col-md-offset-2">
+					<?php echo $this->Form->input('Place.name'); ?>
+					<?php echo $this->Form->input('Place.address'); ?>
+					<?php echo $this->Form->input('Place.zipcode'); ?>
+					<?php echo $this->Form->input('Place.city'); ?>
+					<?php echo $this->Form->input('Place.country_code'); ?>
+					<?php echo $this->Form->input('Place.latitude'); ?>
+					<?php echo $this->Form->input('Place.longitude'); ?>
+				</div>
+			</div>
 			<?php echo $this->Form->input('name'); ?>
 			<?php echo $this->Form->input('description'); ?>
+			<?php echo $this->Form->hidden('start_at', array('type' => 'text')); ?>
 			<div class="form-group required">
 				<label for="EventStartAt" class="col col-md-3 control-label">Start At</label>
 				<div class="col col-md-3 required">
@@ -35,6 +47,7 @@
 					</div>
 				</div>
 			</div>
+			<?php echo $this->Form->hidden('end_at', array('type' => 'text')); ?>
 			<div class="form-group required">
 				<label for="EventStartAt" class="col col-md-3 control-label">End At</label>
 				<div class="col col-md-3 required">
