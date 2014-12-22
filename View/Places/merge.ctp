@@ -12,11 +12,13 @@
 		)); ?>
 			<?php echo $this->Form->input('place_id_1', array(
 				'options' => $places,
-				'label' => 'Place 1'
+				'label' => 'Place 1',
+				'class' => 'form-control chzn-select'
 			)); ?>
 			<?php echo $this->Form->input('place_id_2', array(
 				'options' => $places,
-				'label' => 'Place 2'
+				'label' => 'Place 2',
+				'class' => 'form-control chzn-select'
 			)); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
