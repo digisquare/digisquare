@@ -14,10 +14,8 @@ class GoogleCalendarEvent extends AppModel {
 		$this->Authentication = new Authentication();
 		$this->Session = new CakeSession();
 
-		$this->Client->setClientId($_SERVER['DIGI_GOOGLE_KEY']);
-		$this->Client->setClientSecret($_SERVER['DIGI_GOOGLE_SECRET']);
-		$this->Client->setRedirectUri('http://digisquare.com/auth/google/oauth2callback');
-		$this->Client->setScopes('openid profile email https://www.googleapis.com/auth/calendar');
+		$this->Client->setClientId(Configure::read('Opauth.Strategy.Google.client_id'));
+		$this->Client->setClientSecret(Configure::read('Opauth.Strategy.Google.client_secret'));
 
 		$google_authentication = $this->Authentication->getByUserAndProvider($this->Session->read('Auth.User.id'), 'Google');
 		$token = $this->Authentication->buildGoogleToken($google_authentication);
