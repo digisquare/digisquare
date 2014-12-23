@@ -35,8 +35,10 @@ class PlacesController extends AppController {
 			$this->set('affiliations', $affiliations);
 		}		
 		$this->set('userid', $user['id']);
-		$options = array('conditions' => array('Place.' . $this->Place->primaryKey => $id));
-		$this->set('place', $this->Place->find('first', $options));
+		$place = $this->Place->find('first', array(
+			'conditions' => array('Place.id' => $id)
+		));
+		$this->set(compact('place'));
 	}
 
 	public function add() {
@@ -49,8 +51,6 @@ class PlacesController extends AppController {
 				$this->Session->setFlash(__('The place could not be saved. Please, try again.'), 'message_error');
 			}
 		}
-		$editions = $this->Place->Edition->find('list');
-		$this->set(compact('editions'));
 	}
 
 	public function edit($id = null) {
@@ -66,30 +66,20 @@ class PlacesController extends AppController {
 			}
 		} else {
 			$place = $this->Place->find('first', array(
+				'contain' => false,
 				'conditions' => array('Place.id' => $id)
 			));
-			$this->request->data = $place;
+			if ($this->request->query('geocode')) {
+				$address = $this->Place->implodeAddress($place);
+				$geocodedPlace = $this->Place->geocode($address);
+				$this->request->data = array_replace_recursive(
+					$place,
+					$this->Place->explodeAddress($geocodedPlace)
+				);
+			} else {
+				$this->request->data = $place;
+			}
 		}
-	}
-
-	public function geocode($id = null) {
-		if (!$this->Place->exists($id)) {
-			throw new NotFoundException(__('Invalid place'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			$this->edit($id);
-		}
-		$place = $this->Place->find('first', array(
-			'contain' => false,
-			'conditions' => array('Place.id' => $id)
-		));
-		$address = $this->Place->implodeAddress($place);
-		$geocodedPlace = $this->Place->geocode($address);
-		$this->request->data = array_replace_recursive(
-			$place,
-			$this->Place->explodeAddress($geocodedPlace)
-		);
-		$this->render('edit');
 	}
 
 	public function delete($id = null) {

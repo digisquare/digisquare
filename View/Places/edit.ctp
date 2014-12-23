@@ -32,7 +32,13 @@
 					)); ?>
 					<?php echo $this->Html->link(
 						__('Geocode'),
-						array('action' => 'geocode', 'id' => $this->data['Place']['id']),
+						array(
+							'action' => 'edit',
+							'id' => $this->data['Place']['id'],
+							'?' => array(
+								'geocode' => 1
+							)
+						),
 						array('class' => 'btn btn-default')
 					); ?>
 				</div>
