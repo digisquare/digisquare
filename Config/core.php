@@ -1,6 +1,10 @@
 <?php
 
-Configure::write('debug', 2);
+if ('127.0.0.1' == $_SERVER['SERVER_ADDR']) {
+	Configure::write('debug', 2);
+} else {
+	Configure::write('debug', 0);
+}
 
 Configure::write('Error', array(
 	'handler' => 'ErrorHandler::handleError',
@@ -24,10 +28,12 @@ Configure::write('App.encoding', 'UTF-8');
 
 Configure::write('Session', array(
 	'defaults' => 'php',
-	'timeout' => 36000,
+	'timeout' => 60*24*356,
+	'cookieTimeout' => 60*24*365,
 	'checkAgent' => false,
 	'autoRegenerate' => true,
 	'cookie' => 'digisquare',
+	'requestCountdown' => 1,
 ));
 
 Configure::write('Security.salt', '550208b6f96cb4d3e9c67c67b20175b8d19dbbb1');
