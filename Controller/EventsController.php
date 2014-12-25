@@ -36,6 +36,13 @@ class EventsController extends AppController {
 
 	public function add() {
 		if ($this->request->is('post')) {
+			if (empty($this->request->data['Event']['place_id']) && !empty($this->request->data['Place']['name'])) {
+				// TODO: remplacer tout ça par un findOrCreate, refactoriser le findOrCreate existant...
+				$this->Event->Place->create();
+				$this->Event->Place->save($this->request->data);
+				$this->request->data['Event']['place_id'] = $this->Event->Place->id;
+				unset($this->request->data['Place']);
+			}
 			$this->Event->create();
 			if ($this->Event->save($this->request->data)) {
 				$this->Session->setFlash(__('The event has been saved.'), 'message_success');

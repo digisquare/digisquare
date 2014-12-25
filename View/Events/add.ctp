@@ -12,17 +12,21 @@
 			),
 			'class' => 'well form-horizontal'
 		)); ?>
-			<?php echo $this->Form->input('edition_id', array('empty' => true, 'class' => 'form-control chzn-select')); ?>
-			<?php echo $this->Form->input('place_id', array('empty' => true, 'class' => 'form-control chzn-select')); ?>
+			<?php echo $this->Form->input('edition_id', array(
+				'empty' => true, 'class' => 'form-control chzn-select', 'required' => false
+			)); ?>
+			<?php echo $this->Form->input('place_id', array(
+				'empty' => true, 'class' => 'form-control chzn-select', 'required' => false
+			)); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-2">
-					<?php echo $this->Form->input('Place.name'); ?>
+					<?php echo $this->Form->input('Place.name', array('required' => false)); ?>
 					<?php echo $this->Form->input('Place.address'); ?>
 					<?php echo $this->Form->input('Place.zipcode'); ?>
 					<?php echo $this->Form->input('Place.city'); ?>
 					<?php echo $this->Form->input('Place.country_code'); ?>
-					<?php echo $this->Form->input('Place.latitude'); ?>
-					<?php echo $this->Form->input('Place.longitude'); ?>
+					<?php echo $this->Form->input('Place.latitude', array('required' => false)); ?>
+					<?php echo $this->Form->input('Place.longitude', array('required' => false)); ?>
 				</div>
 			</div>
 			<?php echo $this->Form->input('name'); ?>
