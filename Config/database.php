@@ -11,6 +11,16 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8'
 	);
 
+	public $test = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => '',
+		'database' => 'caketests',
+		'encoding' => 'utf8'
+	);
+
 	public function __construct() {
 		if (isset($_SERVER) && isset($_SERVER['DB_HOST'])) {
 			$this->default  = array(

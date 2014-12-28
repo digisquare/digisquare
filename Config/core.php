@@ -1,6 +1,6 @@
 <?php
 
-if ('127.0.0.1' == $_SERVER['SERVER_ADDR']) {
+if (isset($_SERVER['SERVER_ADDR']) && '127.0.0.1' == $_SERVER['SERVER_ADDR']) {
 	Configure::write('debug', 2);
 } else {
 	Configure::write('debug', 0);
