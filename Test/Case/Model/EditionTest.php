@@ -24,6 +24,7 @@ class EditionTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->Edition = ClassRegistry::init('Edition');
+		$this->Edition->reset();
 	}
 
 /**

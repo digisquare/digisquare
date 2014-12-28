@@ -217,25 +217,7 @@ class EditionsController extends AppController {
 	}
 
 	public function reset() {
-		$this->Edition->deleteAll(array('Edition.id >' => 0));
-		$this->Edition->Event->deleteAll(array('Event.id >' => 0));
-		$this->Edition->Event->Place->deleteAll(array('Place.id >' => 0));
-		$villes = array('Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Strasbourg',
-			'Montpellier', 'Bordeaux', 'Lille', 'Rennes', 'Reims', 'Le Havre', 'Saint-Étienne', 'Toulon',
-			'Grenoble', 'Dijon', 'Angers', 'Saint-Denis', 'Villeurbanne', 'Nîmes', 'Le Mans', 'Clermont-Ferrand',
-			'Aix-en-Provence', 'Brest', 'Limoges', 'Tours', 'Amiens', 'Metz', 'Perpignan'
-		);
-		foreach ($villes as $key => $ville) {
-			$editions[] = array(
-				'Edition' => array(
-					// 'id' => $key + 1,
-					'name' => $ville,
-					'slug' => strtolower(Inflector::slug($ville, '-'))
-				)
-			);
-		}
-		$this->Edition->saveAll($editions);
-		$this->Edition->query('ALTER TABLE  `editions` ORDER BY  `id` ;');
+		$this->Edition->reset();
 		$this->Session->setFlash(__('All is good in the world.'), 'message_success');
 		return $this->redirect(array('action' => 'index'));
 	}
