@@ -11,23 +11,19 @@ class Slug extends AppModel {
 		),
 	);
 
-	public function slugifyName($name) {
-		$name = ' ' . $name . ' ';
-		$name = str_ireplace(
-			array(
-				',', '-', '.',
-				1, 2, 3, 4, 5, 6, 7, 8, 9, 0,
-				' le ', ' la ', ' les ', 'l\'', 'd\'', ' du ', ' de ', ' des ',
-				' à ', ' au ', ' aux ',
-				' rue ', ' avenue ', ' place ', ' st ', ' saint ',
-				' france '
-			),
-			' ',
-			$name
-		);
-		$editions = $this->Place->Event->Edition->find('list');
-		$name = str_ireplace($editions, '', $name);
-		$name = strtolower(Inflector::slug($name, '-'));
-		return $name;
+	public function createFromPlace($place) {
+		// TODO: make slugs unique
+		$this->create();
+		$slug = $this->slugifyPlace($place);
+		$this->set('place_id', $place['Place']['id']);
+		$this->set('name', $slug);
+		$this->save();
+		return $this->id;
+	}
+
+	public function slugifyPlace($place) {
+		$slug = $this->Place->implode($place);
+		$slug = preg_replace('`[0-9]*`', '', $slug);
+		return strtolower(Inflector::slug($slug, '-'));
 	}
 }

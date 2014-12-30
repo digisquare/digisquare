@@ -181,6 +181,10 @@ class Event extends AppModel {
 
 		$place_id = $this->Place->findOrCreate($location);
 
+		if (!$place_id) {
+			$place_id = 0;
+		}
+
 		if (!empty($location) && $place_id == 0) {
 			$description .= "\r\nLieu : " . $location;
 		}

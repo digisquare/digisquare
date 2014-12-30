@@ -70,12 +70,7 @@ class PlacesController extends AppController {
 				'conditions' => array('Place.id' => $id)
 			));
 			if ($this->request->query('geocode')) {
-				$address = $this->Place->implodeAddress($place);
-				$geocodedPlace = $this->Place->geocode($address);
-				$this->request->data = array_replace_recursive(
-					$place,
-					$this->Place->explodeAddress($geocodedPlace)
-				);
+				$this->request->data = $this->Place->geocode($place);
 			} else {
 				$this->request->data = $place;
 			}
@@ -314,4 +309,5 @@ class PlacesController extends AppController {
 		$places = $this->Place->find('list', array('order' => array('Place.name' => 'ASC')));
 		$this->set(compact('places'));
 	}
+
 }

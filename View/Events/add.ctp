@@ -25,8 +25,8 @@
 					<?php echo $this->Form->input('Place.zipcode'); ?>
 					<?php echo $this->Form->input('Place.city'); ?>
 					<?php echo $this->Form->input('Place.country_code'); ?>
-					<?php echo $this->Form->input('Place.latitude', array('required' => false)); ?>
-					<?php echo $this->Form->input('Place.longitude', array('required' => false)); ?>
+					<?php echo $this->Form->input('Place.latitude'); ?>
+					<?php echo $this->Form->input('Place.longitude'); ?>
 				</div>
 			</div>
 			<?php echo $this->Form->input('name'); ?>

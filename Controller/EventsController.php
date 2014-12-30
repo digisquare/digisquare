@@ -37,10 +37,7 @@ class EventsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			if (empty($this->request->data['Event']['place_id']) && !empty($this->request->data['Place']['name'])) {
-				// TODO: remplacer tout ça par un findOrCreate, refactoriser le findOrCreate existant...
-				$this->Event->Place->create();
-				$this->Event->Place->save($this->request->data);
-				$this->request->data['Event']['place_id'] = $this->Event->Place->id;
+				$this->request->data['Event']['place_id'] = $this->Event->Place->findOrCreate($this->request->data);
 				unset($this->request->data['Place']);
 			}
 			$this->Event->create();
@@ -423,7 +420,7 @@ class EventsController extends AppController {
 			if ($this->Event->saveAll($events)) {
 				$this->Session->setFlash(__('The events have been saved.'), 'message_success');
 				return $this->redirect(array('action' => 'index'));
-			} else {		
+			} else {
 				$this->Session->setFlash(__('The events could not be saved. Please, try again.'), 'message_error');
 			}
 
