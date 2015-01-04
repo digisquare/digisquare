@@ -2,6 +2,8 @@
 
 App::import('Vendor', 'autoload');
 
+Configure::write('Config.language', 'fra');
+
 Cache::config('default', array('engine' => 'File'));
 
 CakePlugin::load('BoostCake');

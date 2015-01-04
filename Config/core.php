@@ -44,6 +44,7 @@ Configure::write('Acl.classname', 'DbAcl');
 Configure::write('Acl.database', 'default');
 
 date_default_timezone_set('Europe/Paris');
+setlocale(LC_ALL, 'fr_FR@euro', 'fr_FR', 'fra_fra');
 
 $engine = 'File';
 
