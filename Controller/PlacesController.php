@@ -12,22 +12,10 @@ class PlacesController extends AppController {
 		if (!$this->Place->exists($id)) {
 			throw new NotFoundException(__('Invalid place'));
 		}
-		$user = $this->Session->read("Auth.User");
-		if ($user != null){
-			$affiliations = $this->Place->Affiliation->find("all", array(
-					'conditions' => array(
-						'Affiliation.foreign_key' => $id,
-						'Affiliation.user_id' => $user['id'],
-						'Affiliation.model' => 'Places'
-					)
-				)
-			);
-			$this->set('affiliations', $affiliations);
-		}		
-		$this->set('userid', $user['id']);
-		$place = $this->Place->find('first', array(
-			'conditions' => array('Place.id' => $id)
-		));
+		$place = $this->Place->find('first', [
+			'contain' => [],
+			'conditions' => ['Place.id' => $id],
+		]);
 		$this->set(compact('place'));
 	}
 
