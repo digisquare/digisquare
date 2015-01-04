@@ -40,6 +40,7 @@
 					)); ?>
 						<?php $this->request->data = $event; ?>
 						<?php echo $this->Form->hidden('name'); ?>
+						<?php echo $this->Form->hidden('uid'); ?>
 						<?php echo $this->Form->hidden('Place.name', array(
 							'value' => $event['Event']['location']
 						)); ?>

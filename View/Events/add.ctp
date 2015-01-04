@@ -30,6 +30,7 @@
 				</div>
 			</div>
 			<?php echo $this->Form->input('name'); ?>
+			<?php echo $this->Form->input('uid'); ?>
 			<?php echo $this->Form->input('description'); ?>
 			<?php echo $this->Form->hidden('start_at', array('type' => 'text')); ?>
 			<div class="form-group required">
