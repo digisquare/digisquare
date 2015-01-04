@@ -22,7 +22,9 @@ Configure::write('App.encoding', 'UTF-8');
 
 //Configure::write('Routing.prefixes', array('admin'));
 
-//Configure::write('Cache.disable', true);
+if (Configure::read('debug') > 1) {
+	Configure::write('Cache.disable', true);
+}
 
 //Configure::write('Cache.check', true);
 
