@@ -23,9 +23,18 @@ gulp.task('css', function() {
   gulp.src(bower + 'chosen_v1.3.0/*.png')
     .pipe(gulp.dest(dest + 'css'));
 
+  // Bootstrap Calendar Templates
+  gulp.src(bower + 'bootstrap-calendar/tmpls/*.html')
+    .pipe(gulp.dest(dest + 'tmpls'));
+
+  // Bootstrap Calendar Images
+  gulp.src(bower + 'bootstrap-calendar/img/*.png')
+    .pipe(gulp.dest(dest + 'img'));
+
   var cssFiles = [
     bower + 'chosen_v1.3.0/chosen.css',
-    webroot + 'css/style.scss'
+    webroot + 'css/style.scss',
+    webroot + 'css/date.scss'
   ];
 
   return gulp.src(plugins.mainBowerFiles().concat(cssFiles))
@@ -50,7 +59,8 @@ gulp.task('js', function() {
   var jsFiles = [
     bower + 'chosen_v1.3.0/chosen.jquery.js',
     webroot + 'js/script.js',
-    webroot + 'js/datetimepicker.locale.fr.js'
+    webroot + 'js/datetimepicker.locale.fr.js',
+    bower + 'bootstrap-calendar/js/language/fr-FR.js'
   ];
 
   return gulp.src(plugins.mainBowerFiles().concat(jsFiles))
