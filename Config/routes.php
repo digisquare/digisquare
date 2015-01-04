@@ -1,7 +1,7 @@
 <?php
 Router::connect('/',						array('controller' => 'editions', 'action' => 'index'));
 
-Router::parseExtensions('json', 'ics');
+Router::parseExtensions('rss', 'json', 'ics');
 
 /**
  * Opauth Plugin Routing

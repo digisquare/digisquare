@@ -29,6 +29,7 @@ class EventsController extends AppController {
 		}
 		$this->Paginator->settings['contain'] = ['Edition', 'Place'];
 		$this->Paginator->settings['conditions'] = $conditions;
+		$this->Paginator->settings['order'] = ['Event.created' => 'desc'];
 		$events = $this->Paginator->paginate('Event');
 		$this->set(array(
 			'events' => $events,
@@ -102,16 +103,6 @@ class EventsController extends AppController {
 			$this->Session->setFlash(__('The event could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-
-	public function feed() {
-		$events = $this->Event->find('all', array(
-			'contain' => array(),
-			'limit' => 10,
-			'order' => array('Event.created' => 'DESC'),
-		));
-		$this->set(compact('events'));
-		$this->RequestHandler->renderAs($this, 'rss');
 	}
 
 	public function upload() {
