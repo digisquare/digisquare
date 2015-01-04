@@ -63,4 +63,30 @@ $(document).ready( function () {
     $('#datetimepicker_endat_date').data("DateTimePicker").setDate(e.date);
   });
 
+  if ($('#calendar').length > 0) {
+    var url = "/events"
+      + "?edition_id=" + $('#calendar').data('edition-id')
+      + "&date=" + $('#calendar').data('date')
+      + "&sort=start_at&direction=asc";
+    $.getJSON(url, function(data) {
+      var events = [];
+      $.each(data.events, function(key, value) {
+        value.Event.title = value.Event.name;
+        value.Event.start = Date.parse(value.Event.start_at).getTime();
+        value.Event.end = Date.parse(value.Event.end_at).getTime();
+        events.push(value.Event);
+      });
+      var calendar = $("#calendar").calendar({
+        language: 'fr-FR',
+        tmpl_path: "/generated/tmpls/",
+        events_source: events,
+        view: 'month',
+        day: $('#calendar').data('date') + '-01'
+      });
+      var height = ($('#calendar').height() / 100).toFixed() * 100;
+      $('#upcoming-events').css('height', height);
+      $('#upcoming-events').css('overflow-y', 'scroll');
+    });
+  }
+
 });
