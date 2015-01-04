@@ -1,1 +1,2 @@
+<?php $date = isset($this->request->query['date']) ? $this->request->query['date'] : date('Y-m'); ?>
 <div id="calendar" data-edition-id="<?php echo $edition['Edition']['id']; ?>" data-date="<?php echo $date; ?>"></div>

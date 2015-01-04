@@ -18337,8 +18337,10 @@ $(document).ready( function () {
         day: $('#calendar').data('date') + '-01'
       });
       var height = ($('#calendar').height() / 100).toFixed() * 100;
-      $('#upcoming-events').css('height', height);
-      $('#upcoming-events').css('overflow-y', 'scroll');
+      if ($('#upcoming-events').height() > height) {
+        $('#upcoming-events').css('height', height);
+        $('#upcoming-events').css('overflow-y', 'scroll');
+      }
     });
   }
 

@@ -1,11 +1,11 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">
+		<h1 class="panel-title">
 			<?php echo $this->Html->link(
 				$event['Event']['name'],
 				['controller' => 'events', 'action' => 'view', 'id' => $event['Event']['id']]
 			); ?>
-		</h3>
+		</h1>
 	</div>
 	<div class="panel-body">
 		<span class="glyphicon glyphicon-time"></span>

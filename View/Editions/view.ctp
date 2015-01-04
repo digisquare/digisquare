@@ -14,29 +14,60 @@
 		<h1><?php echo h($edition['Edition']['name']); ?></h1>
 	</div>
 	<div class="row">
-		<?php $date = isset($this->request->query['date']) ? $this->request->query['date'] : date('Y-m'); ?>
 		<div class="col-md-8">
 			<?php echo $this->element(
 				'../Events/Elements/calendar',
-				[
-					'edition' => $edition,
-					'date' => $date
-				]
+				['edition_id' => $edition['Edition']['id']]
 			); ?>
+			<?php if(isset($this->request->query['date']) && date('Y-m') !== $this->request->query['date']) {
+				$date = new DateTime($this->request->query['date']);
+			} else {
+				$date = new DateTime();
+			} ?>
+			<ul class="pagination">
+				<li>
+					<?php $date->modify('-1 month'); ?>
+					<?php echo $this->Html->link(
+						'< ' . strftime('%B', $date->getTimestamp()),
+						[
+							'controller' => 'editions',
+							'action' => 'view',
+							'slug' => $edition['Edition']['slug'],
+							'?' => ['date' => $date->format('Y-m')]
+						]
+					); ?>
+				</li>
+				<?php $date->modify('+1 month'); ?>
+				<li class="current disabled">
+					<?php echo $this->Html->link(
+						strftime('%B', $date->getTimestamp()),
+						[
+							'controller' => 'editions',
+							'action' => 'view',
+							'slug' => $edition['Edition']['slug'],
+							'?' => ['date' => $date->format('Y-m')]
+						]
+					); ?>
+				</li>
+				<li>
+					<?php $date = $date->modify('+1 month'); ?>
+					<?php echo $this->Html->link(
+						strftime('%B', $date->getTimestamp()) . ' >',
+						[
+							'controller' => 'editions',
+							'action' => 'view',
+							'slug' => $edition['Edition']['slug'],
+							'?' => ['date' => $date->format('Y-m')]
+						]
+					); ?>
+				</li>
+			</ul>
 		</div>
 		<div id="upcoming-events" class="col-md-4">
-			<?php $key = 'upcoming-events-edition_id-' . $edition['Edition']['id'] . '-date-' . $date; ?>
 			<?php echo $this->element(
-				'../Events/Elements/upcoming',
+				'../Events/Elements/list',
 				[
-					'edition' => $edition,
-					'date' => $date
-				],
-				['cache' => 
-					[
-						'key' => $key,
-						'config' => 'element'
-					]
+					'edition_id' => $edition['Edition']['id']
 				]
 			); ?>
 		</div>
