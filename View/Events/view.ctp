@@ -64,24 +64,7 @@
 					<?php echo $this->element('../Events/Elements/outlook-cal-url', ['event' => $event]); ?>
 				</div>
 			</div>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<div class="embed-responsive embed-responsive-4by3">
-						<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?key=<?php echo Configure::read('GoogleMapsBrowserKey'); ?>&q=<?php echo urlencode($event['Place']['oneliner']) ?>">
-						</iframe>
-					</div>
-				</div>
-				<div class="panel-footer">
-					<strong>
-						<?php echo $this->Html->link(
-							$event['Place']['name'], 
-							['controller' => 'places', 'action' => 'view', 'id' => $event['Place']['id']]
-						); ?>
-					</strong><br>
-					<?php echo h($event['Place']['address']); ?><br>
-					<?php echo h($event['Place']['zipcode'] . ' ' . $event['Place']['city']); ?><br>
-				</div>
-			</div>
+			<?php echo $this->element('../Places/Elements/card', ['place' => $event]); ?>
 		</div>
 	</div>
 </div>
