@@ -15,6 +15,10 @@ var dest = './webroot/generated/';
 gulp.task('fonts', function() {
   plugins.del(dest + 'fonts');
 
+  // Socicon Fonts
+  gulp.src(webroot + 'socicon/font/*')
+    .pipe(gulp.dest(dest + 'fonts'));
+
   return gulp.src(plugins.mainBowerFiles())
     .pipe(plugins.filter(['*.eot', '*.svg', '*.ttf', '*.woff', '*.otf']))
     .pipe(gulp.dest(dest + 'fonts'))
@@ -41,7 +45,9 @@ gulp.task('css', function() {
   var cssFiles = [
     bower + 'chosen_v1.3.0/chosen.css',
     webroot + 'css/style.scss',
-    webroot + 'css/date.scss'
+    webroot + 'css/date.scss',
+    webroot + 'css/brandcolors.css',
+    webroot + 'socicon/socicon.css'
   ];
 
   return gulp.src(plugins.mainBowerFiles().concat(cssFiles))
@@ -88,6 +94,7 @@ gulp.task('js', function() {
 gulp.task('watch', function() {
   plugins.livereload.listen();
   gulp.watch(webroot + 'css/*', ['css']);
+  gulp.watch(webroot + 'socicon/*', ['css']);
   gulp.watch(webroot + 'js/*', ['js']);
   gulp.watch('View/**/*.ctp', ['ctp']);
 });
