@@ -30,6 +30,14 @@ CakeLog::config('error', array(
 ));
 
 /*
+ * Google Maps Embed API Key
+ */
+
+if (isset($_SERVER) && isset($_SERVER['DIGI_GOOGLE_BROWSER_KEY'])) {
+	Configure::write('GoogleMapsBrowserKey', $_SERVER['DIGI_GOOGLE_BROWSER_KEY']);
+}
+
+/*
  * OAuth Keys
  */
 
