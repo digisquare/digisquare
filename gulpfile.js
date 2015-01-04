@@ -41,6 +41,7 @@ gulp.task('css', function() {
     .pipe(plugins.filter(['*.css', '*.scss']))
     .pipe(plugins.sass({ style: 'expanded' }))
     .pipe(plugins.concat('main.css'))
+    .pipe(plugins.plumber())
     .pipe(gulp.dest(dest + 'css'))
     .pipe(plugins.minifyCss({keepSpecialComments:0}))
     .pipe(plugins.concat('main.min.css'))
