@@ -4,13 +4,37 @@ App::uses('AppController', 'Controller');
 class EventsController extends AppController {
 
 	public function index() {
+		$conditions = [];
 		if (isset($this->request->query['place_id'])) {
-			$this->Paginator->settings = array(
-				'conditions' => array('Event.place_id' => $this->request->query['place_id'])
-			);
+			$conditions['Event.place_id'] = $this->request->query['place_id'];
 		}
+		if (isset($this->request->query['edition_id'])) {
+			$conditions['Event.edition_id'] = $this->request->query['edition_id'];
+		}
+		if (isset($this->request->query['start_at'])) {
+			$conditions['Event.start_at <'] = $this->request->query['start_at'];
+		}
+		if (isset($this->request->query['end_at'])) {
+			$conditions['Event.end_at >'] = $this->request->query['end_at'];
+		}
+		if (isset($this->request->query['date'])) {
+			$date = strtotime($this->request->query['date']);
+			if (7 == strlen($this->request->query['date'])) {
+				$conditions['Event.start_at <'] = date('Y-m-t 23:59:00', $date);
+				$conditions['Event.end_at >'] = date('Y-m-01 00:00:00', $date);
+			} else if (10 == strlen($this->request->query['date'])) {
+				$conditions['Event.start_at <'] = date('Y-m-d 23:59:00', $date);
+				$conditions['Event.end_at >'] = date('Y-m-d 00:00:00', $date);
+			}
+		}
+		$this->Paginator->settings['contain'] = ['Edition', 'Place'];
+		$this->Paginator->settings['conditions'] = $conditions;
 		$events = $this->Paginator->paginate('Event');
-		$this->set(compact('events'));
+		$this->set(array(
+			'events' => $events,
+			'_serialize' => array('events')
+		));
+		return $events;
 	}
 
 	public function view($id = null) {
