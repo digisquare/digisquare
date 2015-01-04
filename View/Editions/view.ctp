@@ -17,7 +17,7 @@
 		<?php $date = isset($this->request->query['date']) ? $this->request->query['date'] : date('Y-m'); ?>
 		<div class="col-md-8">
 			<?php echo $this->element(
-				'../Events/calendar',
+				'../Events/Elements/calendar',
 				[
 					'edition' => $edition,
 					'date' => $date
@@ -27,7 +27,7 @@
 		<div id="upcoming-events" class="col-md-4">
 			<?php $key = 'upcoming-events-edition_id-' . $edition['Edition']['id'] . '-date-' . $date; ?>
 			<?php echo $this->element(
-				'../Events/upcoming',
+				'../Events/Elements/upcoming',
 				[
 					'edition' => $edition,
 					'date' => $date

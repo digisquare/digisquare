@@ -20,10 +20,13 @@
 					<?php echo nl2br($this->Text->autoLink($event['Event']['description'])); ?>
 				</div>
 				<div class="panel-footer">
-					Source : <?php echo $this->Html->link(
-						'<span class="glyphicon glyphicon-link"></span>',
+					<?php echo $this->Html->link(
+						'<span class="fa-stack fa-lg">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-link fa-stack-1x fa-inverse"></i>
+						</span>',
 						$event['Event']['url'],
-						['target' => '_blank', 'escape' => false]
+						['target' => '_blank', 'escape' => false, 'title' => 'Source']
 					); ?>
 				</div>
 			</div>
@@ -48,45 +51,17 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					Exporter :
-					<?php
-						$start = new DateTime($event['Event']['start_at']);
-						$end = new DateTime($event['Event']['end_at']);
-						$interval = $end->diff($start);
-					?>
 					<?php echo $this->Html->link(
-						'<span class="glyphicon glyphicon-align-left"></span>',
-						'http://www.google.com/calendar/event?action=TEMPLATE'
-							. '&text=' . urlencode($event['Event']['name'])
-							. '&dates=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['start_at']))
-							. '/' . gmdate("Ymd\THis\Z", strtotime($event['Event']['end_at']))
-							. '&details=' . urlencode($event['Event']['description'])
-							. '&location=' . urlencode($event['Place']['oneliner'])
-						, 
-						['target' => '_blank', 'escape' => false, 'title' => __('Export to Google Calendar')]
-					); ?> 
-					<?php echo $this->Html->link(
-						'<span class="glyphicon glyphicon-align-center"></span>',
-						'http://calendar.yahoo.com/?v=60&VIEW=d&type=20'
-							. '&in_loc=' . urlencode($event['Place']['oneliner'])
-							. '&TITLE=' . urlencode($event['Event']['name'])
-							. '&ST=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['start_at']))
-							. '&DUR=' . $interval->format('%H%I')
-							. '&DESC=' . urlencode($event['Event']['description'])
-						,
-						['target' => '_blank', 'escape' => false, 'title' => __('Export to Yahoo Calendar')]
-					); ?> 
-					<?php echo $this->Html->link(
-						'<span class="glyphicon glyphicon-align-right"></span>',
-						'http://calendar.live.com/calendar/calendar.aspx?rru=addevent'
-							. '&dtstart=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['start_at']))
-							. '&dtend=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['end_at']))
-							. '&summary=' . urlencode($event['Event']['name'])
-							. '&location=' . urlencode($event['Place']['oneliner'])
-							. '&description=' . urlencode($event['Event']['description'])
-						,
-						['target' => '_blank', 'escape' => false, 'title' => __('Export to Outlook Calendar')]
-					); ?> 
+						'<span class="fa-stack fa-lg">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
+						</span>',
+						['controller' => 'events', 'action' => 'view', 'id' => $event['Event']['id'], 'ext' => 'ics'],
+						['escape' => false, 'title' => 'Exporter au format ics']
+					); ?>
+					<?php echo $this->element('../Events/Elements/google-cal-url', ['event' => $event]); ?>
+					<?php echo $this->element('../Events/Elements/yahoo-cal-url', ['event' => $event]); ?>
+					<?php echo $this->element('../Events/Elements/outlook-cal-url', ['event' => $event]); ?>
 				</div>
 			</div>
 			<div class="panel panel-default">
