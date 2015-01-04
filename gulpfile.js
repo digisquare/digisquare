@@ -11,13 +11,20 @@ var bower = './bower_components/';
 var webroot = './webroot/';
 var dest = './webroot/generated/';
 
+// FONTS
+gulp.task('fonts', function() {
+  plugins.del(dest + 'fonts');
+
+  return gulp.src(plugins.mainBowerFiles())
+    .pipe(plugins.filter(['*.eot', '*.svg', '*.ttf', '*.woff', '*.otf']))
+    .pipe(gulp.dest(dest + 'fonts'))
+    .pipe(plugins.livereload());
+
+});
+
 // CSS
 gulp.task('css', function() {
   plugins.del(dest + 'css');
-
-  // Bootstrap Fonts
-  gulp.src(bower + 'bootstrap/dist/fonts/*')
-    .pipe(gulp.dest(dest + 'fonts'));
 
   // Chosen Sprite
   gulp.src(bower + 'chosen_v1.3.0/*.png')
@@ -91,4 +98,4 @@ gulp.task('ctp', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['css', 'js', 'watch']);
+gulp.task('default', ['fonts', 'css', 'js', 'watch']);
