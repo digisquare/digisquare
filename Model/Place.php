@@ -75,6 +75,15 @@ class Place extends AppModel {
 
 	public $fields = ['name', 'address', 'zipcode', 'city', 'country_code'];
 
+	public function afterFind($results, $primary = false) {
+		foreach ($results as $key => $val) {
+			if (isset($val['Place']['name'])) {
+				$results[$key]['Place']['oneliner'] = $this->implode($val);
+			}
+		}
+		return $results;
+	}
+
 	public function beforeSave($options = array()) {
 		if (!empty($this->data['Place']['latitude']) && !empty($this->data['Place']['longitude'])) {
 			return true;

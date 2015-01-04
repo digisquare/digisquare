@@ -46,7 +46,6 @@ class EventsController extends AppController {
 			'contain' => ['Edition', 'Place'],
 			'conditions' => ['Event.id' => $id]
 		]);
-		$event['Place']['oneliner'] = $this->Event->Place->implode($event);
 		$this->set(compact('event'));
 	}
 
