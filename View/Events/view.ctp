@@ -39,8 +39,8 @@
 							<?php $start_at = strtotime($event['Event']['start_at']); ?>
 							<!-- Thanks to @craigbuckler: http://www.sitepoint.com/create-calendar-icon-html5-css3/ -->
 							<time datetime="<?php echo date('c', $start_at); ?>" class="icon">
-								<em><?php echo ucwords(strftime('%A', $start_at)); ?></em>
-								<strong><?php echo ucwords(strftime('%B', $start_at)); ?></strong>
+								<em><?php echo ucwords(strftime('%B', $start_at)); ?></em>
+								<strong><?php echo ucwords(strftime('%A', $start_at)); ?></strong>
 								<span><?php echo strftime('%e', $start_at); ?></span>
 							</time>
 						</div>
