@@ -31,10 +31,10 @@ class EventsController extends AppController {
 		$this->Paginator->settings['conditions'] = $conditions;
 		$this->Paginator->settings['order'] = ['Event.created' => 'desc'];
 		$events = $this->Paginator->paginate('Event');
-		$this->set(array(
+		$this->set([
 			'events' => $events,
-			'_serialize' => array('events')
-		));
+			'_serialize' => ['events']
+		]);
 		return $events;
 	}
 
@@ -43,7 +43,7 @@ class EventsController extends AppController {
 			throw new NotFoundException(__('Invalid event'));
 		}
 		$event = $this->Event->find('first', [
-			'contain' => ['Edition', 'Place'],
+			'contain' => ['Edition', 'Place', 'Organization'],
 			'conditions' => ['Event.id' => $id]
 		]);
 		$this->set(compact('event'));
@@ -58,36 +58,38 @@ class EventsController extends AppController {
 			$this->Event->create();
 			if ($this->Event->save($this->request->data)) {
 				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'view', 'id' => $this->Event->id]);
 			} else {
 				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
 			}
 		}
 		$editions = $this->Event->Edition->find('list');
 		$places = $this->Event->Place->find('list');
-		$tags = $this->Event->Tag->find('list');
-		$this->set(compact('editions', 'places', 'tags'));
+		$organizations = $this->Event->Organization->find('list');
+		$this->set(compact('editions', 'places', 'organizations'));
 	}
 
 	public function edit($id = null) {
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Invalid event'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Event->save($this->request->data)) {
 				$this->Session->setFlash(__('The event has been saved.'), 'message_success');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'view', 'id' => $this->Event->id]);
 			} else {
 				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
-			$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
-			$this->request->data = $this->Event->find('first', $options);
+			$this->request->data = $this->Event->find('first', [
+				'contain' => false,
+				'conditions' => ['Event.id' => $id]
+			]);
 		}
 		$editions = $this->Event->Edition->find('list');
 		$places = $this->Event->Place->find('list');
-		$tags = $this->Event->Tag->find('list');
-		$this->set(compact('editions', 'places', 'tags'));
+		$organizations = $this->Event->Organization->find('list');
+		$this->set(compact('editions', 'places', 'organizations'));
 	}
 
 	public function delete($id = null) {
@@ -101,7 +103,7 @@ class EventsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The event could not be deleted. Please, try again.'), 'message_error');
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 	public function upload() {
@@ -109,7 +111,7 @@ class EventsController extends AppController {
 
 			if (empty($this->request->data['Event']['file']['tmp_name'])) {
 				$this->Session->setFlash(__('Please select a file.'), 'message_error');
-				return $this->redirect(array('action' => 'upload'));
+				return $this->redirect(['action' => 'upload']);
 			}
 
 			try {
@@ -118,14 +120,14 @@ class EventsController extends AppController {
 				$vCalendar = Sabre\VObject\Reader::read($contents, Sabre\VObject\Reader::OPTION_FORGIVING);
 			} catch (Exception $e) {
 				$this->Session->setFlash($e->getMessage(), 'message_error');
-				return $this->redirect(array('action' => 'upload'));
+				return $this->redirect(['action' => 'upload']);
 			}
 
 			$events = $this->Event->parseVCalendar($vCalendar, $this->request->data['Event']['edition_id']);
 
 			if ($this->Event->saveAll($events)) {
 				$this->Session->setFlash(__('The events have been saved.'), 'message_success');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Session->setFlash(__('The events could not be saved. Please, try again.'), 'message_error');
 			}

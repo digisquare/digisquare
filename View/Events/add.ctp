@@ -1,6 +1,8 @@
 <div role="main">
-	<div class="startups form">
+	<div class="page-header">
 		<h1><?php echo __('Add Event'); ?></h1>
+	</div>
+	<div class="form">
 		<?php echo $this->Form->create('Event', array(
 			'inputDefaults' => array(
 				'div' => 'form-group',
@@ -16,6 +18,9 @@
 				'empty' => true, 'class' => 'form-control chzn-select', 'required' => false
 			)); ?>
 			<?php echo $this->Form->input('place_id', array(
+				'empty' => true, 'class' => 'form-control chzn-select', 'required' => false
+			)); ?>
+			<?php echo $this->Form->input('Organization', array(
 				'empty' => true, 'class' => 'form-control chzn-select', 'required' => false
 			)); ?>
 			<div class="form-group">

@@ -30,6 +30,21 @@
 					); ?>
 				</div>
 			</div>
+			<?php if (!empty($event['Organization'])): ?>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1 class="panel-title">
+							<?php echo __n('Organizer:', 'Organizers:', sizeof($event['Organization'])) ?>
+						</h1>
+					</div>
+					<div class="panel-body">
+						<?php foreach ($event['Organization'] as $organizer): ?>
+							<h4><?php echo $organizer['name']; ?></h4>
+							<div><?php echo $organizer['description']; ?></div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
 		<div class="col-md-4">
 			<div class="panel panel-default">

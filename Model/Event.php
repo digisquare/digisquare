@@ -140,11 +140,12 @@ class Event extends AppModel {
 	);
 
 	public $hasAndBelongsToMany = array(
-		'Tag' => array(
-			'className' => 'Tag',
-			'joinTable' => 'events_tags',
+		'Organization' => array(
+			'className' => 'Organization',
+			'with' => 'Organizer',
+			'joinTable' => 'organizers',
 			'foreignKey' => 'event_id',
-			'associationForeignKey' => 'tag_id',
+			'associationForeignKey' => 'organization_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
