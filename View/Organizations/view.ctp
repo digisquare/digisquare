@@ -2,101 +2,39 @@
 	<div class="page-header">
 		<?php echo $this->Html->link(
 			'<i class="icon-plus-sign icon-white"></i> ' . __('Edit'),
-			array('action' => 'edit', 'id' => $organization['Organization']['id']),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			['action' => 'edit', 'id' => $organization['Organization']['id']],
+			['escape' => false, 'class' => 'btn btn-primary pull-right']
 		); ?>
 		<?php echo $this->Form->postLink(
 			'<i class="icon-plus-sign icon-white"></i> ' . __('Delete'),
-			array('action' => 'delete', 'id' => $organization['Organization']['id']), 
-			array('escape' => false, 'class' => 'btn btn-danger pull-right', 'style' => 'margin-right:10px;'),
+			['action' => 'delete', 'id' => $organization['Organization']['id']],
+			['escape' => false, 'class' => 'btn btn-danger pull-right', 'style' => 'margin-right:10px;'],
 			__('Are you sure you want to delete # %s?', $organization['Organization']['id'])
 		); ?>
 		<h1><?php echo h($organization['Organization']['name']); ?></h1>
 	</div>
-	<p>
-		<p style="background:#dcedcf; padding:10px; font-size:16px; text-align:right;">
-			<?php 
-			if ($userid != null) { // User is logged
-				$table_affiliation = array (
-					'1' => array('Rang' => '1', 'Nom' => 'Watch', 'Action' => 'watch'),
-					'2' => array('Rang' => '2', 'Nom' => 'Like', 'Action' => 'like'),
-					'4' => array('Rang' => '4', 'Nom' => 'Enroll', 'Action' => 'enroll'),
-					'7' => array('Rang' => '7', 'Nom' => 'Run', 'Action' => 'run'),
-					'8' => array('Rang' => '8', 'Nom' => 'Manage', 'Action' => 'manage'),
-				);
-				
-				foreach ($table_affiliation as $t => $tab) {
-					$not = "";
-					$btn = "btn-primary";
-					foreach ($affiliations as $a => $aff) {
-						if ($aff['Affiliation']['status'] == $tab['Rang']) {
-							$not = __("Not ");
-							$btn = "btn-danger";
-							break;
-						}
-					}
-					echo $this->Html->link(
-						'<i class="icon-plus-sign "></i> ' . $not . __($tab['Nom']),
-						array('action' => $tab['Action'], 'id' => $organization['Organization']['id']),
-						array('escape' => false, 'class' => 'btn ' . $btn)
-					);
-				}
-			} else { // User is not logged
-				echo __("You're not logged. Please ".$this->Html->link(__('log in'), array('controller' => 'users', 'action' => 'login'))." to participate.");
-			}?>
-		</p>
-	</p>
-	<table class="table table-bordered table-striped">
-		<tr>
-			<td><?php echo __('Id'); ?></td>
-			<td><?php echo h($organization['Organization']['id']); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo __('Places'); ?></td>
-			<td>
-				<?php echo $this->Html->link(
-					$organization['Edition']['name'],
-					 array(
-					 	'controller' => 'editions',
-					 	'action' => 'view',
-					 	'id' => $organization['Edition']['id'])
-				); ?>
-				<?php echo $this->Html->link(
-					$organization['Place']['name'],
-					 array(
-					  'controller' => 'places',
-					  'action' => 'view',
-					  'id' => $organization['Place']['id'])
-				); ?>
-			</td>
-		</tr>
-		<tr>
-			<td><?php echo __('Edition'); ?></td>
-			<td>
-				<?php echo $this->Html->link(
-					$organization['Edition']['name'],
-					 array(
-					 	'controller' => 'editions',
-					 	'action' => 'view',
-					 	'id' => $organization['Edition']['id'])
-				); ?>
-			</td>
-		</tr>
-		<tr>
-			<td><?php echo __('Name'); ?></td>
-			<td><?php echo h($organization['Organization']['name']); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo __('Description'); ?></td>
-			<td><?php echo h($organization['Organization']['description']); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo __('Created'); ?></td>
-			<td><?php echo h($organization['Organization']['created']); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo __('Modified'); ?></td>
-			<td><?php echo h($organization['Organization']['modified']); ?></td>
-		</tr>
-	</table>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<?php echo nl2br($this->Text->autoLink($organization['Organization']['description'])); ?>
+				</div>
+				<div class="panel-footer">
+					<?php echo $this->Html->link(
+						'<span class="fa-stack fa-lg">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-link fa-stack-1x fa-inverse"></i>
+						</span>',
+						'#',
+						['target' => '_blank', 'escape' => false, 'title' => 'Source']
+					); ?>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<?php if (isset($organization['Place']['name'])): ?>
+				<?php echo $this->element('../Places/Elements/card', ['place' => $organization]); ?>
+			<?php endif; ?>
+		</div>
+	</div>
 </div>

@@ -5,11 +5,6 @@
 			array('controller' => 'organizations', 'action' => 'add'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 	  	); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Top 10'),
-			array('controller' => 'organizations', 'action' => 'top'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
-		); ?>
 		<h1><?php echo __('Organizations'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
@@ -28,13 +23,13 @@
 				<td>
 					<?php echo $this->Html->link(
 						$organization['Place']['name'],
-						array('controller' => 'places', 'action' => 'view', 'id' => $organization['Place']['id'])
+						['controller' => 'places', 'action' => 'view', 'id' => $organization['Place']['id']]
 					); ?>
 				</td>
 				<td>
 					<?php echo $this->Html->link(
 						$organization['Edition']['name'],
-						array('controller' => 'editions', 'action' => 'view', 'id' => $organization['Edition']['id'])
+						['controller' => 'editions', 'action' => 'view', 'id' => $organization['Edition']['id']]
 					); ?>
 				</td>
 				<td><?php echo h($organization['Organization']['name']); ?>&nbsp;</td>
@@ -43,37 +38,24 @@
 				<td class="actions">
 					<?php echo $this->Html->link(
 						__('View'),
-						array('action' => 'view', 'id' => $organization['Organization']['id']),
-						array('class' => 'btn btn-default')
-					); ?>
-					<?php echo $this->Html->link(
-						__('Past Events'),
-						array('action' => 'pastevents', 'id' => $organization['Organization']['id']),
-						array('class' => 'btn btn-default')
+						['action' => 'view', 'id' => $organization['Organization']['id']],
+						['class' => 'btn btn-default']
 					); ?>
 					<?php echo $this->Html->link(
 						__('Edit'),
-						array('action' => 'edit', 'id' => $organization['Organization']['id']),
-						array('class' => 'btn btn-default')
+						['action' => 'edit', 'id' => $organization['Organization']['id']],
+						['class' => 'btn btn-default']
 					); ?>
 					<?php echo $this->Form->postLink(
 						__('Delete'),
-						array('action' => 'delete', 'id' => $organization['Organization']['id']),
-						array('class' => 'btn btn-default'),
+						['action' => 'delete', 'id' => $organization['Organization']['id']],
+						['class' => 'btn btn-default'],
 						null,
 						__('Are you sure you want to delete # %s?', $organization['Organization']['id'])
-					); ?>
-					<?php echo $this->Form->postLink(
-						__('Register'),
-						array('action' => 'register', 'id' => $organization['Organization']['id']),
-						array('class' => 'btn btn-default btn-sm'),
-						__('Are you sure you want to register to # %s?', $organization['Organization']['name'])
 					); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
 	</table>	
-	<?php echo $this->Paginator->pagination(
-		array('ul' => 'pagination')
-	); ?>
+	<?php echo $this->Paginator->pagination(['ul' => 'pagination']); ?>
 </div>
