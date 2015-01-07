@@ -25,6 +25,9 @@
 				['empty' => true, 'class' => 'form-control chzn-select-deselect', 'required' => false]
 			); ?>
 			<?php echo $this->Form->input('name'); ?>
+			<?php echo $this->Form->input('avatar'); ?>
+			<?php echo $this->Form->input('Organization.Contacts.twitter'); ?>
+			<?php echo $this->Form->input('Organization.Contacts.facebook'); ?>
 			<?php echo $this->Form->input('description'); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">

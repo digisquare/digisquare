@@ -40,6 +40,7 @@ class OrganizationsController extends AppController {
 			throw new NotFoundException(__('Invalid organization'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			debug($this->request->data);
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'), 'message_success');
 				return $this->redirect(['action' => 'view', 'id' => $this->Organization->id]);
@@ -47,10 +48,15 @@ class OrganizationsController extends AppController {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
-			$this->request->data = $this->Organization->find('first', [
+			$organization = $this->Organization->find('first', [
 				'contain' => false,
 				'conditions' => ['Organization.id' => $id]
 			]);
+			if ($this->request->query('twitter')) {
+				$this->request->data = $this->Organization->twitter($organization);
+			} else {
+				$this->request->data = $organization;
+			}
 		}
 		$places = $this->Organization->Place->find('list');
 		$editions = $this->Organization->Edition->find('list');

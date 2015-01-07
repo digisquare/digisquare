@@ -39,7 +39,9 @@
 					</div>
 					<div class="panel-body">
 						<?php foreach ($event['Organization'] as $organizer): ?>
-							<h4><?php echo $organizer['name']; ?></h4>
+							<h4><?php echo $this->Html->link($organizer['name'],
+									['controller' => 'organizations', 'action' => 'view', 'id' => $organizer['id']]
+							); ?></h4>
 							<div><?php echo $organizer['description']; ?></div>
 						<?php endforeach; ?>
 					</div>
