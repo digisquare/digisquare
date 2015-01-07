@@ -128,4 +128,22 @@ class Organization extends AppModel {
 		return true;
 	}
 
+	public function twitter($organization) {
+		\Codebird\Codebird::setConsumerKey(
+			Configure::read('Opauth.Strategy.Twitter.key'),
+			Configure::read('Opauth.Strategy.Twitter.secret')
+		);
+		$cb = \Codebird\Codebird::getInstance();
+		$cb->setToken(
+			Configure::read('Opauth.Strategy.Twitter.access_token'),
+			Configure::read('Opauth.Strategy.Twitter.token_secret')
+		);
+		try {
+			$twitter_user = $cb->users_show(['screen_name' => $organization['Organization']['Contacts']['twitter']]);
+			$organization['Organization']['avatar'] = $twitter_user->profile_image_url_https;
+			$organization['Organization']['description'] = $twitter_user->description;
+		} catch (Exception $e) {
+		}
+		return $organization;
+	}
 }

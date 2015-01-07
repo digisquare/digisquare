@@ -11,7 +11,8 @@
         "willdurand/geocoder": "2.5.*",
         "guzzle/guzzle": "3.9.*",
         "google/apiclient": "1.0.*@beta",
-        "opauth/google": "0.2.*"
+        "opauth/google": "0.2.*",
+        "jublonet/codebird-php": "~2.6"
     },
     "require-dev": {
         "phpunit/phpunit": "3.*"

@@ -51,7 +51,9 @@ if (isset($_SERVER) && isset($_SERVER['DIGI_FB_APP_ID'])) {
 if (isset($_SERVER) && isset($_SERVER['DIGI_TWITTER_KEY'])) {
 	Configure::write('Opauth.Strategy.Twitter', array(
 		'key' => $_SERVER['DIGI_TWITTER_KEY'],
-		'secret' => $_SERVER['DIGI_TWITTER_SECRET']
+		'secret' => $_SERVER['DIGI_TWITTER_SECRET'],
+		'access_token' => $_SERVER['DIGI_TWITTER_ACCESS_TOKEN'],
+		'token_secret' => $_SERVER['DIGI_TWITTER_TOKEN_SECRET']
 	));
 }
 
