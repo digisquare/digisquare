@@ -82,7 +82,7 @@ class EventsController extends AppController {
 			}
 		} else {
 			$this->request->data = $this->Event->find('first', [
-				'contain' => false,
+				'contain' => ['Organization'],
 				'conditions' => ['Event.id' => $id]
 			]);
 		}
