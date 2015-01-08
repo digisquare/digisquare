@@ -47,6 +47,10 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
+			<?php echo $this->element(
+				'../Events/Elements/list',
+				['organization_id' => $organization['Organization']['id']]
+			); ?>
 		</div>
 		<div class="col-md-4">
 			<?php if (isset($organization['Place']['name'])): ?>

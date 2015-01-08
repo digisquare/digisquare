@@ -11,6 +11,13 @@ class EventsController extends AppController {
 		if (isset($this->request->query['edition_id'])) {
 			$conditions['Event.edition_id'] = $this->request->query['edition_id'];
 		}
+		if (isset($this->request->query['organization_id'])) {
+			$event_ids = $this->Event->Organizer->find('list', [
+				'fields' => 'event_id',
+				'conditions' => ['organization_id' => $this->request->query['organization_id']]
+			]);
+			$conditions['Event.id'] = $event_ids;
+		}
 		if (isset($this->request->query['start_at'])) {
 			$conditions['Event.start_at <'] = $this->request->query['start_at'];
 		}
@@ -20,11 +27,27 @@ class EventsController extends AppController {
 		if (isset($this->request->query['date'])) {
 			$date = strtotime($this->request->query['date']);
 			if (7 == strlen($this->request->query['date'])) {
-				$conditions['Event.start_at <'] = date('Y-m-t 23:59:00', $date);
-				$conditions['Event.end_at >'] = date('Y-m-01 00:00:00', $date);
+				$conditions['OR'] = [
+					'Event.start_at BETWEEN ? AND ?' => [
+						date('Y-m-01 00:00:00', $date),
+						date('Y-m-t 23:59:00', $date)
+					],
+					'Event.end_at BETWEEN ? AND ?' => [
+						date('Y-m-01 00:00:00', $date),
+						date('Y-m-t 23:59:00', $date)
+					]
+				];
 			} else if (10 == strlen($this->request->query['date'])) {
-				$conditions['Event.start_at <'] = date('Y-m-d 23:59:00', $date);
-				$conditions['Event.end_at >'] = date('Y-m-d 00:00:00', $date);
+				$conditions['OR'] = [
+					'Event.start_at BETWEEN ? AND ?' => [
+						date('Y-m-d 00:00:00', $date),
+						date('Y-m-d 23:59:00', $date)
+					],
+					'Event.end_at BETWEEN ? AND ?' => [
+						date('Y-m-d 00:00:00', $date),
+						date('Y-m-d 23:59:00', $date)
+					]
+				];
 			}
 		}
 		$this->Paginator->settings['contain'] = ['Edition', 'Place'];

@@ -1,18 +1,34 @@
-<?php
-$url = [
+<?php $url = [
 	'controller' => 'events',
 	'action' => 'index',
 	'?' => [
-		'end_at' => date('Y-m-d'),
 		'sort' => 'start_at',
 		'direction' => 'asc',
 	]
-];
+]; ?>
+<h3>
+	Tous les évènements
+	<?php if (isset($this->request->query['date'])): ?>
+		<?php $date = new DateTime($this->request->query['date']); ?>
+		de <?php echo strftime('%B %Y', $date->getTimestamp()); ?>
+	<?php else: ?>
+		<?php $date = new DateTime(); ?>
+		<?php $url['?']['end_at'] = $date->format('Y-m-d 00:00:00') ?>
+		à venir :
+	<?php endif; ?>
+</h3>
+<?php
 if (isset($edition_id)) {
-	$url['?']['edition_id'] = $edition_id;
+	$url['?']['edition_id'] = $id = $edition_id;
+	$controller = 'editions';
 }
 if (isset($place_id)) {
-	$url['?']['place_id'] = $place_id;
+	$url['?']['place_id'] = $id = $place_id;
+	$controller = 'places';
+}
+if (isset($organization_id)) {
+	$url['?']['organization_id'] = $id = $organization_id;
+	$controller = 'organizations';
 }
 $events = $this->requestAction($url);
 foreach ($events as $event) {
@@ -44,3 +60,7 @@ if (empty($events)):
 		</div>
 	</div>
 <?php endif; ?>
+<?php echo $this->element(
+	'../Events/Elements/pagination',
+	['controller' => $controller, 'id' => $id]
+); ?>

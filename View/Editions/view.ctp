@@ -64,12 +64,6 @@
 			</ul>
 		</div>
 		<div id="upcoming-events" class="col-md-4">
-			<?php echo $this->element(
-				'../Events/Elements/list',
-				[
-					'edition_id' => $edition['Edition']['id']
-				]
-			); ?>
 		</div>
 	</div>
 </div>
