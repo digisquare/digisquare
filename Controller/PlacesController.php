@@ -13,7 +13,7 @@ class PlacesController extends AppController {
 			throw new NotFoundException(__('Invalid place'));
 		}
 		$place = $this->Place->find('first', [
-			'contain' => [],
+			'contain' => ['Edition'],
 			'conditions' => ['Place.id' => $id],
 		]);
 		$this->set(compact('place'));

@@ -73,6 +73,14 @@ class Place extends AppModel {
 		)
 	);
 
+	public $belongsTo = array(
+		'Edition' => array(
+			'className' => 'Edition',
+			'foreignKey' => 'edition_id',
+			'counterCache' => true,
+		)
+	);
+
 	public $fields = ['name', 'address', 'zipcode', 'city', 'country_code'];
 
 	public function afterFind($results, $primary = false) {
