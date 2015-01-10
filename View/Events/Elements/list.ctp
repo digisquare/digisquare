@@ -18,17 +18,20 @@
 	<?php endif; ?>
 </h3>
 <?php
-if (isset($edition_id)) {
-	$url['?']['edition_id'] = $id = $edition_id;
+if (isset($edition)) {
+	$url['?']['edition_id'] = $edition['Edition']['id'];
 	$controller = 'editions';
+	${$controller} = $edition;
 }
-if (isset($place_id)) {
-	$url['?']['place_id'] = $id = $place_id;
+if (isset($place)) {
+	$url['?']['place_id'] = $place['Place']['id'];
 	$controller = 'places';
+	${$controller} = $place;
 }
-if (isset($organization_id)) {
-	$url['?']['organization_id'] = $id = $organization_id;
+if (isset($organization)) {
+	$url['?']['organization_id'] = $organization['Organization']['id'];
 	$controller = 'organizations';
+	${$controller} = $organization;
 }
 $events = $this->requestAction($url);
 foreach ($events as $event) {
@@ -54,7 +57,7 @@ if (empty($events)):
 				[
 					'controller' => 'events',
 					'action' => 'index',
-					'?' => $url['?']
+					'slug' => ${$controller}['Edition']['slug']
 				]
 			); ?>
 		</div>
@@ -62,5 +65,5 @@ if (empty($events)):
 <?php endif; ?>
 <?php echo $this->element(
 	'../Events/Elements/pagination',
-	['controller' => $controller, 'id' => $id]
+	['controller' => $controller, $controller => ${$controller}]
 ); ?>

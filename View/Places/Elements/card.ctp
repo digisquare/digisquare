@@ -14,10 +14,7 @@
 	</div>
 	<div class="panel-footer">
 		<h1 class="panel-title modal-title">
-			<?php echo $this->Html->link(
-				$place['Place']['name'],
-				['controller' => 'places', 'action' => 'view', 'id' => $place['Place']['id']]
-			); ?>
+			<?php echo $this->Link->viewPlace($place); ?>
 		</h1>
 		<?php echo h($place['Place']['address']); ?><br>
 		<?php echo h($place['Place']['zipcode'] . ' ' . $place['Place']['city']); ?><br>

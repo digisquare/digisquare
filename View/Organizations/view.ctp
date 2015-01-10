@@ -49,7 +49,7 @@
 			</div>
 			<?php echo $this->element(
 				'../Events/Elements/list',
-				['organization_id' => $organization['Organization']['id']]
+				['organization' => $organization]
 			); ?>
 		</div>
 		<div class="col-md-4">

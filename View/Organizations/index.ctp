@@ -21,24 +21,24 @@
 			<tr>
 				<td><?php echo h($organization['Organization']['id']); ?>&nbsp;</td>
 				<td>
-					<?php echo $this->Html->link(
+					<?php echo $this->Link->viewPlace(
 						$organization['Place']['name'],
-						['controller' => 'places', 'action' => 'view', 'id' => $organization['Place']['id']]
+						$organization
 					); ?>
 				</td>
 				<td>
-					<?php echo $this->Html->link(
+					<?php echo $this->Link->viewEdition(
 						$organization['Edition']['name'],
-						['controller' => 'editions', 'action' => 'view', 'id' => $organization['Edition']['id']]
+						$organization
 					); ?>
 				</td>
 				<td><?php echo h($organization['Organization']['name']); ?>&nbsp;</td>
 				<td><?php echo h($organization['Organization']['created']); ?>&nbsp;</td>
 				<td><?php echo h($organization['Organization']['modified']); ?>&nbsp;</td>
 				<td class="actions">
-					<?php echo $this->Html->link(
+					<?php echo $this->Link->viewOrganization(
 						__('View'),
-						['action' => 'view', 'id' => $organization['Organization']['id']],
+						$organization,
 						['class' => 'btn btn-default']
 					); ?>
 					<?php echo $this->Html->link(

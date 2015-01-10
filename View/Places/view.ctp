@@ -17,7 +17,7 @@
 		<div class="col-md-8">
 			<?php echo $this->element(
 				'../Events/Elements/list',
-				['place_id' => $place['Place']['id']]
+				['place' => $place]
 			); ?>
 		</div>
 		<div class="col-md-4">

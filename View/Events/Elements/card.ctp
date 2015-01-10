@@ -1,10 +1,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h1 class="panel-title">
-			<?php echo $this->Html->link(
-				$event['Event']['name'],
-				['controller' => 'events', 'action' => 'view', 'id' => $event['Event']['id']]
-			); ?>
+			<?php echo $this->Link->viewEvent($event); ?>
 		</h1>
 	</div>
 	<div class="panel-body">

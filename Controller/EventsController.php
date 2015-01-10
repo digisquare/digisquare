@@ -10,6 +10,9 @@ class EventsController extends AppController {
 		}
 		if (isset($this->request->query['edition_id'])) {
 			$conditions['Event.edition_id'] = $this->request->query['edition_id'];
+		} else if (isset($this->request->params['slug'])) {
+			$edition = $this->Event->Edition->findBySlug($this->request->params['slug']);
+			$conditions['Event.edition_id'] = $edition['Edition']['id'];
 		}
 		if (isset($this->request->query['organization_id'])) {
 			$event_ids = $this->Event->Organizer->find('list', [

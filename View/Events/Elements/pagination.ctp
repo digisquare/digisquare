@@ -4,70 +4,52 @@
 } else {
 	$query_date = false;
 	$date = new DateTime();
-} ?>
+}
+$method = 'view' . Inflector::classify($controller);
+?>
 <ul class="pagination">
 	<?php if ($query_date): ?>
 		<?php $date->modify('-1 month'); ?>
 		<li>
-			<?php echo $this->Html->link(
+			<?php echo $this->Link->$method(
 				'< ' . strftime('%B', $date->getTimestamp()),
-				[
-					'controller' => $controller,
-					'action' => 'view',
-					'id' => $id,
-					'?' => ['date' => $date->format('Y-m')]
-				]
+				${$controller},
+				['url' => ['?' => ['date' => $date->format('Y-m')]]]
 			); ?>
 		</li>
 	<?php else: ?>
 		<li>
-			<?php echo $this->Html->link(
+			<?php echo $this->Link->$method(
 				'< ' . strftime('%B', $date->getTimestamp()),
-				[
-					'controller' => $controller,
-					'action' => 'view',
-					'id' => $id,
-					'?' => ['date' => $date->format('Y-m')]
-				]
+				${$controller},
+				['url' => ['?' => ['date' => $date->format('Y-m')]]]
 			); ?>
 		</li>
 	<?php endif; ?>
 	<?php $date->modify('+1 month'); ?>
 	<?php if ($query_date): ?>
 		<li class="current disabled">
-			<?php echo $this->Html->link(
+			<?php echo $this->Link->$method(
 				strftime('%B', $date->getTimestamp()),
-				[
-					'controller' => $controller,
-					'action' => 'view',
-					'id' => $id,
-					'?' => ['date' => $date->format('Y-m')]
-				]
+				${$controller},
+				['url' => ['?' => ['date' => $date->format('Y-m')]]]
 			); ?>
 		</li>
 	<?php endif; ?>
 	<?php $date = $date->modify('+1 month'); ?>
 	<?php if ($query_date && date('Y-m') !== $query_date): ?>
 		<li>
-			<?php echo $this->Html->link(
+			<?php echo $this->Link->$method(
 				strftime('%B', $date->getTimestamp()) . ' >',
-				[
-					'controller' => $controller,
-					'action' => 'view',
-					'id' => $id,
-					'?' => ['date' => $date->format('Y-m')]
-				]
+				${$controller},
+				['url' => ['?' => ['date' => $date->format('Y-m')]]]
 			); ?>
 		</li>
 	<?php elseif ($query_date && date('Y-m') === $query_date): ?>
 		<li>
-			<?php echo $this->Html->link(
+			<?php echo $this->Link->$method(
 				'à venir >',
-				[
-					'controller' => $controller,
-					'action' => 'view',
-					'id' => $id,
-				]
+				${$controller}
 			); ?>
 		</li>
 	<?php endif; ?>

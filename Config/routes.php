@@ -1,7 +1,7 @@
 <?php
-Router::connect('/',						array('controller' => 'editions', 'action' => 'index'));
-
 Router::parseExtensions('rss', 'json', 'ics');
+
+Router::connect('/',	['controller' => 'editions', 'action' => 'index']);
 
 /**
  * Opauth Plugin Routing
@@ -27,15 +27,37 @@ foreach ($controllers as $controller) {
 
 /**
  * Editions Routing
+ * /bordeaux => annuaire ?
+ * /bordeaux/1/aquinum
+ * /bordeaux/lieux => carte
+ * /bordeaux/lieu/2/le-node
+ * /bordeaux/evenements => calendrier
+ * /bordeaux/evenement/3/happynum
  */
 Router::connect(
 	'/:slug',
-	['controller' => 'editions', 'action' => 'view'],
-	['pass' => ['slug'], 'slug' => '[a-zA-Z0-9_-]+']
+	['controller' => 'editions', 'action' => 'view']
 );
 
 Router::connect(
-	'/:slug/:action',
-	['controller' => 'editions'],
-	['pass' => ['slug'], 'slug' => '[a-zA-Z0-9_-]+']
+	'/:slug/:id/:bslug',
+	['controller' => 'organizations', 'action' => 'view'],
+	['pass' => ['id'], 'id' => '[0-9]+']
+);
+
+Router::connect(
+	'/:slug/lieu/:id/:bslug',
+	['controller' => 'places', 'action' => 'view'],
+	['pass' => ['id'], 'id' => '[0-9]+']
+);
+
+Router::connect(
+	'/:slug/evenements',
+	['controller' => 'events', 'action' => 'index']
+);
+
+Router::connect(
+	'/:slug/evenement/:id/:bslug',
+	['controller' => 'events', 'action' => 'view'],
+	['pass' => ['id'], 'id' => '[0-9]+']
 );
