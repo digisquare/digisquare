@@ -18,6 +18,7 @@
 	<?php endif; ?>
 </h3>
 <?php
+$params = [];
 if (isset($edition)) {
 	$url['?']['edition_id'] = $edition['Edition']['id'];
 	$controller = 'editions';
@@ -27,11 +28,19 @@ if (isset($place)) {
 	$url['?']['place_id'] = $place['Place']['id'];
 	$controller = 'places';
 	${$controller} = $place;
+	$params = [
+		'place_id' => $place['Place']['id'],
+		'bslug' => strtolower(Inflector::slug($place['Place']['name'], '-'))
+	];
 }
 if (isset($organization)) {
 	$url['?']['organization_id'] = $organization['Organization']['id'];
 	$controller = 'organizations';
 	${$controller} = $organization;
+	$params = [
+		'organization_id' => $organization['Organization']['id'],
+		'bslug' => strtolower(Inflector::slug($organization['Organization']['name'], '-'))
+	];
 }
 $events = $this->requestAction($url);
 foreach ($events as $event) {
@@ -54,11 +63,11 @@ if (empty($events)):
 		<div class="panel-body">
 			<?php echo $this->Html->link(
 				'Voir tous évènements',
-				[
+				array_merge([
 					'controller' => 'events',
 					'action' => 'index',
 					'slug' => ${$controller}['Edition']['slug']
-				]
+				], $params)
 			); ?>
 		</div>
 	</div>

@@ -25,44 +25,53 @@ foreach ($controllers as $controller) {
 	Router::connect('/' . $controller . '/:action',		['controller' => $controller]);
 }
 
-/**
- * Editions Routing
- * /bordeaux => annuaire ?
- * /bordeaux/1/aquinum
- * /bordeaux/lieux => carte
- * /bordeaux/lieu/2/le-node
- * /bordeaux/evenements => calendrier
- * /bordeaux/evenement/3/happynum
- */
+//bordeaux
 Router::connect(
 	'/:slug',
 	['controller' => 'editions', 'action' => 'view']
 );
 
+//bordeaux/annuaire
 Router::connect(
 	'/:slug/annuaire',
 	['controller' => 'organizations', 'action' => 'index']
 );
 
+//bordeaux/evenements
+Router::connect(
+	'/:slug/evenements',
+	['controller' => 'events', 'action' => 'index']
+);
+
+//bordeaux/evenement/3/happynum
+Router::connect(
+	'/:slug/evenement/:id/:bslug',
+	['controller' => 'events', 'action' => 'view'],
+	['pass' => ['id'], 'id' => '[0-9]+']
+);
+
+//bordeaux/1/aquinum
 Router::connect(
 	'/:slug/:id/:bslug',
 	['controller' => 'organizations', 'action' => 'view'],
 	['pass' => ['id'], 'id' => '[0-9]+']
 );
 
+//bordeaux/1/aquinum/evenements
+Router::connect(
+	'/:slug/:organization_id/:bslug/evenements',
+	['controller' => 'events', 'action' => 'index']
+);
+
+//bordeaux/lieu/2/le-node
 Router::connect(
 	'/:slug/lieu/:id/:bslug',
 	['controller' => 'places', 'action' => 'view'],
 	['pass' => ['id'], 'id' => '[0-9]+']
 );
 
+//bordeaux/lieu/2/le-node/evenements
 Router::connect(
-	'/:slug/evenements',
+	'/:slug/lieu/:place_id/:bslug/evenements',
 	['controller' => 'events', 'action' => 'index']
-);
-
-Router::connect(
-	'/:slug/evenement/:id/:bslug',
-	['controller' => 'events', 'action' => 'view'],
-	['pass' => ['id'], 'id' => '[0-9]+']
 );

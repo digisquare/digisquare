@@ -5,22 +5,45 @@ class EventsController extends AppController {
 
 	public function index() {
 		$conditions = [];
+		// Places
 		if (isset($this->request->query['place_id'])) {
 			$conditions['Event.place_id'] = $this->request->query['place_id'];
+		} else if (isset($this->request->params['place_id'])) {
+			$place = $this->Event->Place->find('first', [
+				'contain' => ['Edition'],
+				'conditions' => ['Place.id' => $this->request->params['place_id']]
+			]);
+			$conditions['Event.place_id'] = $this->request->params['place_id'];
+			$this->set(compact('place'));
 		}
+		// Editions
 		if (isset($this->request->query['edition_id'])) {
 			$conditions['Event.edition_id'] = $this->request->query['edition_id'];
 		} else if (isset($this->request->params['slug'])) {
 			$edition = $this->Event->Edition->findBySlug($this->request->params['slug']);
 			$conditions['Event.edition_id'] = $edition['Edition']['id'];
+			$this->set(compact('edition'));
 		}
+		//Organizations
 		if (isset($this->request->query['organization_id'])) {
 			$event_ids = $this->Event->Organizer->find('list', [
 				'fields' => 'event_id',
 				'conditions' => ['organization_id' => $this->request->query['organization_id']]
 			]);
 			$conditions['Event.id'] = $event_ids;
+		} else if (isset($this->request->params['organization_id'])) {
+			$organization = $this->Event->Organization->find('first', [
+				'contain' => ['Edition'],
+				'conditions' => ['Organization.id' => $this->request->params['organization_id']]
+			]);
+			$event_ids = $this->Event->Organizer->find('list', [
+				'fields' => 'event_id',
+				'conditions' => ['organization_id' => $this->request->params['organization_id']]
+			]);
+			$conditions['Event.id'] = $event_ids;
+			$this->set(compact('organization'));
 		}
+		// Time
 		if (isset($this->request->query['start_at'])) {
 			$conditions['Event.start_at <'] = $this->request->query['start_at'];
 		}
@@ -55,7 +78,7 @@ class EventsController extends AppController {
 		}
 		$this->Paginator->settings['contain'] = ['Edition', 'Place'];
 		$this->Paginator->settings['conditions'] = $conditions;
-		$this->Paginator->settings['order'] = ['Event.created' => 'desc'];
+		$this->Paginator->settings['order'] = ['Event.start_at' => 'desc'];
 		$events = $this->Paginator->paginate('Event');
 		$this->set([
 			'events' => $events,
