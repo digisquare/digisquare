@@ -30,6 +30,10 @@ gulp.task('fonts', function() {
 gulp.task('css', function() {
   plugins.del(dest + 'css');
 
+  // Bootstrap Maps
+  gulp.src(bower + 'bootstrap/dist/css/*.map')
+    .pipe(gulp.dest(dest + 'css'));
+
   // Chosen Sprite
   gulp.src(bower + 'chosen_v1.3.0/*.png')
     .pipe(gulp.dest(dest + 'css'));
