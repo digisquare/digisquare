@@ -52,6 +52,15 @@ class Edition extends AppModel {
 		'Aix-en-Provence', 'Brest', 'Limoges', 'Tours', 'Amiens', 'Metz', 'Perpignan'
 	];
 
+	public function findBySlug($slug) {
+		return $this->find('first', [
+			'contain' => false,
+			'conditions' => [
+				'Edition.slug' => $slug
+			]
+		]);
+	}
+
 	public function reset() {
 		$this->deleteAll(['Edition.id >' => 0]);
 		$this->Event->deleteAll(['Event.id >' => 0]);

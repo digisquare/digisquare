@@ -4,7 +4,12 @@ App::uses('AppController', 'Controller');
 class OrganizationsController extends AppController {
 
 	public function index() {
+		if (isset($this->request->params['slug'])) {
+			$edition = $this->Organization->Edition->findBySlug($this->request->params['slug']);
+			$conditions['Organization.edition_id'] = $edition['Edition']['id'];
+		}
 		$this->Paginator->settings['contain'] = ['Edition', 'Place'];
+		$this->Paginator->settings['conditions'] = $conditions;
 		$organizations = $this->Paginator->paginate();
 		$this->set(compact('organizations'));
 	}

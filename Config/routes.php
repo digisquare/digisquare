@@ -40,6 +40,11 @@ Router::connect(
 );
 
 Router::connect(
+	'/:slug/annuaire',
+	['controller' => 'organizations', 'action' => 'index']
+);
+
+Router::connect(
 	'/:slug/:id/:bslug',
 	['controller' => 'organizations', 'action' => 'view'],
 	['pass' => ['id'], 'id' => '[0-9]+']
