@@ -72,11 +72,3 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
-
-Cache::config('element', array(
-	'engine' => $engine,
-	'prefix' => $prefix . 'cake_',
-	'path' => CACHE . 'elements' . DS,
-	'serialize' => ($engine === 'File'),
-	'duration' => $duration
-));
