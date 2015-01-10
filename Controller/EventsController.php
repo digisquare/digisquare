@@ -76,7 +76,7 @@ class EventsController extends AppController {
 				];
 			}
 		}
-		$this->Paginator->settings['contain'] = ['Edition', 'Place'];
+		$this->Paginator->settings['contain'] = ['Edition', 'Place', 'Organization'];
 		$this->Paginator->settings['conditions'] = $conditions;
 		$this->Paginator->settings['order'] = ['Event.start_at' => 'desc'];
 		$events = $this->Paginator->paginate('Event');

@@ -21,7 +21,7 @@
 			<div class="col-md-6">
 				<?php echo $this->element(
 					'../Organizations/Elements/card',
-					['organization' => $organization, 'small' => true]
+					['organization' => $organization, 'truncate' => true]
 				); ?>
 			</div>
 		<?php endforeach; ?>

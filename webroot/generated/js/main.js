@@ -18344,6 +18344,28 @@ $(document).ready( function () {
     });
   }
 
+  // Twitter Script
+  window.twttr = (function (d, s, id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src= "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+
+  twttr.ready(function (twttr) {
+    twttr.widgets.createTimeline(
+      '553992940708962305',
+      document.getElementById('twitter-timeline'),
+      {
+        height: '380px',
+        screenName: $('#twitter-timeline').data('screen-name'),
+        chrome: 'noscrollbar'
+      }
+    );
+  });
+
 });
 
 // moment.js locale configuration

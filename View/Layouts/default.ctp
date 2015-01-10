@@ -2,6 +2,8 @@
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>
 		<?php echo $title_for_layout; ?>
 	</title>

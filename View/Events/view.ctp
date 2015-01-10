@@ -33,21 +33,18 @@
 			<?php if (!empty($event['Organization'])): ?>
 				<?php $first = true; ?>
 				<h2><?php echo __n('Organizer:', 'Organizers:', sizeof($event['Organization'])) ?></h2>
-				<?php echo (1 < sizeof($event['Organization']) ? '<div class="row">' : ''); ?>
 				<?php foreach ($event['Organization'] as $organizer): ?>
-					<?php echo (1 < sizeof($event['Organization']) ? '<div class="col-md-6">' : ''); ?>
-						<?php echo $this->element(
-							'../Organizations/Elements/card',
-							['organization' => 
-								[
-									'Organization' => $organizer,
-									'Edition' => $event['Edition']
-								]
-							]
-						); ?>
-					<?php echo (1 < sizeof($event['Organization']) ? '</div>' : ''); ?>
+					<?php echo $this->element(
+						'../Organizations/Elements/card',
+						[
+							'organization' => [
+								'Organization' => $organizer,
+								'Edition' => $event['Edition']
+							],
+							'truncate' => true
+						]
+					); ?>
 				<?php endforeach; ?>
-				<?php echo (1 < sizeof($event['Organization']) ? '</div>' : ''); ?>
 			<?php endif; ?>
 		</div>
 		<div class="col-md-4">

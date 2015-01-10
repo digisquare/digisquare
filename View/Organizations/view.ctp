@@ -56,6 +56,10 @@
 			<?php if (isset($organization['Place']['name'])): ?>
 				<?php echo $this->element('../Places/Elements/card', ['place' => $organization]); ?>
 			<?php endif; ?>
+			<?php if (isset($organization['Organization']['Contacts']['twitter'])): ?>
+				<?php $twitter = $organization['Organization']['Contacts']['twitter']; ?>
+				<div id="twitter-timeline" data-screen-name="<?php echo $twitter; ?>"></div>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>

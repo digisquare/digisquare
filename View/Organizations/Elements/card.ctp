@@ -13,7 +13,7 @@
 				<h4>
 					<?php echo $this->Link->viewOrganization($organization); ?>
 				</h4>
-				<?php if (isset($small)): ?>
+				<?php if (isset($truncate)): ?>
 					<p class="truncate">
 						<?php $description = explode('. ', $organization['Organization']['description']); ?>
 						<?php echo $this->Text->truncate($description[0], 140); ?>
