@@ -39,7 +39,7 @@ class OrganizationsController extends AppController {
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			debug($this->request->data);
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'), 'message_success');
