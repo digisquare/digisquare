@@ -7,6 +7,7 @@ class OrganizationsController extends AppController {
 		if (isset($this->request->params['slug'])) {
 			$edition = $this->Organization->Edition->findBySlug($this->request->params['slug']);
 			$conditions['Organization.edition_id'] = $edition['Edition']['id'];
+			$this->set(compact('edition'));
 		}
 		$this->Paginator->settings['contain'] = ['Edition', 'Place'];
 		$this->Paginator->settings['conditions'] = $conditions;

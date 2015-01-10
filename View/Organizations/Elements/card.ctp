@@ -13,9 +13,16 @@
 				<h4>
 					<?php echo $this->Link->viewOrganization($organization); ?>
 				</h4>
-				<p>
-					<?php echo nl2br($this->Text->autoLink($organization['Organization']['description'])); ?>
-				</p>
+				<?php if (isset($small)): ?>
+					<p class="truncate">
+						<?php $description = explode('. ', $organization['Organization']['description']); ?>
+						<?php echo $this->Text->truncate($description[0], 140); ?>
+					</p>
+				<?php else: ?>
+					<p>
+						<?php echo nl2br($this->Text->autoLink($organization['Organization']['description'])); ?>
+					</p>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>

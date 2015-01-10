@@ -24,7 +24,7 @@ class LinkHelper extends HtmlHelper {
 		);
 	}
 
-	public function listOrganizations($title, $edition = [], $options = [], $confirmMessage = false) {
+	public function listEditionOrganizations($title, $edition = [], $options = [], $confirmMessage = false) {
 		return $this->link($title,
 			[
 				'controller' => 'organizations',
@@ -77,6 +77,18 @@ class LinkHelper extends HtmlHelper {
 				'id' => $place['Place']['id'],
 				'bslug' => strtolower(Inflector::slug($place['Place']['name'], '-'))
 			], $url),
+			$options,
+			$confirmMessage
+		);
+	}
+
+	public function listEditionEvents($title, $edition = [], $options = [], $confirmMessage = false) {
+		return $this->link($title,
+			[
+				'controller' => 'events',
+				'action' => 'index',
+				'slug' => $edition['Edition']['slug']
+			],
 			$options,
 			$confirmMessage
 		);

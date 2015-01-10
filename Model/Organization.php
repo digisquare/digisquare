@@ -60,6 +60,15 @@ class Organization extends AppModel {
 		)
 	);
 
+	public $organizations = ['Coolworking' => 'coolworking', 'Jelly Bordeaux' => 'jellybordeaux', 'Kowork' => 'kowork_bdx',
+		'33entrepreneurs' => '33entrepreneurs', 'Auberge Numérique' => 'AubergeAEC', 'Apéro Entrepreneurs' => 'aperopreneurs',
+		'Startup Weekend Bordeaux' => 'SWBordeaux', 'Aquinum' => 'aquinum', 'BAUG' => 'BAUG_33',
+		'Bordeaux Games' => 'BxGames', 'Bordeaux JUG' => 'BordeauxJUG', 'Giroll' => 'CollectifGiroll',
+		'Okiwi' => 'okiwi_fr', 'RubyBDX' => 'rubybdx', 'D&B Talks' => 'dbtalks_org', 'TTFX' => 'TTFXBordeaux',
+		'UX Bordeaux' => 'uxbordeaux'
+	];
+
+
 	public function afterFind($results, $primary = false) {
 		foreach ($results as $key => $val) {
 			if (isset($val['Organization']['contacts'])) {
@@ -70,8 +79,7 @@ class Organization extends AppModel {
 	}
 
 	public function beforeSave($options = []) {
-		debug($this->data);
-		if (is_array($this->data['Organization']['Contacts'])) {
+		if (isset($this->data['Organization']['Contacts']) && is_array($this->data['Organization']['Contacts'])) {
 			$this->data['Organization']['contacts'] = json_encode($this->data['Organization']['Contacts']);
 		}
 		return true;
@@ -91,9 +99,32 @@ class Organization extends AppModel {
 			$twitter_user = $cb->users_show(['screen_name' => $organization['Organization']['Contacts']['twitter']]);
 			$organization['Organization']['avatar'] = $twitter_user->profile_image_url_https;
 			$organization['Organization']['description'] = $twitter_user->description;
+			if (isset($twitter_user->entities->url->urls[0]->expanded_url)) {
+				$organization['Organization']['Contacts']['website'] = $twitter_user->entities->url->urls[0]->expanded_url;
+			}
 		} catch (Exception $e) {
 		}
 		return $organization;
+	}
+
+	public function insertAllOrganizations() {
+		$id = 1;
+		foreach ($this->organizations as $name => $twitter) {
+			$organization = [
+				'Organization' => [
+					'id' => $id,
+					'name' => $name,
+					'edition_id' => 9,
+					'Contacts' => [
+						'twitter' => $twitter
+					]
+				]
+			];
+			$organizations[] = $this->twitter($organization);
+			$id++;
+		}
+		$this->saveAll($organizations);
+		$this->query('ALTER TABLE  `organizations` ORDER BY  `id` ;');
 	}
 
 }

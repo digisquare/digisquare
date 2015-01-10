@@ -1,6 +1,6 @@
 <?php if (isset($organization)) {
-	$title = 'Tous les évènements par ' . $this->Link->viewOrganization($organization);
-	$this->set('title_for_layout', 'Tous les évènements du numérique par ' . $organization['Organization']['name']);
+	$title = 'Tous les évènements ' . $this->Link->viewOrganization($organization);
+	$this->set('title_for_layout', 'Tous les évènements du numérique de ' . $organization['Organization']['name']);
 	$url = [
 		'slug' => $edition['Edition']['slug'],
 		'organization_id' => $organization['Organization']['id'],

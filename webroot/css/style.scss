@@ -21,6 +21,11 @@ html, body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	line-height: inherit;
+}
+
+.panel-body p.truncate {
+	height: 60px;
 }
 
 #upcoming-events {

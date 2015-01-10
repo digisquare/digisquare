@@ -66,6 +66,7 @@ class Edition extends AppModel {
 		$this->Event->deleteAll(['Event.id >' => 0]);
 		$this->Event->Place->deleteAll(['Place.id >' => 0]);
 		$this->insertAllEditions();
+		$this->Organization->insertAllOrganizations();
 	}
 
 	public function insertAllEditions() {

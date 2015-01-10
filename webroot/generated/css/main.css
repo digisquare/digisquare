@@ -8127,7 +8127,11 @@ html, body {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  line-height: inherit; }
+
+.panel-body p.truncate {
+  height: 60px; }
 
 #upcoming-events {
   margin-top: 30px; }
