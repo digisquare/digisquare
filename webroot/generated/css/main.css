@@ -8213,11 +8213,11 @@ time.icon span {
   padding-top: 0.8em;
   color: #333; }
 
-#datetime .from {
-  text-align: left; }
-#datetime .to {
-  text-align: right; }
-#datetime .from span, #datetime .to span {
+#datetime .text-center {
+  margin: 0 0 5px; }
+#datetime .time.text-center {
+  margin: 15px 0 0; }
+#datetime .time span {
   font-size: 2.8em;
   letter-spacing: -0.05em;
   padding-top: 0.8em;

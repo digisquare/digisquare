@@ -18,7 +18,7 @@
 	</div>
 	<div class="row">
 		<?php foreach ($organizations as $organization): ?>
-			<div class="col-md-6">
+			<div class="col-sm-6">
 				<?php echo $this->element(
 					'../Organizations/Elements/card',
 					['organization' => $organization, 'truncate' => true]
