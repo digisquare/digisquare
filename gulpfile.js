@@ -17,9 +17,11 @@ gulp.task('fonts', function() {
 
   // Socicon Fonts
   gulp.src(webroot + 'socicon/font/*')
+    .pipe(plugins.plumber())
     .pipe(gulp.dest(dest + 'fonts'));
 
   return gulp.src(plugins.mainBowerFiles())
+    .pipe(plugins.plumber())
     .pipe(plugins.filter(['*.eot', '*.svg', '*.ttf', '*.woff', '*.otf']))
     .pipe(gulp.dest(dest + 'fonts'))
     .pipe(plugins.livereload());
@@ -32,18 +34,22 @@ gulp.task('css', function() {
 
   // Bootstrap Maps
   gulp.src(bower + 'bootstrap/dist/css/*.map')
+    .pipe(plugins.plumber())
     .pipe(gulp.dest(dest + 'css'));
 
   // Chosen Sprite
   gulp.src(bower + 'chosen_v1.3.0/*.png')
+    .pipe(plugins.plumber())
     .pipe(gulp.dest(dest + 'css'));
 
   // Bootstrap Calendar Templates
   gulp.src(bower + 'bootstrap-calendar/tmpls/*.html')
+    .pipe(plugins.plumber())
     .pipe(gulp.dest(dest + 'tmpls'));
 
   // Bootstrap Calendar Images
   gulp.src(bower + 'bootstrap-calendar/img/*.png')
+    .pipe(plugins.plumber())
     .pipe(gulp.dest(dest + 'img'));
 
   var cssFiles = [
@@ -55,10 +61,10 @@ gulp.task('css', function() {
   ];
 
   return gulp.src(plugins.mainBowerFiles().concat(cssFiles))
+    .pipe(plugins.plumber())
     .pipe(plugins.filter(['*.css', '*.scss']))
     .pipe(plugins.sass({ style: 'expanded' }))
     .pipe(plugins.concat('main.css'))
-    .pipe(plugins.plumber())
     .pipe(gulp.dest(dest + 'css'))
     .pipe(plugins.minifyCss({keepSpecialComments:0}))
     .pipe(plugins.concat('main.min.css'))
@@ -82,6 +88,7 @@ gulp.task('js', function() {
   ];
 
   return gulp.src(plugins.mainBowerFiles().concat(jsFiles))
+    .pipe(plugins.plumber())
     .pipe(plugins.filter('*.js'))
     .pipe(plugins.concat('main.js'))
     .pipe(gulp.dest(dest + 'js'))
@@ -105,6 +112,7 @@ gulp.task('watch', function() {
 
 gulp.task('ctp', function() {
   gulp.src('View/**/*.ctp')
+    .pipe(plugins.plumber())
     .pipe(plugins.livereload());
 });
 
