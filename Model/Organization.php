@@ -65,7 +65,11 @@ class Organization extends AppModel {
 		'Startup Weekend Bordeaux' => 'SWBordeaux', 'Aquinum' => 'aquinum', 'BAUG' => 'BAUG_33',
 		'Bordeaux Games' => 'BxGames', 'Bordeaux JUG' => 'BordeauxJUG', 'Giroll' => 'CollectifGiroll',
 		'Okiwi' => 'okiwi_fr', 'RubyBDX' => 'rubybdx', 'D&B Talks' => 'dbtalks_org', 'TTFX' => 'TTFXBordeaux',
-		'UX Bordeaux' => 'uxbordeaux'
+		'UX Bordeaux' => 'uxbordeaux', 'Bordeaux Entrepreneurs' => 'Bdx_E', 'Mash Up Bordeaux' => 'MU_Bordeaux',
+		'Semaine Digitale' => 'semainedigitale', 'ApéroWeb Bordeaux' => 'aperoweb_bdx', 'BordeauxJS' => 'BordeauxJS',
+		'Le HUG' => 'hugbdx', 'Darwin eco-système' => 'DarwinBdx', 'Agile Tour Bordeaux' => 'atbdx',
+		'Drupal Bordeaux' => 'drupal_bordeaux', 'Coding Goûter Bdx' => 'CodingGouterBdx', 'Bdxcoin' => 'Bdxcoin',
+		'Le Campement Bordeaux' => 'Lecampement', 'Délégation TIC Région Aquitaine' => 'NumericAquitN', 'Sthack' => 'sth4ck'
 	];
 
 
