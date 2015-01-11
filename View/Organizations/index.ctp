@@ -16,12 +16,12 @@
 	  	); ?>
 		<h1><?php echo $title; ?></h1>
 	</div>
-	<div class="row">
+	<div class="row row-flex row-flex-wrap">
 		<?php foreach ($organizations as $organization): ?>
-			<div class="col-sm-6">
+			<div class="col-xs-12 col-sm-6">
 				<?php echo $this->element(
 					'../Organizations/Elements/card',
-					['organization' => $organization, 'truncate' => true]
+					['organization' => $organization]
 				); ?>
 			</div>
 		<?php endforeach; ?>

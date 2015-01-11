@@ -24,10 +24,6 @@ html, body {
 	line-height: inherit;
 }
 
-.panel-body p.truncate {
-	height: 60px;
-}
-
 #upcoming-events {
 	margin-top:30px;
 }
@@ -71,4 +67,31 @@ html, body {
 	font-size: 13px;
 	height: 3em;
 	overflow: hidden;
+}
+
+// Thanks to http://www.bootply.com/126437
+// And http://css-tricks.com/snippets/css/a-guide-to-flexbox/
+.row-flex, .row-flex > div[class*='col-'] {  
+    display: flex;
+    flex: 1 1 1;
+}
+
+.row-flex-wrap {
+	flex-flow: row wrap;
+    flex: 0;
+}
+
+.row-flex > div[class*='col-'], .container-flex > div[class*='col-'] {
+	 margin:-1px; /* hack adjust for wrapping */
+}
+
+.flex-col {
+    display: flex;
+    flex: 1 100%;
+	flex-flow: column nowrap;
+}
+
+.flex-grow {
+	display: flex;
+    flex: 2;
 }

@@ -40,8 +40,7 @@
 							'organization' => [
 								'Organization' => $organizer,
 								'Edition' => $event['Edition']
-							],
-							'truncate' => true
+							]
 						]
 					); ?>
 				<?php endforeach; ?>

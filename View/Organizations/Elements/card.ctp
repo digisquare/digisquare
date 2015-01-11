@@ -1,5 +1,5 @@
-<div class="panel panel-default">
-	<div class="panel-body">
+<div class="panel panel-default flex-col">
+	<div class="panel-body flex-grow">
 		<div class="media">
 			<?php if (!(empty($organization['Organization']['avatar']))): ?>
 				<div class="media-left">
@@ -13,16 +13,10 @@
 				<h4>
 					<?php echo $this->Link->viewOrganization($organization); ?>
 				</h4>
-				<?php if (isset($truncate)): ?>
-					<p class="truncate">
-						<?php $description = explode('. ', $organization['Organization']['description']); ?>
-						<?php echo $this->Text->truncate($description[0], 140); ?>
-					</p>
-				<?php else: ?>
-					<p>
-						<?php echo nl2br($this->Text->autoLink($organization['Organization']['description'])); ?>
-					</p>
-				<?php endif; ?>
+				<p>
+					<?php $description = explode('. ', $organization['Organization']['description']); ?>
+					<?php echo $this->Text->truncate($description[0], 140); ?>
+				</p>
 			</div>
 		</div>
 	</div>
