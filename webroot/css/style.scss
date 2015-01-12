@@ -95,3 +95,46 @@ html, body {
 	display: flex;
     flex: 2;
 }
+
+#monthly-calendar {
+	th {
+		width: 1 / 7 * 100%;
+		text-align: center;
+	}
+	.day-cell {
+		padding: 5px;
+	}
+	.cal-day-outmonth {
+		opacity: 0.4;
+	}
+	.cal-day-today {
+		background-color: #e8fde7;
+	}
+	.cal-day-weekend .day-number {
+		color: #8b0000;
+	}
+	.cal-day-today .day-number {
+		font-weight: bold;
+	}
+	.day-table {
+		table-layout: fixed;
+		width: 100%;
+		font-size: 0.8em;
+		font-family: Verdana, sans-serif;
+		th {
+			text-align: right;
+			font-weight: normal;
+			opacity: 0.6;
+			padding-bottom: 5px;
+		}
+		td {
+			white-space: nowrap;
+			overflow: hidden;
+			line-height: inherit;
+			.event-time {
+				font-size: 0.9em;
+				font-family: Arial, sans-serif;
+			}
+		}
+	}
+}

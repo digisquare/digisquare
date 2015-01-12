@@ -8189,6 +8189,37 @@ html, body {
   display: flex;
   flex: 2; }
 
+#monthly-calendar th {
+  width: 14.28571%;
+  text-align: center; }
+#monthly-calendar .day-cell {
+  padding: 5px; }
+#monthly-calendar .cal-day-outmonth {
+  opacity: 0.4; }
+#monthly-calendar .cal-day-today {
+  background-color: #e8fde7; }
+#monthly-calendar .cal-day-weekend .day-number {
+  color: #8b0000; }
+#monthly-calendar .cal-day-today .day-number {
+  font-weight: bold; }
+#monthly-calendar .day-table {
+  table-layout: fixed;
+  width: 100%;
+  font-size: 0.8em;
+  font-family: Verdana, sans-serif; }
+  #monthly-calendar .day-table th {
+    text-align: right;
+    font-weight: normal;
+    opacity: 0.6;
+    padding-bottom: 5px; }
+  #monthly-calendar .day-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: inherit; }
+    #monthly-calendar .day-table td .event-time {
+      font-size: 0.9em;
+      font-family: Arial, sans-serif; }
+
 time.icon {
   font-size: 1em;
   /* change icon size */
