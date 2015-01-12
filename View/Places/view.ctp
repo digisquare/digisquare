@@ -1,3 +1,5 @@
+<?php $title_for_layout = $place['Place']['name'] . ', ' . $place['Place']['city'];
+$this->set(compact('title_for_layout')); ?>
 <div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(

@@ -1,3 +1,5 @@
+<?php $title_for_layout = $organization['Organization']['name'];
+$this->set(compact('title_for_layout')); ?>
 <div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
