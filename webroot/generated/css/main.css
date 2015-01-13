@@ -8219,6 +8219,12 @@ html, body {
     #monthly-calendar .day-table td .event-time {
       font-size: 0.9em;
       font-family: Arial, sans-serif; }
+    #monthly-calendar .day-table td .event-name {
+      max-width: 139px;
+      display: inline-block; }
+    #monthly-calendar .day-table td .popover {
+      width: 300px;
+      max-width: none; }
 
 time.icon {
   font-size: 1em;

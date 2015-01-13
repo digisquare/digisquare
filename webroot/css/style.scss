@@ -135,6 +135,14 @@ html, body {
 				font-size: 0.9em;
 				font-family: Arial, sans-serif;
 			}
+			.event-name {
+				max-width: 139px;
+				display: inline-block;
+			}
+			.popover {
+				width: 300px;
+				max-width: none;
+			}
 		}
 	}
 }

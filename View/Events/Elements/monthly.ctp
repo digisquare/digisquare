@@ -51,6 +51,24 @@ $events = $this->requestAction($url);
 								$end_at = new Datetime($event['Event']['end_at']);
 								$sameday = ($start_at->format('Y-m-d') === $end_at->format('Y-m-d'));
 								$allday = ('00:00:00' === $start_at->format('H:i:s'));
+								$title = '';
+								if (!empty($event['Organization'])) {
+									foreach ($event['Organization'] as $organizer) {
+										$title .= $this->Html->image(
+											$organizer['avatar'],
+											[
+												'height' => 20,
+												'alt' => $organizer['name'],
+												'style' => ['margin-right:10px;']
+											]
+										);
+									}
+								}
+								$title .= $event['Event']['name'];
+								$description = explode('. ', $event['Event']['description']);
+								$content = $this->Text->truncate($description[0], 140);
+								$content .= '<br><span class="glyphicon glyphicon-map-marker"></span> ';
+								$content .= $event['Place']['name'];
 								?>
 								<tr>
 									<td>
@@ -59,7 +77,9 @@ $events = $this->requestAction($url);
 												<?php echo $start_at->format('H:i'); ?>
 											</span>
 										<?php endif; ?>
-										<span class="event-name">
+										<span class="event-name" data-toggle="popover"
+										 title="<?php echo htmlspecialchars($title); ?>"
+										 data-content="<?php echo htmlspecialchars($content); ?>">
 											<?php echo $this->Link->viewEvent($event); ?>
 										</span>
 									</td>
