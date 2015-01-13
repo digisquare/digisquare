@@ -42,9 +42,9 @@
 		); ?>
 		<h1><?php echo $title; ?></h1>
 	</div>
-	<div class="row">
+	<div class="row row-flex row-flex-wrap">
 		<?php foreach ($events as $event): ?>
-			<div class="col-md-6">
+			<div class="col-xs-12 col-sm-6">
 				<?php echo $this->element(
 					'../Events/Elements/card',
 					['event' => $event]

@@ -7,17 +7,6 @@ if ($today == new Datetime('first monday of this month')) {
 }
 $last_day_of_this_month = new Datetime('last day of this month');
 $day = $first_monday;
-$url = [
-	'controller' => 'events',
-	'action' => 'index',
-	'?' => [
-		'date' => $today->format('Y-m'),
-		'sort' => 'start_at',
-		'direction' => 'asc',
-		'limit' => 100
-	]
-];
-$events = $this->requestAction($url);
 ?>
 <table id="monthly-calendar" class="table table-bordered">
 	<tr>

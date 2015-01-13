@@ -1,3 +1,17 @@
+<?php 
+$today = new DateTime('today');
+$url = [
+	'controller' => 'events',
+	'action' => 'index',
+	'?' => [
+		'date' => $today->format('Y-m'),
+		'sort' => 'start_at',
+		'direction' => 'asc',
+		'limit' => 100
+	]
+];
+$events = $this->requestAction($url);
+?>
 <div role="main">
 	<div class="page-header">
 		<?php echo $this->Html->link(
@@ -13,9 +27,22 @@
 		); ?>
 		<h1><?php echo h($edition['Edition']['name']); ?></h1>
 	</div>
-	<div class="row">
+	<div class="hidden-xs row">
 		<div class="col-md-12">
-			<?php echo $this->element('../Events/Elements/monthly'); ?>
+			<?php echo $this->element(
+				'../Events/Elements/monthly',
+				['events' => $events]
+			); ?>
 		</div>
+	</div>
+	<div class="visible-xs-block row row-flex row-flex-wrap">
+		<?php foreach ($events as $event): ?>
+			<div class="col-xs-12 col-sm-6">
+				<?php echo $this->element(
+					'../Events/Elements/card',
+					['event' => $event]
+				); ?>
+			</div>
+		<?php endforeach; ?>
 	</div>
 </div>
