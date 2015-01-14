@@ -25,6 +25,13 @@ foreach ($controllers as $controller) {
 	Router::connect('/' . $controller . '/:action',		['controller' => $controller]);
 }
 
+//membre/1/damien-varron
+Router::connect(
+	'/membre/:id/:slug',
+	['controller' => 'users', 'action' => 'view'],
+	['pass' => ['id'], 'id' => '[0-9]+']
+);
+
 //bordeaux
 Router::connect(
 	'/:slug',
