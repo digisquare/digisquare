@@ -25,7 +25,7 @@
 				['empty' => true, 'class' => 'form-control chzn-select-deselect', 'required' => false]
 			); ?>
 			<?php echo $this->Form->input('name'); ?>
-			<?php if (!(empty($this->data['Organization']['avatar']))) {
+			<?php if (!empty($this->data['Organization']['avatar'])) {
 				$avatar = $this->Html->image(
 					$this->data['Organization']['avatar'],
 					['height' => 20]

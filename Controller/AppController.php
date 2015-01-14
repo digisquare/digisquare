@@ -21,4 +21,34 @@ class AppController extends Controller {
 		$this->Auth->allow('index', 'feed', 'view');
 	}
 
+	public function beforeRender() {
+		$url = $this->here;
+		if ('view' === $this->action) {
+			switch ($this->name) {
+				case 'Users':
+					$url = Router::url([
+						'action' => 'view',
+						'id' => $this->viewVars['user']['User']['id'],
+						'slug' => strtolower(Inflector::slug($this->viewVars['user']['User']['username'], '-'))
+					]);
+					break;
+
+				case 'Events':
+				case 'Places':
+				case 'Organizations':
+					$model = Inflector::singularize($this->name);
+					$entity = strtolower($model);
+					$url = Router::url([
+						'slug' => $this->viewVars[$entity]['Edition']['slug'],
+						'id' => $this->viewVars[$entity][$model]['id'],
+						'bslug' => strtolower(Inflector::slug($this->viewVars[$entity][$model]['name'], '-'))
+					]);
+					break;
+			}
+		}
+		if($url !== $this->here) {
+			$this->redirect($url, 301);
+		}
+	}
+
 }

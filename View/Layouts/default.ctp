@@ -63,12 +63,30 @@
 						</li>
 					</ul>
 					<?php if ($this->Session->check('Auth.User')): ?>
+						<?php if (!empty($this->Session->read('Auth.User.avatar'))) {
+							$avatar = $this->Html->image(
+								$this->Session->read('Auth.User.avatar'),
+								['height' => 20, 'style' => 'border: #f3f3f3 solid 1px; border-radius: 5px;']
+							);
+						} else {
+							$avatar = '<i class="fa fa-link"></i>';
+						} ?>
 						<ul class="nav navbar-nav navbar-right">
-							<li>
-								<?php echo $this->Html->link(
-									__('Logout'),
-									['controller' => 'users', 'action' => 'logout']
-								); ?>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<?php echo $avatar; ?>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<?php echo $this->Link->viewUser($this->Session->read('Auth')); ?>
+									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Logout'),
+											['controller' => 'users', 'action' => 'logout']
+										); ?>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					<?php else: ?>

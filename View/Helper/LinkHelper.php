@@ -116,4 +116,27 @@ class LinkHelper extends HtmlHelper {
 			$confirmMessage
 		);
 	}
+
+	public function viewUser($title, $user = [], $options = [], $confirmMessage = false) {
+		if (is_array($title)) {
+			$user = $title;
+			$title = $user['User']['username'];
+		}
+		$url = [];
+		if (isset($options['url'])) {
+			$url = $options['url'];
+			unset($options['url']);
+		}
+		return $this->link($title,
+			array_merge([
+				'controller' => 'users',
+				'action' => 'view',
+				'id' => $user['User']['id'],
+				'slug' => strtolower(Inflector::slug($user['User']['username'], '-'))
+			], $url),
+			$options,
+			$confirmMessage
+		);
+	}
+
 }
