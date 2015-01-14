@@ -3,19 +3,19 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
 
-	public $components = array(
+	public $components = [
 		'Session',
 		'Auth',
-		'Paginator' => array('paramType' => 'querystring'),
+		'Paginator' => ['paramType' => 'querystring'],
 		'RequestHandler',
-	);
+	];
 
-	public $helpers = array(
+	public $helpers = [
 		'Session',
-		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
-		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
-		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
-	);
+		'Html' => ['className' => 'BoostCake.BoostCakeHtml'],
+		'Form' => ['className' => 'BoostCake.BoostCakeForm'],
+		'Paginator' => ['className' => 'BoostCake.BoostCakePaginator'],
+	];
 
 	public function beforeFilter() {
 		$this->Auth->allow('index', 'feed', 'view');
