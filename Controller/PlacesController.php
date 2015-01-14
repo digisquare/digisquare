@@ -24,7 +24,7 @@ class PlacesController extends AppController {
 			$this->Place->create();
 			if ($this->Place->save($this->request->data)) {
 				$this->Session->setFlash(__('The place has been saved.'), 'message_success');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'view', 'id' => $this->Place->id]);
 			} else {
 				$this->Session->setFlash(__('The place could not be saved. Please, try again.'), 'message_error');
 			}
@@ -35,18 +35,18 @@ class PlacesController extends AppController {
 		if (!$this->Place->exists($id)) {
 			throw new NotFoundException(__('Invalid place'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Place->save($this->request->data)) {
 				$this->Session->setFlash(__('The place has been saved.'), 'message_success');
-				return $this->redirect($this->referer());
+				return $this->redirect(['action' => 'view', 'id' => $this->Place->id]);
 			} else {
 				$this->Session->setFlash(__('The place could not be saved. Please, try again.'), 'message_error');
 			}
 		} else {
-			$place = $this->Place->find('first', array(
+			$place = $this->Place->find('first', [
 				'contain' => false,
-				'conditions' => array('Place.id' => $id)
-			));
+				'conditions' => ['Place.id' => $id]
+			]);
 			if ($this->request->query('geocode')) {
 				$this->request->data = $this->Place->geocode($place);
 			} else {
@@ -66,14 +66,14 @@ class PlacesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The place could not be deleted. Please, try again.'), 'message_error');
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 	public function merge() {
 		if ($this->request->is('post') && isset($this->request->data['Place']['merge'])) {
 			if ($this->Place->merge($this->request->data)) {
 				$this->Session->setFlash(__('The places were merged.'), 'message_success');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Session->setFlash(__('The places could not be merged. Please, try again.'), 'message_error');
 			}
@@ -83,21 +83,21 @@ class PlacesController extends AppController {
 				$this->request->data['Place']['place_id_1'] = $this->request->data['Place']['place_id_2'];
 				$this->request->data['Place']['place_id_2'] = $temp_place_id;
 			}
-			$place_1 = $this->Place->find('first', array(
-				'contain' => array(),
-				'conditions' => array(
+			$place_1 = $this->Place->find('first', [
+				'contain' => false,
+				'conditions' => [
 					'Place.id' => $this->request->data['Place']['place_id_1']
-				)
-			));
-			$place_2 = $this->Place->find('first', array(
-				'contain' => array(),
-				'conditions' => array(
+				]
+			]);
+			$place_2 = $this->Place->find('first', [
+				'contain' => false,
+				'conditions' => [
 					'Place.id' => $this->request->data['Place']['place_id_2']
-				)
-			));
+				]
+			]);
 			$this->set(compact('place_1', 'place_2'));
 		}
-		$places = $this->Place->find('list', array('order' => array('Place.name' => 'ASC')));
+		$places = $this->Place->find('list', ['order' => ['Place.name' => 'ASC']]);
 		$this->set(compact('places'));
 	}
 

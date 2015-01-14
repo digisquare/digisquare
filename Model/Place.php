@@ -179,8 +179,8 @@ class Place extends AppModel {
 				'zipcode' => $geocodedPlace->getZipcode(),
 				'city' => $geocodedPlace->getCity(),
 				'country_code' => $geocodedPlace->getCountryCode(),
-				'latitude' => $geocodedPlace->getLatitude(),
-				'longitude' => $geocodedPlace->getLongitude(),
+				'latitude' => str_replace(',', '.', $geocodedPlace->getLatitude()),
+				'longitude' => str_replace(',', '.', $geocodedPlace->getLongitude()),
 			]
 		];
 		foreach ($decodedGeocodedPlace['Place'] as $key => $value) {
