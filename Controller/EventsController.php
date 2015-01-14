@@ -5,6 +5,8 @@ class EventsController extends AppController {
 
 	public function index() {
 		$conditions = [];
+		$this->Paginator->settings['contain'] = ['Edition', 'Place', 'Organization'];
+		$this->Paginator->settings['order'] = ['Event.start_at' => 'desc'];
 		// Places
 		if (isset($this->request->query['place_id'])) {
 			$conditions['Event.place_id'] = $this->request->query['place_id'];
@@ -76,9 +78,11 @@ class EventsController extends AppController {
 				];
 			}
 		}
-		$this->Paginator->settings['contain'] = ['Edition', 'Place', 'Organization'];
+		// iCal Feed
+		if (isset($this->request->params['feed'])) {
+			$this->Paginator->settings['limit'] = 200;
+		}
 		$this->Paginator->settings['conditions'] = $conditions;
-		$this->Paginator->settings['order'] = ['Event.start_at' => 'desc'];
 		$events = $this->Paginator->paginate('Event');
 		$this->set([
 			'events' => $events,

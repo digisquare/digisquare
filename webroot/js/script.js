@@ -69,6 +69,14 @@ $(document).ready( function () {
     html: true
   });
 
+  $('.feed-popover').popover({
+    trigger: 'click',
+    placement: 'bottom',
+    html: true
+  }).click(function(e) {
+    e.preventDefault();
+  });
+
   // Twitter Script
   window.twttr = (function (d, s, id) {
     var t, js, fjs = d.getElementsByTagName(s)[0];

@@ -11,13 +11,29 @@ $url = [
 	]
 ];
 $events = $this->requestAction($url);
+$popover_title = htmlspecialchars('S\'abonner au calendrier');
+$popover_url = $this->Html->url(
+	[
+		'controller' => 'events',
+		'action' => 'index',
+		'slug' => $edition['Edition']['slug'],
+		'feed' => true,
+		'ext' => 'ics'
+	],
+	['full' => true]
+);
+$popover_content = htmlspecialchars('<input type="text" value="'. $popover_url . '" />');
 ?>
 <div role="main">
 	<div class="page-header">
+		<a href="<?php echo $popover_url; ?>" class="btn btn-primary pull-right feed-popover" title="S'abonner au calendrier"
+		 data-toggle="popover" title="<?php echo $popover_title; ?>" data-content="<?php echo $popover_content; ?>">
+			<i class="fa fa-calendar"></i>
+		</a>
 		<?php echo $this->Html->link(
 			'<i class="icon-plus-sign icon-white"></i> ' . __('Edit'),
 			array('action' => 'edit', 'id' => $edition['Edition']['id']),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
 		); ?>
 		<?php echo $this->Form->postLink(
 			'<i class="icon-plus-sign icon-white"></i> ' . __('Delete'),

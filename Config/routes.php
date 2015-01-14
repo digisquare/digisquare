@@ -31,6 +31,12 @@ Router::connect(
 	['controller' => 'editions', 'action' => 'view']
 );
 
+//feeds/bordeaux.ics
+Router::connect(
+	'/feeds/:slug',
+	['controller' => 'events', 'action' => 'index', 'feed' => true]
+);
+
 //bordeaux/annuaire
 Router::connect(
 	'/:slug/annuaire',
