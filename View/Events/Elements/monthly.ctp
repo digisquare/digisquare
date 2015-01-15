@@ -1,12 +1,26 @@
 <?php
-$today = new DateTime('today');
-if ($today == new Datetime('first monday of this month')) {
-	$first_monday = $today;
+$today = $query_date = new DateTime('today');
+if (isset($this->request->query['date']) && date('Y-m') !== $this->request->query['date']) {
+	$query_date = new Datetime($this->request->query['date']);
+	$query_month = $query_date->format('m');
+	if ($query_date == new Datetime('first monday of' . $query_date->format('F'))) {
+		$first_monday = $query_date;
+	} else {
+		$query_date->modify('-1 month');
+		$first_monday = new Datetime('last monday of' . $query_date->format('F'));
+		$query_date->modify('+1 month');
+	}
+	$last_day_of_this_month = new Datetime('last day of' . $query_date->format('F'));
+	$day = $first_monday;
 } else {
-	$first_monday = new Datetime('last monday of last month');
+	if ($today == new Datetime('first monday of this month')) {
+		$first_monday = $today;
+	} else {
+		$first_monday = new Datetime('last monday of last month');
+	}
+	$last_day_of_this_month = new Datetime('last day of this month');
+	$day = $first_monday;
 }
-$last_day_of_this_month = new Datetime('last day of this month');
-$day = $first_monday;
 ?>
 <table id="monthly-calendar" class="table table-bordered">
 	<tr>
@@ -24,7 +38,7 @@ $day = $first_monday;
 				<?php
 				$row = 1;
 				$class = 'day-cell';
-				$class .= ($day->format('m') === $today->format('m') ? ' cal-day-in-month' : ' cal-day-outmonth');
+				$class .= ($day->format('m') === $query_date->format('m') ? ' cal-day-in-month' : ' cal-day-outmonth');
 				$class .= (in_array($day->format('N'), [6, 7]) ? ' cal-day-weekend' : '');
 				$class .= ($day == $today ? ' cal-day-today' : '');
 				?>
@@ -95,3 +109,7 @@ $day = $first_monday;
 		</td>
 	<?php endwhile; ?>
 </table>
+<?php echo $this->element(
+	'../Events/Elements/pagination',
+	['controller' => 'edition', 'edition' => $edition]
+); ?>

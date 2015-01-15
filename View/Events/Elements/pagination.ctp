@@ -1,6 +1,9 @@
 <?php if (isset($this->request->query['date'])) {
 	$query_date = $this->request->query['date'];
 	$date = new DateTime($query_date);
+} else if ('edition' === $controller) {
+	$date = new DateTime();	
+	$query_date = $date->format('Y-m');
 } else {
 	$query_date = false;
 	$date = new DateTime();
@@ -37,7 +40,7 @@ $method = 'view' . Inflector::classify($controller);
 		</li>
 	<?php endif; ?>
 	<?php $date = $date->modify('+1 month'); ?>
-	<?php if ($query_date && date('Y-m') !== $query_date): ?>
+	<?php if ('edition' === $controller || ($query_date && date('Y-m') !== $query_date)): ?>
 		<li>
 			<?php echo $this->Link->$method(
 				strftime('%B', $date->getTimestamp()) . ' >',
