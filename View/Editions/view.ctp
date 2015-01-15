@@ -64,4 +64,8 @@ $popover_content = htmlspecialchars('<input type="text" value="'. $popover_url .
 			</div>
 		<?php endforeach; ?>
 	</div>
+	<?php echo $this->element(
+		'../Events/Elements/pagination',
+		['controller' => 'edition', 'edition' => $edition]
+	); ?>
 </div>

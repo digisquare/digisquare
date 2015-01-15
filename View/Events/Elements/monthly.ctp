@@ -109,7 +109,3 @@ if (isset($this->request->query['date']) && date('Y-m') !== $this->request->quer
 		</td>
 	<?php endwhile; ?>
 </table>
-<?php echo $this->element(
-	'../Events/Elements/pagination',
-	['controller' => 'edition', 'edition' => $edition]
-); ?>
