@@ -1,4 +1,7 @@
 <?php 
+$title = 'Le calendrier des évènements à ' . $this->Link->viewEdition($edition);
+$this->set('title_for_layout', 'Le calendrier des évènements du numérique à ' . $edition['Edition']['name']);
+$url = ['slug' => $edition['Edition']['slug']];
 $today = new DateTime('today');
 $url = [
 	'controller' => 'events',
@@ -41,7 +44,7 @@ $popover_content = htmlspecialchars('<input type="text" value="'. $popover_url .
 			array('escape' => false, 'class' => 'btn btn-danger pull-right', 'style' => 'margin-right:10px;'),
 			__('Are you sure you want to delete # %s?', $edition['Edition']['id'])
 		); ?>
-		<h1><?php echo h($edition['Edition']['name']); ?></h1>
+		<h1><?php echo $title; ?></h1>
 	</div>
 	<div class="hidden-xs row">
 		<div class="col-md-12">
