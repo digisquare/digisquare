@@ -1,13 +1,20 @@
 <?php 
+if (isset($this->request->query['date'])) {
+	$date = new DateTime('today');
+} else {
+	$date = new Datetime($this->request->query['date']);
+}
 $title = 'Le calendrier des évènements à ' . $this->Link->viewEdition($edition);
-$this->set('title_for_layout', 'Le calendrier des évènements du numérique à ' . $edition['Edition']['name']);
-$url = ['slug' => $edition['Edition']['slug']];
-$today = new DateTime('today');
+$title_for_layout =  'Le calendrier des évènements du numérique à '
+	. $edition['Edition']['name']
+	. ' en ' . strftime("%B %Y", $date->getTimestamp());
+$this->set(compact('title_for_layout'));
 $url = [
 	'controller' => 'events',
 	'action' => 'index',
 	'?' => [
-		'date' => $today->format('Y-m'),
+		'date' => $date->format('Y-m'),
+		'edition_id' => $edition['Edition']['id'],
 		'sort' => 'start_at',
 		'direction' => 'asc',
 		'limit' => 100
