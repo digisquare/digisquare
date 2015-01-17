@@ -1,8 +1,8 @@
 <?php 
 if (isset($this->request->query['date'])) {
-	$date = new DateTime('today');
-} else {
 	$date = new Datetime($this->request->query['date']);
+} else {
+	$date = new DateTime('today');
 }
 $title = 'Le calendrier des évènements à ' . $this->Link->viewEdition($edition);
 $title_for_layout =  'Le calendrier des évènements du numérique à '
