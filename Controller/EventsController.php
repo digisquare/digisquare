@@ -6,6 +6,7 @@ class EventsController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(['index', 'view']);
+		$this->Security->unlockedActions = ['add', 'edit'];
 	}
 
 	public function index() {

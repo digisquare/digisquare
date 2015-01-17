@@ -18,6 +18,7 @@ class AppController extends Controller {
 		'Acl',
 		'Paginator' => ['paramType' => 'querystring'],
 		'RequestHandler',
+		'Security',
 	];
 
 	public $helpers = [

@@ -6,6 +6,7 @@ class AuthenticationsController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('callback');
+		$this->Security->unlockedActions = ['callback'];
 	}
 
 	public function callback() {
