@@ -4,6 +4,8 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
+	public $actsAs = ['Acl' => ['type' => 'requester']];
+
 	public $validate = array(
 		'username' => array(
 			'notEmpty' => array(
@@ -42,6 +44,25 @@ class User extends AppModel {
 			'dependent' => false,
 		)
 	);
+
+	public function bindNode($user) {
+		return ['model' => 'Group', 'foreign_key' => $user['User']['group_id']];
+	}
+
+	public function parentNode() {
+		if (!$this->id && empty($this->data)) {
+			return null;
+		}
+		if (isset($this->data['User']['group_id'])) {
+			$group_id = $this->data['User']['group_id'];
+		} else {
+			$group_id = $this->field('group_id');
+		}
+		if (!$group_id) {
+			return null;
+		}
+		return ['Group' => ['id' => $group_id]];
+	}
 
 	public function afterFind($results, $primary = false) {
 		foreach ($results as $key => $val) {

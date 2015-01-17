@@ -5,7 +5,17 @@ class AppController extends Controller {
 
 	public $components = [
 		'Session',
-		'Auth',
+		'Auth' => [
+			'authorize' => [
+				'all' => array('actionPath' => 'controllers/'),
+				'Controller',
+				'Actions',
+			],
+			'loginRedirect' => '/',
+			'logoutRedirect' => '/',
+			'unauthorizedRedirect' => false
+		],
+		'Acl',
 		'Paginator' => ['paramType' => 'querystring'],
 		'RequestHandler',
 	];
@@ -18,7 +28,33 @@ class AppController extends Controller {
 	];
 
 	public function beforeFilter() {
-		$this->Auth->authorize = 'Controller';
+		if ($this->Auth->user() && 1 == $this->Auth->user('group_id')) {
+			$this->Auth->allow();			
+		}
+	}
+
+	public function isAuthorized($user = null) {
+		if (!isset($user['id']) || !isset($this->params['id'])) {
+			return false;
+		}
+		if ('edit' === $this->action) {
+			try {
+				return $this->Acl->check(
+					[
+						'model' => 'User',
+						'foreign_key' => $user['id']
+					],
+					[
+						'model' => $this->modelClass,
+						'foreign_key' => $this->params['id']
+					],
+					'update'
+				);
+			} catch (Exception $e) {
+				return false;
+			}
+		}
+		return false;
 	}
 
 	public function beforeRender() {

@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 
 class Edition extends AppModel {
 
+	public $actsAs = ['Acl' => ['type' => 'controlled']];
+
 	public $validate = [
 		'name' => [
 			'notEmpty' => [
@@ -45,6 +47,10 @@ class Edition extends AppModel {
 		'Grenoble', 'Dijon', 'Angers', 'Saint-Denis', 'Villeurbanne', 'Nîmes', 'Le Mans', 'Clermont-Ferrand',
 		'Aix-en-Provence', 'Brest', 'Limoges', 'Tours', 'Amiens', 'Metz', 'Perpignan'
 	];
+
+	public function parentNode() {
+		return 'Editions';
+	}
 
 	public function findBySlug($slug) {
 		return $this->find('first', [

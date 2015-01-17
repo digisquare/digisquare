@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 
 class Place extends AppModel {
 
+	public $actsAs = ['Acl' => ['type' => 'controlled']];
+
 	public $validate = array(
 		'name' => array(
 			'notEmpty' => array(
@@ -60,6 +62,25 @@ class Place extends AppModel {
 	);
 
 	public $fields = ['name', 'address', 'zipcode', 'city', 'country_code'];
+
+	public function bindNode($place) {
+		return ['model' => 'Edition', 'foreign_key' => $place['Place']['edition_id']];
+	}
+
+	public function parentNode() {
+		if (!$this->id && empty($this->data)) {
+			return null;
+		}
+		if (isset($this->data['Place']['edition_id'])) {
+			$edition_id = $this->data['Place']['edition_id'];
+		} else {
+			$edition_id = $this->field('edition_id');
+		}
+		if (!$edition_id) {
+			return null;
+		}
+		return ['Edition' => ['id' => $edition_id]];
+	}
 
 	public function afterFind($results, $primary = false) {
 		foreach ($results as $key => $val) {

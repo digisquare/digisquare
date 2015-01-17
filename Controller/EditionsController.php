@@ -78,6 +78,7 @@ class EditionsController extends AppController {
 	
 	public function reset() {
 		$this->Edition->reset();
+		$this->Acl->allow(['model' => 'Group', 'foreign_key' => 1], 'controllers');
 		$this->Session->setFlash(__('All is good in the world.'), 'message_success');
 		return $this->redirect(['action' => 'index']);
 	}

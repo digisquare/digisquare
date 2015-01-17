@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 
 class Event extends AppModel {
 
+	public $actsAs = ['Acl' => ['type' => 'controlled']];
+
 	public $validate = array(
 		'edition_id' => array(
 			'numeric' => array(
@@ -122,6 +124,25 @@ class Event extends AppModel {
 			'unique' => 'keepExisting',
 		)
 	);
+
+	public function bindNode($event) {
+		return ['model' => 'Edition', 'foreign_key' => $event['Event']['edition_id']];
+	}
+
+	public function parentNode() {
+		if (!$this->id && empty($this->data)) {
+			return null;
+		}
+		if (isset($this->data['Event']['edition_id'])) {
+			$edition_id = $this->data['Event']['edition_id'];
+		} else {
+			$edition_id = $this->field('edition_id');
+		}
+		if (!$edition_id) {
+			return null;
+		}
+		return ['Edition' => ['id' => $edition_id]];
+	}
 
 	public function parseVCalendar($vCalendar, $edition_id) {
 		foreach($vCalendar->VEVENT as $vEvent) {
