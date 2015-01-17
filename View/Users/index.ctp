@@ -1,9 +1,9 @@
 <div class="users index">
 	<div class="page-header">
 		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('New User'), 
-			array('controller' => 'users' , 'action' => 'add'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			'<i class="icon-plus-sign icon-white"></i> ' . __('New User'),
+			['controller' => 'users', 'action' => 'add'],
+			['escape' => false, 'class' => 'btn btn-primary pull-right']
 		); ?>
 		<h1><?php echo __('Users'); ?></h1>
 	</div>
@@ -11,7 +11,6 @@
 		<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -21,14 +20,13 @@
 			<tr>
 				<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 				<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-				<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
 				<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 				<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 				<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
 				<td class="actions">
-					<?php echo $this->Html->link(
+					<?php echo $this->Link->viewUser(
 						__('View'),
-						array('action' => 'view', 'id' => $user['User']['id']),
+						$user,
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Html->link(
