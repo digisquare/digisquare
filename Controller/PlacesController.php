@@ -34,6 +34,8 @@ class PlacesController extends AppController {
 				$this->Session->setFlash(__('The place could not be saved. Please, try again.'), 'message_error');
 			}
 		}
+		$editions = $this->Place->Edition->find('list');
+		$this->set(compact('editions'));
 	}
 
 	public function edit($id = null) {
@@ -58,6 +60,8 @@ class PlacesController extends AppController {
 				$this->request->data = $place;
 			}
 		}
+		$editions = $this->Place->Edition->find('list');
+		$this->set(compact('editions'));
 	}
 
 	public function delete($id = null) {
