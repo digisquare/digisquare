@@ -32,14 +32,6 @@ class User extends AppModel {
 			'className' => 'Participant',
 			'foreignKey' => 'event_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		)
 	);
 

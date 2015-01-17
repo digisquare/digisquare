@@ -47,17 +47,6 @@ class Organization extends AppModel {
 			'foreignKey' => 'organization_id',
 			'dependent' => false,
 		),
-		'Member' => array(
-			'className' => 'Member',
-			'foreignKey' => 'organization_id',
-			'dependent' => false,
-		),
-		'Affiliation' => array(
-			'className' => 'Affiliation',
-			'foreignKey' => 'foreign_key',
-			'order' => 'Affiliation.status ASC',
-			'dependent' => false
-		)
 	);
 
 	public $organizations = ['Coolworking' => 'coolworking', 'Jelly Bordeaux' => 'jellybordeaux', 'Kowork' => 'kowork_bdx',

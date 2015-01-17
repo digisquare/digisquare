@@ -104,39 +104,12 @@ class Event extends AppModel {
 			'className' => 'Organizer',
 			'foreignKey' => 'event_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		),
 		'Participant' => array(
 			'className' => 'Participant',
 			'foreignKey' => 'event_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		),
-		'EventsTag' => array(
-			'className' => 'EventsTag',
-			'foreignKey' => 'event_id',
-			'dependent' => false
-		),
-		'Affiliation' => array(
-			'className' => 'Affiliation',
-			'foreignKey' => 'foreign_key',
-			'order' => 'Affiliation.status ASC',
-			'dependent' => false
-		)
 	);
 
 	public $hasAndBelongsToMany = array(
@@ -147,12 +120,6 @@ class Event extends AppModel {
 			'foreignKey' => 'event_id',
 			'associationForeignKey' => 'organization_id',
 			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		)
 	);
 

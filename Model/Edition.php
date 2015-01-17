@@ -33,17 +33,6 @@ class Edition extends AppModel {
 			'foreignKey' => 'edition_id',
 			'dependent' => true,
 		],
-		'Startup' => [
-			'className' => 'Startup',
-			'foreignKey' => 'edition_id',
-			'dependent' => true,
-		],
-		'Affiliation' => [
-			'className' => 'Affiliation',
-			'foreignKey' => 'foreign_key',
-			'order' => 'Affiliation.status ASC',
-			'dependent' => true
-		]
 	];
 
 	public $cities = ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Strasbourg',

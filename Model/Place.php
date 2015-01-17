@@ -38,33 +38,11 @@ class Place extends AppModel {
 			'className' => 'Event',
 			'foreignKey' => 'place_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		),
 		'Organization' => array(
 			'className' => 'Organization',
 			'foreignKey' => 'place_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Affiliation' => array(
-			'className' => 'Affiliation',
-			'foreignKey' => 'foreign_key',
-			'order' => 'Affiliation.status ASC',
-			'dependent' => false
 		),
 		'Slug' => array(
 			'className' => 'Slug',
