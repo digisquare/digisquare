@@ -3,6 +3,11 @@ App::uses('AppController', 'Controller');
 
 class OrganizationsController extends AppController {
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow(['index', 'view']);
+	}
+
 	public function index() {
 		if (isset($this->request->params['slug'])) {
 			$edition = $this->Organization->Edition->findBySlug($this->request->params['slug']);

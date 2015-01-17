@@ -3,6 +3,11 @@ App::uses('AppController', 'Controller');
 
 class EditionsController extends AppController {
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow(['view']);
+	}
+
 	public function index() {
 		$this->Edition->recursive = 0;
 		$this->set('editions', $this->Paginator->paginate());

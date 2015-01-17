@@ -3,6 +3,11 @@ App::uses('AppController', 'Controller');
 
 class PlacesController extends AppController {
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow(['view']);
+	}
+
 	public function index() {
 		$this->Place->recursive = 0;
 		$this->set('places', $this->Paginator->paginate());
