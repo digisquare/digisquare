@@ -9,6 +9,7 @@ Cache::config('default', array('engine' => 'File'));
 CakePlugin::load('BoostCake');
 CakePlugin::load('Migrations');
 CakePlugin::load('Opauth', array('bootstrap' => true));
+CakePlugin::load('AclExtras');
 
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
