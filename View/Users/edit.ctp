@@ -15,6 +15,9 @@
 			<?php echo $this->Form->input('id'); ?>
 			<?php echo $this->Form->input('username'); ?>
 			<?php echo $this->Form->input('email'); ?>
+			<?php if (1 == $this->Session->read('Auth.User.group_id')) {
+				echo $this->Form->input('group_id');
+			} ?>
 			<?php echo $this->Form->input('User.Informations.first_name'); ?>
 			<?php echo $this->Form->input('User.Informations.last_name'); ?>
 			<?php echo $this->Form->input('User.Informations.description', ['type' => 'textarea']); ?>

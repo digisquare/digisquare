@@ -22,6 +22,14 @@ class User extends AppModel {
 		),
 	);
 
+	public $belongsTo = [
+		'Group' => [
+			'className' => 'Group',
+			'foreignKey' => 'group_id',
+			'counterCache' => true,
+		],
+	];
+
 	public $hasMany = array(
 		'Authentication' => array(
 			'className' => 'Authentication',

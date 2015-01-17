@@ -80,6 +80,7 @@ class Authentication extends AppModel {
 			'User' => array(
 				'username' => $this->buildUsername($auth),
 				'password' => md5(time()),
+				'group_id' => 3
 			),
 			'Authentication' => $this->buildAuthentication($auth),
 		);

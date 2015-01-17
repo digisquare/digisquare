@@ -16,6 +16,9 @@
 				echo $this->Form->input('username');
 				echo $this->Form->input('password');
 				echo $this->Form->input('email');
+				if (1 == $this->Session->read('Auth.User.group_id')) {
+					echo $this->Form->input('group_id');
+				}
 			?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">

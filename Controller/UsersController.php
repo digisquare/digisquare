@@ -49,6 +49,8 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'message_error');
 			}
 		}
+		$groups = $this->User->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 	public function edit($id = null) {
@@ -76,6 +78,8 @@ class UsersController extends AppController {
 				$this->request->data = $user;
 			}
 		}
+		$groups = $this->User->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 	public function delete($id = null) {
