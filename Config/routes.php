@@ -1,7 +1,7 @@
 <?php
 Router::parseExtensions('rss', 'json', 'ics');
 
-Router::connect('/',	['controller' => 'editions', 'action' => 'index']);
+Router::connect('/',	['controller' => 'pages', 'action' => 'display', 'home']);
 
 /**
  * Opauth Plugin Routing
@@ -14,7 +14,7 @@ Router::connect('/opauth-complete/*',	['controller' => 'authentications', 'actio
  * App Routing
  */
 $controllers = [
-	'editions', 'places', 'events',
+	'editions', 'places', 'events', 'groups',
 	'organizations', 'tags', 'startups',
 	'users', 'google_calendar_events', 'organizations'
 ];
