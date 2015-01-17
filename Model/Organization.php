@@ -100,7 +100,7 @@ class Organization extends AppModel {
 		return $organization;
 	}
 
-	public function insertAllOrganizations() {
+	public function insertAll() {
 		$id = 1;
 		foreach ($this->organizations as $name => $twitter) {
 			$organization = [
@@ -116,7 +116,7 @@ class Organization extends AppModel {
 			$organizations[] = $this->twitter($organization);
 			$id++;
 		}
-		$this->saveAll($organizations);
+		$this->saveMany($organizations, ['callbacks' => true]);
 		$this->query('ALTER TABLE  `organizations` ORDER BY  `id` ;');
 	}
 

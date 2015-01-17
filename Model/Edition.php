@@ -56,14 +56,18 @@ class Edition extends AppModel {
 	}
 
 	public function reset() {
-		$this->deleteAll(['Edition.id >' => 0]);
-		$this->Event->deleteAll(['Event.id >' => 0]);
-		$this->Event->Place->deleteAll(['Place.id >' => 0]);
-		$this->insertAllEditions();
-		$this->Organization->insertAllOrganizations();
+		$this->deleteAll(['Edition.id >' => 0], true, true);
+
+		$this->User = ClassRegistry::init('User');
+		$this->User->deleteAll(['User.id >' => 0], true, true);
+		$this->User->Group->deleteAll(['Group.id >' => 0], true, true);
+
+		$this->insertAll();
+		// $this->Organization->insertAll();
+		$this->User->Group->insertAll();
 	}
 
-	public function insertAllEditions() {
+	public function insertAll() {
 		foreach ($this->cities as $key => $city) {
 			$editions[] = [
 				'Edition' => [
@@ -73,7 +77,7 @@ class Edition extends AppModel {
 				]
 			];
 		}
-		$this->saveAll($editions);
+		$this->saveMany($editions, ['callbacks' => true]);
 		$this->query('ALTER TABLE  `editions` ORDER BY  `id` ;');
 	}
 
