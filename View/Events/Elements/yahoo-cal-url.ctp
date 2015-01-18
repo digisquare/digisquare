@@ -8,7 +8,7 @@ echo $this->Html->link(
 		<i class="fa fa-yahoo fa-stack-1x fa-inverse"></i>
 	</span>',
 	'http://calendar.yahoo.com/?v=60&VIEW=d&type=20'
-		. '&in_loc=' . urlencode($event['Place']['oneliner'])
+		. '&in_loc=' . urlencode($event['Venue']['oneliner'])
 		. '&TITLE=' . urlencode($event['Event']['name'])
 		. '&ST=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['start_at']))
 		. '&DUR=' . $interval->format('%H%I')

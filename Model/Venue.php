@@ -1,7 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
 
-class Place extends AppModel {
+class Venue extends AppModel {
 
 	public $actsAs = ['Acl' => ['type' => 'controlled']];
 
@@ -46,17 +46,17 @@ class Place extends AppModel {
 	public $hasMany = array(
 		'Event' => array(
 			'className' => 'Event',
-			'foreignKey' => 'place_id',
+			'foreignKey' => 'venue_id',
 			'dependent' => false,
 		),
 		'Organization' => array(
 			'className' => 'Organization',
-			'foreignKey' => 'place_id',
+			'foreignKey' => 'venue_id',
 			'dependent' => false,
 		),
 		'Slug' => array(
 			'className' => 'Slug',
-			'foreignKey' => 'place_id',
+			'foreignKey' => 'venue_id',
 			'dependent' => true
 		)
 	);
@@ -71,16 +71,16 @@ class Place extends AppModel {
 
 	public $fields = ['name', 'address', 'zipcode', 'city', 'country_code'];
 
-	public function bindNode($place) {
-		return ['model' => 'Edition', 'foreign_key' => $place['Place']['edition_id']];
+	public function bindNode($venue) {
+		return ['model' => 'Edition', 'foreign_key' => $venue['Venue']['edition_id']];
 	}
 
 	public function parentNode() {
 		if (!$this->id && empty($this->data)) {
 			return null;
 		}
-		if (isset($this->data['Place']['edition_id'])) {
-			$edition_id = $this->data['Place']['edition_id'];
+		if (isset($this->data['Venue']['edition_id'])) {
+			$edition_id = $this->data['Venue']['edition_id'];
 		} else {
 			$edition_id = $this->field('edition_id');
 		}
@@ -92,75 +92,75 @@ class Place extends AppModel {
 
 	public function afterFind($results, $primary = false) {
 		foreach ($results as $key => $val) {
-			if (isset($val['Place']['name'])) {
-				$results[$key]['Place']['oneliner'] = $this->implode($val);
+			if (isset($val['Venue']['name'])) {
+				$results[$key]['Venue']['oneliner'] = $this->implode($val);
 			}
 		}
 		return $results;
 	}
 
 	public function beforeSave($options = array()) {
-		if (!empty($this->data['Place']['latitude']) && !empty($this->data['Place']['longitude'])) {
+		if (!empty($this->data['Venue']['latitude']) && !empty($this->data['Venue']['longitude'])) {
 			return true;
 		}
-		if ($place = $this->geocode($this->data)) {
-			$this->data = $place;
+		if ($venue = $this->geocode($this->data)) {
+			$this->data = $venue;
 		}
 		return true;
 	}
 
 	public function afterSave($created, $options = array()) {
-		$this->Slug->createFromPlace($this->data);
+		$this->Slug->createFromVenue($this->data);
 		return true;
 	}
 
-	public function findOrCreate($place) {
-		if (empty($place)) {
+	public function findOrCreate($venue) {
+		if (empty($venue)) {
 			return false;
-		} else if (!is_array($place)) {
-			$place = $this->explode($place);
-		} else if (1 == sizeof($place['Place']) && isset($place['Place']['name'])) {
-			$place = $this->explode($place['Place']['name']);
+		} else if (!is_array($venue)) {
+			$venue = $this->explode($venue);
+		} else if (1 == sizeof($venue['Venue']) && isset($venue['Venue']['name'])) {
+			$venue = $this->explode($venue['Venue']['name']);
 		}
-		$slugPlace = $this->findBySlug($place);
-		if (isset($slugPlace['Place']['id'])) {
-			return $slugPlace['Place']['id'];
+		$slugVenue = $this->findBySlug($venue);
+		if (isset($slugVenue['Venue']['id'])) {
+			return $slugVenue['Venue']['id'];
 		}
-		if ($geocodedPlace = $this->geocode($place)) {
-			$place = $geocodedPlace;
-			$latLngPlace = $this->findByLatLng($geocodedPlace);
+		if ($geocodedVenue = $this->geocode($venue)) {
+			$venue = $geocodedVenue;
+			$latLngVenue = $this->findByLatLng($geocodedVenue);
 		}
-		if (isset($latLngPlace['Place']['id'])) {
-			$this->Slug->createFromPlace($latLngPlace);
-			return $latLngPlace['Place']['id'];
+		if (isset($latLngVenue['Venue']['id'])) {
+			$this->Slug->createFromVenue($latLngVenue);
+			return $latLngVenue['Venue']['id'];
 		}
 		$this->create();
-		if ($this->save($place)) {
+		if ($this->save($venue)) {
 			return $this->id;
 		}
 		return false;
 	}
 
-	public function findBySlug($place) {
-		$slug = $this->Slug->slugifyPlace($place);
+	public function findBySlug($venue) {
+		$slug = $this->Slug->slugifyVenue($venue);
 		return $this->Slug->find('first', array(
-			'contain' => array('Place'),
+			'contain' => array('Venue'),
 			'conditions' => array('Slug.name' => $slug)
 		));
 	}
 
-	public function findByLatLng($place) {
+	public function findByLatLng($venue) {
 		return $this->find('first', array(
 			'contain' => false,
 			'conditions' => array(
-				'latitude' => $place['Place']['latitude'],
-				'longitude' => $place['Place']['longitude']
+				'latitude' => $venue['Venue']['latitude'],
+				'longitude' => $venue['Venue']['longitude']
 			)
 		));
 	}
 
-	public function geocode($place) {
-		$place_string = $this->implode($place);
+	public function geocode($venue) {
+		$venue_string = $this->implode($venue);
 		$adapter = new \Geocoder\HttpAdapter\GuzzleHttpAdapter();
 		$geocoder = new \Geocoder\Geocoder();
 		$geocoder->registerProviders(array(
@@ -172,88 +172,88 @@ class Place extends AppModel {
 			),
 		));
 		try {
-			$geocodedPlace = $geocoder->geocode($place_string);
-			return $this->decodeAndMerge($place, $geocodedPlace);
+			$geocodedVenue = $geocoder->geocode($venue_string);
+			return $this->decodeAndMerge($venue, $geocodedVenue);
 		} catch (Exception $e) {
 			return false;
 		}
 	}
 
-	public function decodeAndMerge($place, $geocodedPlace) {
-		$decodedGeocodedPlace = [
-			'Place' => [
-				'address' => $geocodedPlace->getStreetNumber() . ' ' . $geocodedPlace->getStreetName(),
-				'zipcode' => $geocodedPlace->getZipcode(),
-				'city' => $geocodedPlace->getCity(),
-				'country_code' => $geocodedPlace->getCountryCode(),
-				'latitude' => str_replace(',', '.', $geocodedPlace->getLatitude()),
-				'longitude' => str_replace(',', '.', $geocodedPlace->getLongitude()),
+	public function decodeAndMerge($venue, $geocodedVenue) {
+		$decodedGeocodedVenue = [
+			'Venue' => [
+				'address' => $geocodedVenue->getStreetNumber() . ' ' . $geocodedVenue->getStreetName(),
+				'zipcode' => $geocodedVenue->getZipcode(),
+				'city' => $geocodedVenue->getCity(),
+				'country_code' => $geocodedVenue->getCountryCode(),
+				'latitude' => str_replace(',', '.', $geocodedVenue->getLatitude()),
+				'longitude' => str_replace(',', '.', $geocodedVenue->getLongitude()),
 			]
 		];
-		foreach ($decodedGeocodedPlace['Place'] as $key => $value) {
+		foreach ($decodedGeocodedVenue['Venue'] as $key => $value) {
 			if (!empty(trim($value))) {
-				$place['Place'][$key] = $value;
+				$venue['Venue'][$key] = $value;
 			}
 		}
-		return $place;
+		return $venue;
 	}
 
-	public function implode($place) {
-		if (1 == sizeof($place['Place']) && isset($place['Place']['name'])) {
-			return $place['Place']['name'];
+	public function implode($venue) {
+		if (1 == sizeof($venue['Venue']) && isset($venue['Venue']['name'])) {
+			return $venue['Venue']['name'];
 		}
-		foreach ($place['Place'] as $key => $value) {
+		foreach ($venue['Venue'] as $key => $value) {
 			if (!in_array($key, $this->fields) || empty($value)) {
-				unset($place['Place'][$key]);
+				unset($venue['Venue'][$key]);
 			}
 		}
-		if (isset($place['Place']['zipcode']) && isset($place['Place']['city'])) {
-			$place['Place']['city'] = $place['Place']['zipcode'] . ' ' . $place['Place']['city'];
-			unset($place['Place']['zipcode']);
+		if (isset($venue['Venue']['zipcode']) && isset($venue['Venue']['city'])) {
+			$venue['Venue']['city'] = $venue['Venue']['zipcode'] . ' ' . $venue['Venue']['city'];
+			unset($venue['Venue']['zipcode']);
 		}
 		// TODO: convert country to country_code and vice-versa
-		if (isset($place['Place']['country_code'])) {
-			$place['Place']['country_code'] = substr($place['Place']['country_code'], 0, 2);
+		if (isset($venue['Venue']['country_code'])) {
+			$venue['Venue']['country_code'] = substr($venue['Venue']['country_code'], 0, 2);
 		}
-		return implode(', ', $place['Place']);
+		return implode(', ', $venue['Venue']);
 	}
 
-	public function explode($place_string) {
+	public function explode($venue_string) {
 		foreach ($this->fields as $field) {
 			$$field = '';
 		}
 
-		$place_string = preg_replace('`[\pZ\pC]+`u', ' ', $place_string);
-		$place_string = stripslashes($place_string);
+		$venue_string = preg_replace('`[\pZ\pC]+`u', ' ', $venue_string);
+		$venue_string = stripslashes($venue_string);
 
 		// Extract City Name from Editions list
 		$editions = $this->Event->Edition->find('list');
-		$words = preg_split('`[\s,]+`', $place_string);
+		$words = preg_split('`[\s,]+`', $venue_string);
 		$city = implode(array_intersect(array_map('strtolower', $editions), array_map('strtolower', $words)));
 
-		// Extract Place Name from "Place Name (Some Other Stuff)"
-		if (preg_match('`\(([^\)]+)\)`', $place_string, $match)) {
-			$name = str_replace($match[0], '', $place_string);
+		// Extract Venue Name from "Venue Name (Some Other Stuff)"
+		if (preg_match('`\(([^\)]+)\)`', $venue_string, $match)) {
+			$name = str_replace($match[0], '', $venue_string);
 			$address = $match[1];
 		}
 
-		// Extract Place Name from First Segment Split by ", " or " - "
-		$segments = preg_split('`(,\s|\s-\s)`', $place_string);
+		// Extract Venue Name from First Segment Split by ", " or " - "
+		$segments = preg_split('`(,\s|\s-\s)`', $venue_string);
 		if (empty(trim($name)) && sizeof($segments) > 1) {
 			$name = $segments[0];
 		}
 
 		foreach ($segments as $segment) {
 			// Extract Address from "12 {rue|avenue|cours} address"
-			if (preg_match('`([0-9]+\s[rue|avenue|cours][\p{L}\s]*)`iu', $place_string, $match)) {
+			if (preg_match('`([0-9]+\s[rue|avenue|cours][\p{L}\s]*)`iu', $venue_string, $match)) {
 				$address = $match[1];
 			}			
 
 			// Extract Zipcode and City from "12345 City"
-			if (preg_match('`([0-9]{5})\s([a-z]+)`i', $place_string, $match)) {
+			if (preg_match('`([0-9]{5})\s([a-z]+)`i', $venue_string, $match)) {
 				$zipcode = $match[1];
 				$city = $match[2];
-			} else if (preg_match('`([0-9]{5})`', $place_string, $match)) {
+			} else if (preg_match('`([0-9]{5})`', $venue_string, $match)) {
 				$zipcode = $match[1];
 			}
 		}
@@ -268,12 +268,12 @@ class Place extends AppModel {
 			$address = str_ireplace($city, '', $address);
 		}
 
-		// Extract Place Name by removing everything else
+		// Extract Venue Name by removing everything else
 		if (empty(trim($name))) {
-			$name = str_ireplace([$address, $zipcode, $city], '', $place_string);
+			$name = str_ireplace([$address, $zipcode, $city], '', $venue_string);
 		}
 
-		// Extract Place Name by appending everything else
+		// Extract Venue Name by appending everything else
 		if (empty(trim($name))) {
 			$name .= empty(trim($address)) ? '' : trim($address) . ', ';
 			$name .= empty(trim($city)) ? '' : trim($city) . ', ';
@@ -286,9 +286,9 @@ class Place extends AppModel {
 			$$field = str_ireplace(['l\'', 'd\''], ['l\' ', 'd\' '], $$field);
 			$$field = trim(ucwords($$field));
 			$$field = str_ireplace(['L\' ', 'D\' '], ['l\'', 'd\''], $$field);
-			$place['Place'][$field] = $$field;
+			$venue['Venue'][$field] = $$field;
 		}
-		return $place;
+		return $venue;
 	}
 
 /**
@@ -305,20 +305,20 @@ class Place extends AppModel {
 
 	public function merge($data) {
 		$this->Organization->updateAll(
-			array('Organization.place_id' => $data['Place']['place_id_1']),
-			array('Organization.place_id' => $data['Place']['place_id_2'])
+			array('Organization.venue_id' => $data['Venue']['venue_id_1']),
+			array('Organization.venue_id' => $data['Venue']['venue_id_2'])
 		);
 		$this->Event->updateAll(
-			array('Event.place_id' => $data['Place']['place_id_1']),
-			array('Event.place_id' => $data['Place']['place_id_2'])
+			array('Event.venue_id' => $data['Venue']['venue_id_1']),
+			array('Event.venue_id' => $data['Venue']['venue_id_2'])
 		);
 		$this->Slug->updateAll(
-			array('Slug.place_id' => $data['Place']['place_id_1']),
-			array('Slug.place_id' => $data['Place']['place_id_2'])
+			array('Slug.venue_id' => $data['Venue']['venue_id_1']),
+			array('Slug.venue_id' => $data['Venue']['venue_id_2'])
 		);
-		$data['Place']['id'] = $data['Place']['place_id_1'];
+		$data['Venue']['id'] = $data['Venue']['venue_id_1'];
 		if ($this->save($data)) {
-			$this->delete($data['Place']['place_id_2']);
+			$this->delete($data['Venue']['venue_id_2']);
 			return true;
 		} else {
 			return false;

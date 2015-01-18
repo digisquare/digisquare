@@ -11,18 +11,18 @@ class EventsController extends AppController {
 
 	public function index() {
 		$conditions = [];
-		$this->Paginator->settings['contain'] = ['Edition', 'Place', 'Organization'];
+		$this->Paginator->settings['contain'] = ['Edition', 'Venue', 'Organization'];
 		$this->Paginator->settings['order'] = ['Event.start_at' => 'desc'];
-		// Places
-		if (isset($this->request->query['place_id'])) {
-			$conditions['Event.place_id'] = $this->request->query['place_id'];
-		} else if (isset($this->request->params['place_id'])) {
-			$place = $this->Event->Place->find('first', [
+		// Venues
+		if (isset($this->request->query['venue_id'])) {
+			$conditions['Event.venue_id'] = $this->request->query['venue_id'];
+		} else if (isset($this->request->params['venue_id'])) {
+			$venue = $this->Event->Venue->find('first', [
 				'contain' => ['Edition'],
-				'conditions' => ['Place.id' => $this->request->params['place_id']]
+				'conditions' => ['Venue.id' => $this->request->params['venue_id']]
 			]);
-			$conditions['Event.place_id'] = $this->request->params['place_id'];
-			$this->set(compact('place'));
+			$conditions['Event.venue_id'] = $this->request->params['venue_id'];
+			$this->set(compact('venue'));
 		}
 		// Editions
 		if (isset($this->request->query['edition_id'])) {
@@ -102,7 +102,7 @@ class EventsController extends AppController {
 			throw new NotFoundException(__('Invalid event'));
 		}
 		$event = $this->Event->find('first', [
-			'contain' => ['Edition', 'Place', 'Organization'],
+			'contain' => ['Edition', 'Venue', 'Organization'],
 			'conditions' => ['Event.id' => $id]
 		]);
 		$this->set(compact('event'));
@@ -110,9 +110,9 @@ class EventsController extends AppController {
 
 	public function add() {
 		if ($this->request->is('post')) {
-			if (empty($this->request->data['Event']['place_id']) && !empty($this->request->data['Place']['name'])) {
-				$this->request->data['Event']['place_id'] = $this->Event->Place->findOrCreate($this->request->data);
-				unset($this->request->data['Place']);
+			if (empty($this->request->data['Event']['venue_id']) && !empty($this->request->data['Venue']['name'])) {
+				$this->request->data['Event']['venue_id'] = $this->Event->Venue->findOrCreate($this->request->data);
+				unset($this->request->data['Venue']);
 			}
 			$this->Event->create();
 			if ($this->Event->save($this->request->data)) {
@@ -123,9 +123,9 @@ class EventsController extends AppController {
 			}
 		}
 		$editions = $this->Event->Edition->find('list');
-		$places = $this->Event->Place->find('list');
+		$venues = $this->Event->Venue->find('list');
 		$organizations = $this->Event->Organization->find('list');
-		$this->set(compact('editions', 'places', 'organizations'));
+		$this->set(compact('editions', 'venues', 'organizations'));
 	}
 
 	public function edit($id = null) {
@@ -146,9 +146,9 @@ class EventsController extends AppController {
 			]);
 		}
 		$editions = $this->Event->Edition->find('list');
-		$places = $this->Event->Place->find('list');
+		$venues = $this->Event->Venue->find('list');
 		$organizations = $this->Event->Organization->find('list');
-		$this->set(compact('editions', 'places', 'organizations'));
+		$this->set(compact('editions', 'venues', 'organizations'));
 	}
 
 	public function delete($id = null) {

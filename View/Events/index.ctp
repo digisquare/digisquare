@@ -6,13 +6,13 @@
 		'organization_id' => $organization['Organization']['id'],
 		'bslug' => strtolower(Inflector::slug($organization['Organization']['name'], '-'))
 	];
-} else if (isset($place)) {
-	$title = 'Tous les évènements @ ' . $this->Link->viewPlace($place);
-	$this->set('title_for_layout', 'Tous les évènements du numérique @ ' . $place['Place']['name']);
+} else if (isset($venue)) {
+	$title = 'Tous les évènements @ ' . $this->Link->viewVenue($venue);
+	$this->set('title_for_layout', 'Tous les évènements du numérique @ ' . $venue['Venue']['name']);
 	$url = [
 		'slug' => $edition['Edition']['slug'],
-		'place_id' => $place['Place']['id'],
-		'bslug' => strtolower(Inflector::slug($place['Place']['name'], '-'))
+		'venue_id' => $venue['Venue']['id'],
+		'bslug' => strtolower(Inflector::slug($venue['Venue']['name'], '-'))
 	];
 } else if (isset($edition)) {
 	$title = 'Tous les évènements à ' . $this->Link->viewEdition($edition);

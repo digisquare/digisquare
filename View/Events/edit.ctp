@@ -22,7 +22,7 @@
 					'required' => false,
 				]
 			); ?>
-			<?php echo $this->Form->input('place_id',
+			<?php echo $this->Form->input('venue_id',
 				['empty' => true, 'class' => 'form-control chzn-select', 'required' => false]
 			); ?>
 			<?php echo $this->Form->input('Organization', 
@@ -30,13 +30,13 @@
 			); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-2">
-					<?php echo $this->Form->input('Place.name', ['required' => false]); ?>
-					<?php echo $this->Form->input('Place.address'); ?>
-					<?php echo $this->Form->input('Place.zipcode'); ?>
-					<?php echo $this->Form->input('Place.city'); ?>
-					<?php echo $this->Form->input('Place.country_code'); ?>
-					<?php echo $this->Form->input('Place.latitude'); ?>
-					<?php echo $this->Form->input('Place.longitude'); ?>
+					<?php echo $this->Form->input('Venue.name', ['required' => false]); ?>
+					<?php echo $this->Form->input('Venue.address'); ?>
+					<?php echo $this->Form->input('Venue.zipcode'); ?>
+					<?php echo $this->Form->input('Venue.city'); ?>
+					<?php echo $this->Form->input('Venue.country_code'); ?>
+					<?php echo $this->Form->input('Venue.latitude'); ?>
+					<?php echo $this->Form->input('Venue.longitude'); ?>
 				</div>
 			</div>
 			<?php echo $this->Form->input('name'); ?>

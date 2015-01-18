@@ -8,7 +8,7 @@ echo $this->Html->link(
 		. '&dtstart=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['start_at']))
 		. '&dtend=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['end_at']))
 		. '&summary=' . urlencode($event['Event']['name'])
-		. '&location=' . urlencode($event['Place']['oneliner'])
+		. '&location=' . urlencode($event['Venue']['oneliner'])
 		. '&description=' . urlencode($event['Event']['description'])
 	,
 	['target' => '_blank', 'escape' => false, 'title' => __('Export to Outlook Calendar')]

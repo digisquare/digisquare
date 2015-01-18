@@ -41,7 +41,7 @@
 						<?php $this->request->data = $event; ?>
 						<?php echo $this->Form->hidden('name'); ?>
 						<?php echo $this->Form->hidden('uid'); ?>
-						<?php echo $this->Form->hidden('Place.name', array(
+						<?php echo $this->Form->hidden('Venue.name', array(
 							'value' => $event['Event']['location']
 						)); ?>
 						<?php echo $this->Form->hidden('description'); ?>

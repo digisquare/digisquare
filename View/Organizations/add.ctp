@@ -28,7 +28,7 @@
 				]
 			); ?>
 			<?php echo $this->Form->input(
-				'place_id',
+				'venue_id',
 				[
 					'empty' => true,
 					'class' => 'form-control chzn-select-deselect',

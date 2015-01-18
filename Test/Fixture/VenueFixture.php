@@ -1,9 +1,9 @@
 <?php
 /**
- * PlaceFixture
+ * VenueFixture
  *
  */
-class PlaceFixture extends CakeTestFixture {
+class VenueFixture extends CakeTestFixture {
 
 /**
  * Fields
@@ -50,7 +50,7 @@ class PlaceFixture extends CakeTestFixture {
 		],
 	];
 
-	public $places = [
+	public $venues = [
 		'Le Node, 12 rue des Faussets, 33000 Bordeaux' => [
 			'name' => 'Le Node',
 			'address' => '12 Rue Des Faussets',
@@ -695,7 +695,7 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'Café Auguste, 3 place de la Victoire, 33000 Bordeaux' => [
+		// 'Café Auguste, 3 venue de la Victoire, 33000 Bordeaux' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
@@ -751,7 +751,7 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'Conférence organisée par le magazine Cubeek à l'Université Victor Segalen Bordeaux 2 place de la Victoire' => [
+		// 'Conférence organisée par le magazine Cubeek à l'Université Victor Segalen Bordeaux 2 venue de la Victoire' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
@@ -989,7 +989,7 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'Utopia, à Bordeaux, place Camille Julian (demandez la Salle de la Cheminée) ' => [
+		// 'Utopia, à Bordeaux, venue Camille Julian (demandez la Salle de la Cheminée) ' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
@@ -1031,7 +1031,7 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'Cassolette Café, place de la Victoire, 33000 Bordeaux' => [
+		// 'Cassolette Café, venue de la Victoire, 33000 Bordeaux' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
@@ -1087,7 +1087,7 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'La C.U.V., 7 place Maucaillou ' => [
+		// 'La C.U.V., 7 venue Maucaillou ' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
@@ -1178,7 +1178,7 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'Union US Chartrons, 9 place Saint Martial' => [
+		// 'Union US Chartrons, 9 venue Saint Martial' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
@@ -1206,7 +1206,7 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'CCI de Bordeaux, 17 place de la Bourse, 33076 Bordeaux' => [
+		// 'CCI de Bordeaux, 17 venue de la Bourse, 33076 Bordeaux' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
@@ -1241,14 +1241,14 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'CCI de Bordeaux, salle Garonne 2, 17 place de la Bourse, Bordeaux' => [
+		// 'CCI de Bordeaux, salle Garonne 2, 17 venue de la Bourse, Bordeaux' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// 'PJJ de Bordeaux IV, 35 place Pey Berland à Bordeaux' => [
+		// 'PJJ de Bordeaux IV, 35 venue Pey Berland à Bordeaux' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',
@@ -1794,7 +1794,7 @@ class PlaceFixture extends CakeTestFixture {
 		// 	'city' => 'Bordeaux',
 		// 	'country_code' => 'FR'
 		// ],
-		// '5 place Jean Jaurès 33000 Bordeaux (DTIC)' => [
+		// '5 venue Jean Jaurès 33000 Bordeaux (DTIC)' => [
 		// 	'name' => 'Le Node',
 		// 	'address' => '12 Rue Des Faussets',
 		// 	'zipcode' => '33000',

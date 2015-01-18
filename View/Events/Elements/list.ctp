@@ -24,13 +24,13 @@ if (isset($edition)) {
 	$controller = 'editions';
 	${$controller} = $edition;
 }
-if (isset($place)) {
-	$url['?']['place_id'] = $place['Place']['id'];
-	$controller = 'places';
-	${$controller} = $place;
+if (isset($venue)) {
+	$url['?']['venue_id'] = $venue['Venue']['id'];
+	$controller = 'venues';
+	${$controller} = $venue;
 	$params = [
-		'place_id' => $place['Place']['id'],
-		'bslug' => strtolower(Inflector::slug($place['Place']['name'], '-'))
+		'venue_id' => $venue['Venue']['id'],
+		'bslug' => strtolower(Inflector::slug($venue['Venue']['name'], '-'))
 	];
 }
 if (isset($organization)) {

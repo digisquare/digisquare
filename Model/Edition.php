@@ -25,8 +25,8 @@ class Edition extends AppModel {
 	];
 
 	public $hasMany = [
-		'Place' => [
-			'className' => 'Place',
+		'Venue' => [
+			'className' => 'Venue',
 			'foreignKey' => 'edition_id',
 			'dependent' => true,
 		],

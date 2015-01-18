@@ -14,7 +14,7 @@ class OrganizationsController extends AppController {
 			$conditions['Organization.edition_id'] = $edition['Edition']['id'];
 			$this->set(compact('edition'));
 		}
-		$this->Paginator->settings['contain'] = ['Edition', 'Place'];
+		$this->Paginator->settings['contain'] = ['Edition', 'Venue'];
 		$this->Paginator->settings['conditions'] = $conditions;
 		$organizations = $this->Paginator->paginate();
 		$this->set(compact('organizations'));
@@ -25,7 +25,7 @@ class OrganizationsController extends AppController {
 			throw new NotFoundException(__('Invalid organization'));
 		}
 		$organization = $this->Organization->find('first', [
-			'contain' => ['Edition', 'Place'],
+			'contain' => ['Edition', 'Venue'],
 			'conditions' => ['Organization.id' => $id]
 		]);
 		$this->set(compact('organization'));
@@ -41,9 +41,9 @@ class OrganizationsController extends AppController {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'), 'message_error');
 			}
 		}
-		$places = $this->Organization->Place->find('list');
+		$venues = $this->Organization->Venue->find('list');
 		$editions = $this->Organization->Edition->find('list');
-		$this->set(compact('places', 'editions'));
+		$this->set(compact('venues', 'editions'));
 	}
 
 	public function edit($id = null) {
@@ -69,9 +69,9 @@ class OrganizationsController extends AppController {
 				$this->request->data = $organization;
 			}
 		}
-		$places = $this->Organization->Place->find('list');
+		$venues = $this->Organization->Venue->find('list');
 		$editions = $this->Organization->Edition->find('list');
-		$this->set(compact('places', 'editions'));
+		$this->set(compact('venues', 'editions'));
 	}
 
 	public function delete($id = null) {

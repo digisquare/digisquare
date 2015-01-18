@@ -38,10 +38,10 @@
 		<div class="col-md-4">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-12">
-					<?php echo $this->element('../Events/Elements/time', ['place' => $event]); ?>
+					<?php echo $this->element('../Events/Elements/time', ['venue' => $event]); ?>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-12">
-					<?php echo $this->element('../Places/Elements/card', ['place' => $event]); ?>
+					<?php echo $this->element('../Venues/Elements/card', ['venue' => $event]); ?>
 				</div>
 			</div>
 		</div>

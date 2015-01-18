@@ -14,7 +14,7 @@ class OrganizationsControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.organization',
-		'app.place',
+		'app.venue',
 		'app.edition',
 		'app.event',
 		'app.organizer',

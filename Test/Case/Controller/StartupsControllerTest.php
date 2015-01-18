@@ -16,7 +16,7 @@ class StartupsControllerTest extends ControllerTestCase {
 		'app.startup',
 		'app.edition',
 		'app.event',
-		'app.place',
+		'app.venue',
 		'app.organization',
 		'app.organizer',
 		'app.tag',

@@ -6,7 +6,7 @@ class Organization extends AppModel {
 	public $actsAs = ['Acl' => ['type' => 'controlled']];
 
 	public $validate = array(
-		'place_id' => array(
+		'venue_id' => array(
 			'numeric' => array(
 				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
@@ -33,9 +33,9 @@ class Organization extends AppModel {
 	);
 
 	public $belongsTo = array(
-		'Place' => array(
-			'className' => 'Place',
-			'foreignKey' => 'place_id',
+		'Venue' => array(
+			'className' => 'Venue',
+			'foreignKey' => 'venue_id',
 		),
 		'Edition' => array(
 			'className' => 'Edition',

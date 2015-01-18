@@ -4,25 +4,25 @@ App::uses('AppModel', 'Model');
 class Slug extends AppModel {
 
 	public $belongsTo = array(
-		'Place' => array(
-			'className' => 'Place',
-			'foreignKey' => 'place_id',
+		'Venue' => array(
+			'className' => 'Venue',
+			'foreignKey' => 'venue_id',
 			'dependent' => true,
 		),
 	);
 
-	public function createFromPlace($place) {
+	public function createFromVenue($venue) {
 		// TODO: make slugs unique
 		$this->create();
-		$slug = $this->slugifyPlace($place);
-		$this->set('place_id', $place['Place']['id']);
+		$slug = $this->slugifyVenue($venue);
+		$this->set('venue_id', $venue['Venue']['id']);
 		$this->set('name', $slug);
 		$this->save();
 		return $this->id;
 	}
 
-	public function slugifyPlace($place) {
-		$slug = $this->Place->implode($place);
+	public function slugifyVenue($venue) {
+		$slug = $this->Venue->implode($venue);
 		$slug = preg_replace('`[0-9]*`', '', $slug);
 		return strtolower(Inflector::slug($slug, '-'));
 	}

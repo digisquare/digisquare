@@ -44,8 +44,8 @@ $this->set(compact('title_for_layout')); ?>
 			); ?>
 		</div>
 		<div class="col-md-4">
-			<?php if (isset($organization['Place']['name'])): ?>
-				<?php echo $this->element('../Places/Elements/card', ['place' => $organization]); ?>
+			<?php if (isset($organization['Venue']['name'])): ?>
+				<?php echo $this->element('../Venues/Elements/card', ['venue' => $organization]); ?>
 			<?php endif; ?>
 			<?php if (isset($organization['Organization']['Contacts']['twitter'])): ?>
 				<?php $twitter = $organization['Organization']['Contacts']['twitter']; ?>

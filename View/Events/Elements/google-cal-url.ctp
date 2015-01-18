@@ -9,7 +9,7 @@ echo $this->Html->link(
 		. '&dates=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['start_at']))
 		. '/' . gmdate("Ymd\THis\Z", strtotime($event['Event']['end_at']))
 		. '&details=' . urlencode($event['Event']['description'])
-		. '&location=' . urlencode($event['Place']['oneliner'])
+		. '&location=' . urlencode($event['Venue']['oneliner'])
 	, 
 	['target' => '_blank', 'escape' => false, 'title' => __('Export to Google Calendar')]
 );

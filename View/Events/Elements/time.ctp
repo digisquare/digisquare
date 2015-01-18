@@ -64,8 +64,8 @@
 		$title_for_layout .= 'Du ' . strtolower(strftime('%A %e %B', $start_at))
 			. ' au ' . strtolower(strftime('%A %e %B', $end_at));
 	}
-	if (isset($event['Place']) && !empty($event['Place'])) {
-		$title_for_layout .= ' - ' . $event['Place']['name'] . ', ' . $event['Place']['city'];
+	if (isset($event['Venue']) && !empty($event['Venue'])) {
+		$title_for_layout .= ' - ' . $event['Venue']['name'] . ', ' . $event['Venue']['city'];
 	}
 	$this->set(compact('title_for_layout')); ?>
 	<div class="panel-footer">

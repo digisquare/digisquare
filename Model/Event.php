@@ -14,7 +14,7 @@ class Event extends AppModel {
 				'required' => true,
 			],
 		],
-		'place_id' => [
+		'venue_id' => [
 			'numeric' => [
 				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
@@ -62,9 +62,9 @@ class Event extends AppModel {
 			'foreignKey' => 'edition_id',
 			'counterCache' => true,
 		],
-		'Place' => [
-			'className' => 'Place',
-			'foreignKey' => 'place_id',
+		'Venue' => [
+			'className' => 'Venue',
+			'foreignKey' => 'venue_id',
 			'counterCache' => true,
 		],
 	];
@@ -134,16 +134,16 @@ class Event extends AppModel {
 	public function formatVEvent($vEvent, $edition_id) {
 		$location = (string)$vEvent->LOCATION;
 		$description = (string)$vEvent->DESCRIPTION;
-		$place_id = $this->Place->findOrCreate($location);
-		if (!$place_id) {
-			$place_id = 0;
+		$venue_id = $this->Venue->findOrCreate($location);
+		if (!$venue_id) {
+			$venue_id = 0;
 		}
-		if (!empty($location) && $place_id == 0) {
+		if (!empty($location) && $venue_id == 0) {
 			$description .= "\r\nLieu : " . $location;
 		}
 		return [
 			'edition_id' => $edition_id,
-			'place_id' => $place_id,
+			'venue_id' => $venue_id,
 			'uid' => (string)$vEvent->UID,
 			'name' => (string)$vEvent->SUMMARY,
 			'description' => $description,

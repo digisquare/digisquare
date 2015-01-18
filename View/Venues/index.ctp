@@ -2,10 +2,10 @@
 	<div class="page-header">
 		<?php echo $this->Html->link(
 			'<i class="icon-plus-sign icon-white"></i> ' . __('Merge'),
-			array('controller' => 'places', 'action' => 'merge'),
+			array('controller' => 'venues', 'action' => 'merge'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
-		<h1><?php echo __('Places'); ?></h1>
+		<h1><?php echo __('Venues'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
 		<tr>
@@ -16,48 +16,48 @@
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
-		<?php foreach ($places as $place): ?>
+		<?php foreach ($venues as $venue): ?>
 			<tr>
-				<td><?php echo h($place['Place']['id']); ?>&nbsp;</td>
+				<td><?php echo h($venue['Venue']['id']); ?>&nbsp;</td>
 				<td>
-					<?php echo h($place['Place']['name']); ?> <br>
-					<?php echo h($place['Place']['address']); ?> <br>
-					<?php echo h($place['Place']['zipcode']); ?>&nbsp;<?php echo h($place['Place']['city']); ?>
+					<?php echo h($venue['Venue']['name']); ?> <br>
+					<?php echo h($venue['Venue']['address']); ?> <br>
+					<?php echo h($venue['Venue']['zipcode']); ?>&nbsp;<?php echo h($venue['Venue']['city']); ?>
 				</td>
 				<td>
 					<?php echo $this->Html->link(
-						h($place['Place']['event_count']),
+						h($venue['Venue']['event_count']),
 						array(
 							'controller' => 'events', 'action' => 'index', '?' => array(
-								'place_id' => $place['Place']['id']
+								'venue_id' => $venue['Venue']['id']
 							)
 						),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 				</td>
-				<td><?php echo h($place['Place']['created']); ?>&nbsp;</td>
-				<td><?php echo h($place['Place']['modified']); ?>&nbsp;</td>
+				<td><?php echo h($venue['Venue']['created']); ?>&nbsp;</td>
+				<td><?php echo h($venue['Venue']['modified']); ?>&nbsp;</td>
 				<td class="actions">
 					<?php echo $this->Html->link(
 						__('View'),
-						array('action' => 'view', 'id' => $place['Place']['id']),
+						array('action' => 'view', 'id' => $venue['Venue']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Html->link(
 						__('Edit'),
-						array('action' => 'edit', 'id' => $place['Place']['id']),
+						array('action' => 'edit', 'id' => $venue['Venue']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Html->link(
 						__('Organizations'),
-						array('action' => 'organizations', 'id' => $place['Place']['id']),
+						array('action' => 'organizations', 'id' => $venue['Venue']['id']),
 						array('class' => 'btn btn-default btn-sm')
 					); ?>
 					<?php echo $this->Form->postLink(
 						__('Delete'),
-						array('action' => 'delete', 'id' => $place['Place']['id']),
+						array('action' => 'delete', 'id' => $venue['Venue']['id']),
 						array('class' => 'btn btn-default btn-sm'),
-						__('Are you sure you want to delete # %s?', $place['Place']['id'])
+						__('Are you sure you want to delete # %s?', $venue['Venue']['id'])
 					); ?>
 				</td>
 			</tr>

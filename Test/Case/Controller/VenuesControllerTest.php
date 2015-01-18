@@ -1,11 +1,11 @@
 <?php
-App::uses('PlacesController', 'Controller');
+App::uses('VenuesController', 'Controller');
 
 /**
- * PlacesController Test Case
+ * VenuesController Test Case
  *
  */
-class PlacesControllerTest extends ControllerTestCase {
+class VenuesControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,7 +13,7 @@ class PlacesControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.place',
+		'app.venue',
 		'app.edition',
 		'app.event',
 		'app.organizer',

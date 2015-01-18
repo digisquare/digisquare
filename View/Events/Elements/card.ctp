@@ -50,7 +50,7 @@ if ($sameday) {
 			<span class="glyphicon glyphicon-time"></span>
 			<?php echo $datetime; ?><br>
 			<span class="glyphicon glyphicon-map-marker"></span>
-			<?php echo $this->Link->viewPlace($event); ?>
+			<?php echo $this->Link->viewVenue($event); ?>
 		</div>
 	</div>
 </div>

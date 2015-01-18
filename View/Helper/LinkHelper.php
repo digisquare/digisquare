@@ -59,10 +59,10 @@ class LinkHelper extends HtmlHelper {
 		);
 	}
 
-	public function viewPlace($title, $place = [], $options = [], $confirmMessage = false) {
+	public function viewVenue($title, $venue = [], $options = [], $confirmMessage = false) {
 		if (is_array($title)) {
-			$place = $title;
-			$title = $place['Place']['name'];
+			$venue = $title;
+			$title = $venue['Venue']['name'];
 		}
 		$url = [];
 		if (isset($options['url'])) {
@@ -71,11 +71,11 @@ class LinkHelper extends HtmlHelper {
 		}
 		return $this->link($title,
 			array_merge([
-				'controller' => 'places',
+				'controller' => 'venues',
 				'action' => 'view',
-				'slug' => $place['Edition']['slug'],
-				'id' => $place['Place']['id'],
-				'bslug' => strtolower(Inflector::slug($place['Place']['name'], '-'))
+				'slug' => $venue['Edition']['slug'],
+				'id' => $venue['Venue']['id'],
+				'bslug' => strtolower(Inflector::slug($venue['Venue']['name'], '-'))
 			], $url),
 			$options,
 			$confirmMessage

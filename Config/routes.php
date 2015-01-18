@@ -14,7 +14,7 @@ Router::connect('/opauth-complete/*',	['controller' => 'authentications', 'actio
  * App Routing
  */
 $controllers = [
-	'editions', 'places', 'events', 'groups',
+	'editions', 'venues', 'events', 'groups',
 	'organizations', 'tags', 'startups',
 	'users', 'google_calendar_events', 'organizations'
 ];
@@ -79,12 +79,12 @@ Router::connect(
 //bordeaux/lieu/2/le-node
 Router::connect(
 	'/:slug/lieu/:id/:bslug',
-	['controller' => 'places', 'action' => 'view'],
+	['controller' => 'venues', 'action' => 'view'],
 	['pass' => ['id'], 'id' => '[0-9]+']
 );
 
 //bordeaux/lieu/2/le-node/evenements
 Router::connect(
-	'/:slug/lieu/:place_id/:bslug/evenements',
+	'/:slug/lieu/:venue_id/:bslug/evenements',
 	['controller' => 'events', 'action' => 'index']
 );

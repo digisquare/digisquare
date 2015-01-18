@@ -15,7 +15,7 @@ class EditionsControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.edition',
 		'app.event',
-		'app.place',
+		'app.venue',
 		'app.organization',
 		'app.organizer',
 		'app.tag',

@@ -20,7 +20,7 @@ class GroupTest extends CakeTestCase {
 		'app.event',
 		'app.edition',
 		'app.organization',
-		'app.place',
+		'app.venue',
 		'app.affiliation',
 		'app.slug',
 		'app.organizer',

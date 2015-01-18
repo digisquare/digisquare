@@ -16,7 +16,7 @@ class EventsControllerTest extends ControllerTestCase {
 		'app.event',
 		'app.edition',
 		'app.organization',
-		'app.place',
+		'app.venue',
 		'app.organizer',
 		'app.startup',
 		'app.tag',
