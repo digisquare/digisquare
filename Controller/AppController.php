@@ -59,10 +59,15 @@ class AppController extends Controller {
 	}
 
 	public function beforeRender() {
+		$model = Inflector::singularize($this->name);
+		$entity = strtolower($model);
+		$this->redirectPrettyViewUrls($model, $entity);
+		$this->setSessionEdition($entity);
+	}
+
+	public function redirectPrettyViewUrls($model, $entity) {
 		$url = $this->here;
 		if ('view' === $this->action) {
-			$model = Inflector::singularize($this->name);
-			$entity = strtolower($model);
 			switch ($this->name) {
 				case 'Users':
 					$url = Router::url([
@@ -89,4 +94,26 @@ class AppController extends Controller {
 		}
 	}
 
+	public function setSessionEdition($entity) {
+		$edition = false;
+		if (isset($this->viewVars['edition']['Edition'])) {
+			$edition['Edition'] = $this->viewVars['edition']['Edition'];
+		} elseif (isset($this->viewVars[$entity]['Edition'])) {
+			$edition['Edition'] = $this->viewVars[$entity]['Edition'];
+		} else {
+			// die(debug($this->Session->check('Edition')));
+			if (!$this->Session->check('Edition')) {
+				// TODO: detect closest edition
+				$edition['Edition'] = [
+					'name' => 'Bordeaux',
+					'slug' => 'bordeaux'
+				];
+			}
+		}
+		if ($edition) {
+			foreach ($edition['Edition'] as $key => $value) {
+				$this->Session->write('Edition.' . $key, $value);
+			}
+		}
+	}
 }

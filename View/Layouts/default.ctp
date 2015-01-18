@@ -33,16 +33,8 @@
 				</div>
 				<nav class="collapse navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">
-						<?php $item = strtolower(Inflector::singularize($this->name)); ?>
-						<?php if (isset($this->viewVars[$item]['Edition'])) {
-							$edition['Edition'] = $this->viewVars[$item]['Edition'];
-						} else {
-							// TODO: detect closest edition
-							$edition['Edition'] = [
-								'name' => 'Bordeaux',
-								'slug' => 'bordeaux'
-							];
-						} ?>
+						<?php $entity = strtolower(Inflector::singularize($this->name)); ?>
+						<?php $edition['Edition'] = $this->Session->read('Edition'); ?>
 						<li>
 							<?php echo $this->Link->viewEdition(
 								'Calendrier',
@@ -129,15 +121,19 @@
 								<li>
 									<?php
 									// TODO: link all editions with events
-									echo $this->Link->viewEdition(
-										'Montpellier',
-										[
-											'Edition' => [
-												'name' => 'Montpellier',
-												'slug' => 'montpellier'
+									if ('bordeaux' === $edition['Edition']['slug']): ?>
+										<a href="http://montpellier.digisquare.net">Montpellier</a>
+									<?php else: ?>
+										<?php echo $this->Link->viewEdition(
+											'Bordeaux',
+											[
+												'Edition' => [
+													'name' => 'Bordeaux',
+													'slug' => 'bordeaux'
+												]
 											]
-										]
-									); ?>
+										); ?>
+									<?php endif; ?>
 								</li>
 							</ul>
 						</li>
