@@ -8125,6 +8125,9 @@ html, body {
   min-height: 100%;
   position: relative; }
 
+.page-header {
+  margin-top: 20px; }
+
 .panel-heading h1 {
   width: 100%;
   white-space: nowrap;

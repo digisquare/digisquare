@@ -1,6 +1,8 @@
 <div role="main">
-	<div class="places form">
+	<div class="page-header">
 		<h1><?php echo __('Add Place'); ?></h1>
+	</div>
+	<div class="form">
 		<?php echo $this->Form->create('Place', array(
 			'inputDefaults' => array(
 				'div' => 'form-group',
@@ -12,16 +14,16 @@
 			),
 			'class' => 'well form-horizontal'
 		)); ?>
-			<?php
-				echo $this->Form->input('edition_id');
-				echo $this->Form->input('name');
-				echo $this->Form->input('address');
-				echo $this->Form->input('zipcode');
-				echo $this->Form->input('city');
-				echo $this->Form->input('country_code');
-				echo $this->Form->input('latitude');
-				echo $this->Form->input('longitude');
-			?>
+			<?php echo $this->Form->input('name'); ?>
+			<?php echo $this->Form->input('edition_id', array(
+				'empty' => true, 'class' => 'form-control chzn-select', 'required' => false
+			)); ?>
+			<?php echo $this->Form->input('address'); ?>
+			<?php echo $this->Form->input('zipcode'); ?>
+			<?php echo $this->Form->input('city'); ?>
+			<?php echo $this->Form->input('country_code'); ?>
+			<?php echo $this->Form->input('latitude'); ?>
+			<?php echo $this->Form->input('longitude'); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
 					<?php echo $this->Form->submit('Save changes', array(
