@@ -1,4 +1,6 @@
 <?php 
+$title_for_layout = 'Digisquare, le calendrier des évènements du numérique à Bordeaux et Montpellier';
+$this->set(compact('title_for_layout'));
 $date = new DateTime('today');
 $url = [
 	'controller' => 'events',
