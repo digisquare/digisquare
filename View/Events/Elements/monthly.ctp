@@ -57,14 +57,16 @@ if (isset($this->request->query['date']) && date('Y-m') !== $this->request->quer
 								$title = '';
 								if (!empty($event['Organization'])) {
 									foreach ($event['Organization'] as $organizer) {
-										$title .= $this->Html->image(
-											$organizer['avatar'],
-											[
-												'height' => 20,
-												'alt' => $organizer['name'],
-												'style' => ['margin-right:10px;']
-											]
-										);
+										if (!empty($organizer['avatar'])) {
+											$title .= $this->Html->image(
+												$organizer['avatar'],
+												[
+													'height' => 20,
+													'alt' => $organizer['name'],
+													'style' => ['margin-right:10px;']
+												]
+											);
+										}
 									}
 								}
 								$title .= $event['Event']['name'];
