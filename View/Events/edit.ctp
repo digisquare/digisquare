@@ -14,6 +14,7 @@
 			],
 			'class' => 'well form-horizontal'
 		]); ?>
+			<?php echo $this->Form->input('id'); ?>
 			<?php echo $this->Form->input('name'); ?>
 			<?php echo $this->Form->input('edition_id',
 				[
@@ -39,7 +40,6 @@
 					<?php echo $this->Form->input('Venue.longitude'); ?>
 				</div>
 			</div>
-			<?php echo $this->Form->input('name'); ?>
 			<?php echo $this->Form->input('uid'); ?>
 			<?php echo $this->Form->input('description'); ?>
 			<?php echo $this->Form->hidden('start_at', ['type' => 'text']); ?>
