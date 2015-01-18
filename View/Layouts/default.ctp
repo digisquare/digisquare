@@ -129,10 +129,11 @@
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
 		</div>
+		<footer id="footer">
+			Amour & Création
+			<?php echo $this->element('sql_dump'); ?>
+		</footer>
 	</div>
-	<footer id="footer">
-		<?php echo $this->element('sql_dump'); ?>
-	</footer>
 	<?php if (Configure::read('debug') < 2) {
 		$js_rev_manifest = file_get_contents(WWW_ROOT . 'generated/js/rev-manifest.json');
 		$js_version = json_decode($js_rev_manifest, true);
