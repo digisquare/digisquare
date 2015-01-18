@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 
 class Organization extends AppModel {
 
+	public $actsAs = ['Acl' => ['type' => 'controlled']];
+
 	public $validate = array(
 		'place_id' => array(
 			'numeric' => array(
@@ -61,6 +63,24 @@ class Organization extends AppModel {
 		'Le Campement Bordeaux' => 'Lecampement', 'Délégation TIC Région Aquitaine' => 'NumericAquitN', 'Sthack' => 'sth4ck'
 	];
 
+	public function bindNode($organization) {
+		return ['model' => 'Edition', 'foreign_key' => $organization['Organization']['edition_id']];
+	}
+
+	public function parentNode() {
+		if (!$this->id && empty($this->data)) {
+			return null;
+		}
+		if (isset($this->data['Organization']['edition_id'])) {
+			$edition_id = $this->data['Organization']['edition_id'];
+		} else {
+			$edition_id = $this->field('edition_id');
+		}
+		if (!$edition_id) {
+			return null;
+		}
+		return ['Edition' => ['id' => $edition_id]];
+	}
 
 	public function afterFind($results, $primary = false) {
 		foreach ($results as $key => $val) {
