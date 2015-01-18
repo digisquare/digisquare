@@ -25,16 +25,18 @@
 } ?>
 <div role="main">
 	<div class="page-header">
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' .__('Google'),
-			array('controller' => 'google_calendar_events', 'action' => 'index'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
-		); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' .__('Upload'),
-			array('controller' => 'events', 'action' => 'upload'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
-		); ?>
+		<?php if (1 == $this->Session->read('Auth.User.group_id')): ?>
+			<?php echo $this->Html->link(
+				'<i class="icon-plus-sign icon-white"></i> ' .__('Google'),
+				array('controller' => 'google_calendar_events', 'action' => 'index'),
+				array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			); ?>
+			<?php echo $this->Html->link(
+				'<i class="icon-plus-sign icon-white"></i> ' .__('Upload'),
+				array('controller' => 'events', 'action' => 'upload'),
+				array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
+			); ?>
+		<?php endif; ?>
 		<h1><?php echo $title; ?></h1>
 	</div>
 	<div class="row row-flex row-flex-wrap">
