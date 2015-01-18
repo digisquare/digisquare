@@ -80,6 +80,32 @@
 									<li>
 										<?php echo $this->Link->viewUser($this->Session->read('Auth')); ?>
 									</li>
+									<?php if (1 == $this->Session->read('Auth.User.group_id')): ?>
+										<li class="divider"></li>
+										<li>
+											<?php echo $this->Html->link(
+												__('Add'),
+												['action' => 'add']
+											); ?>
+										</li>
+										<?php if ('view' === $this->action && isset($id)): ?>
+											<li>
+												<?php echo $this->Html->link(
+													__('Edit'),
+													['action' => 'edit', 'id' => $id]
+												); ?>
+											</li>
+											<li>
+												<?php echo $this->Html->link(
+													__('Delete'),
+													['action' => 'edit', 'id' => $id],
+													null,
+													__('Are you sure you want to delete this?')
+												); ?>
+											</li>
+										<?php endif; ?>
+										<li class="divider"></li>
+									<?php endif; ?>
 									<li>
 										<?php echo $this->Html->link(
 											__('Logout'),

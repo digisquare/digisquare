@@ -9,11 +9,6 @@
 } ?>
 <div role="main">
 	<div class="page-header">
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('New Organization'),
-			array('controller' => 'organizations', 'action' => 'add'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
-	  	); ?>
 		<h1><?php echo $title; ?></h1>
 	</div>
 	<div class="row row-flex row-flex-wrap">

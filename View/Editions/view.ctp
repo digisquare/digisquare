@@ -40,17 +40,6 @@ $popover_content = htmlspecialchars('<input type="text" value="'. $popover_url .
 		 data-toggle="popover" title="<?php echo $popover_title; ?>" data-content="<?php echo $popover_content; ?>">
 			<i class="fa fa-calendar"></i>
 		</a>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Edit'),
-			array('action' => 'edit', 'id' => $edition['Edition']['id']),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
-		); ?>
-		<?php echo $this->Form->postLink(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Delete'),
-			array('action' => 'delete', 'id' => $edition['Edition']['id']), 
-			array('escape' => false, 'class' => 'btn btn-danger pull-right', 'style' => 'margin-right:10px;'),
-			__('Are you sure you want to delete # %s?', $edition['Edition']['id'])
-		); ?>
 		<h1><?php echo $title; ?></h1>
 	</div>
 	<div class="hidden-xs row">

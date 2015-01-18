@@ -1,10 +1,5 @@
 <div class="users index">
 	<div class="page-header">
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('New User'),
-			['controller' => 'users', 'action' => 'add'],
-			['escape' => false, 'class' => 'btn btn-primary pull-right']
-		); ?>
 		<h1><?php echo __('Users'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">

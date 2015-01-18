@@ -1,16 +1,5 @@
 <div role="main">
 	<div class="page-header">
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Edit'),
-			array('action' => 'edit', 'id' => $event['Event']['id']),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right')
-		); ?>
-		<?php echo $this->Form->postLink(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Delete'),
-			array('action' => 'delete', 'id' => $event['Event']['id']), 
-			array('escape' => false, 'class' => 'btn btn-danger pull-right', 'style' => 'margin-right:10px;'),
-			__('Are you sure you want to delete # %s?', $event['Event']['id'])
-		); ?>
 		<h1><?php echo h($event['Event']['name']); ?></h1>
 	</div>
 	<div class="row">

@@ -5,11 +5,6 @@
 			array('controller' => 'places', 'action' => 'merge'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right')
 		); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Create'),
-			array('controller' => 'places', 'action' => 'add'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
-		); ?>
 		<h1><?php echo __('Places'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">

@@ -35,11 +35,6 @@
 			array('controller' => 'events', 'action' => 'upload'),
 			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
 		); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' .__('Create'), 
-			array('controller' => 'events', 'action' => 'add'),
-			array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
-		); ?>
 		<h1><?php echo $title; ?></h1>
 	</div>
 	<div class="row row-flex row-flex-wrap">

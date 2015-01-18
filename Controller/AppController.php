@@ -61,6 +61,8 @@ class AppController extends Controller {
 	public function beforeRender() {
 		$url = $this->here;
 		if ('view' === $this->action) {
+			$model = Inflector::singularize($this->name);
+			$entity = strtolower($model);
 			switch ($this->name) {
 				case 'Users':
 					$url = Router::url([
@@ -73,8 +75,6 @@ class AppController extends Controller {
 				case 'Events':
 				case 'Places':
 				case 'Organizations':
-					$model = Inflector::singularize($this->name);
-					$entity = strtolower($model);
 					$url = Router::url([
 						'slug' => $this->viewVars[$entity]['Edition']['slug'],
 						'id' => $this->viewVars[$entity][$model]['id'],
@@ -82,6 +82,7 @@ class AppController extends Controller {
 					]);
 					break;
 			}
+			$this->set('id', $this->viewVars[$entity][$model]['id']);
 		}
 		if($url !== $this->here) {
 			$this->redirect($url, 301);

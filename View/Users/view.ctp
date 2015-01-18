@@ -5,17 +5,6 @@ $title_for_layout = $user['User']['Informations']['full_name'];
 $this->set(compact('title_for_layout')); ?>
 <div role="main">
 	<div class="page-header">
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Edit'),
-			['action' => 'edit', 'id' => $user['User']['id']],
-			['escape' => false, 'class' => 'btn btn-primary pull-right']
-		); ?>
-		<?php echo $this->Form->postLink(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Delete'),
-			['action' => 'delete', 'id' => $user['User']['id']],
-			['escape' => false, 'class' => 'btn btn-danger pull-right', 'style' => 'margin-right:10px;'],
-			__('Are you sure you want to delete # %s?', $user['User']['id'])
-		); ?>
 		<h1><?php echo h($user['User']['Informations']['full_name']); ?></h1>
 	</div>
 	<div class="row">

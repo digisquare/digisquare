@@ -5,11 +5,6 @@
 			['controller' => 'editions', 'action' => 'reset'],
 			['escape' => false, 'class' => 'btn btn-primary pull-right']
 		); ?>
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Create'),
-			['controller' => 'editions', 'action' => 'add'],
-			['escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;']
-		); ?>
 		<h1><?php echo __('Editions'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
