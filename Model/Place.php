@@ -6,6 +6,14 @@ class Place extends AppModel {
 	public $actsAs = ['Acl' => ['type' => 'controlled']];
 
 	public $validate = array(
+		'edition_id' => array(
+			'numeric' => array(
+				'rule' => ['numeric'],
+				//'message' => 'Your custom message here',
+				'allowEmpty' => false,
+				'required' => true,
+			),
+		),
 		'name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
