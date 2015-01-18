@@ -5,125 +5,93 @@ class Event extends AppModel {
 
 	public $actsAs = ['Acl' => ['type' => 'controlled']];
 
-	public $validate = array(
-		'edition_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+	public $validate = [
+		'edition_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
 				'allowEmpty' => false,
 				'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'place_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+			],
+		],
+		'place_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
 				'allowEmpty' => false,
 				'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'name' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+			],
+		],
+		'name' => [
+			'notEmpty' => [
+				'rule' => ['notEmpty'],
 				//'message' => 'Your custom message here',
 				'allowEmpty' => false,
 				'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'description' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				'allowEmpty' => true,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'start_at' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
+			],
+		],
+		'start_at' => [
+			'datetime' => [
+				'rule' => ['datetime'],
 				//'message' => 'Your custom message here',
 				'allowEmpty' => false,
 				'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'end_at' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
+			],
+		],
+		'end_at' => [
+			'datetime' => [
+				'rule' => ['datetime'],
 				//'message' => 'Your custom message here',
 				'allowEmpty' => false,
 				'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'status' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+			],
+		],
+		'status' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
 				'allowEmpty' => false,
 				'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'url' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				'allowEmpty' => true,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
+			],
+		],
+	];
 
-	public $belongsTo = array(
-		'Edition' => array(
+	public $belongsTo = [
+		'Edition' => [
 			'className' => 'Edition',
 			'foreignKey' => 'edition_id',
 			'counterCache' => true,
-		),
-		'Place' => array(
+		],
+		'Place' => [
 			'className' => 'Place',
 			'foreignKey' => 'place_id',
 			'counterCache' => true,
-		)
-	);
+		],
+	];
 
-	public $hasMany = array(
-		'Organizer' => array(
+	public $hasMany = [
+		'Organizer' => [
 			'className' => 'Organizer',
 			'foreignKey' => 'event_id',
 			'dependent' => false,
-		),
-		'Participant' => array(
+		],
+		'Participant' => [
 			'className' => 'Participant',
 			'foreignKey' => 'event_id',
 			'dependent' => false,
-		),
-	);
+		],
+	];
 
-	public $hasAndBelongsToMany = array(
-		'Organization' => array(
+	public $hasAndBelongsToMany = [
+		'Organization' => [
 			'className' => 'Organization',
 			'with' => 'Organizer',
 			'joinTable' => 'organizers',
 			'foreignKey' => 'event_id',
 			'associationForeignKey' => 'organization_id',
 			'unique' => 'keepExisting',
-		)
-	);
+		]
+	];
 
 	public function bindNode($event) {
 		return ['model' => 'Edition', 'foreign_key' => $event['Event']['edition_id']];
@@ -146,39 +114,34 @@ class Event extends AppModel {
 
 	public function parseVCalendar($vCalendar, $edition_id) {
 		foreach($vCalendar->VEVENT as $vEvent) {
-			$event = $this->find('first', array(
-				'contain' => array(),
-				'conditions' => array('Event.uid' => $vEvent->UID)
-			));
-
+			$event = $this->find('first', [
+				'contain' => [],
+				'conditions' => ['Event.uid' => $vEvent->UID]
+			]);
 			if ($event) {
-				$event['Event'] = array_merge($event['Event'], $this->formatVEvent($vEvent, $edition_id));
+				$event['Event'] = array_merge(
+					$event['Event'],
+					$this->formatVEvent($vEvent, $edition_id)
+				);
 			} else {
 				$event['Event'] = $this->formatVEvent($vEvent, $edition_id);
 			}
-
 			$events[] = $event;
-
 		}
-
 		return $events;
 	}
 
 	public function formatVEvent($vEvent, $edition_id) {
 		$location = (string)$vEvent->LOCATION;
 		$description = (string)$vEvent->DESCRIPTION;
-
 		$place_id = $this->Place->findOrCreate($location);
-
 		if (!$place_id) {
 			$place_id = 0;
 		}
-
 		if (!empty($location) && $place_id == 0) {
 			$description .= "\r\nLieu : " . $location;
 		}
-
-		$event = array(
+		return [
 			'edition_id' => $edition_id,
 			'place_id' => $place_id,
 			'uid' => (string)$vEvent->UID,
@@ -188,9 +151,7 @@ class Event extends AppModel {
 			'end_at' => (string)$vEvent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
 			'status' => '0',
 			'url' => (string)$vEvent->URL
-		);
-
-		return $event;
+		];
 	}
 
 }
