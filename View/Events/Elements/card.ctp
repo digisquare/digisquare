@@ -19,21 +19,23 @@ if ($sameday) {
 		<h1 class="panel-title">
 			<?php if (!empty($event['Organization'])) {
 				foreach ($event['Organization'] as $organizer) {
-					echo $this->Link->viewOrganization(
-						$this->Html->image(
-							$organizer['avatar'],
+					if (!empty($organizer['avatar'])) {
+						echo $this->Link->viewOrganization(
+							$this->Html->image(
+								$organizer['avatar'],
+								[
+									'height' => 20,
+									'alt' => $organizer['name'],
+									'style' => ['margin-right:10px;']
+								]
+							),
 							[
-								'height' => 20,
-								'alt' => $organizer['name'],
-								'style' => ['margin-right:10px;']
-							]
-						),
-						[
-							'Organization' => $organizer,
-							'Edition' => $event['Edition']
-						],
-						['escapeTitle' => false]
-					);
+								'Organization' => $organizer,
+								'Edition' => $event['Edition']
+							],
+							['escapeTitle' => false]
+						);
+					}
 				}
 			} ?>
 			<?php echo $this->Link->viewEvent($event); ?>
