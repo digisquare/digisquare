@@ -1,17 +1,19 @@
 <div role="main">
-	<div class="users form">
+	<div class="page-header">
 		<h1><?php echo __('Edit User'); ?></h1>
-		<?php echo $this->Form->create('User', array(
-			'inputDefaults' => array(
+	</div>
+	<div class="form">
+		<?php echo $this->Form->create('User', [
+			'inputDefaults' => [
 				'div' => 'form-group',
-				'label' => array(
+				'label' => [
 					'class' => 'col col-md-3 control-label'
-				),
+				],
 				'wrapInput' => 'col col-md-9',
 				'class' => 'form-control'
-			),
+			],
 			'class' => 'well form-horizontal'
-		)); ?>
+		]); ?>
 			<?php echo $this->Form->input('id'); ?>
 			<?php echo $this->Form->input('username'); ?>
 			<?php echo $this->Form->input('email'); ?>
