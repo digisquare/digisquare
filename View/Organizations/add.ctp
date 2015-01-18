@@ -17,13 +17,24 @@
 				'class' => 'well form-horizontal'
 			]
 		); ?>
-			<?php echo $this->Form->input('edition_id',
-				['empty' => true, 'class' => 'form-control chzn-select', 'required' => false]
-			); ?>
-			<?php echo $this->Form->input('place_id',
-				['empty' => true, 'class' => 'form-control chzn-select-deselect', 'required' => false]
-			); ?>
 			<?php echo $this->Form->input('name'); ?>
+			<?php echo $this->Form->input(
+				'edition_id',
+				[
+					'empty' => true,
+					'class' => 'form-control chzn-select',
+					'required' => false,
+					'default' => $this->Session->read('Edition.id')
+				]
+			); ?>
+			<?php echo $this->Form->input(
+				'place_id',
+				[
+					'empty' => true,
+					'class' => 'form-control chzn-select-deselect',
+					'required' => false
+				]
+			); ?>
 			<?php echo $this->Form->input('avatar',
 				[
 					'between' => '<div class="col col-md-9"><div class="input-group" style="width:100%;">'
@@ -32,7 +43,8 @@
 					'wrapInput' => false
 				]
 			); ?>
-			<?php echo $this->Form->input('Organization.Contacts.twitter',
+			<?php echo $this->Form->input(
+				'Organization.Contacts.twitter',
 				[
 					'between' => '<div class="col col-md-9"><div class="input-group" style="width:100%;">'
 						. '<div class="input-group-addon" style="width:45px;">@</div>',
@@ -40,7 +52,8 @@
 					'wrapInput' => false
 				]
 			); ?>
-			<?php echo $this->Form->input('Organization.Contacts.facebook',
+			<?php echo $this->Form->input(
+				'Organization.Contacts.facebook',
 				[
 					'between' => '<div class="col col-md-9"><div class="input-group" style="width:100%;">'
 						. '<div class="input-group-addon" style="width:45px;">/</div>',
@@ -48,7 +61,8 @@
 					'wrapInput' => false
 				]
 			); ?>
-			<?php echo $this->Form->input('Organization.Contacts.website',
+			<?php echo $this->Form->input(
+				'Organization.Contacts.website',
 				[
 					'between' => '<div class="col col-md-9"><div class="input-group" style="width:100%;">'
 						. '<div class="input-group-addon" style="width:45px;"><i class="fa fa-link"></i></div>',

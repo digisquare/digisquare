@@ -1,6 +1,8 @@
 <div role="main">
-	<div class="editions form">
+	<div class="page-header">
 		<h1><?php echo __('Edit Edition'); ?></h1>
+	</div>
+	<div class="form">
 		<?php echo $this->Form->create('Edition', [
 			'inputDefaults' => [
 				'div' => 'form-group',

@@ -105,6 +105,7 @@ class AppController extends Controller {
 			if (!$this->Session->check('Edition')) {
 				// TODO: detect closest edition
 				$edition['Edition'] = [
+					'id' => 9,
 					'name' => 'Bordeaux',
 					'slug' => 'bordeaux'
 				];
