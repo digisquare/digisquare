@@ -50,12 +50,6 @@
 							); ?>
 						</li>
 						<li>
-							<?php echo $this->Link->listEditionEvents(
-								'Evènements',
-								$edition
-							); ?>
-						</li>
-						<li>
 							<?php echo $this->Link->listEditionOrganizations(
 								'Annuaire',
 								$edition
