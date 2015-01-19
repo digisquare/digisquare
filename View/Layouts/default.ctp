@@ -17,6 +17,7 @@
 	} ?>
 	<?php echo $this->fetch('meta'); ?>
 	<?php echo $this->fetch('css'); ?>
+	<?php echo $this->element('favicon'); ?>
 </head>
 <body>
 	<div id="wrap">
