@@ -21,5 +21,8 @@
 			</div>
 		<?php endforeach; ?>
 	</div>
-	<?php echo $this->Paginator->pagination(['ul' => 'pagination']); ?>
+	<?php echo $this->Paginator->pagination([
+		'ul' => 'pagination',
+		'url' => $url
+	]); ?>
 </div>
