@@ -134,7 +134,7 @@ class Event extends AppModel {
 	public function formatVEvent($vEvent, $edition_id) {
 		$location = (string)$vEvent->LOCATION;
 		$description = (string)$vEvent->DESCRIPTION;
-		$venue_id = $this->Venue->findOrCreate($location);
+		$venue_id = $this->Venue->findOrCreate($location, $edition_id);
 		if (!$venue_id) {
 			$venue_id = 0;
 		}

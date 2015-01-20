@@ -116,13 +116,16 @@ class Venue extends AppModel {
 		return true;
 	}
 
-	public function findOrCreate($venue) {
+	public function findOrCreate($venue, $edition_id = null) {
 		if (empty($venue)) {
 			return false;
 		} else if (!is_array($venue)) {
 			$venue = $this->explode($venue);
 		} else if (1 == sizeof($venue['Venue']) && isset($venue['Venue']['name'])) {
 			$venue = $this->explode($venue['Venue']['name']);
+		}
+		if ($edition_id) {
+			$venue['Venue']['edition_id'] = $edition_id;
 		}
 		$slugVenue = $this->findBySlug($venue);
 		if (isset($slugVenue['Venue']['id'])) {
@@ -135,6 +138,10 @@ class Venue extends AppModel {
 		if (isset($latLngVenue['Venue']['id'])) {
 			$this->Slug->createFromVenue($latLngVenue);
 			return $latLngVenue['Venue']['id'];
+		}
+		$slugVenue = $this->findBySlug($venue);
+		if (isset($slugVenue['Venue']['id'])) {
+			return $slugVenue['Venue']['id'];
 		}
 		$this->create();
 		if ($this->save($venue)) {
