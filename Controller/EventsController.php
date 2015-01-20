@@ -88,6 +88,10 @@ class EventsController extends AppController {
 		if (isset($this->request->params['feed'])) {
 			$this->Paginator->settings['limit'] = 200;
 		}
+		// Page
+		if (isset($this->request->params['?']['page'])) {
+			$this->request->query['page'] = $this->request->params['?']['page'];
+		}
 		$this->Paginator->settings['conditions'] = $conditions;
 		$events = $this->Paginator->paginate('Event');
 		$this->set([

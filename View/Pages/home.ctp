@@ -2,6 +2,11 @@
 $title_for_layout = 'Digisquare, le calendrier des évènements du numérique à Bordeaux et Montpellier';
 $this->set(compact('title_for_layout'));
 $date = new DateTime('today');
+if (isset($this->request->query['page'])) {
+	$page = $this->request->query['page'];
+} else {
+	$page = 1;
+}
 $url = [
 	'controller' => 'events',
 	'action' => 'index',
@@ -41,4 +46,38 @@ $events = $this->requestAction($url);
 			<div id="twitter-home-timeline" data-screen-name="digisquare_bx"></div>
 		</div>
 	</div>
+	<?php try {
+		$url['?'] += ['page' => $page + 1];
+		$this->requestAction($url);
+		$nextPage = true;
+	} catch (Exception $e) {
+		$nextPage = false;
+	} ?>
+	<?php if ($page > 1 || $nextPage): ?>
+		<ul class="pagination">
+			<?php if (2 == $page): ?>
+				<li>
+					<?php echo $this->Html->link(
+						'< ',
+						['controller' => 'pages', 'action' => 'display', 'home']
+					); ?>
+				</li>
+			<?php elseif ($page > 2): ?>
+				<li>
+					<?php echo $this->Html->link(
+						'< ',
+						['controller' => 'pages', 'action' => 'display', 'home', '?' => ['page' => $page - 1]]
+					); ?>
+				</li>
+			<?php endif; ?>
+			<?php if ($nextPage): ?>
+				<li>
+					<?php echo $this->Html->link(
+						' >',
+						['controller' => 'pages', 'action' => 'display', 'home', '?' => ['page' => $page + 1]]
+					); ?>
+				</li>
+			<?php endif; ?>
+		</ul>
+	<?php endif; ?>
 </div>
