@@ -97,6 +97,15 @@ $(document).ready( function () {
         chrome: 'noscrollbar'
       }
     );
+    twttr.widgets.createTimeline(
+      '553992940708962305',
+      document.getElementById('twitter-home-timeline'),
+      {
+        height: '614px',
+        screenName: $('#twitter-home-timeline').data('screen-name'),
+        chrome: 'noscrollbar'
+      }
+    );
   });
 
 });
