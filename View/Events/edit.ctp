@@ -24,7 +24,7 @@
 				]
 			); ?>
 			<?php echo $this->Form->input('venue_id',
-				['empty' => true, 'class' => 'form-control chzn-select', 'required' => false]
+				['empty' => true, 'class' => 'form-control chzn-select-deselect', 'required' => false]
 			); ?>
 			<?php echo $this->Form->input('Organization', 
 				['empty' => true, 'class' => 'form-control chzn-select', 'required' => false]

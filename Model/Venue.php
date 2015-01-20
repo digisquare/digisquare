@@ -94,6 +94,8 @@ class Venue extends AppModel {
 		foreach ($results as $key => $val) {
 			if (isset($val['Venue']['name'])) {
 				$results[$key]['Venue']['oneliner'] = $this->implode($val);
+			} else {
+				$results[$key]['Venue']['oneliner'] = null;
 			}
 		}
 		return $results;

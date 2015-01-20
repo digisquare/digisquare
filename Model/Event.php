@@ -18,8 +18,8 @@ class Event extends AppModel {
 			'numeric' => [
 				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
-				'allowEmpty' => false,
-				'required' => true,
+				'allowEmpty' => true,
+				'required' => false,
 			],
 		],
 		'name' => [

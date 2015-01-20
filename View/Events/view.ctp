@@ -40,9 +40,11 @@
 				<div class="col-xs-12 col-sm-6 col-md-12">
 					<?php echo $this->element('../Events/Elements/time', ['venue' => $event]); ?>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-12">
-					<?php echo $this->element('../Venues/Elements/card', ['venue' => $event]); ?>
-				</div>
+				<?php if ($event['Event']['venue_id']): ?>
+					<div class="col-xs-12 col-sm-6 col-md-12">
+						<?php echo $this->element('../Venues/Elements/card', ['venue' => $event]); ?>
+					</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
