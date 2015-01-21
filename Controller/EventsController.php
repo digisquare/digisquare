@@ -115,7 +115,10 @@ class EventsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			if (empty($this->request->data['Event']['venue_id']) && !empty($this->request->data['Venue']['name'])) {
-				$this->request->data['Event']['venue_id'] = $this->Event->Venue->findOrCreate($this->request->data);
+				$this->request->data['Event']['venue_id'] = $this->Event->Venue->findOrCreate(
+					$this->request->data,
+					$this->request->data['Event']['edition_id']
+				);
 				unset($this->request->data['Venue']);
 			}
 			$this->Event->create();
@@ -125,6 +128,8 @@ class EventsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The event could not be saved. Please, try again.'), 'message_error');
 			}
+		} else {
+			$this->request->data = $this->request->query;
 		}
 		$editions = $this->Event->Edition->find('list');
 		$venues = $this->Event->Venue->find('list');
