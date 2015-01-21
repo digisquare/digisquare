@@ -74,3 +74,7 @@ if (isset($_SERVER) && isset($_SERVER['DIGI_GOOGLE_KEY'])) {
 		'access_type' => 'offline',
 	));
 }
+if (isset($_GET) && isset($_GET['approval_prompt'])) {
+	Configure::write('Opauth.Strategy.Google.approval_prompt', 'force');
+}
+

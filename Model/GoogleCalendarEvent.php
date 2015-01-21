@@ -20,6 +20,11 @@ class GoogleCalendarEvent extends AppModel {
 		$google_authentication = $this->Authentication->getByUserAndProvider($this->Session->read('Auth.User.id'), 'Google');
 		$token = $this->Authentication->buildGoogleToken($google_authentication);
 
+		if (empty($google_authentication['Authentication']['refresh_token'])) {
+			$this->approval_prompt = true;
+			return false;
+		}
+
 		$this->Client->refreshToken($token['refresh_token']);
 		$this->Authentication->updateGoogleToken($google_authentication, $this->Client->getAccessToken());
 
