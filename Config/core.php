@@ -45,6 +45,7 @@ Configure::write('Security.cipherSeed', '356466336439333964393233376339');
 Configure::write('Acl.classname', 'DbAcl');
 Configure::write('Acl.database', 'default');
 
+ini_set('date.timezone', 'Europe/Paris');
 date_default_timezone_set('Europe/Paris');
 setlocale(LC_ALL, 'fr_FR@euro', 'fr_FR', 'fra_fra');
 
