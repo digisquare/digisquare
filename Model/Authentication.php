@@ -84,6 +84,8 @@ class Authentication extends AppModel {
 			),
 			'Authentication' => $this->buildAuthentication($auth),
 		);
+		$parseProviderInfos = 'parse' . $auth['provider'] . 'Infos';
+		$user = $this->{$parseProviderInfos}($auth, $user);
 		$this->create();
 		if ($this->saveAssociated($user)) {
 			$user['User']['id'] = $this->User->id;
@@ -150,4 +152,50 @@ class Authentication extends AppModel {
 		$this->set('expires', date('c', $token->created + 3600));
 		$this->save();
 	}
+
+	public function parseTwitterInfos($auth, $user) {
+		$user['User'] += [
+			'avatar' => str_replace('_normal', '_400x400', $auth['raw']['profile_image_url_https']),
+			'Informations' =>[
+				'first_name' => $auth['info']['name'],
+				'description' => $auth['info']['description'],
+			],
+			'Contacts' => [
+				'twitter' => $auth['raw']['screen_name'],
+				'website' => @$auth['raw']['entities']['url']['urls'][0]['expanded_url'],
+			]
+		];
+		return $user;
+	}
+
+	public function parseFacebookInfos($auth, $user) {
+		$user['User'] += [
+			'avatar' => @str_replace('?type=square', '?width=400&height=400', $auth['info']['image']),
+			'Informations' => [
+				'first_name' => $auth['info']['first_name'],
+				'last_name' => $auth['info']['last_name'],
+			],
+			'Contacts' => [
+				'facebook' => $auth['info']['nickname'],
+			]
+		];
+		return $user;
+	}
+
+	public function parseGoogleInfos($auth, $user) {
+		$user['User'] += [
+			'email' => $auth['info']['email'],
+			'avatar' => $auth['info']['image'],
+			'Informations' => [
+				'first_name' => $auth['info']['first_name'],
+				'last_name' => $auth['info']['last_name'],
+			]
+		];
+		return $user;
+	}
+
+	public function parseMeetupInfos($auth, $user) {
+		return $user;
+	}
+
 }

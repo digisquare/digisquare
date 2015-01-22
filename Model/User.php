@@ -71,8 +71,8 @@ class User extends AppModel {
 			}
 			if (isset($val['User']['informations'])) {
 				$results[$key]['User']['Informations'] = json_decode($val['User']['informations'], true);
-				$results[$key]['User']['Informations']['full_name'] = $results[$key]['User']['Informations']['first_name']
-					. ' ' . $results[$key]['User']['Informations']['last_name'];
+				$results[$key]['User']['Informations']['full_name'] = @$results[$key]['User']['Informations']['first_name']
+					. ' ' . @$results[$key]['User']['Informations']['last_name'];
 			}
 		}
 		return $results;

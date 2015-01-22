@@ -15,13 +15,13 @@ $this->set(compact('title_for_layout')); ?>
 						<?php if (!empty($user['User']['avatar'])): ?>
 							<div class="media-left">
 								<?php echo $this->Html->image(
-									str_replace('_normal', '_400x400', $user['User']['avatar']),
+									$user['User']['avatar'],
 									['width' => '150']
 								); ?>
 							</div>
 						<?php endif; ?>
 						<div class="media-body">
-							<?php echo nl2br($this->Text->autoLink($user['User']['Informations']['description'])); ?>
+							<?php echo @nl2br($this->Text->autoLink($user['User']['Informations']['description'])); ?>
 						</div>
 					</div>
 					<?php if (is_array($user['User']['Contacts'])): ?>
