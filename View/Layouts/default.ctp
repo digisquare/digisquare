@@ -65,10 +65,19 @@
 								</a>
 								<ul class="dropdown-menu">
 									<li>
-										<?php echo $this->Link->viewUser($this->Session->read('Auth')); ?>
+										<?php echo $this->Link->viewUser(
+											__('My profile'),
+											$this->Session->read('Auth')
+										); ?>
 									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Edit my profile'),
+											['action' => 'edit', 'id' => $this->Session->read('Auth.User.id')]
+										); ?>
+									</li>
+									<li class="divider"></li>
 									<?php if (1 == $this->Session->read('Auth.User.group_id')): ?>
-										<li class="divider"></li>
 										<li>
 											<?php echo $this->Html->link(
 												__('Add'),
@@ -106,14 +115,14 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									Se connecter
+									<?php echo __('Login'); ?>
 								</a>
 								<?php $providers = array('facebook', 'twitter', 'google'); ?>
 								<ul class="dropdown-menu">
 									<?php foreach ($providers as $provider): ?>
 										<li>
 											<?php echo $this->Html->link(
-												__('%s', ucfirst($provider)),
+												ucfirst($provider),
 												array(
 													'plugin' => 'Opauth',
 													'controller' => 'opauth',

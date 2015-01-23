@@ -2,7 +2,7 @@
 $this->set('channelData', array(
 	'title' => __('Latest Venues on Digisquare'),
 	'link' => $this->here,
-	'description' => __('Latest Venues on Digisqure'),
+	'description' => __('Latest Venues on Digisquare'),
 ));
 foreach ($venues as $venue) {
 	$link = $this->Html->url(

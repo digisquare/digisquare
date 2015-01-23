@@ -1,0 +1,729 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-01-23 20:16+0100\n"
+"PO-Revision-Date: 2015-01-23 20:39+0100\n"
+"Last-Translator: Damien Varron <damien.varron@effervea.com>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: Controller/AuthenticationsController.php:14;30
+msgid "The user could not be authenticated. Please, try again."
+msgstr "﻿L'utilisateur n'a pas pu être authentifié. Veuillez réessayer."
+
+#: Controller/AuthenticationsController.php:20
+msgid "The authentication has been saved."
+msgstr "L'authentification a été enregistrée."
+
+#: Controller/AuthenticationsController.php:27
+msgid "You are logged in."
+msgstr "Vous êtes connecté."
+
+#: Controller/EditionsController.php:20;24;48;68
+msgid "Invalid edition"
+msgstr "Édition inconnue"
+
+#: Controller/EditionsController.php:38;52
+msgid "The edition has been saved."
+msgstr "﻿L'édition a été enregistrée."
+
+#: Controller/EditionsController.php:41;55
+msgid "The edition could not be saved. Please, try again."
+msgstr "L'édition n'a pas pu être enregistrée. Veuillez réessayer."
+
+#: Controller/EditionsController.php:72
+msgid "The edition has been deleted."
+msgstr "﻿L'édition a été supprimée."
+
+#: Controller/EditionsController.php:74
+msgid "The edition could not be deleted. Please, try again."
+msgstr "L'édition n'a pas pu être supprimée. Veuillez réessayer."
+
+#: Controller/EditionsController.php:82
+msgid "All is good in the world."
+msgstr "Tout va pour le mieux dans le meilleur des mondes."
+
+#: Controller/EventsController.php:106;142;166
+msgid "Invalid event"
+msgstr "Évènement inconnu"
+
+#: Controller/EventsController.php:126;146
+msgid "The event has been saved."
+msgstr "L'évènement a été enregistré."
+
+#: Controller/EventsController.php:129;149
+msgid "The event could not be saved. Please, try again."
+msgstr "L'évènement n'a pas pu être enregistré. Veuillez réessayer."
+
+#: Controller/EventsController.php:170
+msgid "The event has been deleted."
+msgstr "L'évènement a été supprimé."
+
+#: Controller/EventsController.php:172
+msgid "The event could not be deleted. Please, try again."
+msgstr "L'évènement n'a pas pu être supprimé. Veuillez réessayer."
+
+#: Controller/EventsController.php:181
+msgid "Please select a file."
+msgstr "Veuillez choisir un fichier."
+
+#: Controller/EventsController.php:197
+msgid "The events have been saved."
+msgstr "Les évènements ont été enregistrés."
+
+#: Controller/EventsController.php:200
+msgid "The events could not be saved. Please, try again."
+msgstr "Les évènements n'ont pas pu être enregistrés. Veuillez réessayer."
+
+#: Controller/GroupsController.php:14;37;58
+msgid "Invalid group"
+msgstr "Groupe inconnu"
+
+#: Controller/GroupsController.php:27;41
+msgid "The group has been saved."
+msgstr "Le groupe a été enregistré"
+
+#: Controller/GroupsController.php:30;44
+msgid "The group could not be saved. Please, try again."
+msgstr "Le groupe n'a pas pu être enregistré. Veuillez réessayer."
+
+#: Controller/GroupsController.php:62
+msgid "The group has been deleted."
+msgstr "Le groupe a été supprimé."
+
+#: Controller/GroupsController.php:64
+msgid "The group could not be deleted. Please, try again."
+msgstr "Le groupe n'a pas pu être supprimé. Veuillez réessayer."
+
+#: Controller/OrganizationsController.php:25;51;80
+msgid "Invalid organization"
+msgstr "Organisation inconnue"
+
+#: Controller/OrganizationsController.php:38;56
+msgid "The organization has been saved."
+msgstr "L'organisation a été enregistrée."
+
+#: Controller/OrganizationsController.php:41;59
+msgid "The organization could not be saved. Please, try again."
+msgstr "L'organisation n'a pas pu être enregistrée. Veuillez réessayer."
+
+#: Controller/OrganizationsController.php:84
+msgid "The organization has been deleted."
+msgstr "L'organisation a été supprimée."
+
+#: Controller/OrganizationsController.php:86
+msgid "The organization could not be deleted. Please, try again."
+msgstr "L'organisation n'a pas pu être supprimée. Veuillez réessayer."
+
+#: Controller/OrganizersController.php:13;36;57
+msgid "Invalid organizer"
+msgstr "Organisateur inconnu"
+
+#: Controller/OrganizersController.php:23;40
+msgid "The organizer has been saved."
+msgstr "L'organisateur a été enregistré."
+
+#: Controller/OrganizersController.php:26;43
+msgid "The organizer could not be saved. Please, try again."
+msgstr "L'organisateur n'a pas pu être enregistré. Veuillez réessayer."
+
+#: Controller/OrganizersController.php:61
+msgid "The organizer has been deleted."
+msgstr "L'organisateur a été supprimé."
+
+#: Controller/OrganizersController.php:63
+msgid "The organizer could not be deleted. Please, try again."
+msgstr "L'organisateur n'a pas pu être supprimé. Veuillez réessayer."
+
+#: Controller/UsersController.php:25
+msgid "Invalid username or password, try again"
+msgstr "Nom d'utilisateur ou mot de passe incorrect. Veuillez réessayer."
+
+#: Controller/UsersController.php:42;70;97
+msgid "Invalid user"
+msgstr "Utilisateur inconnu"
+
+#: Controller/UsersController.php:55;74
+msgid "The user has been saved."
+msgstr "L'utilisateur a été enregistré."
+
+#: Controller/UsersController.php:58;77
+msgid "The user could not be saved. Please, try again."
+msgstr "L'utilisateur n'a pas pu être enregistré. Veuillez réessayer."
+
+#: Controller/UsersController.php:101
+msgid "The user has been deleted."
+msgstr "L'utilisateur a été supprimé."
+
+#: Controller/UsersController.php:103
+msgid "The user could not be deleted. Please, try again."
+msgstr "L'utilisateur n'a pas pu être supprimé. Veuillez réessayer."
+
+#: Controller/VenuesController.php:18;43;70
+msgid "Invalid venue"
+msgstr "Lieu inconnu"
+
+#: Controller/VenuesController.php:31;47
+msgid "The venue has been saved."
+msgstr "Le lieu a été enregistré."
+
+#: Controller/VenuesController.php:34;50
+msgid "The venue could not be saved. Please, try again."
+msgstr "Le lieu n'a pas pu être enregistré. Veuillez réessayer."
+
+#: Controller/VenuesController.php:74
+msgid "The venue has been deleted."
+msgstr "Le lieu a été supprimé."
+
+#: Controller/VenuesController.php:76
+msgid "The venue could not be deleted. Please, try again."
+msgstr "Le lieu n'a pas pu être supprimé. Veuillez réessayer."
+
+#: Controller/VenuesController.php:84
+msgid "The venues were merged."
+msgstr "Les lieux ont été fusionnés."
+
+#: Controller/VenuesController.php:87
+msgid "The venues could not be merged. Please, try again."
+msgstr "Les lieux n'ont pas pu être fusionnés. Veuillez réessayer."
+
+#: Model/Authentication.php:43
+msgid "Could not add Credentials"
+msgstr "Impossible d'ajouter de nouveaux identifiants"
+
+#: Model/Authentication.php:94
+msgid "Could not add User"
+msgstr "Impossible d'ajouter un nouvel utilisateur"
+
+#: Model/Authentication.php:132
+msgid "Invalid authentication"
+msgstr "Authentification inconnue"
+
+#: Plugin/AclExtras/Console/Command/AclExtrasShell.php:80
+msgid "Plugin to process"
+msgstr ""
+
+#: Plugin/AclExtras/Console/Command/AclExtrasShell.php:83
+msgid "Better manage, and easily synchronize you application's ACO tree"
+msgstr ""
+
+#: Plugin/AclExtras/Console/Command/AclExtrasShell.php:88
+msgid ""
+"Add new ACOs for new controllers and actions. Does not remove nodes from the "
+"ACO table."
+msgstr ""
+
+#: Plugin/AclExtras/Console/Command/AclExtrasShell.php:93
+msgid ""
+"Perform a full sync on the ACO table.Will create new ACOs or missing "
+"controllers and actions.Will also remove orphaned entries that no longer "
+"have a matching controller/action"
+msgstr ""
+
+#: Plugin/AclExtras/Console/Command/AclExtrasShell.php:97
+msgid "Verify the tree structure of either your Aco or Aro Trees"
+msgstr ""
+
+#: Plugin/AclExtras/Console/Command/AclExtrasShell.php:102
+msgid "The type of tree to verify"
+msgstr ""
+
+#: Plugin/AclExtras/Console/Command/AclExtrasShell.php:108
+msgid "Recover a corrupted Tree"
+msgstr ""
+
+#: Plugin/AclExtras/Console/Command/AclExtrasShell.php:113
+msgid "The type of tree to recover"
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:123
+msgid "<error>Plugin %s not found or not activated</error>"
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:136
+msgid "<success>Aco Update Complete</success>"
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:181
+msgid "Deleted %s and all children"
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:222
+msgid "Created Aco node: <success>%s</success>"
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:275
+msgid "Unable to get methods for \"%s\""
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:296
+msgid "Deleted Aco node: <warning>%s</warning>"
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:315
+msgid "<success>Tree is valid and strong</success>"
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:333
+msgid "Tree has been recovered, or tree did not need recovery."
+msgstr ""
+
+#: Plugin/AclExtras/Lib/AclExtras.php:335
+msgid "<error>Tree recovery failed.</error>"
+msgstr ""
+
+#: Plugin/BoostCake/Controller/BoostCakeController.php:18
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
+#: Plugin/BoostCake/Controller/BoostCakeController.php:27
+#: Plugin/BoostCake/View/Elements/bootstrap2/alerts.ctp:6
+msgid "Alert notice message testing..."
+msgstr ""
+
+#: Plugin/BoostCake/Controller/BoostCakeController.php:30;41
+#: Plugin/BoostCake/View/Elements/bootstrap2/alerts.ctp:10
+#: Plugin/BoostCake/View/Elements/bootstrap3/alerts.ctp:6
+msgid "Alert success message testing..."
+msgstr ""
+
+#: Plugin/BoostCake/Controller/BoostCakeController.php:34
+#: Plugin/BoostCake/View/Elements/bootstrap2/alerts.ctp:15
+msgid "Alert error message testing..."
+msgstr ""
+
+#: Plugin/BoostCake/Controller/BoostCakeController.php:45
+#: Plugin/BoostCake/View/Elements/bootstrap3/alerts.ctp:11
+msgid "Alert info message testing..."
+msgstr ""
+
+#: Plugin/BoostCake/Controller/BoostCakeController.php:49
+#: Plugin/BoostCake/View/Elements/bootstrap3/alerts.ctp:16
+msgid "Alert warning message testing..."
+msgstr ""
+
+#: Plugin/BoostCake/Controller/BoostCakeController.php:53
+#: Plugin/BoostCake/View/Elements/bootstrap3/alerts.ctp:21
+msgid "Alert danger message testing..."
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:139
+msgid "Plugin name to be used"
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:143
+msgid "Precheck migrations"
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:147
+msgid "Force 'generate' to compare all tables."
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:151
+msgid "Overrides the 'default' connection of the MigrationVersion"
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:155
+msgid ""
+"Overrides the 'default' connection of the CakeMigrations that are applied"
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:160
+msgid "Output the raw SQL queries rather than applying them to the database."
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:165
+msgid ""
+"Disables automatic creation of migrations table and running any internal "
+"plugin migrations"
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:167
+msgid "Displays a status of all plugin and app migrations."
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:169
+msgid "Run a migration to given direction or version."
+msgstr ""
+
+#: Plugin/Migrations/Console/Command/MigrationShell.php:171
+msgid "Generates a migration file."
+msgstr ""
+
+#: View/Contacts/index.ctp:24
+msgid "Send"
+msgstr "Envoyer"
+
+#: View/Editions/add.ctp:3
+msgid "Add Edition"
+msgstr "Ajouter une édition"
+
+#: View/Editions/edit.ctp:3
+msgid "Edit Edition"
+msgstr "Editer une édition"
+
+#: View/Editions/index.ctp:4
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: View/Editions/index.ctp:8
+msgid "Editions"
+msgstr "Editions"
+
+#: View/Editions/index.ctp:17 View/Groups/index.ctp:17
+#: View/Organizers/add.ctp:13 View/Organizers/edit.ctp:14
+#: View/Organizers/index.ctp:10;57 View/Organizers/view.ctp:32
+#: View/Users/index.ctp:12 View/Venues/index.ctp:17
+msgid "Actions"
+msgstr "Actions"
+
+#: View/Editions/index.ctp:28 View/Groups/index.ctp:28
+#: View/Organizers/index.ctp:25 View/Users/index.ctp:23
+#: View/Venues/index.ctp:42
+msgid "View"
+msgstr "Voir"
+
+#: View/Editions/index.ctp:33 View/Groups/index.ctp:33 View/Groups/view.ctp:6
+#: View/Layouts/default.ctp:90 View/Organizers/index.ctp:29
+#: View/Users/index.ctp:28 View/Venues/index.ctp:47
+msgid "Edit"
+msgstr "Editer"
+
+#: View/Editions/index.ctp:38 View/Groups/index.ctp:38 View/Groups/view.ctp:11
+#: View/Layouts/default.ctp:96 View/Organizers/edit.ctp:17
+#: View/Organizers/index.ctp:33 View/Users/index.ctp:33
+#: View/Venues/index.ctp:57
+msgid "Delete"
+msgstr "Supprimer"
+
+#: View/Editions/index.ctp:41 View/Groups/index.ctp:41 View/Groups/view.ctp:14
+#: View/Organizers/edit.ctp:17 View/Organizers/index.ctp:36
+#: View/Organizers/view.ctp:35 View/Users/index.ctp:37
+#: View/Venues/index.ctp:60
+msgid "Are you sure you want to delete # %s?"
+msgstr "Êtes-vous sûr de vouloir supprimer # %s ?"
+
+#: View/Editions/rss/feed.ctp:3;5
+msgid "Latest Events for "
+msgstr "Les derniers évènements pour "
+
+#: View/Events/add.ctp:3
+msgid "Add Event"
+msgstr "Ajouter un évènement"
+
+#: View/Events/edit.ctp:3
+msgid "Edit Event"
+msgstr "Editer l'évènement"
+
+#: View/Events/index.ctp:30
+msgid "Google"
+msgstr "Google"
+
+#: View/Events/index.ctp:35
+msgid "Upload"
+msgstr ""
+
+#: View/Events/upload.ctp:3
+msgid "Upload ICS Calendar"
+msgstr ""
+
+#: View/Events/view.ctp:24
+msgid "Organizer:"
+msgid_plural "Organizers:"
+msgstr[0] "Organisateur :"
+msgstr[1] "Organisateurs :"
+
+#: View/Events/Elements/google-cal-url.ctp:14
+msgid "Export to Google Calendar"
+msgstr "Exporter dans Google Calendar"
+
+#: View/Events/Elements/outlook-cal-url.ctp:14
+msgid "Export to Outlook Calendar"
+msgstr "Exporter dans Outlook Calendar"
+
+#: View/Events/Elements/yahoo-cal-url.ctp:17
+msgid "Export to Yahoo Calendar"
+msgstr "Exporter dans Yahoo Calendar"
+
+#: View/Events/rss/index.ctp:3;5
+msgid "Latest Events on Digisquare"
+msgstr "Les derniers évènements sur Digisquare"
+
+#: View/GoogleCalendarEvents/index.ctp:4
+msgid "Choose a calendar"
+msgstr "Choisissez un calendrier"
+
+#: View/GoogleCalendarEvents/index.ctp:25
+msgid "Google Calendar Events"
+msgstr "Évènements Calendrier Google"
+
+#: View/Groups/add.ctp:3
+msgid "Add Group"
+msgstr "Ajouter un groupe"
+
+#: View/Groups/edit.ctp:3
+msgid "Edit Group"
+msgstr "Editer le groupe"
+
+#: View/Groups/index.ctp:4
+msgid "Create"
+msgstr "Créer"
+
+#: View/Groups/index.ctp:8
+msgid "Groups"
+msgstr "Groupes"
+
+#: View/Groups/view.ctp:22
+msgid "id"
+msgstr "id"
+
+#: View/Groups/view.ctp:23
+msgid "username"
+msgstr "nom d'utilisateur"
+
+#: View/Groups/view.ctp:24 Model/User.php:validation for field email
+msgid "email"
+msgstr "email"
+
+#: View/Groups/view.ctp:25
+msgid "created"
+msgstr "créé"
+
+#: View/Groups/view.ctp:26
+msgid "modified"
+msgstr "modifié"
+
+#: View/Layouts/default.ctp:69
+msgid "My profile"
+msgstr "Mon profil"
+
+#: View/Layouts/default.ctp:75
+msgid "Edit my profile"
+msgstr "Editer mon profil"
+
+#: View/Layouts/default.ctp:83
+msgid "Add"
+msgstr "Ajouter"
+
+#: View/Layouts/default.ctp:99
+msgid "Are you sure you want to delete this?"
+msgstr "Êtes-vous sûr de vouloir supprimer ceci ?"
+
+#: View/Layouts/default.ctp:107
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: View/Layouts/default.ctp:118 View/Users/login.ctp:3
+msgid "Login"
+msgstr "Se connecter"
+
+#: View/Organizations/add.ctp:3
+msgid "Add Organization"
+msgstr "Ajouter une organisation"
+
+#: View/Organizations/edit.ctp:3
+msgid "Edit Organization"
+msgstr "Editer l'organisation"
+
+#: View/Organizations/edit.ctp:82 View/Users/edit.ctp:73
+msgid "Twitter"
+msgstr "Twitter"
+
+#: View/Organizations/rss/feed.ctp:3;5
+msgid "Latest Organizations on Digisquare"
+msgstr "Les dernières organisations sur Digisquare"
+
+#: View/Organizers/add.ctp:4
+msgid "Add Organizer"
+msgstr "Ajouter un organisateur"
+
+#: View/Organizers/add.ctp:10 View/Organizers/edit.ctp:11
+msgid "Submit"
+msgstr "Envoyer"
+
+#: View/Organizers/add.ctp:16 View/Organizers/edit.ctp:18
+#: View/Organizers/view.ctp:36
+msgid "List Organizers"
+msgstr ""
+
+#: View/Organizers/add.ctp:17 View/Organizers/edit.ctp:19
+#: View/Organizers/index.ctp:60 View/Organizers/view.ctp:38
+msgid "List Events"
+msgstr ""
+
+#: View/Organizers/add.ctp:18 View/Organizers/edit.ctp:20
+#: View/Organizers/index.ctp:61 View/Organizers/view.ctp:39
+msgid "New Event"
+msgstr "Nouvel évènement"
+
+#: View/Organizers/add.ctp:19 View/Organizers/edit.ctp:21
+#: View/Organizers/index.ctp:62 View/Organizers/view.ctp:40
+msgid "List Organizations"
+msgstr ""
+
+#: View/Organizers/add.ctp:20 View/Organizers/edit.ctp:22
+#: View/Organizers/index.ctp:63 View/Organizers/view.ctp:41
+msgid "New Organization"
+msgstr "Nouvelle organisation"
+
+#: View/Organizers/edit.ctp:4 View/Organizers/view.ctp:34
+msgid "Edit Organizer"
+msgstr "Editer l'organisateur"
+
+#: View/Organizers/index.ctp:2
+msgid "Organizers"
+msgstr "Organisateurs"
+
+#: View/Organizers/index.ctp:45
+msgid ""
+"Page {:page} of {:pages}, showing {:current} records out of {:count} total, "
+"starting on record {:start}, ending on {:end}"
+msgstr ""
+
+#: View/Organizers/index.ctp:50
+msgid "previous"
+msgstr "précédent"
+
+#: View/Organizers/index.ctp:52
+msgid "next"
+msgstr "suivant"
+
+#: View/Organizers/index.ctp:59 View/Organizers/view.ctp:37
+msgid "New Organizer"
+msgstr "Nouvel organisateur"
+
+#: View/Organizers/view.ctp:2
+msgid "Organizer"
+msgstr "Organisateur"
+
+#: View/Organizers/view.ctp:4 View/Venues/merge.ctp:44
+msgid "Id"
+msgstr "Id"
+
+#: View/Organizers/view.ctp:9
+msgid "Event"
+msgstr "Évènement"
+
+#: View/Organizers/view.ctp:14
+msgid "Organization"
+msgstr "Organisation"
+
+#: View/Organizers/view.ctp:19 View/Venues/merge.ctp:95
+msgid "Created"
+msgstr "Créé"
+
+#: View/Organizers/view.ctp:24 View/Venues/merge.ctp:100
+msgid "Modified"
+msgstr "Modifié"
+
+#: View/Organizers/view.ctp:35
+msgid "Delete Organizer"
+msgstr "Supprimer l'organisateur"
+
+#: View/Users/add.ctp:3 View/Users/edit.ctp:3
+msgid "Edit User"
+msgstr "Editer l'utilisateur"
+
+#: View/Users/index.ctp:3
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: View/Users/login.ctp:33
+msgid "%s Connect"
+msgstr "%s Connect"
+
+#: View/Venues/add.ctp:3
+msgid "Add Venue"
+msgstr "Ajouter un lieu"
+
+#: View/Venues/edit.ctp:3
+msgid "Edit Venue"
+msgstr "Editer le lieu"
+
+#: View/Venues/edit.ctp:42
+msgid "Geocode"
+msgstr "Geocoder"
+
+#: View/Venues/index.ctp:4
+msgid "Merge"
+msgstr "Fusionner"
+
+#: View/Venues/index.ctp:8
+msgid "Venues"
+msgstr "Lieux"
+
+#: View/Venues/index.ctp:52
+msgid "Organizations"
+msgstr "Organisations"
+
+#: View/Venues/merge.ctp:3
+msgid "Merge Venues"
+msgstr "Fusionner les lieux"
+
+#: View/Venues/merge.ctp:49
+msgid "Name"
+msgstr "Nom"
+
+#: View/Venues/merge.ctp:54
+msgid "Address"
+msgstr "Adresse"
+
+#: View/Venues/merge.ctp:59
+msgid "Zipcode"
+msgstr "Code Postal"
+
+#: View/Venues/merge.ctp:64
+msgid "City"
+msgstr "Ville"
+
+#: View/Venues/merge.ctp:69
+msgid "Country Code"
+msgstr "Code Pays"
+
+#: View/Venues/merge.ctp:74
+msgid "Latitude"
+msgstr "Latitude"
+
+#: View/Venues/merge.ctp:79
+msgid "Longitude"
+msgstr "Longitude"
+
+#: View/Venues/merge.ctp:90
+msgid "Events"
+msgstr "Évènements"
+
+#: View/Venues/rss/feed.ctp:3;5
+msgid "Latest Venues on Digisquare"
+msgstr "Les derniers lieux sur Digisquare"
+
+#: Model/Authentication.php:validation for field user_id
+#: Model/Event.php:validation edition_id;validation venue_id;validation status
+#: Model/Organization.php:validation edition_id Model/Organizer.php:validation
+#: event_id;validation organization_id Model/Venue.php:validation
+#: latitude;validation longitude
+msgid "numeric"
+msgstr "numérique"
+
+#: Model/Authentication.php:validation for field provider;validation uid
+#: Model/Edition.php:validation name;validation slug
+#: Model/Event.php:validation name Model/Group.php:validation
+#: Model/Organization.php:validation Model/User.php:validation
+#: username;validation password Model/Venue.php:validation
+msgid "notEmpty"
+msgstr "non vide"
+
+#: Model/Event.php:validation for field start_at;validation end_at
+msgid "datetime"
+msgstr "datetime"
+
+#~ msgid "%s"
+#~ msgstr "%s"
