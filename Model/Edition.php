@@ -69,7 +69,7 @@ class Edition extends AppModel {
 		$this->User->Group->deleteAll(['Group.id >' => 0], true, true);
 
 		$this->insertAll();
-		// $this->Organization->insertAll();
+		$this->Organization->insertAll();
 		$this->User->Group->insertAll();
 	}
 
