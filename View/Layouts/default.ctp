@@ -73,7 +73,11 @@
 									<li>
 										<?php echo $this->Html->link(
 											__('Edit my profile'),
-											['action' => 'edit', 'id' => $this->Session->read('Auth.User.id')]
+											[
+												'controller' => 'users',
+												'action' => 'edit',
+												'id' => $this->Session->read('Auth.User.id')
+											]
 										); ?>
 									</li>
 									<li class="divider"></li>
