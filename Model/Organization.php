@@ -60,7 +60,8 @@ class Organization extends AppModel {
 		'Semaine Digitale' => 'semainedigitale', 'ApéroWeb Bordeaux' => 'aperoweb_bdx', 'BordeauxJS' => 'BordeauxJS',
 		'Le HUG' => 'hugbdx', 'Darwin eco-système' => 'DarwinBdx', 'Agile Tour Bordeaux' => 'atbdx',
 		'Drupal Bordeaux' => 'drupal_bordeaux', 'Coding Goûter Bdx' => 'CodingGouterBdx', 'Bdxcoin' => 'Bdxcoin',
-		'Le Campement Bordeaux' => 'Lecampement', 'Délégation TIC Région Aquitaine' => 'NumericAquitN', 'Sthack' => 'sth4ck'
+		'Le Campement Bordeaux' => 'Lecampement', 'Délégation TIC Région Aquitaine' => 'NumericAquitN', 'Sthack' => 'sth4ck',
+		'La Ruche Bordeaux' => 'LaRucheBordeaux'
 	];
 
 	public function bindNode($organization) {
