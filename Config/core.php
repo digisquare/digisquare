@@ -47,7 +47,7 @@ Configure::write('Acl.database', 'default');
 
 ini_set('date.timezone', 'Europe/Paris');
 date_default_timezone_set('Europe/Paris');
-setlocale(LC_ALL, 'fr_FR@euro', 'fr_FR', 'fra_fra');
+setlocale(LC_ALL, 'fr_FR.utf8', 'fr_FR@euro', 'fr_FR', 'fra_fra');
 
 $engine = 'File';
 
