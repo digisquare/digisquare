@@ -3,14 +3,14 @@ $today = $query_date = new DateTime('today');
 if (isset($this->request->query['date']) && date('Y-m') !== $this->request->query['date']) {
 	$query_date = new Datetime($this->request->query['date']);
 	$query_month = $query_date->format('m');
-	if ($query_date == new Datetime('first monday of' . $query_date->format('F'))) {
+	if ($query_date == new Datetime('first monday of' . $query_date->format('F Y'))) {
 		$first_monday = $query_date;
 	} else {
 		$query_date->modify('-1 month');
-		$first_monday = new Datetime('last monday of' . $query_date->format('F'));
+		$first_monday = new Datetime('last monday of' . $query_date->format('F Y'));
 		$query_date->modify('+1 month');
 	}
-	$last_day_of_this_month = new Datetime('last day of' . $query_date->format('F'));
+	$last_day_of_this_month = new Datetime('last day of' . $query_date->format('F Y'));
 	$day = $first_monday;
 } else {
 	if ($today == new Datetime('first monday of this month')) {
