@@ -141,14 +141,21 @@ class Event extends AppModel {
 		if (!empty($location) && $venue_id == 0) {
 			$description .= "\r\nLieu : " . $location;
 		}
+		if ('00:00:00' == $vEvent->DTSTART->getDateTime()->format('H:i:s')) {
+			$start_at = strftime('%F 00:00:00', $vEvent->DTSTART->getDateTime()->format('U'));
+			$end_at = strftime('%F 00:00:00', ($vEvent->DTEND->getDateTime()->format('U') - 24*60*60));
+		} else {
+			$start_at = strftime('%F %T', $vEvent->DTSTART->getDateTime()->format('U'));
+			$end_at = strftime('%F %T', $vEvent->DTEND->getDateTime()->format('U'));
+		}
 		return [
 			'edition_id' => $edition_id,
 			'venue_id' => $venue_id,
 			'uid' => (string)$vEvent->UID,
 			'name' => (string)$vEvent->SUMMARY,
 			'description' => $description,
-			'start_at' => (string)$vEvent->DTSTART->getDateTime()->format('Y-m-d H:i:s'),
-			'end_at' => (string)$vEvent->DTEND->getDateTime()->format('Y-m-d H:i:s'),
+			'start_at' => $start_at,
+			'end_at' => $end_at,
 			'status' => '0',
 			'url' => (string)$vEvent->URL
 		];
