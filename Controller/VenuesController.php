@@ -82,7 +82,7 @@ class VenuesController extends AppController {
 		if ($this->request->is('post') && isset($this->request->data['Venue']['merge'])) {
 			if ($this->Venue->merge($this->request->data)) {
 				$this->Session->setFlash(__('The venues were merged.'), 'message_success');
-				return $this->redirect(['action' => 'index']);
+				return $this->redirect(['action' => 'merge']);
 			} else {
 				$this->Session->setFlash(__('The venues could not be merged. Please, try again.'), 'message_error');
 			}
