@@ -51,6 +51,11 @@
 						<td><?php echo h($venue_2['Venue']['name']); ?></td>
 					</tr>
 					<tr>
+						<td><?php echo __('Edition'); ?></td>
+						<td><?php echo $this->Form->input('edition_id'); ?></td>
+						<td><?php echo h($editions[$venue_2['Venue']['edition_id']]); ?></td>
+					</tr>
+					<tr>
 						<td><?php echo __('Address'); ?></td>
 						<td><?php echo $this->Form->input('address'); ?></td>
 						<td><?php echo h($venue_2['Venue']['address']); ?></td>

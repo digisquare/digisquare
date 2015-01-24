@@ -313,6 +313,9 @@ class Venue extends AppModel {
 	}
 
 	public function merge($data) {
+		if ($data['Venue']['venue_id_1'] == $data['Venue']['venue_id_2']) {
+			return false;
+		}
 		$this->Organization->updateAll(
 			array('Organization.venue_id' => $data['Venue']['venue_id_1']),
 			array('Organization.venue_id' => $data['Venue']['venue_id_2'])
@@ -327,6 +330,7 @@ class Venue extends AppModel {
 		);
 		$data['Venue']['id'] = $data['Venue']['venue_id_1'];
 		if ($this->save($data)) {
+			$this->Event->updateCounterCache(['venue_id' => $this->id]);
 			$this->delete($data['Venue']['venue_id_2']);
 			return true;
 		} else {

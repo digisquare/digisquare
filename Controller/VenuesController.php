@@ -91,6 +91,9 @@ class VenuesController extends AppController {
 				$temp_venue_id = $this->request->data['Venue']['venue_id_1'];
 				$this->request->data['Venue']['venue_id_1'] = $this->request->data['Venue']['venue_id_2'];
 				$this->request->data['Venue']['venue_id_2'] = $temp_venue_id;
+			} elseif ($this->request->data['Venue']['venue_id_1'] == $this->request->data['Venue']['venue_id_2']) {
+				$this->Session->setFlash(__('You have to merge two different venues. Please, try again.'), 'message_error');
+				return $this->redirect(['action' => 'merge']);
 			}
 			$venue_1 = $this->Venue->find('first', [
 				'contain' => false,
@@ -107,7 +110,8 @@ class VenuesController extends AppController {
 			$this->set(compact('venue_1', 'venue_2'));
 		}
 		$venues = $this->Venue->find('list', ['order' => ['Venue.name' => 'ASC']]);
-		$this->set(compact('venues'));
+		$editions = $this->Venue->Edition->find('list');
+		$this->set(compact('venues', 'editions'));
 	}
 
 }
