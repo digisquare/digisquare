@@ -96,9 +96,9 @@
 												); ?>
 											</li>
 											<li>
-												<?php echo $this->Html->link(
+												<?php echo $this->Form->postLink(
 													__('Delete'),
-													['action' => 'edit', 'id' => $id],
+													['action' => 'delete', 'id' => $id],
 													null,
 													__('Are you sure you want to delete this?')
 												); ?>
