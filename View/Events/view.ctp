@@ -36,7 +36,7 @@
 					); ?>
 					<?php if (!empty($organizer['avatar'])) {
 						echo $this->Html->meta(
-							['name' => 'og:image', 'content' => $organizer['avatar']],
+							['property' => 'og:image', 'content' => $organizer['avatar']],
 							null,
 							['inline' => false]
 						);

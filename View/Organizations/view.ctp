@@ -10,7 +10,7 @@
 				<div class="media panel-body">
 					<?php if (!(empty($organization['Organization']['avatar']))): ?>
 						<?php echo $this->Html->meta(
-							['name' => 'og:image', 'content' => $organization['Organization']['avatar']],
+							['property' => 'og:image', 'content' => $organization['Organization']['avatar']],
 							null,
 							['inline' => false]
 						); ?>
