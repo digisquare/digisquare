@@ -18,6 +18,9 @@
 	<?php echo $this->fetch('meta'); ?>
 	<?php echo $this->fetch('css'); ?>
 	<?php echo $this->element('favicon'); ?>
+	<?php if (Configure::read('debug') < 2) {
+		echo $this->element('analytics'); 
+	} ?>
 </head>
 <body>
 	<div id="wrap">
