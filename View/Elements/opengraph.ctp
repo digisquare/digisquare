@@ -9,7 +9,7 @@ echo $this->Html->meta([
 ]); 
 echo $this->Html->meta([
 	'property' => 'og:image',
-	'content' => $this->Html->url('/img/logos/digisquare_2000.png', true)
+	'content' => $this->Html->url('/img/logos/digisquare_baseline_534_280.png', true)
 ]);
 if (isset($description_for_layout)) {
 	echo $this->Html->meta([
