@@ -7,7 +7,7 @@
         "opauth/facebook": "*",
         "opauth/twitter": "*",
         "opauth/meetup": "*",
-        "sabre/vobject": "3.2.*",
+        "sabre/vobject": "~3.3",
         "willdurand/geocoder": "2.5.*",
         "guzzle/guzzle": "3.9.*",
         "google/apiclient": "1.0.*@beta",
