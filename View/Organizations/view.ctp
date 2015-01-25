@@ -1,14 +1,19 @@
-<?php $title_for_layout = $organization['Organization']['name'];
-$this->set(compact('title_for_layout')); ?>
 <div role="main">
 	<div class="page-header">
 		<h1><?php echo h($organization['Organization']['name']); ?></h1>
+		<?php $title_for_layout = $organization['Organization']['name']; ?>
+		<?php $this->set(compact('title_for_layout')); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-8">
 			<div class="panel panel-default">
 				<div class="media panel-body">
 					<?php if (!(empty($organization['Organization']['avatar']))): ?>
+						<?php echo $this->Html->meta(
+							['name' => 'og:image', 'content' => $organization['Organization']['avatar']],
+							null,
+							['inline' => false]
+						); ?>
 						<div class="media-left">
 							<?php echo $this->Html->image(
 								$organization['Organization']['avatar'],
@@ -18,6 +23,8 @@ $this->set(compact('title_for_layout')); ?>
 					<?php endif; ?>
 					<div class="media-body">
 						<?php echo nl2br($this->Text->autoLink($organization['Organization']['description'])); ?>
+						<?php $description_for_layout = $organization['Organization']['description']; ?>
+						<?php $this->set(compact('description_for_layout')); ?>
 					</div>
 				</div>
 				<div class="panel-footer">

@@ -7,6 +7,8 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<?php echo nl2br($this->Text->autoLink($event['Event']['description'])); ?>
+					<?php $description_for_layout = $event['Event']['description']; ?>
+					<?php $this->set(compact('description_for_layout')); ?>
 				</div>
 				<div class="panel-footer">
 					<?php echo $this->Html->link(
@@ -32,6 +34,13 @@
 							]
 						]
 					); ?>
+					<?php if (!empty($organizer['avatar'])) {
+						echo $this->Html->meta(
+							['name' => 'og:image', 'content' => $organizer['avatar']],
+							null,
+							['inline' => false]
+						);
+					} ?>
 				<?php endforeach; ?>
 			<?php endif; ?>
 		</div>

@@ -1,5 +1,6 @@
 <?php $title_for_layout = $venue['Venue']['name'] . ', ' . $venue['Venue']['city'];
-$this->set(compact('title_for_layout')); ?>
+$description_for_layout = $venue['Venue']['address'] . ', ' . $venue['Venue']['zipcode'] . ' ' . $venue['Venue']['city'];
+$this->set(compact('title_for_layout', 'description_for_layout')); ?>
 <div role="main">
 	<div class="page-header">
 		<h1><?php echo h($venue['Venue']['name']); ?></h1>

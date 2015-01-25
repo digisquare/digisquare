@@ -7,7 +7,6 @@
 	<title>
 		<?php echo $title_for_layout; ?>
 	</title>
-	<?php echo $this->Html->meta('icon'); ?>
 	<?php if (Configure::read('debug') < 2) {
 		$css_rev_manifest = file_get_contents(WWW_ROOT . 'generated/css/rev-manifest.json');
 		$css_version = json_decode($css_rev_manifest, true);
@@ -15,7 +14,13 @@
 	} else {
 		echo $this->Html->css('/generated/css/main');
 	} ?>
+	<?php if (isset($description_for_layout)) {
+		$description_for_layout = $this->Text->truncate(strip_tags($description_for_layout), 160);
+		$this->set(compact('description_for_layout'));
+		echo $this->Html->meta('description', $description_for_layout);
+	} ?>
 	<?php echo $this->fetch('meta'); ?>
+	<?php echo $this->element('opengraph'); ?>
 	<?php echo $this->fetch('css'); ?>
 	<?php echo $this->element('favicon'); ?>
 	<?php if (Configure::read('debug') < 2) {
