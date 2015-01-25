@@ -111,7 +111,7 @@ class Organization extends AppModel {
 		);
 		try {
 			$twitter_user = $cb->users_show(['screen_name' => $organization['Organization']['Contacts']['twitter']]);
-			$organization['Organization']['avatar'] = $twitter_user->profile_image_url_https;
+			$organization['Organization']['avatar'] = str_replace('_normal', '_400x400', $twitter_user->profile_image_url_https);
 			$organization['Organization']['description'] = $twitter_user->description;
 			if (isset($twitter_user->entities->url->urls[0]->expanded_url)) {
 				$organization['Organization']['Contacts']['website'] = $twitter_user->entities->url->urls[0]->expanded_url;

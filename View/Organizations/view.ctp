@@ -11,7 +11,7 @@ $this->set(compact('title_for_layout')); ?>
 					<?php if (!(empty($organization['Organization']['avatar']))): ?>
 						<div class="media-left">
 							<?php echo $this->Html->image(
-								str_replace('_normal', '_400x400', $organization['Organization']['avatar']),
+								$organization['Organization']['avatar'],
 								['width' => '150']
 							); ?>
 						</div>
