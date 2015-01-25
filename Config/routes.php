@@ -1,7 +1,9 @@
 <?php
 Router::parseExtensions('rss', 'json', 'ics');
 
-Router::connect('/',	['controller' => 'pages', 'action' => 'display', 'home']);
+Router::connect('/',					['controller' => 'pages', 'action' => 'display', 'home']);
+Router::connect('/amour-et-creation',	['controller' => 'pages', 'action' => 'display', 'thanks']);
+Router::connect('/mention-legales',		['controller' => 'pages', 'action' => 'display', 'legal']);
 
 /**
  * Opauth Plugin Routing

@@ -177,7 +177,26 @@
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<footer id="footer">
-			Amour & Création
+			<?php echo $this->Html->link(
+				'<i class="fa fa-heart"></i> A Propos',
+				['controller' => 'pages', 'action' => 'display', 'thanks'],
+				['escape' => false]
+			); ?> • 
+			<?php echo $this->Html->link(
+				'<i class="fa fa-twitter"></i> Twitter',
+				'https://twitter.com/digisquare_bx',
+				['escape' => false]
+			); ?> • 
+			<?php echo $this->Html->link(
+				'<i class="fa fa-github-alt"></i> Github',
+				'https://github.com/digisquare/digisquare',
+				['escape' => false]
+			); ?> •
+			<?php echo $this->Html->link(
+				'<i class="fa fa-copyright"></i> Mentions Légales',
+				['controller' => 'pages', 'action' => 'display', 'legal'],
+				['escape' => false]
+			); ?>
 			<?php echo $this->element('sql_dump'); ?>
 		</footer>
 	</div>
