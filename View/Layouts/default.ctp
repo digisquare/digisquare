@@ -23,9 +23,7 @@
 	<?php echo $this->element('opengraph'); ?>
 	<?php echo $this->fetch('css'); ?>
 	<?php echo $this->element('favicon'); ?>
-	<?php if (Configure::read('debug') < 2) {
-		echo $this->element('analytics'); 
-	} ?>
+	<?php echo $this->element('analytics'); ?>
 </head>
 <body>
 	<div id="wrap">
