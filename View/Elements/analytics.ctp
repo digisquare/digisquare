@@ -11,8 +11,6 @@ switch ($this->action) {
 		break;
 	
 	case 'view':
-	case 'add':
-	case 'edit':
 		$page = Inflector::singularize($this->name);
 		break;
 
@@ -45,9 +43,24 @@ switch ($this->action) {
 				}
 			echo '}';
 		};
-		echo ')';
+		echo ');';
 	} else {
-		echo 'analytics.page()';
+		echo 'analytics.page();';
+	} ?>
+	<?php if ($this->Session->check('Auth.User')) {
+		$user = $this->Session->read('Auth.User');
+		echo 'analytics.identify(' . $user['id'] . ', {
+			username: "' . $user['username'] . '",
+			email: "' . $user['email'] . '",
+			avatar: "' . $user['avatar'] . '",
+			createdAt: "' . $user['created'] . '",
+			firstName: "' . $user['Informations']['first_name'] . '",
+			lastName: "' . $user['Informations']['last_name'] . '",
+			description: "' . $user['Informations']['description'] . '",
+			website: "' . $user['Contacts']['website'] . '",
+			facebook: "' . $user['Contacts']['facebook'] . '",
+			twitter: "' . $user['Contacts']['twitter'] . '"
+		});';
 	} ?>
   }}();
 </script>
