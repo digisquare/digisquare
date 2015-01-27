@@ -32,7 +32,8 @@ $this->set(compact('title_for_layout'));
 			<ul>
 				<li><a href="https://twitter.com/damusnet">Damien Varron</a>, data porn lover </li>
 				<li><a href="https://twitter.com/newick">Erick Gardin</a>, intégrateur invader </li>
-				<li><a href="http://twitter.com/miho_fr">Aymeric Faivre</a>, designer hipster</li>
+				<li><a href="https://twitter.com/miho_fr">Aymeric Faivre</a>, designer hipster</li>
+				<li><a href="https://twitter.com/mariealine_m">Marie Aline Millot</a>, tôlière front-end</li>
 			</ul>
 
 			<p><strong>Comment ?</strong></p>
