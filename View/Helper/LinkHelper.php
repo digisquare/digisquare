@@ -99,12 +99,20 @@ class LinkHelper extends HtmlHelper {
 			$event = $title;
 			$title = $event['Event']['name'];
 		}
+		return $this->link($title,
+			$this->eventUrl($event, $options),
+			$options,
+			$confirmMessage
+		);
+	}
+
+	public function eventUrl($event, $options = []) {
 		$url = [];
 		if (isset($options['url'])) {
 			$url = $options['url'];
 			unset($options['url']);
 		}
-		return $this->link($title,
+		return $this->url(
 			array_merge([
 				'controller' => 'events',
 				'action' => 'view',
@@ -112,8 +120,7 @@ class LinkHelper extends HtmlHelper {
 				'id' => $event['Event']['id'],
 				'bslug' => strtolower(Inflector::slug($event['Event']['name'], '-'))
 			], $url),
-			$options,
-			$confirmMessage
+			$options
 		);
 	}
 

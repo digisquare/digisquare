@@ -36,12 +36,10 @@ $popover_content = htmlspecialchars('<input type="text" value="'. $popover_url .
 ?>
 <div role="main">
 	<div class="page-header">
-		<?php /*
 		<a href="<?php echo $popover_url; ?>" class="btn btn-primary pull-right feed-popover" title="S'abonner au calendrier"
 		 data-toggle="popover" title="<?php echo $popover_title; ?>" data-content="<?php echo $popover_content; ?>">
 			<i class="fa fa-calendar"></i>
 		</a>
-		*/ ?>
 		<h1><?php echo $title; ?></h1>
 	</div>
 	<div class="hidden-xs row">
