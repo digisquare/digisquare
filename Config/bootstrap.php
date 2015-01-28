@@ -66,6 +66,14 @@ if (isset($_SERVER) && isset($_SERVER['DIGI_MEETUP_KEY'])) {
 	));
 }
 
+if (isset($_SERVER) && isset($_SERVER['DIGI_EVENTBRITE_KEY'])) {
+	Configure::write('Opauth.Strategy.Eventbrite', array(
+		'key' => $_SERVER['DIGI_EVENTBRITE_KEY'],
+		'secret' => $_SERVER['DIGI_EVENTBRITE_SECRET'],
+		'access_token' => $_SERVER['DIGI_EVENTBRITE_ACCESS_TOKEN'],
+	));
+}
+
 if (isset($_SERVER) && isset($_SERVER['DIGI_GOOGLE_KEY'])) {
 	Configure::write('Opauth.Strategy.Google', array(
 		'client_id' => $_SERVER['DIGI_GOOGLE_KEY'],

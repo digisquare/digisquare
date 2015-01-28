@@ -215,4 +215,31 @@ class EventsController extends AppController {
 
 	}
 
+	public function import() {
+		if ($this->request->is('post')) {
+			if (empty($this->request->data['Event']['url'])) {
+				$this->Session->setFlash(__('Please provide a url.'), 'message_error');
+				return $this->redirect(['action' => 'import']);
+			}
+			$event = false;
+			$providers = ['Eventbrite'];
+			foreach ($providers as $provider) {
+				if (stripos($this->request->data['Event']['url'], '.' . $provider . '.')) {
+					$this->loadModel($provider);
+					$event = $this->{$provider}->importFromUrl(
+						$this->request->data['Event']['url'],
+						$this->request->data['Event']['edition_id']
+					);
+				}
+			}
+			if ($event) {
+				$this->redirect(['action' => 'add', '?' => $event]);
+			} else {
+				$this->Session->setFlash(__('Sorry, no event could be found. Please, try again.'), 'message_error');
+			}
+		}
+		$editions = $this->Event->Edition->find('list');
+		$this->set(compact('editions'));
+	}
+
 }
