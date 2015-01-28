@@ -193,6 +193,14 @@ class EventsController extends AppController {
 
 			$events = $this->Event->parseVCalendar($vCalendar, $this->request->data['Event']['edition_id']);
 
+			if (1 === count($events)) {
+				$this->redirect([
+					'controller' => 'events',
+					'action' => 'add',
+					'?' => reset($events)
+				]);
+			}
+
 			if ($this->Event->saveAll($events)) {
 				$this->Session->setFlash(__('The events have been saved.'), 'message_success');
 				return $this->redirect(['action' => 'index']);
