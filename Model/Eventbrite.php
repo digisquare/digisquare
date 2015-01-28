@@ -19,9 +19,8 @@ class Eventbrite extends AppModel {
 		$HttpSocket = new HttpSocket(['ssl_verify_host' => false]);
 		foreach ($matches as $id) {
 			$results = $HttpSocket->get(
-				'https://www.eventbriteapi.com/v3/events/' . $id,
-				['token' => Configure::read('Opauth.Strategy.Eventbrite.access_token')],
-				['redirect' => true]
+				'https://www.eventbriteapi.com/v3/events/' . $id . '/',
+				['token' => Configure::read('Opauth.Strategy.Eventbrite.access_token')]
 			);
 			if ($results->isOk()) {
 				return $this->formatEvent(
