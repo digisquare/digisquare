@@ -16,7 +16,7 @@ class Eventbrite extends AppModel {
 		if (!preg_match('`[0-9]+`', $url, $matches)) {
 			return false;
 		};
-		$HttpSocket = new HttpSocket();
+		$HttpSocket = new HttpSocket(['ssl_verify_host' => false]);
 		foreach ($matches as $id) {
 			$results = $HttpSocket->get(
 				'https://www.eventbriteapi.com/v3/events/' . $id,

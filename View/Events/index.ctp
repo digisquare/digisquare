@@ -36,6 +36,11 @@
 				array('controller' => 'events', 'action' => 'upload'),
 				array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
 			); ?>
+			<?php echo $this->Html->link(
+				'<i class="icon-plus-sign icon-white"></i> ' .__('Import'),
+				array('controller' => 'events', 'action' => 'import'),
+				array('escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;')
+			); ?>
 		<?php endif; ?>
 		<h1><?php echo $title; ?></h1>
 	</div>
