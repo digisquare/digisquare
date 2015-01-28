@@ -13,7 +13,14 @@
 			),
 			'class' => 'well form-horizontal'
 		)); ?>
-			<?php echo $this->Form->input('edition_id'); ?>
+			<?php echo $this->Form->input('edition_id',
+				[
+					'empty' => true,
+					'class' => 'form-control chzn-select',
+					'required' => false,
+					'default' => $this->Session->read('Edition.id')
+				]
+			); ?>
 			<?php echo $this->Form->input('file', array('label' => 'File', 'type' => 'file')); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
