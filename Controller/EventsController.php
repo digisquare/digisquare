@@ -222,7 +222,7 @@ class EventsController extends AppController {
 				return $this->redirect(['action' => 'import']);
 			}
 			$event = false;
-			$providers = ['Eventbrite'];
+			$providers = ['Eventbrite', 'Facebook'];
 			foreach ($providers as $provider) {
 				if (stripos($this->request->data['Event']['url'], '.' . $provider . '.')) {
 					$this->loadModel($provider);
