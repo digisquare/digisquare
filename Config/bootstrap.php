@@ -63,6 +63,7 @@ if (isset($_SERVER) && isset($_SERVER['DIGI_MEETUP_KEY'])) {
 		'key' => $_SERVER['DIGI_MEETUP_KEY'],
 		'secret' => $_SERVER['DIGI_MEETUP_SECRET'],
 		'scope' => 'ageless',
+		'api_key' => $_SERVER['DIGI_MEETUP_API_KEY'],
 	));
 }
 
