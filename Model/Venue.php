@@ -162,8 +162,8 @@ class Venue extends AppModel {
 		return $this->find('first', array(
 			'contain' => false,
 			'conditions' => array(
-				'latitude' => $venue['Venue']['latitude'],
-				'longitude' => $venue['Venue']['longitude']
+				'latitude' => round($venue['Venue']['latitude'], 6),
+				'longitude' => round($venue['Venue']['longitude'], 6)
 			)
 		));
 	}

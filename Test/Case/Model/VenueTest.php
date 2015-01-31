@@ -31,8 +31,8 @@ class VenueTest extends CakeTestCase {
 	public function testFindByLatLng() {
 		$venueWithLatLng = [
 			'Venue' => [
-				'latitude' => 44.840373,
-				'longitude' => -0.570311
+				'latitude' => 44.84037342,
+				'longitude' => -0.57031142
 			]
 		];
 		$venue = $this->Venue->findByLatLng($venueWithLatLng);
