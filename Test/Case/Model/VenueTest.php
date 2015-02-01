@@ -39,10 +39,18 @@ class VenueTest extends CakeTestCase {
 		$this->assertEquals($venue['Venue']['name'], 'Le Node');
 	}
 
+	public function testImplodeWithName() {
+		foreach ($this->venueFixture->venues as $source => $target) {
+			$venue['Venue']['name'] = $target['name'];
+			$result = $this->Venue->implode($venue);
+			$this->assertEquals($result, $target['name']);
+		}		
+	}
+
 	public function testExplode() {
-		foreach ($this->venueFixture->venues as $venue_source => $venue_target) {
-			$venue_result = $this->Venue->explode($venue_source);
-			$this->assertEquals($venue_target, $venue_result['Venue']);
+		foreach ($this->venueFixture->venues as $source => $target) {
+			$result = $this->Venue->explode($source);
+			$this->assertEquals($result['Venue'], $target);
 		}
 	}
 
