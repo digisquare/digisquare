@@ -29,17 +29,13 @@
 			<?php echo $this->Form->input('Organization', 
 				['empty' => true, 'class' => 'form-control chzn-select', 'required' => false]
 			); ?>
-			<div class="form-group">
-				<div class="col col-md-9 col-md-offset-2">
-					<?php echo $this->Form->input('Venue.name', ['required' => false]); ?>
-					<?php echo $this->Form->input('Venue.address'); ?>
-					<?php echo $this->Form->input('Venue.zipcode'); ?>
-					<?php echo $this->Form->input('Venue.city'); ?>
-					<?php echo $this->Form->input('Venue.country_code'); ?>
-					<?php echo $this->Form->input('Venue.latitude'); ?>
-					<?php echo $this->Form->input('Venue.longitude'); ?>
-				</div>
-			</div>
+			<?php echo $this->Form->input('Tag', 
+				[
+					'empty' => true,
+					'class' => 'form-control chzn-select',
+					'required' => false,
+				]
+			); ?>
 			<?php echo $this->Form->input('uid'); ?>
 			<?php echo $this->Form->input('description'); ?>
 			<?php echo $this->Form->hidden('start_at', ['type' => 'text']); ?>

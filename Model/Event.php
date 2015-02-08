@@ -73,12 +73,13 @@ class Event extends AppModel {
 		'Organizer' => [
 			'className' => 'Organizer',
 			'foreignKey' => 'event_id',
-			'dependent' => false,
+			'dependent' => true,
 		],
-		'Participant' => [
-			'className' => 'Participant',
-			'foreignKey' => 'event_id',
-			'dependent' => false,
+		'Hashtag' => [
+			'className' => 'Hashtag',
+			'foreignKey' => 'foreign_key',
+			'conditions' => ['Hashtag.model' => 'Event'],
+			'dependent' => true,
 		],
 	];
 
@@ -90,7 +91,15 @@ class Event extends AppModel {
 			'foreignKey' => 'event_id',
 			'associationForeignKey' => 'organization_id',
 			'unique' => 'keepExisting',
-		]
+		],
+		'Tag' => [
+			'className' => 'Tag',
+			'with' => 'Hashtag',
+			'joinTable' => 'hashtags',
+			'foreignKey' => 'foreign_key',
+			'associationForeignKey' => 'tag_id',
+			'conditions' => ['Hashtag.model' => 'Event'],
+		],
 	];
 
 	public function bindNode($event) {
@@ -119,6 +128,26 @@ class Event extends AppModel {
 			}
 		}
 		return $results;
+	}
+
+	public function beforeSave($options = array()) {
+		$this->unbindModel(['hasAndBelongsToMany' => ['Tag']]);
+		return true;
+	}
+
+	public function afterSave($created, $options = array()) {
+		if (isset($this->data['Tag']['Tag']) && is_array($this->data['Tag']['Tag'])) {
+			$this->Hashtag->deleteAll(['model' => 'Event', 'foreign_key' => $this->id]);
+			foreach ($this->data['Tag']['Tag'] as $key => $value) {
+				$this->Hashtag->create();
+				$this->Hashtag->save([
+					'model' => 'Event',
+					'foreign_key' => $this->data['Event']['id'],
+					'tag_id' => $value,
+				]);
+			}
+		}
+		return true;
 	}
 
 	public function parseVCalendar($vCalendar, $edition_id) {

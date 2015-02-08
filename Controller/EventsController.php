@@ -134,7 +134,8 @@ class EventsController extends AppController {
 		$editions = $this->Event->Edition->find('list');
 		$venues = $this->Event->Venue->find('list');
 		$organizations = $this->Event->Organization->find('list');
-		$this->set(compact('editions', 'venues', 'organizations'));
+		$tags = $this->Event->Tag->find('list');
+		$this->set(compact('editions', 'venues', 'organizations', 'tags'));
 	}
 
 	public function edit($id = null) {
@@ -150,14 +151,15 @@ class EventsController extends AppController {
 			}
 		} else {
 			$this->request->data = $this->Event->find('first', [
-				'contain' => ['Organization'],
+				'contain' => ['Organization', 'Tag'],
 				'conditions' => ['Event.id' => $id]
 			]);
 		}
 		$editions = $this->Event->Edition->find('list');
 		$venues = $this->Event->Venue->find('list');
 		$organizations = $this->Event->Organization->find('list');
-		$this->set(compact('editions', 'venues', 'organizations'));
+		$tags = $this->Event->Tag->find('list');
+		$this->set(compact('editions', 'venues', 'organizations', 'tags'));
 	}
 
 	public function delete($id = null) {

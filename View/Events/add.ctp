@@ -40,6 +40,13 @@
 					<?php echo $this->Form->input('Venue.longitude'); ?>
 				</div>
 			</div>
+			<?php echo $this->Form->input('Tag', 
+				[
+					'empty' => true,
+					'class' => 'form-control chzn-select',
+					'required' => false,
+				]
+			); ?>
 			<?php echo $this->Form->input('uid'); ?>
 			<?php echo $this->Form->input('description'); ?>
 			<?php echo $this->Form->hidden('start_at', ['type' => 'text']); ?>
