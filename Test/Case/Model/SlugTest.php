@@ -5,12 +5,6 @@ class SlugTest extends CakeTestCase {
 
 	public $fixtures = [
 		'app.slug',
-		'app.venue',
-		'app.edition',
-		'app.event',
-		'app.organizer',
-		'app.organization',
-		'app.participant'
 	];
 
 	public function setUp() {

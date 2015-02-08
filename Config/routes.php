@@ -16,8 +16,7 @@ Router::connect('/opauth-complete/*',	['controller' => 'authentications', 'actio
  * App Routing
  */
 $controllers = [
-	'editions', 'venues', 'events', 'groups',
-	'organizations', 'tags', 'startups',
+	'editions', 'venues', 'events', 'groups', 'organizations',
 	'users', 'google_calendar_events', 'organizations'
 ];
 foreach ($controllers as $controller) {

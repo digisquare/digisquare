@@ -1,6 +1,8 @@
 <div role="main">
-	<div class="startups form">
+	<div class="page-header">
 		<h1><?php echo __('Upload ICS Calendar'); ?></h1>
+	</div>
+	<div class="form">
 		<?php echo $this->Form->create('Event', array(
 			'type' => 'file',
 			'inputDefaults' => array(

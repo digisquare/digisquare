@@ -84,7 +84,6 @@
 			</div>
 			<?php echo $this->Form->input('status'); ?>
 			<?php echo $this->Form->input('url'); ?>
-			<?php echo $this->Form->input('Tag'); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
 					<?php echo $this->Form->submit(
