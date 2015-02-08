@@ -146,4 +146,25 @@ class LinkHelper extends HtmlHelper {
 		);
 	}
 
+	public function viewTag($title, $tag = [], $options = [], $confirmMessage = false) {
+		if (is_array($title)) {
+			$edition = $title;
+			$title = $tag['Tag']['name'];
+		}
+		$url = [];
+		if (isset($options['url'])) {
+			$url = $options['url'];
+			unset($options['url']);
+		}
+		return $this->link($title,
+			array_merge([
+				'controller' => 'tags',
+				'action' => 'view',
+				'slug' => $tag['Tag']['slug']
+			], $url),
+			$options,
+			$confirmMessage
+		);
+	}
+
 }

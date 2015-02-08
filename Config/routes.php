@@ -17,7 +17,7 @@ Router::connect('/opauth-complete/*',	['controller' => 'authentications', 'actio
  */
 $controllers = [
 	'editions', 'venues', 'events', 'groups', 'organizations',
-	'users', 'google_calendar_events', 'organizations'
+	'users', 'google_calendar_events', 'organizations', 'tags',
 ];
 foreach ($controllers as $controller) {
 	Router::connect('/' . $controller,					['controller' => $controller, 'action' => 'index']);
@@ -88,4 +88,10 @@ Router::connect(
 Router::connect(
 	'/:slug/lieu/:venue_id/:bslug/evenements',
 	['controller' => 'events', 'action' => 'index']
+);
+
+//tag/javascript
+Router::connect(
+	'/tag/:slug',
+	['controller' => 'tags', 'action' => 'view']
 );
