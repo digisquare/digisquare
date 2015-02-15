@@ -77,6 +77,13 @@ class AppController extends Controller {
 					]);
 					break;
 
+				case 'Tags':
+					$url = Router::url([
+						'action' => 'view',
+						'slug' => $this->viewVars['tag']['Tag']['slug']
+					]);
+					break;
+
 				case 'Events':
 				case 'Venues':
 				case 'Organizations':
