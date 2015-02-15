@@ -152,23 +152,27 @@
 								<?php echo $edition['Edition']['name']; ?>
 							</a>
 							<ul class="dropdown-menu">
-								<li>
-									<?php
-									// TODO: link all editions with events
-									if ('bordeaux' === $edition['Edition']['slug']): ?>
-										<a href="http://montpellier.digisquare.net">Montpellier</a>
-									<?php else: ?>
-										<?php echo $this->Link->viewEdition(
-											'Bordeaux',
-											[
-												'Edition' => [
-													'name' => 'Bordeaux',
-													'slug' => 'bordeaux'
+								<?php $editions = [
+									'Bordeaux' => 'bordeaux',
+									'Montpellier' => 'montpellier',
+									'Toulouse' => 'toulouse',
+								]; ?>
+								<?php foreach ($editions as $name => $slug): ?>
+									<li>
+										<?php if ('Montpellier' === $name): ?>
+											<a href="http://montpellier.digisquare.net">Montpellier</a>
+										<?php elseif ($edition['Edition']['name'] !== $name):
+											echo $this->Link->viewEdition(
+												[
+													'Edition' => [
+														'name' => $name,
+														'slug' => $slug
+													]
 												]
-											]
-										); ?>
-									<?php endif; ?>
-								</li>
+											);
+										endif; ?>
+									</li>
+								<?php endforeach; ?>
 							</ul>
 						</li>
 					</ul>
