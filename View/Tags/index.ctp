@@ -1,10 +1,5 @@
 <div role="main">
 	<div class="page-header">
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Reset'),
-			['controller' => 'tags', 'action' => 'reset'],
-			['escape' => false, 'class' => 'btn btn-primary pull-right']
-		); ?>
 		<h1><?php echo __('Tags'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
