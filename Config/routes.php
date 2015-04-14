@@ -12,6 +12,18 @@ Router::connect('/auth/callback',		['plugin' => 'Opauth', 'controller' => 'opaut
 Router::connect('/auth/*',				['plugin' => 'Opauth', 'controller' => 'opauth', 'action' => 'index']);
 Router::connect('/opauth-complete/*',	['controller' => 'authentications', 'action' => 'callback']);
 
+//membre/1/damien-varron
+Router::connect(
+	'/membre/:id/:slug',
+	['controller' => 'users', 'action' => 'view'],
+	['pass' => ['id'], 'id' => '[0-9]+']
+);
+
+Router::connect(
+	'/profil',
+	['controller' => 'users', 'action' => 'edit']
+);
+
 /**
  * App Routing
  */
@@ -25,13 +37,6 @@ foreach ($controllers as $controller) {
 	Router::connect('/' . $controller . '/:id/:action',	['controller' => $controller], ['pass' => ['id'], 'id' => '[0-9]+']);
 	Router::connect('/' . $controller . '/:action',		['controller' => $controller]);
 }
-
-//membre/1/damien-varron
-Router::connect(
-	'/membre/:id/:slug',
-	['controller' => 'users', 'action' => 'view'],
-	['pass' => ['id'], 'id' => '[0-9]+']
-);
 
 //bordeaux
 Router::connect(

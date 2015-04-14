@@ -1,6 +1,8 @@
+<?php $title_for_layout = __('My profile');
+$this->set(compact('title_for_layout')); ?>
 <div role="main">
 	<div class="page-header">
-		<h1><?php echo __('Edit User'); ?></h1>
+		<h1><?php echo $title_for_layout; ?></h1>
 	</div>
 	<div class="form">
 		<?php echo $this->Form->create('User', [

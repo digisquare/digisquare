@@ -81,8 +81,7 @@
 											__('Edit my profile'),
 											[
 												'controller' => 'users',
-												'action' => 'edit',
-												'id' => $this->Session->read('Auth.User.id')
+												'action' => 'edit'
 											]
 										); ?>
 									</li>
