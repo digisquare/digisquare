@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-01-23 20:32+0100\n"
+"POT-Creation-Date: 2015-04-14 18:22+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -50,36 +50,44 @@ msgstr ""
 msgid "All is good in the world."
 msgstr ""
 
-#: Controller/EventsController.php:106;142;166
+#: Controller/EventsController.php:106;143;168
 msgid "Invalid event"
 msgstr ""
 
-#: Controller/EventsController.php:126;146
+#: Controller/EventsController.php:126;147
 msgid "The event has been saved."
 msgstr ""
 
-#: Controller/EventsController.php:129;149
+#: Controller/EventsController.php:129;150
 msgid "The event could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/EventsController.php:170
+#: Controller/EventsController.php:172
 msgid "The event has been deleted."
 msgstr ""
 
-#: Controller/EventsController.php:172
+#: Controller/EventsController.php:174
 msgid "The event could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/EventsController.php:181
+#: Controller/EventsController.php:183
 msgid "Please select a file."
 msgstr ""
 
-#: Controller/EventsController.php:197
+#: Controller/EventsController.php:207
 msgid "The events have been saved."
 msgstr ""
 
-#: Controller/EventsController.php:200
+#: Controller/EventsController.php:210
 msgid "The events could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/EventsController.php:223
+msgid "Please provide a url."
+msgstr ""
+
+#: Controller/EventsController.php:240
+msgid "Sorry, no event could be found. Please, try again."
 msgstr ""
 
 #: Controller/GroupsController.php:14;37;58
@@ -102,23 +110,23 @@ msgstr ""
 msgid "The group could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/OrganizationsController.php:25;51;80
+#: Controller/OrganizationsController.php:27;53;82
 msgid "Invalid organization"
 msgstr ""
 
-#: Controller/OrganizationsController.php:38;56
+#: Controller/OrganizationsController.php:40;58
 msgid "The organization has been saved."
 msgstr ""
 
-#: Controller/OrganizationsController.php:41;59
+#: Controller/OrganizationsController.php:43;61
 msgid "The organization could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/OrganizationsController.php:84
+#: Controller/OrganizationsController.php:86
 msgid "The organization has been deleted."
 msgstr ""
 
-#: Controller/OrganizationsController.php:86
+#: Controller/OrganizationsController.php:88
 msgid "The organization could not be deleted. Please, try again."
 msgstr ""
 
@@ -142,11 +150,31 @@ msgstr ""
 msgid "The organizer could not be deleted. Please, try again."
 msgstr ""
 
+#: Controller/TagsController.php:15;19;43;63
+msgid "Invalid tag"
+msgstr ""
+
+#: Controller/TagsController.php:33;47
+msgid "The tag has been saved."
+msgstr ""
+
+#: Controller/TagsController.php:36;50
+msgid "The tag could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/TagsController.php:67
+msgid "The tag has been deleted."
+msgstr ""
+
+#: Controller/TagsController.php:69
+msgid "The tag could not be deleted. Please, try again."
+msgstr ""
+
 #: Controller/UsersController.php:25
 msgid "Invalid username or password, try again"
 msgstr ""
 
-#: Controller/UsersController.php:42;70;97
+#: Controller/UsersController.php:42;70;99;119
 msgid "Invalid user"
 msgstr ""
 
@@ -158,11 +186,19 @@ msgstr ""
 msgid "The user could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:101
+#: Controller/UsersController.php:103
+msgid "The settings have been saved."
+msgstr ""
+
+#: Controller/UsersController.php:106
+msgid "The settings could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:123
 msgid "The user has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:103
+#: Controller/UsersController.php:125
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
@@ -192,6 +228,10 @@ msgstr ""
 
 #: Controller/VenuesController.php:87
 msgid "The venues could not be merged. Please, try again."
+msgstr ""
+
+#: Controller/VenuesController.php:95
+msgid "You have to merge two different venues. Please, try again."
 msgstr ""
 
 #: Model/Authentication.php:43
@@ -375,6 +415,7 @@ msgstr ""
 #: View/Organizers/edit.ctp:14
 #: View/Organizers/index.ctp:10;57
 #: View/Organizers/view.ctp:32
+#: View/Tags/index.ctp:12
 #: View/Users/index.ctp:12
 #: View/Venues/index.ctp:17
 msgid "Actions"
@@ -383,6 +424,7 @@ msgstr ""
 #: View/Editions/index.ctp:28
 #: View/Groups/index.ctp:28
 #: View/Organizers/index.ctp:25
+#: View/Tags/index.ctp:23
 #: View/Users/index.ctp:23
 #: View/Venues/index.ctp:42
 msgid "View"
@@ -391,8 +433,9 @@ msgstr ""
 #: View/Editions/index.ctp:33
 #: View/Groups/index.ctp:33
 #: View/Groups/view.ctp:6
-#: View/Layouts/default.ctp:90
+#: View/Layouts/default.ctp:108
 #: View/Organizers/index.ctp:29
+#: View/Tags/index.ctp:28
 #: View/Users/index.ctp:28
 #: View/Venues/index.ctp:47
 msgid "Edit"
@@ -401,9 +444,10 @@ msgstr ""
 #: View/Editions/index.ctp:38
 #: View/Groups/index.ctp:38
 #: View/Groups/view.ctp:11
-#: View/Layouts/default.ctp:96
+#: View/Layouts/default.ctp:114
 #: View/Organizers/edit.ctp:17
 #: View/Organizers/index.ctp:33
+#: View/Tags/index.ctp:33
 #: View/Users/index.ctp:33
 #: View/Venues/index.ctp:57
 msgid "Delete"
@@ -415,6 +459,7 @@ msgstr ""
 #: View/Organizers/edit.ctp:17
 #: View/Organizers/index.ctp:36
 #: View/Organizers/view.ctp:35
+#: View/Tags/index.ctp:36
 #: View/Users/index.ctp:37
 #: View/Venues/index.ctp:60
 msgid "Are you sure you want to delete # %s?"
@@ -432,6 +477,10 @@ msgstr ""
 msgid "Edit Event"
 msgstr ""
 
+#: View/Events/import.ctp:3
+msgid "Import Event"
+msgstr ""
+
 #: View/Events/index.ctp:30
 msgid "Google"
 msgstr ""
@@ -440,11 +489,15 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
+#: View/Events/index.ctp:40
+msgid "Import"
+msgstr ""
+
 #: View/Events/upload.ctp:3
 msgid "Upload ICS Calendar"
 msgstr ""
 
-#: View/Events/view.ctp:24
+#: View/Events/view.ctp:26
 msgid "Organizer:"
 msgid_plural "Organizers:"
 msgstr[0] ""
@@ -511,27 +564,32 @@ msgstr ""
 msgid "modified"
 msgstr ""
 
-#: View/Layouts/default.ctp:69
+#: View/Layouts/default.ctp:75
+#: View/Users/edit.ctp:1
 msgid "My profile"
 msgstr ""
 
-#: View/Layouts/default.ctp:75
+#: View/Layouts/default.ctp:81
 msgid "Edit my profile"
 msgstr ""
 
-#: View/Layouts/default.ctp:83
+#: View/Layouts/default.ctp:90
+msgid "Edit my settings"
+msgstr ""
+
+#: View/Layouts/default.ctp:101
 msgid "Add"
 msgstr ""
 
-#: View/Layouts/default.ctp:99
+#: View/Layouts/default.ctp:117
 msgid "Are you sure you want to delete this?"
 msgstr ""
 
-#: View/Layouts/default.ctp:107
+#: View/Layouts/default.ctp:125
 msgid "Logout"
 msgstr ""
 
-#: View/Layouts/default.ctp:118
+#: View/Layouts/default.ctp:136
 #: View/Users/login.ctp:3
 msgid "Login"
 msgstr ""
@@ -545,7 +603,7 @@ msgid "Edit Organization"
 msgstr ""
 
 #: View/Organizations/edit.ctp:82
-#: View/Users/edit.ctp:73
+#: View/Users/edit.ctp:75
 msgid "Twitter"
 msgstr ""
 
@@ -640,12 +698,12 @@ msgid "Organization"
 msgstr ""
 
 #: View/Organizers/view.ctp:19
-#: View/Venues/merge.ctp:95
+#: View/Venues/merge.ctp:100
 msgid "Created"
 msgstr ""
 
 #: View/Organizers/view.ctp:24
-#: View/Venues/merge.ctp:100
+#: View/Venues/merge.ctp:105
 msgid "Modified"
 msgstr ""
 
@@ -653,9 +711,25 @@ msgstr ""
 msgid "Delete Organizer"
 msgstr ""
 
+#: View/Tags/add.ctp:3
+msgid "Add Tag"
+msgstr ""
+
+#: View/Tags/edit.ctp:3
+msgid "Edit Tag"
+msgstr ""
+
+#: View/Tags/index.ctp:3
+msgid "Tags"
+msgstr ""
+
 #: View/Users/add.ctp:3
-#: View/Users/edit.ctp:3
 msgid "Edit User"
+msgstr ""
+
+#: View/Users/edit.ctp:71
+#: View/Users/settings.ctp:47
+msgid "Save"
 msgstr ""
 
 #: View/Users/index.ctp:3
@@ -664,6 +738,50 @@ msgstr ""
 
 #: View/Users/login.ctp:33
 msgid "%s Connect"
+msgstr ""
+
+#: View/Users/settings.ctp:1
+msgid "My settings"
+msgstr ""
+
+#: View/Users/settings.ctp:28
+msgid "Frequency"
+msgstr ""
+
+#: View/Users/settings.ctp:30
+msgid "None"
+msgstr ""
+
+#: View/Users/settings.ctp:32
+msgid "Daily"
+msgstr ""
+
+#: View/Users/settings.ctp:34
+msgid "Monday"
+msgstr ""
+
+#: View/Users/settings.ctp:35
+msgid "Tuesday"
+msgstr ""
+
+#: View/Users/settings.ctp:36
+msgid "Wednesday"
+msgstr ""
+
+#: View/Users/settings.ctp:37
+msgid "Thursday"
+msgstr ""
+
+#: View/Users/settings.ctp:38
+msgid "Friday"
+msgstr ""
+
+#: View/Users/settings.ctp:39
+msgid "Saturday"
+msgstr ""
+
+#: View/Users/settings.ctp:40
+msgid "Sunday"
 msgstr ""
 
 #: View/Venues/add.ctp:3
@@ -699,30 +817,34 @@ msgid "Name"
 msgstr ""
 
 #: View/Venues/merge.ctp:54
-msgid "Address"
+msgid "Edition"
 msgstr ""
 
 #: View/Venues/merge.ctp:59
-msgid "Zipcode"
+msgid "Address"
 msgstr ""
 
 #: View/Venues/merge.ctp:64
-msgid "City"
+msgid "Zipcode"
 msgstr ""
 
 #: View/Venues/merge.ctp:69
-msgid "Country Code"
+msgid "City"
 msgstr ""
 
 #: View/Venues/merge.ctp:74
-msgid "Latitude"
+msgid "Country Code"
 msgstr ""
 
 #: View/Venues/merge.ctp:79
+msgid "Latitude"
+msgstr ""
+
+#: View/Venues/merge.ctp:84
 msgid "Longitude"
 msgstr ""
 
-#: View/Venues/merge.ctp:90
+#: View/Venues/merge.ctp:95
 msgid "Events"
 msgstr ""
 
@@ -730,14 +852,11 @@ msgstr ""
 msgid "Latest Venues on Digisquare"
 msgstr ""
 
-#: View/ViewBlock.php:78
-msgid "A view block with the name '%s' is already/still open."
-msgstr ""
-
 #: Model/Authentication.php:validation for field user_id
 #: Model/Event.php:validation for field edition_id;validation for field venue_id;validation for field status
 #: Model/Organization.php:validation for field venue_id;validation for field edition_id
 #: Model/Organizer.php:validation for field event_id;validation for field organization_id
+#: Model/Tag.php:validation for field foreign_key
 #: Model/Venue.php:validation for field edition_id;validation for field latitude;validation for field longitude
 msgid "numeric"
 msgstr ""
@@ -747,6 +866,7 @@ msgstr ""
 #: Model/Event.php:validation for field name
 #: Model/Group.php:validation for field name
 #: Model/Organization.php:validation for field name
+#: Model/Tag.php:validation for field model;validation for field name
 #: Model/User.php:validation for field username;validation for field password
 #: Model/Venue.php:validation for field name
 msgid "notEmpty"
