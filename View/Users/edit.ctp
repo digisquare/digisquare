@@ -68,7 +68,7 @@ $this->set(compact('title_for_layout')); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
 					<?php echo $this->Form->submit(
-						'Save changes',
+						__('Save'),
 						['class' => 'btn btn-primary', 'div' => false]
 					); ?>
 					<?php echo $this->Html->link(

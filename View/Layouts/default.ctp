@@ -85,6 +85,15 @@
 											]
 										); ?>
 									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Edit my settings'),
+											[
+												'controller' => 'settings',
+												'action' => 'edit'
+											]
+										); ?>
+									</li>
 									<li class="divider"></li>
 									<?php if (1 == $this->Session->read('Auth.User.group_id')): ?>
 										<li>

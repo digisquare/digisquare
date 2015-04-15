@@ -24,12 +24,18 @@ Router::connect(
 	['controller' => 'users', 'action' => 'edit']
 );
 
+Router::connect(
+	'/preferences',
+	['controller' => 'settings', 'action' => 'edit']
+);
+
 /**
  * App Routing
  */
 $controllers = [
 	'editions', 'venues', 'events', 'groups', 'organizations',
 	'users', 'google_calendar_events', 'organizations', 'tags',
+	'settings'
 ];
 foreach ($controllers as $controller) {
 	Router::connect('/' . $controller,					['controller' => $controller, 'action' => 'index']);

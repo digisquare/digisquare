@@ -6,23 +6,23 @@ class User extends AppModel {
 
 	public $actsAs = ['Acl' => ['type' => 'requester']];
 
-	public $validate = array(
-		'username' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-			),
-		),
-		'password' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-			),
-		),
-		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
-			),
-		),
-	);
+	public $validate = [
+		'username' => [
+			'notEmpty' => [
+				'rule' => ['notEmpty'],
+			],
+		],
+		'password' => [
+			'notEmpty' => [
+				'rule' => ['notEmpty'],
+			],
+		],
+		'email' => [
+			'email' => [
+				'rule' => ['email'],
+			],
+		],
+	];
 
 	public $belongsTo = [
 		'Group' => [
@@ -32,18 +32,18 @@ class User extends AppModel {
 		],
 	];
 
-	public $hasMany = array(
-		'Authentication' => array(
+	public $hasMany = [
+		'Authentication' => [
 			'className' => 'Authentication',
 			'foreignKey' => 'user_id',
 			'dependent' => true,
-		),
-		'Participants' => array(
-			'className' => 'Participant',
-			'foreignKey' => 'event_id',
-			'dependent' => false,
-		)
-	);
+		],
+		'Setting' => [
+			'className' => 'Setting',
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+		]
+	];
 
 	public function bindNode($user) {
 		return ['model' => 'Group', 'foreign_key' => $user['User']['group_id']];
@@ -78,7 +78,7 @@ class User extends AppModel {
 		return $results;
 	}
 
-	public function beforeSave($options = array()) {
+	public function beforeSave($options = []) {
 		if (isset($this->data['User']['password'])) {
 			$passwordHasher = new SimplePasswordHasher();
 			$this->data['User']['password'] = $passwordHasher->hash(
