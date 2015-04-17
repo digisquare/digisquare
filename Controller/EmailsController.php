@@ -4,6 +4,11 @@ App::uses('CakeEmail', 'Network/Email');
 
 class EmailsController extends AppController {
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow(['digest']);
+	}
+
 	public function digest() {
 		if (!isset($this->request->query['frequency'])
 			|| !isset($this->request->query['edition_id'])
