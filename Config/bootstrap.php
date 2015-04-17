@@ -10,6 +10,7 @@ CakePlugin::load('BoostCake');
 CakePlugin::load('Migrations');
 CakePlugin::load('Opauth', array('bootstrap' => true));
 CakePlugin::load('AclExtras');
+CakePlugin::load('Mandrill');
 
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',

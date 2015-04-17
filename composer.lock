@@ -4,8 +4,56 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4f7480984b04daaca86b623b4fd03cbd",
+    "hash": "f74cc2bd8f1a6b0d5b51d1c225f324b8",
     "packages": [
+        {
+            "name": "a2design-company/mandrill-cakephp-plugin",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/a2design-inc/Mandrill-CakePHP-plugin.git",
+                "reference": "3ded3c66077517eb803f421b89e447ad0577b789"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/a2design-inc/Mandrill-CakePHP-plugin/zipball/3ded3c66077517eb803f421b89e447ad0577b789",
+                "reference": "3ded3c66077517eb803f421b89e447ad0577b789",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "lib-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "Mandrill"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MrMYSTIC",
+                    "homepage": "https://github.com/MrMYSTIC",
+                    "role": "Author"
+                },
+                {
+                    "name": "A2 Design",
+                    "homepage": "https://github.com/a2design-company",
+                    "role": "Author"
+                }
+            ],
+            "description": "Mandrill CakePHP plugin",
+            "homepage": "https://github.com/a2design-company/Mandrill-CakePHP-plugin",
+            "keywords": [
+                "api",
+                "cakephp",
+                "mandrill"
+            ],
+            "time": "2015-01-30 09:06:11"
+        },
         {
             "name": "composer/installers",
             "version": "v1.0.20",
@@ -1212,6 +1260,7 @@
         "markstory/acl_extras": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }

@@ -23,21 +23,31 @@ $this->set(compact('title_for_layout')); ?>
 				pour être tenu au courant des nouveaux évènements sur digisquare !</p>
 			</div>
 			<?php echo $this->Form->input('email'); ?>
-			<?php echo $this->Form->input('Setting.subscription',
+			<?php echo $this->Form->input('Setting.subscription_edition_id',
+				[
+					'label' => __('Edition'),
+					'options' => [
+						9 => 'Bordeaux'
+					]
+				]
+			); ?>
+			<?php echo $this->Form->input('Setting.subscription_frequency',
 				[
 					'label' => __('Frequency'),
 					'options' => [
-						__('None'),
-						'------',
-						__('Daily'),
-						'------',
-						__('Monday'),
-						__('Tuesday'),
-						__('Wednesday'),
-						__('Thursday'),
-						__('Friday'),
-						__('Saturday'),
-						__('Sunday')
+						0 => __('None'),
+						__('Daily:') => [
+							8 => __('Every morning')
+						],
+						__('Weekly:') => [
+							1 => __('Monday'),
+							2 => __('Tuesday'),
+							3 => __('Wednesday'),
+							4 => __('Thursday'),
+							5 => __('Friday'),
+							6 => __('Saturday'),
+							7 => __('Sunday')
+						]
 					]
 				]
 			); ?>

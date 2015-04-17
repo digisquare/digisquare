@@ -199,4 +199,32 @@ class Event extends AppModel {
 		];
 	}
 
+	public function findUpcoming($time_span, $edition_id) {
+		return $this->find('all', [
+			'contain' => ['Edition', 'Venue', 'Organization'],
+			'conditions' => [
+				'Event.edition_id' => $edition_id,
+				'Event.start_at BETWEEN ? AND ?' => [
+					date('Y-m-d 00:00:00'),
+					date('Y-m-d 23:59:00', time() + $time_span)
+				],
+			],
+			'order' => ['Event.start_at' => 'asc']
+		]);
+	}
+
+	public function findNewlyCreated($time_span, $edition_id) {
+		return $this->find('all', [
+			'contain' => ['Edition'],
+			'conditions' => [
+				'Event.edition_id' => 9,
+				'Event.created BETWEEN ? AND ?' => [
+					date('Y-m-d 00:00:00', time() - (24*60*60 + $time_span)),
+					date('Y-m-d 23:59:00', time())
+				],
+				'Event.start_at >' => date('Y-m-d 23:59:00', time() + $time_span)
+			],
+			'order' => ['Event.start_at' => 'asc']
+		]);
+	}
 }
