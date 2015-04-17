@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-14 18:22+0200\n"
+"POT-Creation-Date: 2015-04-17 19:06+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -48,6 +48,22 @@ msgstr ""
 
 #: Controller/EditionsController.php:82
 msgid "All is good in the world."
+msgstr ""
+
+#: Controller/EmailsController.php:11
+msgid "Invalid digest"
+msgstr ""
+
+#: Controller/EmailsController.php:20
+msgid "Please wait to send this digest again"
+msgstr ""
+
+#: Controller/EmailsController.php:43
+msgid "No upcoming events"
+msgstr ""
+
+#: Controller/EmailsController.php:50
+msgid "No subscribers"
 msgstr ""
 
 #: Controller/EventsController.php:106;143;168
@@ -150,6 +166,19 @@ msgstr ""
 msgid "The organizer could not be deleted. Please, try again."
 msgstr ""
 
+#: Controller/SettingsController.php:20
+#: Controller/UsersController.php:42;70;97
+msgid "Invalid user"
+msgstr ""
+
+#: Controller/SettingsController.php:43
+msgid "The settings have been saved."
+msgstr ""
+
+#: Controller/SettingsController.php:46
+msgid "The settings could not be saved. Please, try again."
+msgstr ""
+
 #: Controller/TagsController.php:15;19;43;63
 msgid "Invalid tag"
 msgstr ""
@@ -174,10 +203,6 @@ msgstr ""
 msgid "Invalid username or password, try again"
 msgstr ""
 
-#: Controller/UsersController.php:42;70;99;119
-msgid "Invalid user"
-msgstr ""
-
 #: Controller/UsersController.php:55;74
 msgid "The user has been saved."
 msgstr ""
@@ -186,19 +211,11 @@ msgstr ""
 msgid "The user could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:103
-msgid "The settings have been saved."
-msgstr ""
-
-#: Controller/UsersController.php:106
-msgid "The settings could not be saved. Please, try again."
-msgstr ""
-
-#: Controller/UsersController.php:123
+#: Controller/UsersController.php:101
 msgid "The user has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:125
+#: Controller/UsersController.php:103
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
@@ -711,6 +728,79 @@ msgstr ""
 msgid "Delete Organizer"
 msgstr ""
 
+#: View/Settings/edit.ctp:1
+#: View/Users/settings.ctp:1
+msgid "My settings"
+msgstr ""
+
+#: View/Settings/edit.ctp:28
+#: View/Venues/merge.ctp:54
+msgid "Edition"
+msgstr ""
+
+#: View/Settings/edit.ctp:36
+#: View/Users/settings.ctp:28
+msgid "Frequency"
+msgstr ""
+
+#: View/Settings/edit.ctp:38
+#: View/Users/settings.ctp:30
+msgid "None"
+msgstr ""
+
+#: View/Settings/edit.ctp:39
+msgid "Daily:"
+msgstr ""
+
+#: View/Settings/edit.ctp:40
+msgid "Every morning"
+msgstr ""
+
+#: View/Settings/edit.ctp:42
+msgid "Weekly:"
+msgstr ""
+
+#: View/Settings/edit.ctp:43
+#: View/Users/settings.ctp:34
+msgid "Monday"
+msgstr ""
+
+#: View/Settings/edit.ctp:44
+#: View/Users/settings.ctp:35
+msgid "Tuesday"
+msgstr ""
+
+#: View/Settings/edit.ctp:45
+#: View/Users/settings.ctp:36
+msgid "Wednesday"
+msgstr ""
+
+#: View/Settings/edit.ctp:46
+#: View/Users/settings.ctp:37
+msgid "Thursday"
+msgstr ""
+
+#: View/Settings/edit.ctp:47
+#: View/Users/settings.ctp:38
+msgid "Friday"
+msgstr ""
+
+#: View/Settings/edit.ctp:48
+#: View/Users/settings.ctp:39
+msgid "Saturday"
+msgstr ""
+
+#: View/Settings/edit.ctp:49
+#: View/Users/settings.ctp:40
+msgid "Sunday"
+msgstr ""
+
+#: View/Settings/edit.ctp:57
+#: View/Users/edit.ctp:71
+#: View/Users/settings.ctp:47
+msgid "Save"
+msgstr ""
+
 #: View/Tags/add.ctp:3
 msgid "Add Tag"
 msgstr ""
@@ -727,11 +817,6 @@ msgstr ""
 msgid "Edit User"
 msgstr ""
 
-#: View/Users/edit.ctp:71
-#: View/Users/settings.ctp:47
-msgid "Save"
-msgstr ""
-
 #: View/Users/index.ctp:3
 msgid "Users"
 msgstr ""
@@ -740,48 +825,8 @@ msgstr ""
 msgid "%s Connect"
 msgstr ""
 
-#: View/Users/settings.ctp:1
-msgid "My settings"
-msgstr ""
-
-#: View/Users/settings.ctp:28
-msgid "Frequency"
-msgstr ""
-
-#: View/Users/settings.ctp:30
-msgid "None"
-msgstr ""
-
 #: View/Users/settings.ctp:32
 msgid "Daily"
-msgstr ""
-
-#: View/Users/settings.ctp:34
-msgid "Monday"
-msgstr ""
-
-#: View/Users/settings.ctp:35
-msgid "Tuesday"
-msgstr ""
-
-#: View/Users/settings.ctp:36
-msgid "Wednesday"
-msgstr ""
-
-#: View/Users/settings.ctp:37
-msgid "Thursday"
-msgstr ""
-
-#: View/Users/settings.ctp:38
-msgid "Friday"
-msgstr ""
-
-#: View/Users/settings.ctp:39
-msgid "Saturday"
-msgstr ""
-
-#: View/Users/settings.ctp:40
-msgid "Sunday"
 msgstr ""
 
 #: View/Venues/add.ctp:3
@@ -814,10 +859,6 @@ msgstr ""
 
 #: View/Venues/merge.ctp:49
 msgid "Name"
-msgstr ""
-
-#: View/Venues/merge.ctp:54
-msgid "Edition"
 msgstr ""
 
 #: View/Venues/merge.ctp:59

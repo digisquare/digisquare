@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-14 18:22+0200\n"
-"PO-Revision-Date: 2015-04-14 18:25+0100\n"
+"POT-Creation-Date: 2015-04-17 19:06+0200\n"
+"PO-Revision-Date: 2015-04-17 19:07+0100\n"
 "Last-Translator: Damien Varron <damien.varron@effervea.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -51,6 +51,22 @@ msgstr "L'édition n'a pas pu être supprimée. Veuillez réessayer."
 #: Controller/EditionsController.php:82
 msgid "All is good in the world."
 msgstr "Tout va pour le mieux dans le meilleur des mondes."
+
+#: Controller/EmailsController.php:11
+msgid "Invalid digest"
+msgstr "Digest inconnu"
+
+#: Controller/EmailsController.php:20
+msgid "Please wait to send this digest again"
+msgstr ""
+
+#: Controller/EmailsController.php:43
+msgid "No upcoming events"
+msgstr ""
+
+#: Controller/EmailsController.php:50
+msgid "No subscribers"
+msgstr ""
 
 #: Controller/EventsController.php:106;143;168
 msgid "Invalid event"
@@ -152,6 +168,19 @@ msgstr "L'organisateur a été supprimé."
 msgid "The organizer could not be deleted. Please, try again."
 msgstr "L'organisateur n'a pas pu être supprimé. Veuillez réessayer."
 
+#: Controller/SettingsController.php:20
+#: Controller/UsersController.php:42;70;97
+msgid "Invalid user"
+msgstr "Utilisateur inconnu"
+
+#: Controller/SettingsController.php:43
+msgid "The settings have been saved."
+msgstr "Les préférences ont été enregistrées."
+
+#: Controller/SettingsController.php:46
+msgid "The settings could not be saved. Please, try again."
+msgstr "Les préférences n'ont pas pu être enregistrées. Veuillez réessayer."
+
 #: Controller/TagsController.php:15;19;43;63
 msgid "Invalid tag"
 msgstr "Tag inconnu"
@@ -176,10 +205,6 @@ msgstr "Le tag n'a pas pu être supprimé. Veuillez réessayer."
 msgid "Invalid username or password, try again"
 msgstr "Nom d'utilisateur ou mot de passe incorrect. Veuillez réessayer."
 
-#: Controller/UsersController.php:42;70;99;119
-msgid "Invalid user"
-msgstr "Utilisateur inconnu"
-
 #: Controller/UsersController.php:55;74
 msgid "The user has been saved."
 msgstr "L'utilisateur a été enregistré."
@@ -188,19 +213,11 @@ msgstr "L'utilisateur a été enregistré."
 msgid "The user could not be saved. Please, try again."
 msgstr "L'utilisateur n'a pas pu être enregistré. Veuillez réessayer."
 
-#: Controller/UsersController.php:103
-msgid "The settings have been saved."
-msgstr "Les préférences ont été enregistrées."
-
-#: Controller/UsersController.php:106
-msgid "The settings could not be saved. Please, try again."
-msgstr "Les préférences n'ont pas pu être enregistrées. Veuillez réessayer."
-
-#: Controller/UsersController.php:123
+#: Controller/UsersController.php:101
 msgid "The user has been deleted."
 msgstr "L'utilisateur a été supprimé."
 
-#: Controller/UsersController.php:125
+#: Controller/UsersController.php:103
 msgid "The user could not be deleted. Please, try again."
 msgstr "L'utilisateur n'a pas pu être supprimé. Veuillez réessayer."
 
@@ -681,9 +698,69 @@ msgstr "Modifié"
 msgid "Delete Organizer"
 msgstr "Supprimer l'organisateur"
 
+#: View/Settings/edit.ctp:1 View/Users/settings.ctp:1
+msgid "My settings"
+msgstr "Mes préférences"
+
+#: View/Settings/edit.ctp:28 View/Venues/merge.ctp:54
+msgid "Edition"
+msgstr "Edition"
+
+#: View/Settings/edit.ctp:36 View/Users/settings.ctp:28
+msgid "Frequency"
+msgstr "Fréquence"
+
+#: View/Settings/edit.ctp:38 View/Users/settings.ctp:30
+msgid "None"
+msgstr "Aucun"
+
+#: View/Settings/edit.ctp:39
+msgid "Daily:"
+msgstr "Quotidien :"
+
+#: View/Settings/edit.ctp:40
+msgid "Every morning"
+msgstr "Tous les matins"
+
+#: View/Settings/edit.ctp:42
+msgid "Weekly:"
+msgstr "Hebdomadaire :"
+
+#: View/Settings/edit.ctp:43 View/Users/settings.ctp:34
+msgid "Monday"
+msgstr "Lundi"
+
+#: View/Settings/edit.ctp:44 View/Users/settings.ctp:35
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: View/Settings/edit.ctp:45 View/Users/settings.ctp:36
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: View/Settings/edit.ctp:46 View/Users/settings.ctp:37
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: View/Settings/edit.ctp:47 View/Users/settings.ctp:38
+msgid "Friday"
+msgstr "Vendredi"
+
+#: View/Settings/edit.ctp:48 View/Users/settings.ctp:39
+msgid "Saturday"
+msgstr "Samedi"
+
+#: View/Settings/edit.ctp:49 View/Users/settings.ctp:40
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: View/Settings/edit.ctp:57 View/Users/edit.ctp:71 View/Users/settings.ctp:47
+msgid "Save"
+msgstr "Enregistrer"
+
 #: View/Tags/add.ctp:3
 msgid "Add Tag"
-msgstr ""
+msgstr "Ajouter un tag"
 
 #: View/Tags/edit.ctp:3
 msgid "Edit Tag"
@@ -691,15 +768,11 @@ msgstr "Editer un tag"
 
 #: View/Tags/index.ctp:3
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: View/Users/add.ctp:3
 msgid "Edit User"
 msgstr "Editer l'utilisateur"
-
-#: View/Users/edit.ctp:71 View/Users/settings.ctp:47
-msgid "Save"
-msgstr "Enregistrer"
 
 #: View/Users/index.ctp:3
 msgid "Users"
@@ -709,49 +782,9 @@ msgstr "Utilisateurs"
 msgid "%s Connect"
 msgstr "%s Connect"
 
-#: View/Users/settings.ctp:1
-msgid "My settings"
-msgstr "Mes préférences"
-
-#: View/Users/settings.ctp:28
-msgid "Frequency"
-msgstr "Fréquence"
-
-#: View/Users/settings.ctp:30
-msgid "None"
-msgstr "Aucun"
-
 #: View/Users/settings.ctp:32
 msgid "Daily"
 msgstr "Quotidien"
-
-#: View/Users/settings.ctp:34
-msgid "Monday"
-msgstr "Lundi"
-
-#: View/Users/settings.ctp:35
-msgid "Tuesday"
-msgstr "Mardi"
-
-#: View/Users/settings.ctp:36
-msgid "Wednesday"
-msgstr "Mercredi"
-
-#: View/Users/settings.ctp:37
-msgid "Thursday"
-msgstr "Jeudi"
-
-#: View/Users/settings.ctp:38
-msgid "Friday"
-msgstr "Vendredi"
-
-#: View/Users/settings.ctp:39
-msgid "Saturday"
-msgstr "Samedi"
-
-#: View/Users/settings.ctp:40
-msgid "Sunday"
-msgstr "Dimanche"
 
 #: View/Venues/add.ctp:3
 msgid "Add Venue"
@@ -784,10 +817,6 @@ msgstr "Fusionner les lieux"
 #: View/Venues/merge.ctp:49
 msgid "Name"
 msgstr "Nom"
-
-#: View/Venues/merge.ctp:54
-msgid "Edition"
-msgstr "Edition"
 
 #: View/Venues/merge.ctp:59
 msgid "Address"
