@@ -3,7 +3,7 @@
 		<tr style="margin:0;padding:0;">
 			<td style="margin:0;padding:0;">
 				<h1 style="margin:0;padding:0;line-height:1.1;margin-bottom:15px;color:#000;font-weight:200;font-size:44px;">
-					Hello world!
+					Bonjour *|NAME|*,
 				</h1>
 				<p style="margin:0;padding:0;margin-bottom:10px;font-weight:normal;font-size:18px;line-height:1.6;">
 					Voici les évènements à venir <?php echo $content; ?> :
@@ -13,6 +13,10 @@
 	</table>
 </div>
 <?php foreach ($upcoming_events as $event): ?>
+	<?php $url = $this->Link->eventUrl(
+		$event,
+		['full' => true]
+	); ?>
 	<div class="content" style="margin: 0 auto;max-width: 600px;display: block;margin-bottom: 30px;">
 		<table bgcolor="" style="margin: 0;padding: 0;width: 100%;">
 			<tr style="margin: 0;padding: 0;">
@@ -22,10 +26,12 @@
 					<?php endif; ?>
 				</td>
 				<td style="margin: 0;padding: 0;">
-					<h4 style="margin: 0;padding: 0;line-height: 1.1;margin-bottom: 5px;color: #000;font-weight: 500;font-size: 23px;">
-						<?php echo $event['Event']['name']; ?>
+					<h4 style="margin:0;padding:0;line-height:1.1;margin-bottom:5px;">
+						<a href="<?php echo $url; ?>" style="color:#000;font-weight:500;font-size:23px;text-decoration:none">
+							<?php echo $event['Event']['name']; ?>
+						</a>
 					</h4>
-					<p style="margin: 0;padding: 0;margin-bottom: 5px;color: #6f6f6f;font-weight: normal;font-size: 14px;line-height: 1.6;">
+					<p style="margin:0;padding:0;margin-bottom:5px;color:#6f6f6f;font-weight:normal;font-size:14px;line-height:1.6;">
 						@ <?php echo $event['Venue']['name']; ?>
 					</p>
 					<p style="margin: 0;padding: 0;margin-bottom: 10px;font-weight: normal;font-size: 14px;line-height: 1.6;">
@@ -33,10 +39,6 @@
 						<?php $description = explode("\n", $description[0]); ?>
 						<?php echo $this->Text->truncate($description[0], 300); ?>
 					</p>
-					<?php $url = $this->Link->eventUrl(
-						$event,
-						['full' => true]
-					); ?>
 					<a class="btn" href="<?php echo $url; ?>" style="margin: 0;padding: 10px 16px;color: #FFF;text-decoration: none;background-color: #666;font-weight: bold;margin-right: 10px;text-align: center;cursor: pointer;display: inline-block;">
 						<?php
 						$start_at = strtotime($event['Event']['start_at']);
@@ -67,7 +69,7 @@
 			<tr style="margin:0;padding:0;">
 				<td style="margin:0;padding:0;">
 					<p style="margin:0;padding:0;margin-bottom:10px;font-weight:normal;font-size:18px;line-height:1.6;">
-						Et sinon ça ce sont les derniers évènements ajoutés sur digisquare mais qui auront lieu dans un peu plus longtemps, yay!
+						Et sinon ça ce sont les derniers évènements ajoutés sur digisquare mais qui auront lieu dans un peu plus longtemps :)
 					</p>
 					<ul>
 						<?php foreach ($newly_created_events as $event): ?>
@@ -87,3 +89,17 @@
 		</table>
 	</div>
 <?php endif; ?>
+<div class="content" style="margin:0 auto;padding:15px 0;max-width:600px;display:block;border-top:1px solid #e5e5e5;">
+	<table style="margin:0;padding:0;width:100%;">
+		<tr style="margin:0;padding:0;">
+			<td style="margin:0;padding:0;">
+				<p style="margin:0;padding:0;margin-bottom:10px;font-weight:normal;font-size:11px;line-height:1.6;text-align:center">
+					<?php echo $this->Html->link('Préférences', 
+						['controller' => 'settings', 'action' => 'edit', 'full_base' => true],
+						['style' => 'color:#404040!important;']
+					); ?> | <a href="*|UNSUBLINK|*" style="color:#404040!important;">Désinscription</a>
+				</p>
+			</td>
+		</tr>
+	</table>
+</div>
