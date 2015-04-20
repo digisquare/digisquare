@@ -5,7 +5,9 @@ class SettingsController extends AppController {
 
 	public function isAuthorized($user = null) {
 		if ('edit' === $this->action) {
-			if ($this->params['id'] === $this->Auth->user('id')) {
+			if ($this->params['id'] === $this->Auth->user('id')
+				|| $this->params['id'] === null
+			) {
 				return true;
 			}
 		}
