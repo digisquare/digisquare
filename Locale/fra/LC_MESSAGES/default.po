@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-17 19:06+0200\n"
-"PO-Revision-Date: 2015-04-17 19:07+0100\n"
+"POT-Creation-Date: 2015-04-20 20:09+0200\n"
+"PO-Revision-Date: 2015-04-20 20:13+0100\n"
 "Last-Translator: Damien Varron <damien.varron@effervea.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -52,21 +52,37 @@ msgstr "L'édition n'a pas pu être supprimée. Veuillez réessayer."
 msgid "All is good in the world."
 msgstr "Tout va pour le mieux dans le meilleur des mondes."
 
-#: Controller/EmailsController.php:11
+#: Controller/EmailsController.php:16
 msgid "Invalid digest"
 msgstr "Digest inconnu"
 
-#: Controller/EmailsController.php:20
+#: Controller/EmailsController.php:25
 msgid "Please wait to send this digest again"
-msgstr ""
-
-#: Controller/EmailsController.php:43
-msgid "No upcoming events"
-msgstr ""
+msgstr "Veuillez attendre avant d'envoyer ceci à nouveau"
 
 #: Controller/EmailsController.php:50
+msgid "No upcoming events"
+msgstr "Aucun évènement à venir"
+
+#: Controller/EmailsController.php:57
 msgid "No subscribers"
-msgstr ""
+msgstr "Aucun abonné"
+
+#: Controller/EmailsController.php:108
+msgid "Page not found"
+msgstr "Page non trouvée"
+
+#: Controller/EmailsController.php:115
+msgid "Invalid link"
+msgstr "Lien non valide"
+
+#: Controller/EmailsController.php:128
+msgid "You have been unsubscribed."
+msgstr "Votre inscription a été résiliée"
+
+#: Controller/EmailsController.php:130
+msgid "You have not been unsubscribed. Please, try again."
+msgstr "Votre inscription n'a pas pu être résiliée. Veuillez réessayer."
 
 #: Controller/EventsController.php:106;143;168
 msgid "Invalid event"
@@ -491,7 +507,7 @@ msgstr "Google"
 
 #: View/Events/index.ctp:35
 msgid "Upload"
-msgstr ""
+msgstr "Envoyer"
 
 #: View/Events/index.ctp:40
 msgid "Import"
@@ -499,7 +515,7 @@ msgstr "Importer"
 
 #: View/Events/upload.ctp:3
 msgid "Upload ICS Calendar"
-msgstr ""
+msgstr "Envoyer un calendrier ICS"
 
 #: View/Events/view.ctp:26
 msgid "Organizer:"

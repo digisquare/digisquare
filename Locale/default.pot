@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-17 19:06+0200\n"
+"POT-Creation-Date: 2015-04-20 20:09+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -50,20 +50,36 @@ msgstr ""
 msgid "All is good in the world."
 msgstr ""
 
-#: Controller/EmailsController.php:11
+#: Controller/EmailsController.php:16
 msgid "Invalid digest"
 msgstr ""
 
-#: Controller/EmailsController.php:20
+#: Controller/EmailsController.php:25
 msgid "Please wait to send this digest again"
 msgstr ""
 
-#: Controller/EmailsController.php:43
+#: Controller/EmailsController.php:50
 msgid "No upcoming events"
 msgstr ""
 
-#: Controller/EmailsController.php:50
+#: Controller/EmailsController.php:57
 msgid "No subscribers"
+msgstr ""
+
+#: Controller/EmailsController.php:108
+msgid "Page not found"
+msgstr ""
+
+#: Controller/EmailsController.php:115
+msgid "Invalid link"
+msgstr ""
+
+#: Controller/EmailsController.php:128
+msgid "You have been unsubscribed."
+msgstr ""
+
+#: Controller/EmailsController.php:130
+msgid "You have not been unsubscribed. Please, try again."
 msgstr ""
 
 #: Controller/EventsController.php:106;143;168
