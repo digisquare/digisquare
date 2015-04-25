@@ -35,7 +35,7 @@ Router::connect(
 $controllers = [
 	'editions', 'venues', 'events', 'groups', 'organizations',
 	'users', 'google_calendar_events', 'organizations', 'tags',
-	'settings', 'emails'
+	'settings', 'emails', 'campaigns'
 ];
 foreach ($controllers as $controller) {
 	Router::connect('/' . $controller,					['controller' => $controller, 'action' => 'index']);

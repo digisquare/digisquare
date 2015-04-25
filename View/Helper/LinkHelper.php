@@ -112,7 +112,7 @@ class LinkHelper extends HtmlHelper {
 			$url = $options['url'];
 			unset($options['url']);
 		}
-		return $this->url(
+		return parent::url(
 			array_merge([
 				'controller' => 'events',
 				'action' => 'view',

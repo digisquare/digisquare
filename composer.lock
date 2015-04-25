@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f74cc2bd8f1a6b0d5b51d1c225f324b8",
+    "hash": "ea5c7bd251e02c5e90a7fc5e4cd1a09a",
     "packages": [
         {
             "name": "a2design-company/mandrill-cakephp-plugin",
@@ -147,6 +147,50 @@
                 "zikula"
             ],
             "time": "2015-01-11 03:51:11"
+        },
+        {
+            "name": "dereuromark/cakephp-mailchimp",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-mailchimp.git",
+                "reference": "0e751fa80c93942821e9a97701fec6a2bcaa6d4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-mailchimp/zipball/0e751fa80c93942821e9a97701fec6a2bcaa6d4e",
+                "reference": "0e751fa80c93942821e9a97701fec6a2bcaa6d4e",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "dereuromark/cakephp-tools": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "Mailchimp"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de"
+                }
+            ],
+            "description": "A CakePHP plugin for MailChimp",
+            "homepage": "https://github.com/dereuromark/cakephp-mailchimp",
+            "keywords": [
+                "cakephp",
+                "mailchimp",
+                "plugin"
+            ],
+            "time": "2015-01-20 02:10:54"
         },
         {
             "name": "google/apiclient",

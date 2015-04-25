@@ -61,6 +61,19 @@ class Edition extends AppModel {
 		]);
 	}
 
+	public function getNameFromId($edition_id) {
+		$edition = $this->find('first', [
+			'contain' => false,
+			'conditions' => ['Edition.id' => $edition_id]
+		]);
+
+		if (!$edition) {
+			throw new NotFoundException(__('Invalid edition'));
+		}
+
+		return $edition['Edition']['name'];
+	}
+
 	public function reset() {
 		$this->deleteAll(['Edition.id >' => 0], true, true);
 

@@ -11,6 +11,7 @@ CakePlugin::load('Migrations');
 CakePlugin::load('Opauth', array('bootstrap' => true));
 CakePlugin::load('AclExtras');
 CakePlugin::load('Mandrill');
+CakePlugin::load('Mailchimp');
 
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
@@ -88,3 +89,7 @@ if (isset($_GET) && isset($_GET['approval_prompt'])) {
 	Configure::write('Opauth.Strategy.Google.approval_prompt', 'force');
 }
 
+if (isset($_SERVER) && isset($_SERVER['DIGI_MAILCHIMP_API_KEY'])) {
+	Configure::write('Mailchimp.apiKey', $_SERVER['DIGI_MAILCHIMP_API_KEY']);
+	Configure::write('Mailchimp.defaultListId', $_SERVER['DIGI_MAILCHIMP_LIST_ID']);
+}
