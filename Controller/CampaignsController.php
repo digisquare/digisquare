@@ -6,7 +6,7 @@ class CampaignsController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow(['send']);
+		$this->Auth->allow(['send', 'subscribe']);
 	}
 
 	public function send() {
