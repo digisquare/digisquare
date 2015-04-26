@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-20 20:09+0200\n"
+"POT-Creation-Date: 2015-04-26 14:54+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -26,7 +26,41 @@ msgstr ""
 msgid "You are logged in."
 msgstr ""
 
+#: Controller/CampaignsController.php:16
+#: Controller/EmailsController.php:16
+msgid "Invalid digest"
+msgstr ""
+
+#: Controller/CampaignsController.php:23
+#: Model/Campaign.php:33
+msgid "Not a valid frequency"
+msgstr ""
+
+#: Controller/CampaignsController.php:27
+#: Controller/EmailsController.php:25
+msgid "Please wait to send this digest again"
+msgstr ""
+
+#: Controller/CampaignsController.php:42
+#: Controller/EmailsController.php:50
+msgid "No upcoming events"
+msgstr ""
+
+#: Controller/CampaignsController.php:48
+#: Controller/EmailsController.php:57
+msgid "No subscribers"
+msgstr ""
+
+#: Controller/CampaignsController.php:72;106
+msgid "There was an error with your subscription. Please, try again."
+msgstr ""
+
+#: Controller/CampaignsController.php:104
+msgid "You have been subscribed! See you in your emails tomorrow morning ;)"
+msgstr ""
+
 #: Controller/EditionsController.php:20;24;48;68
+#: Model/Edition.php:71
 msgid "Invalid edition"
 msgstr ""
 
@@ -48,22 +82,6 @@ msgstr ""
 
 #: Controller/EditionsController.php:82
 msgid "All is good in the world."
-msgstr ""
-
-#: Controller/EmailsController.php:16
-msgid "Invalid digest"
-msgstr ""
-
-#: Controller/EmailsController.php:25
-msgid "Please wait to send this digest again"
-msgstr ""
-
-#: Controller/EmailsController.php:50
-msgid "No upcoming events"
-msgstr ""
-
-#: Controller/EmailsController.php:57
-msgid "No subscribers"
 msgstr ""
 
 #: Controller/EmailsController.php:108
@@ -182,16 +200,16 @@ msgstr ""
 msgid "The organizer could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/SettingsController.php:20
-#: Controller/UsersController.php:42;70;97
+#: Controller/SettingsController.php:22
+#: Controller/UsersController.php:44;72;99
 msgid "Invalid user"
 msgstr ""
 
-#: Controller/SettingsController.php:43
+#: Controller/SettingsController.php:45
 msgid "The settings have been saved."
 msgstr ""
 
-#: Controller/SettingsController.php:46
+#: Controller/SettingsController.php:48
 msgid "The settings could not be saved. Please, try again."
 msgstr ""
 
@@ -215,23 +233,23 @@ msgstr ""
 msgid "The tag could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:25
+#: Controller/UsersController.php:27
 msgid "Invalid username or password, try again"
 msgstr ""
 
-#: Controller/UsersController.php:55;74
+#: Controller/UsersController.php:57;76
 msgid "The user has been saved."
 msgstr ""
 
-#: Controller/UsersController.php:58;77
+#: Controller/UsersController.php:60;79
 msgid "The user could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:101
+#: Controller/UsersController.php:103
 msgid "The user has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:103
+#: Controller/UsersController.php:105
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
@@ -380,6 +398,10 @@ msgstr ""
 #: Plugin/BoostCake/Controller/BoostCakeController.php:53
 #: Plugin/BoostCake/View/Elements/bootstrap3/alerts.ctp:21
 msgid "Alert danger message testing..."
+msgstr ""
+
+#: Plugin/Mailchimp/Controller/MailchimpController.php:27
+msgid "No subscriber list found"
 msgstr ""
 
 #: Plugin/Migrations/Console/Command/MigrationShell.php:139
@@ -931,5 +953,9 @@ msgstr ""
 
 #: Model/Event.php:validation for field start_at;validation for field end_at
 msgid "datetime"
+msgstr ""
+
+#: Plugin/Mailchimp/Model/MailchimpSubscriber.php:validation for field email
+msgid "Please enter a valid e-mail address"
 msgstr ""
 

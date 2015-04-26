@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-20 20:09+0200\n"
-"PO-Revision-Date: 2015-04-20 20:13+0100\n"
+"POT-Creation-Date: 2015-04-26 14:54+0200\n"
+"PO-Revision-Date: 2015-04-26 15:00+0100\n"
 "Last-Translator: Damien Varron <damien.varron@effervea.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -28,7 +28,36 @@ msgstr "L'authentification a été enregistrée."
 msgid "You are logged in."
 msgstr "Vous êtes connecté."
 
-#: Controller/EditionsController.php:20;24;48;68
+#: Controller/CampaignsController.php:16 Controller/EmailsController.php:16
+msgid "Invalid digest"
+msgstr "Digest inconnu"
+
+#: Controller/CampaignsController.php:23 Model/Campaign.php:33
+msgid "Not a valid frequency"
+msgstr "Fréquence non valide"
+
+#: Controller/CampaignsController.php:27 Controller/EmailsController.php:25
+msgid "Please wait to send this digest again"
+msgstr "Veuillez attendre avant d'envoyer ceci à nouveau"
+
+#: Controller/CampaignsController.php:42 Controller/EmailsController.php:50
+msgid "No upcoming events"
+msgstr "Aucun évènement à venir"
+
+#: Controller/CampaignsController.php:48 Controller/EmailsController.php:57
+msgid "No subscribers"
+msgstr "Aucun abonné"
+
+#: Controller/CampaignsController.php:72;106
+msgid "There was an error with your subscription. Please, try again."
+msgstr ""
+"Une erreur s'est produite lors de votre inscription. Veuillez réessayer."
+
+#: Controller/CampaignsController.php:104
+msgid "You have been subscribed! See you in your emails tomorrow morning ;)"
+msgstr "Vous êtes inscrit ! A demain matin dans votre boite mail ;)"
+
+#: Controller/EditionsController.php:20;24;48;68 Model/Edition.php:71
 msgid "Invalid edition"
 msgstr "Édition inconnue"
 
@@ -51,22 +80,6 @@ msgstr "L'édition n'a pas pu être supprimée. Veuillez réessayer."
 #: Controller/EditionsController.php:82
 msgid "All is good in the world."
 msgstr "Tout va pour le mieux dans le meilleur des mondes."
-
-#: Controller/EmailsController.php:16
-msgid "Invalid digest"
-msgstr "Digest inconnu"
-
-#: Controller/EmailsController.php:25
-msgid "Please wait to send this digest again"
-msgstr "Veuillez attendre avant d'envoyer ceci à nouveau"
-
-#: Controller/EmailsController.php:50
-msgid "No upcoming events"
-msgstr "Aucun évènement à venir"
-
-#: Controller/EmailsController.php:57
-msgid "No subscribers"
-msgstr "Aucun abonné"
 
 #: Controller/EmailsController.php:108
 msgid "Page not found"
@@ -184,16 +197,16 @@ msgstr "L'organisateur a été supprimé."
 msgid "The organizer could not be deleted. Please, try again."
 msgstr "L'organisateur n'a pas pu être supprimé. Veuillez réessayer."
 
-#: Controller/SettingsController.php:20
-#: Controller/UsersController.php:42;70;97
+#: Controller/SettingsController.php:22
+#: Controller/UsersController.php:44;72;99
 msgid "Invalid user"
 msgstr "Utilisateur inconnu"
 
-#: Controller/SettingsController.php:43
+#: Controller/SettingsController.php:45
 msgid "The settings have been saved."
 msgstr "Les préférences ont été enregistrées."
 
-#: Controller/SettingsController.php:46
+#: Controller/SettingsController.php:48
 msgid "The settings could not be saved. Please, try again."
 msgstr "Les préférences n'ont pas pu être enregistrées. Veuillez réessayer."
 
@@ -217,23 +230,23 @@ msgstr "Le tag a été supprimé."
 msgid "The tag could not be deleted. Please, try again."
 msgstr "Le tag n'a pas pu être supprimé. Veuillez réessayer."
 
-#: Controller/UsersController.php:25
+#: Controller/UsersController.php:27
 msgid "Invalid username or password, try again"
 msgstr "Nom d'utilisateur ou mot de passe incorrect. Veuillez réessayer."
 
-#: Controller/UsersController.php:55;74
+#: Controller/UsersController.php:57;76
 msgid "The user has been saved."
 msgstr "L'utilisateur a été enregistré."
 
-#: Controller/UsersController.php:58;77
+#: Controller/UsersController.php:60;79
 msgid "The user could not be saved. Please, try again."
 msgstr "L'utilisateur n'a pas pu être enregistré. Veuillez réessayer."
 
-#: Controller/UsersController.php:101
+#: Controller/UsersController.php:103
 msgid "The user has been deleted."
 msgstr "L'utilisateur a été supprimé."
 
-#: Controller/UsersController.php:103
+#: Controller/UsersController.php:105
 msgid "The user could not be deleted. Please, try again."
 msgstr "L'utilisateur n'a pas pu être supprimé. Veuillez réessayer."
 
@@ -389,6 +402,10 @@ msgstr ""
 msgid "Alert danger message testing..."
 msgstr ""
 
+#: Plugin/Mailchimp/Controller/MailchimpController.php:27
+msgid "No subscriber list found"
+msgstr "Aucune liste d'abonnés trouvée"
+
 #: Plugin/Migrations/Console/Command/MigrationShell.php:139
 msgid "Plugin name to be used"
 msgstr ""
@@ -430,7 +447,7 @@ msgstr ""
 
 #: Plugin/Migrations/Console/Command/MigrationShell.php:171
 msgid "Generates a migration file."
-msgstr ""
+msgstr "Génère un fichier de migration."
 
 #: View/Contacts/index.ctp:24
 msgid "Send"
@@ -638,12 +655,12 @@ msgstr "Envoyer"
 #: View/Organizers/add.ctp:16 View/Organizers/edit.ctp:18
 #: View/Organizers/view.ctp:36
 msgid "List Organizers"
-msgstr ""
+msgstr "Lister les organisateurs"
 
 #: View/Organizers/add.ctp:17 View/Organizers/edit.ctp:19
 #: View/Organizers/index.ctp:60 View/Organizers/view.ctp:38
 msgid "List Events"
-msgstr ""
+msgstr "Lister les évènements"
 
 #: View/Organizers/add.ctp:18 View/Organizers/edit.ctp:20
 #: View/Organizers/index.ctp:61 View/Organizers/view.ctp:39
@@ -653,7 +670,7 @@ msgstr "Nouvel évènement"
 #: View/Organizers/add.ctp:19 View/Organizers/edit.ctp:21
 #: View/Organizers/index.ctp:62 View/Organizers/view.ctp:40
 msgid "List Organizations"
-msgstr ""
+msgstr "Lister les organisations"
 
 #: View/Organizers/add.ctp:20 View/Organizers/edit.ctp:22
 #: View/Organizers/index.ctp:63 View/Organizers/view.ctp:41
@@ -886,6 +903,10 @@ msgstr "non vide"
 #: Model/Event.php:validation for field start_at;validation end_at
 msgid "datetime"
 msgstr "datetime"
+
+#: Plugin/Mailchimp/Model/MailchimpSubscriber.php:validation for field email
+msgid "Please enter a valid e-mail address"
+msgstr "Veuillez entrer une adresse email valide"
 
 #~ msgid "%s"
 #~ msgstr "%s"
