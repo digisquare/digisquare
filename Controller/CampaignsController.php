@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Validation', 'Utility');
 
 class CampaignsController extends AppController {
 
@@ -62,6 +63,50 @@ class CampaignsController extends AppController {
 		]);
 
 		die;
+	}
+
+	public function subscribe() {
+		$email = $this->request->data['Campaign']['email'];
+
+		if (!$email || empty($email) || !Validation::email($email, true)) {
+			$this->Session->setFlash(__('There was an error with your subscription. Please, try again.'), 'message_error');
+			return $this->redirect($this->referer());
+		}
+
+		if (!$this->Session->check('Edition')) {
+			$edition_name = 'Bordeaux';
+		} else {
+			$edition_name = $this->Session->read('Edition.name');
+		}
+
+		$subscription = $this->Campaign->MailchimpSubscriber->subscribe(
+			['email' => $email],
+			[
+				'doubleOptin' => false,
+				'updateExisting' => true
+			],
+			[
+				'groupings' => [
+					[
+						'name' => 'Fréquence',
+						'groups' => [ucfirst(strftime('%A', time() + 24*60*60))]
+					],
+					[
+						'name' => 'Edition',
+						'groups' => [$edition_name]
+					]
+				],
+				'mc_language' => 'FR'
+			]
+		);
+
+		if ($subscription) {
+			$this->Session->setFlash(__('You have been subscribed! See you in your emails tomorrow morning ;)'), 'message_success');
+		} else {
+			$this->Session->setFlash(__('There was an error with your subscription. Please, try again.'), 'message_error');
+		}
+
+		return $this->redirect($this->referer());
 	}
 
 }

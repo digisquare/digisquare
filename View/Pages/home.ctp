@@ -28,6 +28,29 @@ $events = $this->requestAction($url);
 			<a href="/bordeaux">Bordeaux</a> et
 			<a href="http://montpellier.digisquare.net">Montpellier</a>.
 		</p>
+		<p></p>
+		<?php echo $this->Form->create('Campaign', [
+			'action' => 'subscribe',
+			'class' => 'form-horizontal'
+		]); ?>
+			<div class="form-group">
+				<label for="EditionEmail" class="col col-md-4 control-label">Directement dans votre boite mail :</label>
+				<div class="col col-md-6">
+					<?php echo $this->Form->input('email', [
+						'placeholder' => strtolower($this->Session->read('Edition.name')) . '@digisquare.net',
+						'label' => false,
+						'class' => 'form-control',
+						'required' => true
+					]); ?>
+				</div>
+				<div class="col col-md-2">
+					<?php echo $this->Form->submit(
+						'Inscription',
+						['class' => 'btn btn-primary']
+					); ?>
+				</div>
+			</div>
+		<?php echo $this->Form->end(); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-8">
