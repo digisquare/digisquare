@@ -248,7 +248,6 @@ class MailchimpCampaign extends MailchimpAppModel {
 		$options['content'] = $content;
 		$options['segment_opts'] = $segmentOpts;
 		$options['type_opts'] = $typeOpts;
-		die(debug($options));
 		return $this->call('campaigns/create', $options);
 	}
 
