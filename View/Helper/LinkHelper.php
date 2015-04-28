@@ -36,6 +36,18 @@ class LinkHelper extends HtmlHelper {
 		);
 	}
 
+	public function listEditionVenues($title, $edition = [], $options = [], $confirmMessage = false) {
+		return $this->link($title,
+			[
+				'controller' => 'venues',
+				'action' => 'index',
+				'slug' => $edition['Edition']['slug']
+			],
+			$options,
+			$confirmMessage
+		);
+	}
+
 	public function viewOrganization($title, $organization = [], $options = [], $confirmMessage = false) {
 		if (is_array($title)) {
 			$organization = $title;

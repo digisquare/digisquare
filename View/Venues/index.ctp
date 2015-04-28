@@ -3,12 +3,12 @@ $url = 'https://maps.googleapis.com/maps/api/js?key=' . Configure::read('GoogleM
 echo $this->Html->script($url);
 ?>
 <?php if (isset($edition)) {
-	$title = 'Tous les lieux actifs du numérique à ' . $this->Link->viewEdition($edition);
-	$this->set('title_for_layout', 'Tous les lieux actifs du numérique à ' . $edition['Edition']['name']);
+	$title = 'Les bonnes adresses du numérique à ' . $this->Link->viewEdition($edition);
+	$this->set('title_for_layout', 'Les bonnes adresses du numérique à ' . $edition['Edition']['name']);
 	$url = ['slug' => $edition['Edition']['slug']];
 } else {
-	$title = 'Tous les lieux actifs du numérique';
-	$this->set('title_for_layout', 'Tous les lieux actifs du numérique en France');
+	$title = 'Les bonnes adresses du numérique';
+	$this->set('title_for_layout', 'Les bonnes adresses du numérique en France');
 	$url = [];
 } ?>
 <div role="main">

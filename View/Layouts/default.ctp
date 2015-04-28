@@ -54,6 +54,12 @@
 								$edition
 							); ?>
 						</li>
+						<li>
+							<?php echo $this->Link->listEditionVenues(
+								'Carte',
+								$edition
+							); ?>
+						</li>
 					</ul>
 					<?php if ($this->Session->check('Auth.User')): ?>
 						<?php if (!empty($this->Session->read('Auth.User.avatar'))) {

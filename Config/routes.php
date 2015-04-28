@@ -68,9 +68,9 @@ Router::connect(
 	['controller' => 'events', 'action' => 'index']
 );
 
-//bordeaux/lieux
+//bordeaux/carte
 Router::connect(
-	'/:slug/lieux',
+	'/:slug/carte',
 	['controller' => 'venues', 'action' => 'index']
 );
 

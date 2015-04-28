@@ -1,10 +1,10 @@
 <?php if (isset($edition)) {
-	$title = 'Annuaire du numérique à ' . $this->Link->viewEdition($edition);
-	$this->set('title_for_layout', 'Tous les organisateurs d\'évènements numériques à ' . $edition['Edition']['name']);
+	$title = 'Les acteurs du numérique à ' . $this->Link->viewEdition($edition);
+	$this->set('title_for_layout', 'Tous les acteurs du numériques à ' . $edition['Edition']['name']);
 	$url = ['slug' => $edition['Edition']['slug']];
 } else {
-	$title = 'Annuaire du numérique en France';
-	$this->set('title_for_layout', 'Tous les organisateurs d\'évènements numériques en France');
+	$title = 'Les acteurs du numérique en France';
+	$this->set('title_for_layout', 'Tous les acteurs du numériques en France');
 	$url = [];
 } ?>
 <div role="main">
