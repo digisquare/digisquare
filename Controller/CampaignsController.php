@@ -101,6 +101,7 @@ class CampaignsController extends AppController {
 		);
 
 		if ($subscription) {
+			$this->Session->write('Subscribed', true);
 			$this->Session->setFlash(__('You have been subscribed! See you in your emails tomorrow morning ;)'), 'message_success');
 		} else {
 			$this->Session->setFlash(__('There was an error with your subscription. Please, try again.'), 'message_error');
