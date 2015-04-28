@@ -15,7 +15,7 @@ class MandrillTransportTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		if (!class_exists('MockSocket')) {
-			$this->getMock('CakeSocket', array('read', 'write', 'connect', 'enableCrypto'), array(), 'MockSocket');
+			$this->getMock('CakeSocket', ['read', 'write', 'connect', 'enableCrypto'], [], 'MockSocket');
 		}
 		$this->socket = new MockSocket();
 
@@ -44,7 +44,7 @@ class MandrillTransportTest extends CakeTestCase {
 	public function testSend() {
 		$this->skipIf(!Configure::read('Mandrill.apiKey'));
 
-		$Mock = $this->getMock('MandrillTestTransport', array('_post'));
+		$Mock = $this->getMock('MandrillTestTransport', ['_post']);
 		$Mock->expects($this->once())
 			->method('_post')
 			->will($this->returnValue(new HttpSocketResponse()));
@@ -92,14 +92,14 @@ class MandrillTransportTest extends CakeTestCase {
 	 * @return void
 	 */
 	public function testEmptyConfigArray() {
-		$expected = $this->MandrillTransport->config(array(
+		$expected = $this->MandrillTransport->config([
 			'client' => 'myhost.com',
 			'port' => 666
-		));
+		]);
 
 		$this->assertEquals(666, $expected['port']);
 
-		$result = $this->MandrillTransport->config(array());
+		$result = $this->MandrillTransport->config([]);
 		$this->assertEquals($expected, $result);
 	}
 

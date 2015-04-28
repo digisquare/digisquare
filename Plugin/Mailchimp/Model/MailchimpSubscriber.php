@@ -4,38 +4,38 @@ App::uses('MailchimpAppModel', 'Mailchimp.Model');
 
 class MailchimpSubscriber extends MailchimpAppModel {
 
-	public $validate = array(
-		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
-				'message' => 'Please enter a valid e-mail address')));
+	public $validate = [
+		'email' => [
+			'email' => [
+				'rule' => ['email'],
+				'message' => 'Please enter a valid e-mail address']]];
 
 	/**
 	 * Use $_schema to set any mailchimp fields that you want to use
 	 *
 	 * @var array
 	 */
-	protected $_schema = array(
-		'id' => array(
+	protected $_schema = [
+		'id' => [
 			'type' => 'int',
 			'null' => true,
 			'key' => 'primary',
 			'length' => 11,
-			),
-		'email' => array(
+			],
+		'email' => [
 			'type' => 'string',
 			'null' => false,
-			'length' => 256),
-		'fname' => array(
+			'length' => 256],
+		'fname' => [
 			'type' => 'string',
 			'null' => true,
 			'key' => 'primary',
-			'length' => 128),
-		'lname' => array(
+			'length' => 128],
+		'lname' => [
 			'type' => 'string',
 			'null' => true,
-			'length' => 128),
-		);
+			'length' => 128],
+		];
 
 	/**
 	 * Subscribe email address with optional additional data.
@@ -66,7 +66,7 @@ class MailchimpSubscriber extends MailchimpAppModel {
 	 * @return bool Success
 	 * @throws MailchimpException When length of merge var (10) is exceeded.
 	 */
-	public function subscribe(array $queryData, array $options = array(), array $mergeVars = array()) {
+	public function subscribe(array $queryData, array $options = [], array $mergeVars = []) {
 		foreach ($queryData as $key => $value) {
 			if (strpos($key, '_') === false) {
 				if (strlen($key) > 10) {
@@ -84,19 +84,19 @@ class MailchimpSubscriber extends MailchimpAppModel {
 		$options['email'] = $queryData['email'];
 		unset($queryData['email']);
 
-		$defaults = array(
+		$defaults = [
 			'id' => $this->settings['defaultListId'],
 			'emailType' => 'html',
 			'doubleOptin' => true,
 			'updateExisting' => false,
 			'replaceInterests' => true,
 			'sendWelcome' => false
-		);
+		];
 		$options += $defaults;
 		$options['merge_vars'] = $queryData + $mergeVars;
 
 		if (is_string($options['email'])) {
-			$options['email'] = array('email' => $options['email']);
+			$options['email'] = ['email' => $options['email']];
 		}
 
 		return $this->call('lists/subscribe', $options);
@@ -116,17 +116,17 @@ class MailchimpSubscriber extends MailchimpAppModel {
 	 * - sendNotify
 	 * @return bool Success
 	 */
-	public function unsubscribe(array $queryData, array $options = array()) {
-		$defaults = array(
+	public function unsubscribe(array $queryData, array $options = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId'],
 			'deleteMember' => false,
 			'sendGoodbye' => true,
 			'sendNotify' => true
-		);
+		];
 		$options += $defaults;
 
 		if (is_string($queryData['email'])) {
-			$queryData['email'] = array('email' => $queryData['email']);
+			$queryData['email'] = ['email' => $queryData['email']];
 		}
 		$options = $queryData + $options;
 
@@ -152,25 +152,25 @@ class MailchimpSubscriber extends MailchimpAppModel {
 	 * - replaceInterests
 	 * @return array
 	 */
-	public function batchSubscribe(array $emails, array $options = array()) {
-		$defaults = array(
+	public function batchSubscribe(array $emails, array $options = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId'],
 			'emailType' => 'html',
 			'doubleOptin' => true,
 			'updateExisting' => false,
 			'replaceInterests' => true,
-		);
+		];
 		$options += $defaults;
 
-		$batch = array();
+		$batch = [];
 		foreach ($emails as $email) {
 			if (is_string($email)) {
-				$email = array(
+				$email = [
 					'email' => $email
-				);
+				];
 			}
 			if (is_string($email['email'])) {
-				$email['email'] = array('email' => $email['email']);
+				$email['email'] = ['email' => $email['email']];
 			}
 			if (empty($email['email_type'])) {
 				$email['email_type'] = $options['emailType'];
@@ -198,19 +198,19 @@ class MailchimpSubscriber extends MailchimpAppModel {
 	 * - sendNotify
 	 * @return array
 	 */
-	public function batchUnsubscribe(array $emails, array $options = array()) {
-		$defaults = array(
+	public function batchUnsubscribe(array $emails, array $options = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId'],
 			'deleteMember' => false,
 			'sendGoodbye' => true,
 			'sendNotify' => true
-		);
+		];
 		$options += $defaults;
 		foreach ($emails as $key => $email) {
 			if (is_string($email)) {
-				$emails[$key] = array(
+				$emails[$key] = [
 					'email' => $email
-				);
+				];
 			}
 		}
 		$options['batch'] = $emails;

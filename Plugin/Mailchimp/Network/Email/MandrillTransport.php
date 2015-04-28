@@ -48,7 +48,7 @@ class MandrillTransport extends AbstractTransport {
 	 *
 	 * @var mixed
 	 */
-	protected $_config = array();
+	protected $_config = [];
 
 	/**
 	 * Sends out email via Mandrill
@@ -66,20 +66,20 @@ class MandrillTransport extends AbstractTransport {
 			$this->_config['uri'] = static::API_URL;
 		}
 
-		$include = array(
+		$include = [
 			'from',
 			'to',
 			'cc',
 			'bcc',
 			'replyTo',
-			'subject');
+			'subject'];
 		$this->_headers = $this->_Email->getHeaders($include);
 		$message = $this->_buildMessage();
 
-		$request = array('header' => array(
+		$request = ['header' => [
 				'Accept' => 'application/json',
 				'Content-Type' => 'application/json',
-		));
+		]];
 
 		$template = $this->_Email->template();
 		if ($template['template'] && !empty($this->_config['useTemplate'])) {
@@ -99,7 +99,7 @@ class MandrillTransport extends AbstractTransport {
 
 		$headers = $this->_headersToString($this->_headers);
 
-		return array_merge(array('Mandrill' => $result), array('headers' => $headers, 'message' => $message));
+		return array_merge(['Mandrill' => $result], ['headers' => $headers, 'message' => $message]);
 	}
 
 	/**
@@ -110,7 +110,7 @@ class MandrillTransport extends AbstractTransport {
 	 * @param array $request
 	 * @return mixed Result of request, either false on failure or the response to the request.
 	 */
-	protected function _post($messageUri, array $message, array $request = array()) {
+	protected function _post($messageUri, array $message, array $request = []) {
 		$this->_Socket = new HttpSocket();
 		return $this->_Socket->post($messageUri, json_encode($message), $request);
 	}
@@ -121,24 +121,24 @@ class MandrillTransport extends AbstractTransport {
 	 * @return array
 	 */
 	protected function _buildMessage() {
-		$json = array();
+		$json = [];
 		$json['key'] = $this->_config['apiKey'];
 		$template = $this->_Email->template();
 		if ($template['template'] && !empty($this->_config['useTemplate'])) {
 			$json['template_name'] = $template['layout'] . '-' . $template['template'];
-			$json['template_content'] = array();
+			$json['template_content'] = [];
 		}
 
-		$message = array();
+		$message = [];
 
-		$mergeVars = array();
+		$mergeVars = [];
 		$viewVars = $this->_Email->viewVars();
 		foreach ($viewVars as $key => $content) {
-			$mergeVars[] = array('name' => $key, 'content' => $content);
+			$mergeVars[] = ['name' => $key, 'content' => $content];
 		}
 
-		$message['merge_vars'] = array();
-		$message['merge_vars'][] = array('rcpt' => $this->_headers['To'], 'vars' => $mergeVars);
+		$message['merge_vars'] = [];
+		$message['merge_vars'][] = ['rcpt' => $this->_headers['To'], 'vars' => $mergeVars];
 
 		$message['from_email'] = trim($this->_headers['From'], '\'');
 		if (($pos = strpos($this->_headers['From'], '<')) !== false) {
@@ -157,30 +157,30 @@ class MandrillTransport extends AbstractTransport {
 		} else {
 			$name = $email;
 		}
-		$message['to'] = array(array('email' => $email, 'name' => $name));
+		$message['to'] = [['email' => $email, 'name' => $name]];
 
 		$message['subject'] = mb_decode_mimeheader($this->_headers['Subject']);
 
 		$Reflection = new ReflectionProperty(get_class($this->_Email), '_attachments');
 		$Reflection->setAccessible(true);
 		$attachments = $Reflection->getValue($this->_Email);
-		$message['attachments'] = array();
-		$message['images'] = array();
+		$message['attachments'] = [];
+		$message['images'] = [];
 		foreach ($attachments as $filename => $attachment) {
 			$content = $this->_readFile($attachment['file']);
 			$type = substr($attachment['mimetype'], 0, strpos($attachment['mimetype'], ' '));
 			if (isset($attachment['contentId'])) {
-				$message['images'][] = array(
+				$message['images'][] = [
 					'type' => $type,
 					'name' => $attachment['contentId'],
 					'content' => $content
-				);
+				];
 			} else {
-				$message['attachments'][] = array(
+				$message['attachments'][] = [
 					'type' => $type,
 					'name' => $filename,
 					'content' => $content
-				);
+				];
 			}
 		}
 

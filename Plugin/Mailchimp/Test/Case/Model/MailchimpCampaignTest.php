@@ -18,7 +18,7 @@ class MailchimpCampaignTest extends MyCakeTestCase {
 		$this->MailchimpCampaign = new MailchimpCampaign();
 
 		if (!$this->isDebug()) {
-			$this->MailchimpCampaign->Mailchimp = $this->getMock('MailchimpLib', array('_get'));
+			$this->MailchimpCampaign->Mailchimp = $this->getMock('MailchimpLib', ['_get']);
 			$this->mockPath = CakePlugin::path('Mailchimp') . 'Test' . DS . 'test_files' . DS . 'mailchimp' . DS;
 		}
 	}
@@ -66,7 +66,7 @@ class MailchimpCampaignTest extends MyCakeTestCase {
 			->will($this->returnValue(file_get_contents($this->mockPath . 'campaigns_send_test_error.json')));
 		}
 
-		$res = $this->MailchimpCampaign->campaignSendTest(array('kontakt@markscherer.de'));
+		$res = $this->MailchimpCampaign->campaignSendTest(['kontakt@markscherer.de']);
 		$this->assertFalse($res);
 	}
 

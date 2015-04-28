@@ -22,18 +22,18 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * string bounce_type For backwards compat, this will exist and be the same data as "type"
 	 * string campaign_id The campaign id the action was related to, if it exists - otherwise empty (ie, direct unsub from list)
 	 */
-	public function listMemberActivity(array $emails, array $options = array()) {
+	public function listMemberActivity(array $emails, array $options = []) {
 		foreach ($emails as $key => $email) {
 			if (is_string($email)) {
-				$email = array(
+				$email = [
 					'email' => $email
-				);
+				];
 			}
 			$emails[$key] = $email;
 		}
-		$defaults = array(
+		$defaults = [
 			'id' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 
 		return $this->call('reports/member-activity', $options);
@@ -48,19 +48,19 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param array $options
 	 * @return array
 	 */
-	public function campaignsForEmail(array $emails, array $options = array()) {
+	public function campaignsForEmail(array $emails, array $options = []) {
 		foreach ($emails as $key => $email) {
 			if (is_string($email)) {
-				$email = array(
+				$email = [
 					'email' => $email
-				);
+				];
 			}
 			$emails[$key] = $email;
 		}
-		$options = array(
+		$options = [
 			'email' => $emails,
 			'options' => $options
-		);
+		];
 		return $this->call('helper/campaigns-for-email', $options);
 	}
 
@@ -79,7 +79,7 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * - $limit optional - control paging of campaigns, number of campaigns to return with each call, defaults to 25 (max=1000)
 	 * @return array an array containing a count of all matching campaigns and the specific ones for the current page (see Returned Fields for description)
 	 */
-	public function campaigns($filters = array(), $options = array()) {
+	public function campaigns($filters = [], $options = []) {
 		$options['filters'] = $filters;
 		return $this->call('campaigns/list', $options);
 	}
@@ -100,7 +100,7 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * string snippet the matching snippet for the campaign
 	 * array campaign the matching campaign's details - will return same data as single campaign from campaigns()
 	 */
-	public function search($query, array $options = array()) {
+	public function search($query, array $options = []) {
 		$options['query'] = $query;
 		return $this->call('helper/search-campaigns', $options);
 	}
@@ -116,11 +116,11 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @return bool true on success
 	 */
 	public function campaignSchedule(array $options) {
-		$defaults = array(
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId'],
 			'scheduleTime' => date('Y-m-d H:i:s'),
 			'scheduleTimeB' => null,
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/schedule', $options);
 	}
@@ -134,10 +134,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * - $cid the id of the campaign to unschedule
 	 * @return bool true on success
 	 */
-	public function campaignUnschedule(array $options = array()) {
-		$defaults = array(
+	public function campaignUnschedule(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/unschedule', $options);
 	}
@@ -150,10 +150,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param string $cid the id of the campaign to pause
 	 * @return bool true on success
 	 */
-	public function campaignPause(array $options = array()) {
-		$defaults = array(
+	public function campaignPause(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/pause', $options);
 	}
@@ -166,10 +166,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param string $cid the id of the campaign to pause
 	 * @return bool true on success
 	 */
-	public function campaignResume(array $options = array()) {
-		$defaults = array(
+	public function campaignResume(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/resume', $options);
 	}
@@ -183,10 +183,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param string $cid the id of the campaign to send
 	 * @return bool true on success
 	 */
-	public function campaignSend(array $options = array()) {
-		$defaults = array(
+	public function campaignSend(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/send', $options);
 	}
@@ -199,10 +199,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param string $cid the id of the campaign to test
 	 * @return bool true on success
 	 */
-	public function campaignSendTest(array $options = array()) {
-		$defaults = array(
+	public function campaignSendTest(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/send-test', $options);
 	}
@@ -216,10 +216,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param array $options with 2 keys:
 	 * @return int total The total number of subscribers matching your segmentation options
 	 */
-	public function campaignSegmentTest(array $campaignOptions, array $options = array()) {
-		$defaults = array(
+	public function campaignSegmentTest(array $campaignOptions, array $options = []) {
+		$defaults = [
 			'listId' => $this->settings['defaultListId']
-		);
+		];
 		$options += $defaults;
 		$options['options'] = $campaignOptions;
 		return $this->call('campaigns/segment-test', $options);
@@ -236,14 +236,15 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param array $segmentOpts
 	 * @return string the ID for the created campaign
 	 */
-	public function campaignCreate($type, array $campaignOptions, array $content, array $segmentOpts = array(), array $typeOpts = array()) {
-		$defaults = array(
+	public function campaignCreate($type, array $campaignOptions, array $content, array $segmentOpts = [], array $typeOpts = []) {
+		$defaults = [
 			'list_id' => $this->settings['defaultListId']
-		);
+		];
 		$campaignOptions += $defaults;
-		$options = array(
+
+		$options = [
 			'options' => $campaignOptions
-		);
+		];
 		$options['type'] = $type;
 		$options['content'] = $content;
 		$options['segment_opts'] = $segmentOpts;
@@ -268,9 +269,9 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @return bool true if the update succeeds, otherwise an error will be thrown
 	 */
 	public function campaignUpdate(array $options) {
-		$defaults = array(
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/update', $options);
 	}
@@ -283,10 +284,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param string $cid the Campaign Id to replicate
 	 * @return string the id of the replicated Campaign created, otherwise an error will be thrown
 	 */
-	public function campaignReplicate(array $options = array()) {
-		$defaults = array(
+	public function campaignReplicate(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/replicate', $options);
 	}
@@ -299,10 +300,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param string $cid the Campaign Id to delete
 	 * @return bool true if the delete succeeds, otherwise an error will be thrown
 	 */
-	public function campaignDelete(array $options = array()) {
-		$defaults = array(
+	public function campaignDelete(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/delete', $options);
 	}
@@ -331,10 +332,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf int emails_sent Number of email addresses campaign was sent to.
 	 * @returnf array absplit If this was an absplit campaign, stats for the A and B groups will be returned
 	 */
-	public function campaignStats(array $options = array()) {
-		$defaults = array(
+	public function campaignStats(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('reports/summary', $options);
 	}
@@ -348,10 +349,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * - cid
 	 * @return struct urls will be keys and contain their associated statistics:
 	 */
-	public function campaignClicks(array $options = array()) {
-		$defaults = array(
+	public function campaignClicks(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('reports/clicks', $options);
 	}
@@ -365,10 +366,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * - tid: the "tid" for the URL from reports/clicks
 	 * @return struct urls will be keys and contain their associated statistics:
 	 */
-	public function campaignClickDetails($tid, array $filterOptions = array(), array $options = array()) {
-		$defaults = array(
+	public function campaignClickDetails($tid, array $filterOptions = [], array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['tid'] = $tid;
 		$options['opts'] = $filterOptions;
@@ -399,10 +400,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf int clicks_pct Percentage of clicks from this domain (whole number)
 	 * @returnf int unsubs_pct Percentage of unsubs from this domain (whole number)
 	 */
-	public function campaignEmailDomainPerformance(array $filterOptions = array(), array $options = array()) {
-		$defaults = array(
+	public function campaignEmailDomainPerformance(array $filterOptions = [], array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['opts'] = $filterOptions;
 		return $this->call('reports/domain-performance', $options);
@@ -421,10 +422,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf int total   the total number of members for the campaign and status
 	 * @returnf array data  the full campaign member records
 	 */
-	public function campaignSentTo(array $filterOptions = array(), array $options = array()) {
-		$defaults = array(
+	public function campaignSentTo(array $filterOptions = [], array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['opts'] = $filterOptions;
 		return $this->call('reports/domain-performance', $options);
@@ -443,10 +444,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf int total   the total number of unsubscribes for the campaign
 	 * @returnf array data  the full email addresses that unsubscribed
 	 */
-	public function campaignUnsubscribes(array $filterOptions = array(), array $options = array()) {
-		$defaults = array(
+	public function campaignUnsubscribes(array $filterOptions = [], array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['opts'] = $filterOptions;
 		return $this->call('reports/unsubscribes', $options);
@@ -466,10 +467,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf string email the email address that reported abuse
 	 * @returnf string type an internal type generally specifying the orginating mail provider - may not be useful outside of filling report views
 	 */
-	public function campaignAbuseReports(array $filterOptions = array(), array $options = array()) {
-		$defaults = array(
+	public function campaignAbuseReports(array $filterOptions = [], array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['opts'] = $filterOptions;
 		return $this->call('reports/abuse', $options);
@@ -486,10 +487,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf msg the advice message
 	 * @returnf type the "type" of the message. one of: negative, positive, or neutral
 	 */
-	public function campaignAdvice(array $options = array()) {
-		$defaults = array(
+	public function campaignAdvice(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('reports/advice', $options);
 	}
@@ -513,10 +514,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf int ecomm_conversions number Ecommerce transactions tracked
 	 * @returnf array goals an array containing goal names and number of conversions
 	 */
-	public function campaignAnalytics(array $options = array()) {
-		$defaults = array(
+	public function campaignAnalytics(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('reports/google-analytics', $options);
 	}
@@ -533,10 +534,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf int opens The total number of opens that occurred in the country
 	 * @returnf bool region_detail Whether or not a subsequent call to campaignGeoOpensByCountry() will return anything
 	 */
-	public function campaignGeoOpens(array $options = array()) {
-		$defaults = array(
+	public function campaignGeoOpens(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('reports/geo-opens', $options);
 	}
@@ -550,10 +551,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @return array stats an array containing tweets, retweets, clicks, and referrer related to using the campaign's eepurl
 	 * @returnf array twitter various Twitter related stats
 	 */
-	public function campaignEepUrlStats(array $options = array()) {
-		$defaults = array(
+	public function campaignEepUrlStats(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('reports/eepurl', $options);
 	}
@@ -571,13 +572,13 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf string email the email address that bounced
 	 * @returnf string message the entire bounce message received
 	 */
-	public function campaignBounceMessage($email, array $options = array()) {
-		$defaults = array(
+	public function campaignBounceMessage($email, array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		if (is_string($email)) {
-			$email = array('email' => $email);
+			$email = ['email' => $email];
 		}
 		$options['email'] = $email;
 		return $this->call('reports/bounce-message', $options);
@@ -598,10 +599,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf int total that total number of bounce messages for the campaign
 	 * @returnf array data an array containing the data for this page
 	 */
-	public function campaignBounceMessages(array $filterOptions, array $options = array()) {
-		$defaults = array(
+	public function campaignBounceMessages(array $filterOptions, array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['opts'] = $filterOptions;
 		return $this->call('reports/bounce-messages', $options);
@@ -620,10 +621,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf int total the total matching orders
 	 * @returnf array data the actual data for each order being returned
 	 */
-	public function campaignEcommOrders(array $filterOptions = array(), array $options = array()) {
-		$defaults = array(
+	public function campaignEcommOrders(array $filterOptions = [], array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['opts'] = $filterOptions;
 		return $this->call('reports/ecomm-orders', $options);
@@ -642,10 +643,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf string secure_url The URL to the shared report, including the password (good for loading in an IFRAME). For non-secure reports, this will not be returned
 	 * @returnf string password If secured, the password for the report, otherwise this field will not be returned
 	 */
-	public function campaignShareReport(array $compaignOptions = array(), array $options = array()) {
-		$defaults = array(
+	public function campaignShareReport(array $compaignOptions = [], array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['options'] = $compaignOptions;
 		return $this->call('reports/share', $options);
@@ -662,10 +663,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @returnf string html The HTML content used for the campgain with merge tags intact
 	 * @returnf string text The Text content used for the campgain with merge tags intact
 	 */
-	public function campaignContent($compaignOptions = array(), array $options = array()) {
-		$defaults = array(
+	public function campaignContent($compaignOptions = [], array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		$options['options'] = $compaignOptions;
 		return $this->call('campaigns/content', $options);
@@ -680,10 +681,10 @@ class MailchimpCampaign extends MailchimpAppModel {
 	 * @param string $cid the campaign id to get content for (can be gathered using campaigns())
 	 * @return array array containing all content section for the campaign -
 	 */
-	public function campaignTemplateContent(array $options = array()) {
-		$defaults = array(
+	public function campaignTemplateContent(array $options = []) {
+		$defaults = [
 			'cid' => $this->settings['defaultCampaignId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('campaigns/template-content', $options);
 	}

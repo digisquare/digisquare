@@ -26,7 +26,7 @@ class MandrillLib extends Mandrill {
 	 * @param array $params
 	 * @return array Result
 	 */
-	public function call($url, $params = array()) {
+	public function call($url, $params = []) {
 		return parent::call($url, $params);
 	}
 

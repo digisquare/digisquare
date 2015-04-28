@@ -151,24 +151,24 @@
         },
         {
             "name": "dereuromark/cakephp-mailchimp",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-mailchimp.git",
-                "reference": "0e751fa80c93942821e9a97701fec6a2bcaa6d4e"
+                "reference": "fb9df6dca3c15313c0b096c7af49ff92d15764ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-mailchimp/zipball/0e751fa80c93942821e9a97701fec6a2bcaa6d4e",
-                "reference": "0e751fa80c93942821e9a97701fec6a2bcaa6d4e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-mailchimp/zipball/fb9df6dca3c15313c0b096c7af49ff92d15764ee",
+                "reference": "fb9df6dca3c15313c0b096c7af49ff92d15764ee",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "*",
-                "php": ">=5.3"
+                "php": ">=5.4"
             },
             "require-dev": {
-                "dereuromark/cakephp-tools": "dev-master"
+                "dereuromark/cakephp-tools": "0.*"
             },
             "type": "cakephp-plugin",
             "extra": {
@@ -191,7 +191,7 @@
                 "mailchimp",
                 "plugin"
             ],
-            "time": "2015-01-20 02:10:54"
+            "time": "2015-04-27 22:32:33"
         },
         {
             "name": "google/apiclient",

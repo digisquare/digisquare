@@ -47,13 +47,13 @@ class MailchimpLib {
 	 * @param array  $args An array of arguments to pass to the method. Will be JSON-encoded for you.
 	 * @return array Associative array of JSON decoded API response.
 	 */
-	public function call($method, $args = array(), $timeout = 10) {
+	public function call($method, $args = [], $timeout = 10) {
 		$args['apikey'] = $this->_api_key;
 
 		$url = $this->_api_endpoint . '/' . $method . '.json';
 
 		$result = $this->_get($url, $args);
-		$result = $result ? json_decode($result, true) : array();
+		$result = $result ? json_decode($result, true) : [];
 
 		$this->log($result ? print_r($result, true) : ('ERROR' . ($this->_error ? ': ' . $this->_error : '')));
 		return $result;
@@ -67,9 +67,9 @@ class MailchimpLib {
 	 * @return string
 	 */
 	protected function _get($url, $args) {
-		$Socket = new HttpSocket(array(
+		$Socket = new HttpSocket([
 			'ssl_cafile' => CAKE . 'Config' . DS . 'cacert.pem',
-		));
+		]);
 		$result = $Socket->post($url, $args);
 		return $result->body;
 	}

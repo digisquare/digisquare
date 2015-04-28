@@ -20,7 +20,7 @@ class MailchimpSubscriberTest extends MyCakeTestCase {
 		$this->MailchimpSubscriber = new MailchimpSubscriber();
 
 		if (!$this->isDebug()) {
-			$this->MailchimpSubscriber->Mailchimp = $this->getMock('MailchimpLib', array('_get'));
+			$this->MailchimpSubscriber->Mailchimp = $this->getMock('MailchimpLib', ['_get']);
 			$this->mockPath = CakePlugin::path('Mailchimp') . 'Test' . DS . 'test_files' . DS . 'mailchimp' . DS;
 			return;
 		}
@@ -53,8 +53,8 @@ class MailchimpSubscriberTest extends MyCakeTestCase {
 			->will($this->returnValue(file_get_contents($this->mockPath . 'lists_batch_subscribe.json')));
 		}
 
-		$emails = array('test' . $this->time . '@myexample.org', 'another' . $this->time . '@myexample.org');
-		$options = array('doubleOptin' => false, 'updateExisting' => true);
+		$emails = ['test' . $this->time . '@myexample.org', 'another' . $this->time . '@myexample.org'];
+		$options = ['doubleOptin' => false, 'updateExisting' => true];
 		$res = $this->MailchimpSubscriber->batchSubscribe($emails, $options);
 
 		$this->assertSame(2, $res['success_count']);
@@ -75,7 +75,7 @@ class MailchimpSubscriberTest extends MyCakeTestCase {
 			->will($this->returnValue(file_get_contents($this->mockPath . 'lists_batch_unsubscribe.json')));
 		}
 
-		$emails = array('test' . $this->time . '@myexample.org', 'another' . $this->time . '@myexample.org');
+		$emails = ['test' . $this->time . '@myexample.org', 'another' . $this->time . '@myexample.org'];
 		$res = $this->MailchimpSubscriber->batchUnsubscribe($emails);
 
 		$this->assertSame(2, $res['success_count']);
@@ -94,7 +94,7 @@ class MailchimpSubscriberTest extends MyCakeTestCase {
 			->will($this->returnValue(file_get_contents($this->mockPath . 'lists_subscribe_error.json')));
 		}
 
-		$res = $this->MailchimpSubscriber->subscribe(array('email' => ''));
+		$res = $this->MailchimpSubscriber->subscribe(['email' => '']);
 		$this->assertFalse($res);
 		$this->assertEquals('ValidationError', $this->MailchimpSubscriber->response['name']);
 	}
@@ -113,7 +113,7 @@ class MailchimpSubscriberTest extends MyCakeTestCase {
 		}
 
 		$this->MailchimpSubscriber->settings['exceptions'] = true;
-		$this->MailchimpSubscriber->subscribe(array('email' => ''));
+		$this->MailchimpSubscriber->subscribe(['email' => '']);
 	}
 
 	/**
@@ -128,10 +128,10 @@ class MailchimpSubscriberTest extends MyCakeTestCase {
 			->will($this->returnValue(file_get_contents($this->mockPath . 'lists_subscribe.json')));
 		}
 
-		$res = $this->MailchimpSubscriber->subscribe(array(
-			'email' => 'kontakt@myexample.org'),
-		array(
-			'doubleOptin' => false));
+		$res = $this->MailchimpSubscriber->subscribe([
+			'email' => 'kontakt@myexample.org'],
+		[
+			'doubleOptin' => false]);
 		$this->assertEquals('kontakt@myexample.org', $res['email']);
 	}
 
@@ -147,8 +147,8 @@ class MailchimpSubscriberTest extends MyCakeTestCase {
 			->will($this->returnValue(file_get_contents($this->mockPath . 'lists_unsubscribe.json')));
 		}
 
-		$res = $this->MailchimpSubscriber->unsubscribe(array('email' => 'kontakt@myexample.org'));
-		$this->assertSame(array('complete' => true), $res);
+		$res = $this->MailchimpSubscriber->unsubscribe(['email' => 'kontakt@myexample.org']);
+		$this->assertSame(['complete' => true], $res);
 	}
 
 	/**
@@ -165,7 +165,7 @@ class MailchimpSubscriberTest extends MyCakeTestCase {
 		}
 
 		$this->MailchimpSubscriber->settings['exceptions'] = true;
-		$this->MailchimpSubscriber->unsubscribe(array('email' => 'kontakt@xxx.de'));
+		$this->MailchimpSubscriber->unsubscribe(['email' => 'kontakt@xxx.de']);
 	}
 
 }

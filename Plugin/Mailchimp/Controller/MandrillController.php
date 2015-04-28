@@ -4,7 +4,7 @@ App::uses('MandrillLib', 'Mailchimp.Lib');
 
 class MandrillController extends MailchimpAppController {
 
-	public $uses = array();
+	public $uses = [];
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -26,7 +26,7 @@ class MandrillController extends MailchimpAppController {
 
 		$email = Configure::read('Contact.email');
 		$domain = substr($email, strpos($email, '@') + 1);
-		$result = $Mandrill->call('senders/check-domain', array('domain' => $domain));
+		$result = $Mandrill->call('senders/check-domain', ['domain' => $domain]);
 		$this->set(compact('result', 'domain'));
 	}
 

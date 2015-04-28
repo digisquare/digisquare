@@ -28,10 +28,10 @@ class Mailchimp extends MailchimpAppModel {
 	 * @return array
 	 */
 	public function generateText($type, array $content) {
-		$options = array(
+		$options = [
 			'type' => $type,
 			'content' => $content
-		);
+		];
 		return $this->call('helper/generate-text', $options);
 	}
 
@@ -45,10 +45,10 @@ class Mailchimp extends MailchimpAppModel {
 	 * @return array
 	 */
 	public function inlineCss($html, $stripCss = true) {
-		$options = array(
+		$options = [
 			'html' => $html,
 			'strip_css' => $stripCss
-		);
+		];
 		return $this->call('helper/inline-css', $options);
 	}
 
@@ -125,10 +125,10 @@ class Mailchimp extends MailchimpAppModel {
 	 * int order_id the order number credits were applied to
 	 * string order_desc the order description
 	 */
-	public function getAccountDetails(array $exclude = array()) {
-		$options = array(
+	public function getAccountDetails(array $exclude = []) {
+		$options = [
 			'exclude' => $exclude
-		);
+		];
 		return $this->call('helper/account-details', $options);
 	}
 
@@ -162,7 +162,7 @@ class Mailchimp extends MailchimpAppModel {
 	 * - sortDir
 	 * @return array
 	 */
-	public function lists($filters = array(), $options = array()) {
+	public function lists($filters = [], $options = []) {
 		$options['filters'] = $filters;
 		return $this->call('lists/list', $options);
 	}
@@ -188,11 +188,11 @@ class Mailchimp extends MailchimpAppModel {
 	 * string reason For unsubscribes only - the reason collected for the unsubscribe. If populated, one of 'NORMAL','NOSIGNUP','INAPPROPRIATE','SPAM','OTHER'
 	 * string reason_text For unsubscribes only - if the reason is OTHER, the text entered.
 	 */
-	public function listMembers(array $options, array $filterOptions = array()) {
-		$defaults = array(
+	public function listMembers(array $options, array $filterOptions = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId'],
 			'status' => 'subscribed',
-		);
+		];
 		$options += $defaults;
 		$options['opts'] = $filterOptions;
 		return $this->call('lists/members', $options);
@@ -213,10 +213,10 @@ class Mailchimp extends MailchimpAppModel {
 	 * int total total members matching
 	 * array members each entry will match the data format for a single member as returned by listMemberInfo()
 	 */
-	public function search($query, array $options = array()) {
-		$defaults = array(
+	public function search($query, array $options = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId'],
-		);
+		];
 		$options += $defaults;
 		$options['query'] = $query;
 		return $this->call('helper/search-members', $options);
@@ -232,13 +232,13 @@ class Mailchimp extends MailchimpAppModel {
 	 */
 	public function listsForEmail($email) {
 		if (is_string($email)) {
-			$email = array(
+			$email = [
 				'email' => $email
-			);
+			];
 		}
-		$options = array(
+		$options = [
 			'email' => $email
-		);
+		];
 		return $this->call('helper/lists-for-email', $options);
 	}
 
@@ -260,10 +260,10 @@ class Mailchimp extends MailchimpAppModel {
 	 * string campaign_id the unique id for the campaign that report was made against
 	 * string type an internal type generally specifying the orginating mail provider - may not be useful outside of filling report views
 	 */
-	public function listAbuseReports(array $options = array()) {
-		$defaults = array(
+	public function listAbuseReports(array $options = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('lists/abuse-reports', $options);
 	}
@@ -281,10 +281,10 @@ class Mailchimp extends MailchimpAppModel {
 	 * int imports number of subscribers imported during the month
 	 * int optins number of subscribers who opted-in during the month
 	 */
-	public function listGrowthHistory(array $options = array()) {
-		$defaults = array(
+	public function listGrowthHistory(array $options = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('lists/growth-history', $options);
 	}
@@ -309,10 +309,10 @@ class Mailchimp extends MailchimpAppModel {
 	 * int other_adds number of non-double optin subscribes for the list (manual, API, or import)
 	 * int other_removes number of non-manual unsubscribes for the list (deletions, empties, soft-bounce removals)
 	 */
-	public function listActivity(array $options = array()) {
-		$defaults = array(
+	public function listActivity(array $options = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('lists/activity', $options);
 	}
@@ -329,10 +329,10 @@ class Mailchimp extends MailchimpAppModel {
 	 * double percent the percent of subscribers in the country
 	 * double total the total number of subscribers in the country
 	 */
-	public function listLocations(array $options = array()) {
-		$defaults = array(
+	public function listLocations(array $options = []) {
+		$defaults = [
 			'id' => $this->settings['defaultListId']
-		);
+		];
 		$options += $defaults;
 		return $this->call('lists/locations', $options);
 	}

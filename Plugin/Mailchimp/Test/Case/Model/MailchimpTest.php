@@ -19,7 +19,7 @@ class MailchimpTest extends MyCakeTestCase {
 		$this->Mailchimp = new Mailchimp();
 
 		if (!$this->isDebug()) {
-			$this->Mailchimp->Mailchimp = $this->getMock('MailchimpLib', array('_get'));
+			$this->Mailchimp->Mailchimp = $this->getMock('MailchimpLib', ['_get']);
 			$this->mockPath = CakePlugin::path('Mailchimp') . 'Test' . DS . 'test_files' . DS . 'mailchimp' . DS;
 		}
 	}
@@ -42,7 +42,7 @@ class MailchimpTest extends MyCakeTestCase {
 		}
 
 		$res = $this->Mailchimp->ping();
-		$this->assertEquals(array('msg' => 'Everything\'s Chimpy!'), $res);
+		$this->assertEquals(['msg' => 'Everything\'s Chimpy!'], $res);
 	}
 
 	/**
@@ -68,12 +68,12 @@ div.x {
 End of block.
 HTML;
 		$res = $this->Mailchimp->inlineCss($html);
-		$expected = array(
+		$expected = [
 			'html' => '
 <h1>Header</h1>
 <div class="x" style="font-weight: bold;">Some bold text</div>
 End of block.'
-		);
+		];
 		$this->assertTextEquals($expected, $res);
 	}
 
@@ -94,7 +94,7 @@ End of block.'
 <div class="x">Some bold text</div>
 End of block.
 HTML;
-		$res = $this->Mailchimp->generateText('html', array('html' => $html));
+		$res = $this->Mailchimp->generateText('html', ['html' => $html]);
 		$expected = <<<TEXT
 ** Header
 ------------------------------------------------------------

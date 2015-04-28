@@ -16,7 +16,7 @@ class MailchimpExport extends MailchimpAppModel {
 	 * @param array $params
 	 * @return array Result
 	 */
-	public function exportMembers($params = array()) {
+	public function exportMembers($params = []) {
 		return $this->_call('list', $params);
 	}
 
@@ -30,7 +30,7 @@ class MailchimpExport extends MailchimpAppModel {
 	 * @param array $params
 	 * @return array Result
 	 */
-	public function exportActivity($params = array()) {
+	public function exportActivity($params = []) {
 		$params['id'] = Configure::read('Mailchimp.defaultCampaignId');
 		return $this->_call('campaignSubscriberActivity', $params);
 	}
@@ -47,14 +47,14 @@ class MailchimpExport extends MailchimpAppModel {
 		$url = 'http://:dc.api.mailchimp.com/export/1.0/';
 		$apiKey = Configure::read('Mailchimp.apiKey');
 		$dc = substr($apiKey, strpos($apiKey, '-') + 1);
-		$url = String::insert($url, array('dc' => $dc));
+		$url = String::insert($url, ['dc' => $dc]);
 
-		$params += array('apikey' => $apiKey, 'id' => Configure::read('Mailchimp.defaultListId'));
+		$params += ['apikey' => $apiKey, 'id' => Configure::read('Mailchimp.defaultListId')];
 		$url .= $type . '/';
 
 		$response = $this->_get($url, $params);
 		if ($response) {
-			$result = array();
+			$result = [];
 			$lines = explode("\n", trim($response));
 			foreach ($lines as $line) {
 				$result[] = json_decode($line, true);
@@ -64,7 +64,7 @@ class MailchimpExport extends MailchimpAppModel {
 			}
 			return $result;
 		}
-		return array();
+		return [];
 	}
 
 	/**

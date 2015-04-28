@@ -3,9 +3,9 @@ App::uses('MailchimpAppController', 'Mailchimp.Controller');
 
 class MailchimpController extends MailchimpAppController {
 
-	public $uses = array('Mailchimp.Mailchimp');
+	public $uses = ['Mailchimp.Mailchimp'];
 
-	public $paginate = array();
+	public $paginate = [];
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -18,7 +18,7 @@ class MailchimpController extends MailchimpAppController {
 	 * @throws NotFoundException
 	 */
 	public function admin_index() {
-		$filters = array();
+		$filters = [];
 		if ($id = Configure::read('Mailchimp.defaultListId')) {
 			$filters['list_id'] = $id;
 		}
