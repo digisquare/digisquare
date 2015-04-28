@@ -68,6 +68,12 @@ Router::connect(
 	['controller' => 'events', 'action' => 'index']
 );
 
+//bordeaux/lieux
+Router::connect(
+	'/:slug/lieux',
+	['controller' => 'venues', 'action' => 'index']
+);
+
 //bordeaux/evenement/3/happynum
 Router::connect(
 	'/:slug/evenement/:id/:bslug',

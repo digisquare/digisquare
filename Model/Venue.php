@@ -5,72 +5,129 @@ class Venue extends AppModel {
 
 	public $actsAs = ['Acl' => ['type' => 'controlled']];
 
-	public $validate = array(
-		'edition_id' => array(
-			'numeric' => array(
-				'rule' => ['numeric'],
-				//'message' => 'Your custom message here',
-				'allowEmpty' => false,
-				'required' => true,
-			),
-		),
-		'name' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				'allowEmpty' => false,
-				'required' => true,
-			),
-		),
-		'latitude' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				'allowEmpty' => true,
-				'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'longitude' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				'allowEmpty' => true,
-				'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
+	public $findMethods = ['popular' =>  true];
 
-	public $hasMany = array(
-		'Event' => array(
+	public $validate = [
+		'edition_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
+				'allowEmpty' => false,
+				'required' => true,
+			],
+		],
+		'name' => [
+			'notEmpty' => [
+				'rule' => ['notEmpty'],
+				'allowEmpty' => false,
+				'required' => true,
+			],
+		],
+		'latitude' => [
+			'numeric' => [
+				'rule' => ['numeric'],
+				'allowEmpty' => true,
+				'required' => false,
+			],
+		],
+		'longitude' => [
+			'numeric' => [
+				'rule' => ['numeric'],
+				'allowEmpty' => true,
+				'required' => false,
+			],
+		],
+	];
+
+	public $hasMany = [
+		'Event' => [
 			'className' => 'Event',
 			'foreignKey' => 'venue_id',
 			'dependent' => false,
-		),
-		'Organization' => array(
+		],
+		'Organization' => [
 			'className' => 'Organization',
 			'foreignKey' => 'venue_id',
 			'dependent' => false,
-		),
-		'Slug' => array(
+		],
+		'Slug' => [
 			'className' => 'Slug',
 			'foreignKey' => 'venue_id',
 			'dependent' => true
-		)
-	);
+		]
+	];
 
-	public $belongsTo = array(
-		'Edition' => array(
+	public $belongsTo = [
+		'Edition' => [
 			'className' => 'Edition',
 			'foreignKey' => 'edition_id',
 			'counterCache' => true,
-		)
-	);
+		]
+	];
 
 	public $fields = ['name', 'address', 'zipcode', 'city', 'country_code'];
 
+	protected function _findPopular($state, $query, $results = []) {
+		if ($state === 'before') {
+			$this->bindModel([
+				'hasOne' => [
+					'LastEvent' => [
+						'className' => 'Event',
+						'foreignKey' => false,
+						'conditions' => ['`LastEvent`.`venue_id` = `Venue`.`id`']
+					]
+				]
+			]);
+			$query = array_merge($query, [
+				'contain' => array_merge(
+					['LastEvent'],
+					$query['contain']
+				),
+				'fields' => ['COUNT(*) as event_count', 'Edition.*', 'Venue.*'],
+				'group' => 'LastEvent.venue_id',
+				'order' => ['event_count' => 'DESC'],
+				'conditions' => array_merge([
+					'LastEvent.venue_id !=' => 0,
+					'LastEvent.start_at >' => date('Y-m-d 00:00:00', time() - 42*24*60*60),
+				], $query['conditions'])
+			]);
+			if (!empty($query['operation']) && $query['operation'] === 'count') {
+				unset($query['fields']);
+			}
+			return $query;
+		}
+		if (isset($query['findMainOrganizers'])) {
+			return $this->findMainOrganizers($results);
+		}
+		return $results;
+	}
+
+	public function findMainOrganizers($venues) {
+		foreach ($venues as $key => $venue) {
+			$events = $this->Event->find('all', [
+				'contain' => ['Organization'],
+				'conditions' => ['Event.venue_id' => $venue['Venue']['id']]
+			]);
+			$organizations = [];
+			foreach ($events as $event) {
+				foreach ($event['Organization'] as $organization) {
+					$organization['Edition'] = $venue['Edition'];
+					$count = 1;
+					if (isset($organizations[$organization['name']]['count'])) {
+						$count += $organizations[$organization['name']]['count'];
+					}
+					$organizations[$organization['name']] = array_merge([
+						'count' => $count
+					], $organization);
+				}
+			}
+			usort($organizations, function ($item1, $item2) {
+				return $item2['count'] - $item1['count'];
+			});
+			$venues[$key]['Organization'] = $organizations;
+		}
+		return $venues;
+	}
+	
 	public function bindNode($venue) {
 		return ['model' => 'Edition', 'foreign_key' => $venue['Venue']['edition_id']];
 	}
@@ -101,7 +158,7 @@ class Venue extends AppModel {
 		return $results;
 	}
 
-	public function beforeSave($options = array()) {
+	public function beforeSave($options = []) {
 		if (!empty($this->data['Venue']['latitude']) && !empty($this->data['Venue']['longitude'])) {
 			return true;
 		}
@@ -111,7 +168,7 @@ class Venue extends AppModel {
 		return true;
 	}
 
-	public function afterSave($created, $options = array()) {
+	public function afterSave($created, $options = []) {
 		$this->Slug->createFromVenue($this->data);
 		return true;
 	}
@@ -152,34 +209,34 @@ class Venue extends AppModel {
 
 	public function findBySlug($venue) {
 		$slug = $this->Slug->slugifyVenue($venue);
-		return $this->Slug->find('first', array(
-			'contain' => array('Venue'),
-			'conditions' => array('Slug.name' => $slug)
-		));
+		return $this->Slug->find('first', [
+			'contain' => ['Venue'],
+			'conditions' => ['Slug.name' => $slug]
+		]);
 	}
 
 	public function findByLatLng($venue) {
-		return $this->find('first', array(
+		return $this->find('first', [
 			'contain' => false,
-			'conditions' => array(
+			'conditions' => [
 				'latitude' => round($venue['Venue']['latitude'], 6),
 				'longitude' => round($venue['Venue']['longitude'], 6)
-			)
-		));
+			]
+		]);
 	}
 
 	public function geocode($venue) {
 		$venue_string = $this->implode($venue);
 		$adapter = new \Geocoder\HttpAdapter\GuzzleHttpAdapter();
 		$geocoder = new \Geocoder\Geocoder();
-		$geocoder->registerProviders(array(
+		$geocoder->registerProviders([
 			new \Geocoder\Provider\GoogleMapsProvider(
 				$adapter, 'fr', 'fr', true
 			),
 			new \Geocoder\Provider\NominatimProvider(
 				$adapter, 'http://open.mapquestapi.com/nominatim/v1/'
 			),
-		));
+		]);
 		try {
 			$geocodedVenue = $geocoder->geocode($venue_string);
 			return $this->decodeAndMerge($venue, $geocodedVenue);
@@ -317,16 +374,16 @@ class Venue extends AppModel {
 			return false;
 		}
 		$this->Organization->updateAll(
-			array('Organization.venue_id' => $data['Venue']['venue_id_1']),
-			array('Organization.venue_id' => $data['Venue']['venue_id_2'])
+			['Organization.venue_id' => $data['Venue']['venue_id_1']],
+			['Organization.venue_id' => $data['Venue']['venue_id_2']]
 		);
 		$this->Event->updateAll(
-			array('Event.venue_id' => $data['Venue']['venue_id_1']),
-			array('Event.venue_id' => $data['Venue']['venue_id_2'])
+			['Event.venue_id' => $data['Venue']['venue_id_1']],
+			['Event.venue_id' => $data['Venue']['venue_id_2']]
 		);
 		$this->Slug->updateAll(
-			array('Slug.venue_id' => $data['Venue']['venue_id_1']),
-			array('Slug.venue_id' => $data['Venue']['venue_id_2'])
+			['Slug.venue_id' => $data['Venue']['venue_id_1']],
+			['Slug.venue_id' => $data['Venue']['venue_id_2']]
 		);
 		$data['Venue']['id'] = $data['Venue']['venue_id_1'];
 		if ($this->save($data)) {

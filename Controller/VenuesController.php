@@ -5,12 +5,34 @@ class VenuesController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow(['view']);
+		$this->Auth->allow(['index', 'view']);
 	}
 
 	public function index() {
-		$this->Venue->recursive = 0;
-		$this->set('venues', $this->Paginator->paginate());
+		$conditions = [];
+		$this->Paginator->settings['contain'] = ['Edition'];
+		$this->Paginator->settings['order'] = ['Venue.event_count' => 'desc'];
+		$this->Paginator->settings['findType'] = 'popular';
+		// Editions
+		if (isset($this->request->query['edition_id'])) {
+			$conditions['Venue.edition_id'] = $this->request->query['edition_id'];
+		} else if (isset($this->request->params['slug'])) {
+			$edition = $this->Venue->Edition->findBySlug($this->request->params['slug']);
+			$conditions['Venue.edition_id'] = $edition['Edition']['id'];
+			$this->set(compact('edition'));
+		}
+		// Page
+		if (isset($this->request->params['?']['page'])) {
+			$this->request->query['page'] = $this->request->params['?']['page'];
+		}
+		$this->Paginator->settings['conditions'] = $conditions;
+		$this->Paginator->settings['findMainOrganizers'] = true;
+		$venues = $this->Paginator->paginate('Venue');
+		$this->set([
+			'venues' => $venues,
+			'_serialize' => ['venues']
+		]);
+		return $venues;
 	}
 
 	public function view($id = null) {
