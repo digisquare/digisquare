@@ -67,6 +67,11 @@ class AppController extends Controller {
 
 	public function redirectPrettyViewUrls($model, $entity) {
 		$url = $this->here;
+
+		if ('/index.php' === $_SERVER['REQUEST_URI']) {
+			$this->redirect('/', 301);
+		}
+
 		if ('view' === $this->action) {
 			switch ($this->name) {
 				case 'Users':
@@ -96,7 +101,8 @@ class AppController extends Controller {
 			}
 			$this->set('id', $this->viewVars[$entity][$model]['id']);
 		}
-		if($url !== $this->here) {
+
+		if ($url !== $this->here) {
 			$this->redirect($url, 301);
 		}
 	}
