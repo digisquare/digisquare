@@ -107,4 +107,21 @@ class UsersController extends AppController {
 		return $this->redirect(['action' => 'index']);
 	}
 
+	public function logas($id = null) {
+		if (!$this->request->is('post') || $this->Auth->user('group_id') !== '1') {
+			throw new MethodNotAllowedException();
+		}
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		$user = $this->User->find('first', [
+			'contain' => false,
+			'conditions' => ['User.id' => $id]
+		]);
+		$this->Auth->logout();
+		if ($this->Auth->login($user['User'])) {
+			$this->redirect('/');
+		}
+	}
 }

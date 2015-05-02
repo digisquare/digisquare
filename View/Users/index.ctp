@@ -36,6 +36,12 @@
 						null,
 						__('Are you sure you want to delete # %s?', $user['User']['id'])
 					); ?>
+					<?php echo $this->Form->postLink(
+						__('Log As'),
+						array('action' => 'logas', 'id' => $user['User']['id']),
+						array('class' => 'btn btn-default btn-sm')
+
+					); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
