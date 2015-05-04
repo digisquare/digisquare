@@ -1,7 +1,13 @@
 {
   "name": "digisquare",
   "version": "0.0.1",
+  "scripts": {
+    "start": "watchify ./webroot/js/buffer.js -t babelify -o ./webroot/js/buffer.min.js -d -v"
+  },
   "devDependencies": {
+    "babelify": "^6.0.2",
+    "browserify": "^10.0.0",
+    "watchify": "^3.2.1",
     "main-bower-files": "~2.4.1",
     "gulp": "~3.8.10",
     "gulp-load-plugins": "~0.8.0",
