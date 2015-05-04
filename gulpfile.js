@@ -22,7 +22,7 @@ gulp.task('fonts', function() {
 
   return gulp.src(plugins.mainBowerFiles())
     .pipe(plugins.plumber())
-    .pipe(plugins.filter(['*.eot', '*.svg', '*.ttf', '*.woff', '*.otf']))
+    .pipe(plugins.filter(['*.eot', '*.svg', '*.ttf', '*.woff', '*.woff2', '*.otf']))
     .pipe(gulp.dest(dest + 'fonts'))
     .pipe(plugins.livereload());
 
