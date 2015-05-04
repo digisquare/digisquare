@@ -11,7 +11,7 @@ class Buffer extends AppModel {
 			return false;
 		}
 
-		$socket = new HttpSocket();
+		$socket = new HttpSocket(['ssl_verify_host' => false]);
 
 		if ($tweet['scheduled_at'] === 'now') {
 			$tweet['scheduled_at'] = date('c', time() + 5*60);
