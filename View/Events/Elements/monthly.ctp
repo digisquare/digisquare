@@ -13,8 +13,8 @@ if (isset($this->request->query['date']) && date('Y-m') !== $this->request->quer
 	$last_day_of_this_month = new Datetime('last day of' . $query_date->format('F Y'));
 	$day = $first_monday;
 } else {
-	if ($today == new Datetime('first monday of this month')) {
-		$first_monday = $today;
+	if ($today == new Datetime('midnight first day of this month')) {
+		$first_monday = clone $today;
 	} else {
 		$first_monday = new Datetime('last monday of last month');
 	}
