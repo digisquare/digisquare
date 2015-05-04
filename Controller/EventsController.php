@@ -244,4 +244,28 @@ class EventsController extends AppController {
 		$this->set(compact('editions'));
 	}
 
+	public function buffer($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		if ($this->request->is(['post', 'put'])) {
+			$this->loadModel('Buffer');
+			foreach ($this->request->data['Tweet'] as $tweet) {
+				try {
+					$this->Buffer->send($tweet);
+				} catch (Exception $e) {
+					$this->Session->setFlash($e->getMessage(), 'message_error');
+					$this->redirect($this->referer());
+				}
+			}
+			$this->Session->setFlash(__('The tweets have been buffered.'), 'message_success');
+			return $this->redirect($this->referer());
+		}
+		$event = $this->Event->find('first', [
+			'contain' => ['Edition', 'Venue', 'Organization'],
+			'conditions' => ['Event.id' => $id]
+		]);
+		$this->set(compact('event'));
+	}
+
 }

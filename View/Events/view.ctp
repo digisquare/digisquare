@@ -1,5 +1,12 @@
 <div role="main">
 	<div class="page-header">
+		<?php if (1 == $this->Session->read('Auth.User.group_id')): ?>
+			<?php echo $this->Html->link(
+				'<i class="icon-plus-sign icon-white"></i> ' . __('Buffer'),
+				array('controller' => 'events', 'action' => 'buffer', 'id' => $event['Event']['id']),
+				array('escape' => false, 'class' => 'btn btn-primary pull-right')
+			); ?>
+		<?php endif; ?>
 		<h1><?php echo h($event['Event']['name']); ?></h1>
 	</div>
 	<div class="row">
