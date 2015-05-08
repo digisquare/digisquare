@@ -64,6 +64,7 @@
 						<?php echo $this->element('../Venues/Elements/card', ['venue' => $event]); ?>
 					</div>
 				<?php endif; ?>
+				<?php echo $this->element('../Events/Elements/upcoming', ['except' => $event]); ?>
 			</div>
 		</div>
 	</div>

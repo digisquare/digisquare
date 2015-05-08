@@ -51,13 +51,20 @@
 			); ?>
 		</div>
 		<div class="col-md-4">
-			<?php if (isset($organization['Venue']['name'])): ?>
-				<?php echo $this->element('../Venues/Elements/card', ['venue' => $organization]); ?>
-			<?php endif; ?>
-			<?php if (isset($organization['Organization']['Contacts']['twitter'])): ?>
-				<?php $twitter = $organization['Organization']['Contacts']['twitter']; ?>
-				<div id="twitter-timeline" data-screen-name="<?php echo $twitter; ?>"></div>
-			<?php endif; ?>
+			<div class="row">
+				<?php if (isset($organization['Venue']['name'])): ?>
+					<div class="col-xs-12 col-sm-6 col-md-12">
+						<?php echo $this->element('../Venues/Elements/card', ['venue' => $organization]); ?>
+					</div>
+				<?php endif; ?>
+				<?php if (isset($organization['Organization']['Contacts']['twitter'])): ?>
+					<div class="col-xs-12 col-sm-6 col-md-12" style="margin-bottom: 15px;">
+						<?php $twitter = $organization['Organization']['Contacts']['twitter']; ?>
+						<div id="twitter-timeline" data-screen-name="<?php echo $twitter; ?>"></div>
+					</div>
+				<?php endif; ?>
+				<?php echo $this->element('../Events/Elements/upcoming'); ?>
+			</div>
 		</div>
 	</div>
 </div>

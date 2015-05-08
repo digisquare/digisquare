@@ -13,10 +13,15 @@ $this->set(compact('title_for_layout', 'description_for_layout')); ?>
 			); ?>
 		</div>
 		<div class="col-md-4">
-			<?php echo $this->element(
-				'../Venues/Elements/card',
-				['venue' => $venue]
-			); ?>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-12">
+					<?php echo $this->element(
+						'../Venues/Elements/card',
+						['venue' => $venue]
+					); ?>
+				</div>
+				<?php echo $this->element('../Events/Elements/upcoming'); ?>
+			</div>
 		</div>
 	</div>
 </div>

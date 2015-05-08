@@ -36,7 +36,7 @@ $events = $this->requestAction($url);
 			]); ?>
 				<div class="form-group">
 					<label for="EditionEmail" class="col col-md-4 control-label">Directement dans votre boite mail :</label>
-					<div class="col col-md-6">
+					<div class="col col-md-6" style="margin-bottom: 15px;">
 						<?php echo $this->Form->input('email', [
 							'placeholder' => strtolower($this->Session->read('Edition.name')) . '@digisquare.net',
 							'label' => false,
@@ -44,7 +44,7 @@ $events = $this->requestAction($url);
 							'required' => true
 						]); ?>
 					</div>
-					<div class="col col-md-2">
+					<div class="col col-md-2 pull-right">
 						<?php echo $this->Form->submit(
 							'Inscription',
 							['class' => 'btn btn-primary']
