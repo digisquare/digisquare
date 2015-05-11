@@ -70,7 +70,7 @@ if (isset($this->request->query['date']) && date('Y-m') !== $this->request->quer
 									}
 								}
 								$title .= $event['Event']['name'];
-								$description = explode('. ', $event['Event']['description']);
+								$description = explode('. ', strip_tags($event['Event']['description']));
 								$content = $this->Text->truncate($description[0], 140);
 								if (!empty($event['Venue']['name'])) {
 									$content .= '<br><span class="glyphicon glyphicon-map-marker"></span> ';

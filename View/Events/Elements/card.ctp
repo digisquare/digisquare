@@ -44,7 +44,7 @@ if ($sameday) {
 	<div class="panel-body flex-grow">
 		<div>
 			<p>
-				<?php $description = explode('. ', $event['Event']['description']); ?>
+				<?php $description = explode('. ', strip_tags($event['Event']['description'])); ?>
 				<?php echo $this->Text->truncate($description[0], 140); ?>
 			</p>
 			<span class="glyphicon glyphicon-time"></span>

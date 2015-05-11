@@ -84,7 +84,8 @@ gulp.task('js', function() {
     bower + 'chosen_v1.3.0/chosen.jquery.js',
     webroot + 'js/script.js',
     webroot + 'js/datetimepicker.locale.fr.js',
-    bower + 'bootstrap-calendar/js/language/fr-FR.js'
+    bower + 'bootstrap-calendar/js/language/fr-FR.js',
+    bower + 'wysihtml5x/parser_rules/advanced.js'
   ];
 
   return gulp.src(plugins.mainBowerFiles().concat(jsFiles))

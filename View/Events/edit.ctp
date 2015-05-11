@@ -37,7 +37,15 @@
 				]
 			); ?>
 			<?php echo $this->Form->input('uid'); ?>
-			<?php echo $this->Form->input('description'); ?>
+			<div class="form-group">
+				<div class="col col-md-9 col-md-offset-3">
+					<?php echo $this->element('toolbar'); ?>
+				</div>
+			</div>
+			<?php echo $this->Form->input('description', [
+				'value' => nl2br($this->request->data['Event']['description']),
+				'rows' => 20,
+			]); ?>
 			<?php echo $this->Form->hidden('start_at', ['type' => 'text']); ?>
 			<div class="form-group required">
 				<label for="EventStartAt" class="col col-md-3 control-label">Start At</label>
@@ -91,3 +99,8 @@
 		<?php echo $this->Form->end(); ?>
 	</div>
 </div>
+<?php echo $this->Html->scriptBlock('
+var editor = new wysihtml5.Editor("EventDescription", { // id of textarea element
+  toolbar:      "wysihtml-toolbar", // id of toolbar element
+  parserRules:  wysihtml5ParserRules // defined in parser rules set 
+});', ['inline' => false]); ?>

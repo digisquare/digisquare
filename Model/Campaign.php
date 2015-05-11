@@ -117,7 +117,7 @@ class Campaign extends AppModel {
 				$avatar = '';
 			}
 
-			$description = explode('. ', $event['Event']['description']);
+			$description = explode('. ', strip_tags($event['Event']['description']));
 			$description = explode("\n", $description[0]);
 
 			$start_at = strtotime($event['Event']['start_at']);

@@ -13,7 +13,7 @@
 		<div class="col-md-8">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<?php echo nl2br($this->Text->autoLink($event['Event']['description'])); ?>
+					<?php echo nl2br($this->Text->autoLink($event['Event']['description'], ['escape' => false])); ?>
 					<?php $description_for_layout = $event['Event']['description']; ?>
 					<?php $this->set(compact('description_for_layout')); ?>
 				</div>
