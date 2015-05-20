@@ -1,62 +1,62 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Organizer Model
- *
- * @property Event $Event
- * @property Organization $Organization
- */
+
 class Organizer extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'event_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+	public $validate = [
+		'event_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'organization_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+				'allowEmpty' => false,
+				'required' => true,
+			],
+		],
+		'organization_id' => [
+			'numeric' => [
+				'rule' => ['numeric'],
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
+				'allowEmpty' => false,
+				'required' => true,
+			],
+		],
+	];
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Event' => array(
+	public $belongsTo = [
+		'Event' => [
 			'className' => 'Event',
 			'foreignKey' => 'event_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'Organization' => array(
+		],
+		'Organization' => [
 			'className' => 'Organization',
 			'foreignKey' => 'organization_id',
+			'counterCache' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
+
+	public function updateRecentEventCount() {
+		$organizers = $this->find('all', [
+			'fields' => ['COUNT(*) as event_count', 'organization_id'],
+			'group' => 'Organizer.organization_id',
+			'order' => ['event_count' => 'DESC'],
+			'conditions' => [
+				'Event.start_at >' => date('Y-m-d 00:00:00', time() - 42*24*60*60)
+			]
+		]);
+
+		$this->Organization->updateAll(['recent_event_count' => 0]);
+
+		foreach ($organizers as $organizer) {
+			$this->Organization->id = $organizer['Organizer']['organization_id'];
+			$this->Organization->saveField('recent_event_count', $organizer[0]['event_count'], ['callbacks' => false]);
+		}
+
+		return true;
+	}
 }
