@@ -99,6 +99,21 @@ class Organization extends AppModel {
 		return true;
 	}
 
+	public function updateEventCount($id = null) {
+		if (!$this->exists($id)) {
+			throw new NotFoundException(__('Invalid organization'));
+		}
+
+		$event_count = $this->Organizer->find('count', [
+			'conditions' => ['Organizer.organization_id' => $id]
+		]);
+
+		$this->id = $id;
+		$this->saveField('event_count', $event_count);
+
+		return $event_count;
+	}
+
 	public function twitter($organization) {
 		\Codebird\Codebird::setConsumerKey(
 			Configure::read('Opauth.Strategy.Twitter.key'),

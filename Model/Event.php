@@ -136,6 +136,11 @@ class Event extends AppModel {
 	}
 
 	public function afterSave($created, $options = array()) {
+		if (isset($this->data['Organization']['Organization']) && is_array($this->data['Organization']['Organization'])) {
+			foreach ($this->data['Organization']['Organization'] as $organization_id) {
+				$this->Organizer->Organization->updateEventCount($organization_id);
+			}
+		}
 		if (isset($this->data['Tag']['Tag']) && is_array($this->data['Tag']['Tag'])) {
 			$this->Hashtag->deleteAll(['model' => 'Event', 'foreign_key' => $this->id]);
 			foreach ($this->data['Tag']['Tag'] as $key => $value) {

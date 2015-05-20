@@ -11,15 +11,26 @@ class OrganizationsController extends AppController {
 	public function index() {
 		$conditions = [];
 		$this->Paginator->settings['contain'] = ['Edition', 'Venue'];
-		$this->Paginator->settings['order'] = ['Organization.name' => 'asc'];
-		if (isset($this->request->params['slug'])) {
+		$this->Paginator->settings['order'] = ['Organization.recent_event_count' => 'DESC'];
+		// Editions
+		if (isset($this->request->query['edition_id'])) {
+			$conditions['Organization.edition_id'] = $this->request->query['edition_id'];
+		} else if (isset($this->request->params['slug'])) {
 			$edition = $this->Organization->Edition->findBySlug($this->request->params['slug']);
 			$conditions['Organization.edition_id'] = $edition['Edition']['id'];
 			$this->set(compact('edition'));
 		}
+		// Page
+		if (isset($this->request->params['?']['page'])) {
+			$this->request->query['page'] = $this->request->params['?']['page'];
+		}
 		$this->Paginator->settings['conditions'] = $conditions;
-		$organizations = $this->Paginator->paginate();
-		$this->set(compact('organizations'));
+		$organizations = $this->Paginator->paginate('Organization');
+		$this->set([
+			'organizations' => $organizations,
+			'_serialize' => ['organizations']
+		]);
+		return $organizations;
 	}
 
 	public function view($id = null) {
@@ -88,6 +99,16 @@ class OrganizationsController extends AppController {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(['action' => 'index']);
+	}
+
+	public function recount() {
+		$organizations = $this->Organization->find('list');
+
+		foreach ($organizations as $id => $name) {
+			$this->Organization->updateEventCount($id);
+		}
+
+		die;
 	}
 
 }
