@@ -69,8 +69,8 @@ if (strftime('%k', $start_at) <= '12') {
 } ?>
 <?php echo $this->Html->scriptBlock('
 	var bufferEvent = {
-      weekday: "' . strftime('%A', $start_at) . ' ",
-      daymonth: "' . strftime('%e %B', $start_at) . ' ",
+      weekday: "' . ucfirst(strftime('%A', $start_at)) . ' ",
+      daymonth: "' . trim(strftime('%e %B', $start_at)) . ' ",
       title: "' . $event['Event']['name'] . ' ",
       url: "' . $this->Link->eventUrl($event, ['full' => true]) . ' ",
       time: "' . $time . ' ",
