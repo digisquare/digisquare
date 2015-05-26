@@ -58,6 +58,9 @@ class LinkHelper extends HtmlHelper {
 			$url = $options['url'];
 			unset($options['url']);
 		}
+		if (!isset($organization['Edition']) && isset($organization['Organization']['Edition'])) {
+			$organization['Edition'] = $organization['Organization']['Edition'];
+		}
 		return $this->link($title,
 			array_merge([
 				'controller' => 'organizations',

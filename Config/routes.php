@@ -50,7 +50,7 @@ Router::connect(
 $controllers = [
 	'editions', 'venues', 'events', 'groups', 'organizations',
 	'users', 'google_calendar_events', 'organizations', 'tags',
-	'settings', 'campaigns', 'organizers'
+	'settings', 'campaigns', 'organizers', 'members'
 ];
 
 foreach ($controllers as $controller) {
