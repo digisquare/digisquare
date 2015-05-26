@@ -46,11 +46,31 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
-			<?php if ($organization['Organization']['type'] === 0): ?>
+			<?php if ((int) $organization['Organization']['type'] === 0): ?>
 				<?php echo $this->element(
 					'../Events/Elements/list',
 					['organization' => $organization]
 				); ?>
+			<?php endif; ?>
+			<?php if ((int) $organization['Organization']['type'] === 1): ?>
+				<h3>Equipe</h3>
+				<div class="row">
+					<?php foreach ($organization['Member'] as $member): ?>
+						<div class="col-md-6">
+							<?php echo $this->element(
+								'../Users/Elements/card',
+								['user' => $member]
+							); ?>
+							<?php if (!empty($organizer['avatar'])) {
+								echo $this->Html->meta(
+									['property' => 'og:image', 'content' => $organizer['avatar']],
+									null,
+									['inline' => false]
+								);
+							} ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
 			<?php endif; ?>
 		</div>
 		<div class="col-md-4">

@@ -38,7 +38,7 @@ class OrganizationsController extends AppController {
 			throw new NotFoundException(__('Invalid organization'));
 		}
 		$organization = $this->Organization->find('first', [
-			'contain' => ['Edition', 'Venue'],
+			'contain' => ['Edition', 'Venue', 'Member' => 'User'],
 			'conditions' => ['Organization.id' => $id]
 		]);
 		$this->set(compact('organization'));
