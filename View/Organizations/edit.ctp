@@ -29,6 +29,19 @@
 				]
 			); ?>
 			<?php echo $this->Form->input(
+				'type',
+				[
+					'empty' => true,
+					'class' => 'form-control chzn-select',
+					'required' => false,
+					'default' => 0,
+					'options' => [
+						0 => 'Organization',
+						1 => 'Startup'
+					]
+				]
+			); ?>
+			<?php echo $this->Form->input(
 				'venue_id',
 				[
 					'empty' => true,

@@ -45,10 +45,12 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
-			<?php echo $this->element(
-				'../Events/Elements/list',
-				['organization' => $organization]
-			); ?>
+			<?php if ($organization['Organization']['type'] === 0): ?>
+				<?php echo $this->element(
+					'../Events/Elements/list',
+					['organization' => $organization]
+				); ?>
+			<?php endif; ?>
 		</div>
 		<div class="col-md-4">
 			<div class="row">

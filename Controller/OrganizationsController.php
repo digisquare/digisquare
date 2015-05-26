@@ -9,7 +9,7 @@ class OrganizationsController extends AppController {
 	}
 
 	public function index() {
-		$conditions = [];
+		$conditions = ['Organization.type' => 0];
 		$this->Paginator->settings['contain'] = ['Edition', 'Venue'];
 		$this->Paginator->settings['order'] = ['Organization.recent_event_count' => 'DESC'];
 		// Editions
