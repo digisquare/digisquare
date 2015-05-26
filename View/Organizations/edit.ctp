@@ -84,6 +84,15 @@
 					'wrapInput' => false
 				]
 			); ?>
+			<?php echo $this->Form->input(
+				'Organization.Contacts.societe',
+				[
+					'between' => '<div class="col col-md-9"><div class="input-group" style="width:100%;">'
+						. '<div class="input-group-addon" style="width:45px;"><i class="fa fa-link"></i></div>',
+					'after' => '</div></div>',
+					'wrapInput' => false
+				]
+			); ?>
 			<?php echo $this->Form->input('description'); ?>
 			<div class="form-group">
 				<div class="col col-md-9 col-md-offset-3">
