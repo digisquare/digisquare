@@ -4,6 +4,10 @@ echo $this->Html->meta([
 	'content' => $title_for_layout
 ]);
 echo $this->Html->meta([
+	'property' => 'fb:app_id',
+	'content' => '1520818964809923'
+]);
+echo $this->Html->meta([
 	'property' => 'og:url',
 	'content' => $this->Html->url($this->here, true)
 ]); 
@@ -17,4 +21,3 @@ if (isset($description_for_layout)) {
 		'content' => $description_for_layout
 	]);
 }
-?>
