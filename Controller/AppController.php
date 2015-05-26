@@ -102,6 +102,25 @@ class AppController extends Controller {
 			$this->set('id', $this->viewVars[$entity][$model]['id']);
 		}
 
+		if ('index' === $this->action) {
+			switch ($this->name) {
+				case 'Events':
+				case 'Venues':
+				case 'Organizations':
+					if (isset($this->viewVars['edition']['Edition']['slug'])) {
+						$url = Router::url([
+							'action' => 'index',
+							'slug' => $this->viewVars['edition']['Edition']['slug']
+						]);
+					} else {
+						$url = Router::url([
+							'action' => 'index'
+						]);
+					}
+					break;
+			}
+		}
+
 		if ($url !== $this->here) {
 			$this->redirect($url, 301);
 		}

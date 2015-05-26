@@ -29,6 +29,21 @@ Router::connect(
 	['controller' => 'settings', 'action' => 'edit']
 );
 
+Router::connect(
+	'/evenements',
+	['controller' => 'events', 'action' => 'index']
+);
+
+Router::connect(
+	'/annuaire',
+	['controller' => 'organizations', 'action' => 'index']
+);
+
+Router::connect(
+	'/carte',
+	['controller' => 'venues', 'action' => 'index']
+);
+
 /**
  * App Routing
  */
