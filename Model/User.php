@@ -20,6 +20,7 @@ class User extends AppModel {
 		'email' => [
 			'email' => [
 				'rule' => ['email'],
+				'allowEmpty' => true,
 			],
 		],
 	];
@@ -94,7 +95,7 @@ class User extends AppModel {
 		return true;
 	}
 
-	public function twitter($user) {
+	public function twitter($user, $full = false) {
 		\Codebird\Codebird::setConsumerKey(
 			Configure::read('Opauth.Strategy.Twitter.key'),
 			Configure::read('Opauth.Strategy.Twitter.secret')
@@ -106,10 +107,14 @@ class User extends AppModel {
 		);
 		try {
 			$twitter_user = $cb->users_show(['screen_name' => $user['User']['Contacts']['twitter']]);
-			$user['User']['avatar'] = $twitter_user->profile_image_url_https;
+			$user['User']['avatar'] = str_replace('_normal', '_400x400', $twitter_user->profile_image_url_https);
 			$user['User']['Informations']['description'] = $twitter_user->description;
 			if (isset($twitter_user->entities->url->urls[0]->expanded_url)) {
 				$user['User']['Contacts']['website'] = $twitter_user->entities->url->urls[0]->expanded_url;
+			}
+			if ($full) {
+				$user['User']['username'] = $user['User']['Contacts']['twitter'];
+				$user['User']['Informations']['first_name'] = ucwords($twitter_user->name);
 			}
 		} catch (Exception $e) {
 		}

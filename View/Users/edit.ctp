@@ -18,7 +18,9 @@ $this->set(compact('title_for_layout')); ?>
 		]); ?>
 			<?php echo $this->Form->input('id'); ?>
 			<?php echo $this->Form->input('username'); ?>
-			<?php echo $this->Form->input('email'); ?>
+			<?php echo $this->Form->input('email', 
+				['required' => true]
+			); ?>
 			<?php if (1 == $this->Session->read('Auth.User.group_id')) {
 				echo $this->Form->input('group_id');
 			} ?>

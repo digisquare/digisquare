@@ -59,6 +59,8 @@ class UsersController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'message_error');
 			}
+		} else {
+			$this->request->data = $this->request->query;
 		}
 		$groups = $this->User->Group->find('list');
 		$this->set(compact('groups'));
@@ -122,6 +124,17 @@ class UsersController extends AppController {
 		$this->Auth->logout();
 		if ($this->Auth->login($user['User'])) {
 			$this->redirect('/');
+		}
+	}
+
+	public function import() {
+		if ($this->request->is('post')) {
+			if (empty($this->request->data['User']['Contacts']['twitter'])) {
+				$this->Session->setFlash(__('Please provide a twitter username.'), 'message_error');
+				return $this->redirect(['action' => 'import']);
+			}
+			$user = $this->User->twitter($this->request->data, true);
+			$this->redirect(['action' => 'add', '?' => $user]);
 		}
 	}
 }

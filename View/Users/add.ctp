@@ -1,6 +1,6 @@
 <div role="main">
 	<div class="page-header">
-		<h1><?php echo __('Edit User'); ?></h1>
+		<h1><?php echo __('Add User'); ?></h1>
 	</div>
 	<div class="form">
 		<?php echo $this->Form->create('User', [
@@ -17,7 +17,9 @@
 			<?php echo $this->Form->input('username'); ?>
 			<?php echo $this->Form->input('email'); ?>
 			<?php if (1 == $this->Session->read('Auth.User.group_id')) {
-				echo $this->Form->input('group_id');
+				echo $this->Form->input('group_id',
+					['default' => 3]
+				);
 			} ?>
 			<?php echo $this->Form->input('User.Informations.first_name'); ?>
 			<?php echo $this->Form->input('User.Informations.last_name'); ?>
