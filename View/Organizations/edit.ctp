@@ -37,7 +37,8 @@
 					'default' => 0,
 					'options' => [
 						0 => 'Organization',
-						1 => 'Startup'
+						1 => 'Startup',
+						2 => 'Other'
 					]
 				]
 			); ?>
