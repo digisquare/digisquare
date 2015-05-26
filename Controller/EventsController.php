@@ -268,4 +268,18 @@ class EventsController extends AppController {
 		$this->set(compact('event'));
 	}
 
+	public function credit() {
+		$events = $this->Event->find('all', [
+			'contain' => ['Organization', 'Tag'],
+			'order' => ['Event.modified' => 'ASC']
+		]);
+		foreach ($events as $event) {
+			if (empty($events['Organization'])) {
+				$this->redirect(['action' => 'edit', 'id' => $event['Event']['id']]);
+			}
+		}
+		$this->Session->setFlash(__('Sorry, no event could be found. Please, try again.'), 'message_error');
+		$this->redirect(['action' => 'index']);
+	}
+
 }
