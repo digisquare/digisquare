@@ -24,6 +24,7 @@
 		<?php foreach ($organization['Organization']['Contacts'] as $contact => $url): ?>
 			<?php if (!empty($url)): ?>
 				<?php $contact = ('website' == $contact ? 'link' : $contact); ?>
+				<?php $contact = ('societe' == $contact ? 'info-circle' : $contact); ?>
 				<?php $url = ('twitter' == $contact ? 'https://twitter.com/' . $url : $url); ?>
 				<?php $url = ('facebook' == $contact ? 'https://www.facebook.com/' . $url : $url); ?>
 				<?php echo $this->Html->link(

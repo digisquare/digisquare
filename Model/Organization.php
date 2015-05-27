@@ -119,7 +119,7 @@ class Organization extends AppModel {
 		return $event_count;
 	}
 
-	public function twitter($organization) {
+	public function twitter($organization, $full = false) {
 		\Codebird\Codebird::setConsumerKey(
 			Configure::read('Opauth.Strategy.Twitter.key'),
 			Configure::read('Opauth.Strategy.Twitter.secret')
@@ -135,6 +135,9 @@ class Organization extends AppModel {
 			$organization['Organization']['description'] = $twitter_user->description;
 			if (isset($twitter_user->entities->url->urls[0]->expanded_url)) {
 				$organization['Organization']['Contacts']['website'] = $twitter_user->entities->url->urls[0]->expanded_url;
+			}
+			if ($full) {
+				$organization['Organization']['name'] = ucwords($twitter_user->name);
 			}
 		} catch (Exception $e) {
 		}

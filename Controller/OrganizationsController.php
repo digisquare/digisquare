@@ -53,6 +53,8 @@ class OrganizationsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'), 'message_error');
 			}
+		} else {
+			$this->request->data = $this->request->query;
 		}
 		$venues = $this->Organization->Venue->find('list');
 		$editions = $this->Organization->Edition->find('list');
@@ -99,6 +101,20 @@ class OrganizationsController extends AppController {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'), 'message_error');
 		}
 		return $this->redirect(['action' => 'index']);
+	}
+
+	public function import() {
+		if ($this->request->is('post')) {
+			if (empty($this->request->data['Organization']['Contacts']['twitter'])) {
+				$this->Session->setFlash(__('Please provide a twitter username.'), 'message_error');
+				return $this->redirect(['action' => 'import']);
+			}
+			$organization = $this->Organization->twitter($this->request->data, true);
+			$this->redirect(['action' => 'add', '?' => $organization]);
+		}
+		$venues = $this->Organization->Venue->find('list');
+		$editions = $this->Organization->Edition->find('list');
+		$this->set(compact('venues', 'editions'));
 	}
 
 	public function recount() {
