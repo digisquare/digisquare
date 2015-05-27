@@ -44,6 +44,11 @@ Router::connect(
 	['controller' => 'venues', 'action' => 'index']
 );
 
+Router::connect(
+	'/startups',
+	['controller' => 'startups', 'action' => 'index']
+);
+
 /**
  * App Routing
  */
@@ -88,6 +93,12 @@ Router::connect(
 Router::connect(
 	'/:slug/carte',
 	['controller' => 'venues', 'action' => 'index']
+);
+
+//bordeaux/startups
+Router::connect(
+	'/:slug/startups',
+	['controller' => 'startups', 'action' => 'index']
 );
 
 //bordeaux/evenement/3/happynum
