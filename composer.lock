@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ea5c7bd251e02c5e90a7fc5e4cd1a09a",
+    "hash": "97a652c1a48992383256e2d00ab523c0",
     "packages": [
         {
             "name": "a2design-company/mandrill-cakephp-plugin",
@@ -332,6 +332,39 @@
                 "web service"
             ],
             "time": "2015-03-18 18:23:50"
+        },
+        {
+            "name": "html2text/html2text",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mtibben/html2text.git",
+                "reference": "1ff30ba6b0905fc1714385f747e0228d6bfcab15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mtibben/html2text/zipball/1ff30ba6b0905fc1714385f747e0228d6bfcab15",
+                "reference": "1ff30ba6b0905fc1714385f747e0228d6bfcab15",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Html2Text\\": [
+                        "src/",
+                        "test/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv2"
+            ],
+            "description": "Converts HTML to formatted plain text",
+            "time": "2015-01-28 23:10:17"
         },
         {
             "name": "jublonet/codebird-php",

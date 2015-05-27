@@ -1,4 +1,5 @@
 <?php
+$description = new \Html2Text\Html2Text($event['Event']['description']);
 $start = new DateTime($event['Event']['start_at']);
 $end = new DateTime($event['Event']['end_at']);
 $interval = $end->diff($start);
@@ -12,7 +13,7 @@ echo $this->Html->link(
 		. '&TITLE=' . urlencode($event['Event']['name'])
 		. '&ST=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['start_at']))
 		. '&DUR=' . $interval->format('%H%I')
-		. '&DESC=' . urlencode($event['Event']['description'])
+		. '&DESC=' . urlencode($this->Text->truncate($description->getText(), 1200))
 	,
 	['target' => '_blank', 'escape' => false, 'title' => __('Export to Yahoo Calendar')]
 );

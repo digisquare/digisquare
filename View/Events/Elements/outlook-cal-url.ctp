@@ -1,4 +1,5 @@
 <?php
+$description = new \Html2Text\Html2Text($event['Event']['description']);
 echo $this->Html->link(
 	'<span class="fa-stack fa-lg">
 		<i class="fa fa-square fa-stack-2x bc-color-outlook"></i>
@@ -9,7 +10,7 @@ echo $this->Html->link(
 		. '&dtend=' . gmdate("Ymd\THis\Z", strtotime($event['Event']['end_at']))
 		. '&summary=' . urlencode($event['Event']['name'])
 		. '&location=' . urlencode($event['Venue']['oneliner'])
-		. '&description=' . urlencode($event['Event']['description'])
+		. '&description=' . urlencode($this->Text->truncate($description->getText(), 1200))
 	,
 	['target' => '_blank', 'escape' => false, 'title' => __('Export to Outlook Calendar')]
 );
