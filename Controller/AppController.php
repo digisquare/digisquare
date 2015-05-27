@@ -67,6 +67,10 @@ class AppController extends Controller {
 
 	public function redirectPrettyViewUrls($model, $entity) {
 		$url = $this->here;
+		
+		if (isset($this->request->params['ext'])) {
+			return true;
+		}
 
 		if ('/index.php' === $_SERVER['REQUEST_URI']) {
 			$this->redirect('/', 301);
