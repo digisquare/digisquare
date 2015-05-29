@@ -112,10 +112,26 @@ class AppController extends Controller {
 				case 'Venues':
 				case 'Organizations':
 					if (isset($this->viewVars['edition']['Edition']['slug'])) {
-						$url = Router::url([
-							'action' => 'index',
-							'slug' => $this->viewVars['edition']['Edition']['slug']
-						]);
+						if (isset($this->request->params['organization_id'])) {
+							$url = Router::url([
+								'action' => 'index',
+								'slug' => $this->viewVars['edition']['Edition']['slug'],
+								'organization_id' => $this->viewVars['organization']['Organization']['id'],
+								'bslug' => strtolower(Inflector::slug($this->viewVars['organization']['Organization']['name'], '-'))
+							]);
+						} else if (isset($this->request->params['venue_id'])) {
+							$url = Router::url([
+								'action' => 'index',
+								'slug' => $this->viewVars['edition']['Edition']['slug'],
+								'venue_id' => $this->viewVars['venue']['Venue']['id'],
+								'bslug' => strtolower(Inflector::slug($this->viewVars['venue']['Venue']['name'], '-'))
+							]);
+						} else {
+							$url = Router::url([
+								'action' => 'index',
+								'slug' => $this->viewVars['edition']['Edition']['slug']
+							]);
+						}
 					} else {
 						$url = Router::url([
 							'action' => 'index'
