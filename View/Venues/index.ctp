@@ -49,48 +49,49 @@ echo $this->Html->script($url);
 					);
 
 					<?php foreach ($venues as $venue): ?>
-						<?php $id = $venue['Venue']['id'];
-						$content = '<strong>' . $this->Link->viewVenue($venue) . '</strong><br>';
-						$content .= h($venue['Venue']['address']) . '<br>';
-						$content .= h($venue['Venue']['zipcode'] . ' ' . $venue['Venue']['city']) . '<br>';
-						$content .= '<div style="width:200px">';
-						foreach ($venue['Organization'] as $organization) {
-							$content .= $this->Link->viewOrganization(
-								$this->Html->image(
-									$organization['avatar'],
-									['height' => 40, 'width' => 40, 'style' => 'margin: 0 10px 10px 0; float: left;']
-								),
-								[
-									'Organization' => $organization,
-									'Edition' => $organization['Edition']
-								],
-								['escape' => false]
-							);
-						}
-						$content .= '</div>'; ?>
-
-						var marker = new google.maps.Marker({
-							position: new google.maps.LatLng(
-								<?php echo $venue['Venue']['latitude'] ?>,
-								<?php echo $venue['Venue']['longitude'] ?>
-							),
-							map: map,
-							animation: google.maps.Animation.DROP,
-							title: "<?php echo $venue['Venue']['name'] ?>"
-						});
-
-						google.maps.event.addListener(marker, 'click', (function(marker, i) {
-							return function() {
-								if (infowindow) infowindow.close();
-								infowindow = new google.maps.InfoWindow({
-									content: '<?php echo $content; ?>'
-								});
-								infowindow.open(map, marker);
+						<?php if (!empty($venue['Venue']['latitude']) && !empty($venue['Venue']['longitude'])): ?>
+							<?php $id = $venue['Venue']['id'];
+							$content = '<strong>' . $this->Link->viewVenue($venue) . '</strong><br>';
+							$content .= h($venue['Venue']['address']) . '<br>';
+							$content .= h($venue['Venue']['zipcode'] . ' ' . $venue['Venue']['city']) . '<br>';
+							$content .= '<div style="width:200px">';
+							foreach ($venue['Organization'] as $organization) {
+								$content .= $this->Link->viewOrganization(
+									$this->Html->image(
+										$organization['avatar'],
+										['height' => 40, 'width' => 40, 'style' => 'margin: 0 10px 10px 0; float: left;']
+									),
+									[
+										'Organization' => $organization,
+										'Edition' => $organization['Edition']
+									],
+									['escape' => false]
+								);
 							}
-						})(marker, <?php echo $id; ?>));
+							$content .= '</div>'; ?>
 
-						markers[<?php echo $id; ?>] = marker;
+							var marker = new google.maps.Marker({
+								position: new google.maps.LatLng(
+									<?php echo $venue['Venue']['latitude']; ?>,
+									<?php echo $venue['Venue']['longitude']; ?>
+								),
+								map: map,
+								animation: google.maps.Animation.DROP,
+								title: "<?php echo $venue['Venue']['name'] ?>"
+							});
 
+							google.maps.event.addListener(marker, 'click', (function(marker, i) {
+								return function() {
+									if (infowindow) infowindow.close();
+									infowindow = new google.maps.InfoWindow({
+										content: '<?php echo $content; ?>'
+									});
+									infowindow.open(map, marker);
+								}
+							})(marker, <?php echo $id; ?>));
+
+							markers[<?php echo $id; ?>] = marker;
+						<?php endif; ?>
 					<?php endforeach; ?>
 
 					window.setTimeout(function() {
