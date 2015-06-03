@@ -189,7 +189,11 @@ class Event extends AppModel {
 			$end_at = strftime('%F 00:00:00', ($vEvent->DTEND->getDateTime()->format('U') - 24*60*60));
 		} else {
 			$start_at = strftime('%F %T', $vEvent->DTSTART->getDateTime()->format('U'));
-			$end_at = strftime('%F %T', $vEvent->DTEND->getDateTime()->format('U'));
+			if (isset($vEvent->DTEND)) {
+				$end_at = strftime('%F %T', $vEvent->DTEND->getDateTime()->format('U'));
+			} else {
+				$end_at = strftime('%F %T', $vEvent->DTSTART->getDateTime()->format('U') + 2*60*60);
+			}
 		}
 		return [
 			'edition_id' => $edition_id,
