@@ -158,24 +158,21 @@
 							</a>
 							<ul class="dropdown-menu">
 								<?php $editions = [
+									'Clermont-Ferrand' => 'clermont-ferrand',
 									'Bordeaux' => 'bordeaux',
 									'Montpellier' => 'montpellier',
 									'Toulouse' => 'toulouse',
 								]; ?>
 								<?php foreach ($editions as $name => $slug): ?>
 									<li>
-										<?php if ('Montpellier' === $name): ?>
-											<a href="http://montpellier.digisquare.net">Montpellier</a>
-										<?php elseif ($edition['Edition']['name'] !== $name):
-											echo $this->Link->viewEdition(
-												[
-													'Edition' => [
-														'name' => $name,
-														'slug' => $slug
-													]
+										<?php echo $this->Link->viewEdition(
+											[
+												'Edition' => [
+													'name' => $name,
+													'slug' => $slug
 												]
-											);
-										endif; ?>
+											]
+										); ?>
 									</li>
 								<?php endforeach; ?>
 							</ul>
