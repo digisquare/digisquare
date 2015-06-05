@@ -136,4 +136,29 @@ class VenuesController extends AppController {
 		$this->set(compact('venues', 'editions'));
 	}
 
+	public function admin_index() {
+		$conditions = [];
+		$this->Paginator->settings['contain'] = ['Edition'];
+		$this->Paginator->settings['order'] = ['Venue.name' => 'asc'];
+		// Editions
+		if (isset($this->request->query['edition_id'])) {
+			$conditions['Venue.edition_id'] = $this->request->query['edition_id'];
+		} else if (isset($this->request->params['slug'])) {
+			$edition = $this->Venue->Edition->findBySlug($this->request->params['slug']);
+			$conditions['Venue.edition_id'] = $edition['Edition']['id'];
+			$this->set(compact('edition'));
+		}
+		// Page
+		if (isset($this->request->params['?']['page'])) {
+			$this->request->query['page'] = $this->request->params['?']['page'];
+		}
+		$this->Paginator->settings['conditions'] = $conditions;
+		$venues = $this->Paginator->paginate('Venue');
+		$this->set([
+			'venues' => $venues,
+			'_serialize' => ['venues']
+		]);
+		return $venues;
+	}
+
 }

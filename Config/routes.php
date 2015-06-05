@@ -60,6 +60,7 @@ $controllers = [
 
 foreach ($controllers as $controller) {
 	Router::connect('/' . $controller,					['controller' => $controller, 'action' => 'index']);
+	Router::connect('/admin/' . $controller,			['controller' => $controller, 'action' => 'index', 'prefix' => 'admin', 'admin' => true]);
 	Router::connect('/' . $controller . '/:id',			['controller' => $controller, 'action' => 'view'], ['pass' => ['id'], 'id' => '[0-9]+']);
 	Router::connect('/' . $controller . '/:id/:action',	['controller' => $controller], ['pass' => ['id'], 'id' => '[0-9]+']);
 	Router::connect('/' . $controller . '/:action',		['controller' => $controller]);
