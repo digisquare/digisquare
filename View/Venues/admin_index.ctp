@@ -1,10 +1,5 @@
 <div role="main">
 	<div class="page-header">
-		<?php echo $this->Html->link(
-			'<i class="icon-plus-sign icon-white"></i> ' . __('Merge'),
-			['controller' => 'venues', 'action' => 'merge'],
-			['escape' => false, 'class' => 'btn btn-primary pull-right']
-		); ?>
 		<h1><?php echo __('Venues'); ?></h1>
 	</div>
 	<table class="table table-bordered table-striped">
@@ -28,9 +23,9 @@
 					<?php echo $this->Html->link(
 						h($venue['Venue']['event_count']),
 						[
+							'admin' => false,
 							'controller' => 'events',
 							'action' => 'index',
-							'admin' => false,
 							'?' => [
 								'venue_id' => $venue['Venue']['id']
 							]
@@ -41,19 +36,14 @@
 				<td><?php echo h($venue['Venue']['created']); ?>&nbsp;</td>
 				<td><?php echo h($venue['Venue']['modified']); ?>&nbsp;</td>
 				<td class="actions">
-					<?php echo $this->Html->link(
+					<?php echo $this->Link->viewVenue(
 						__('View'),
-						['action' => 'view', 'id' => $venue['Venue']['id']],
+						$venue,
 						['class' => 'btn btn-default btn-sm']
 					); ?>
 					<?php echo $this->Html->link(
 						__('Edit'),
 						['action' => 'edit', 'id' => $venue['Venue']['id']],
-						['class' => 'btn btn-default btn-sm']
-					); ?>
-					<?php echo $this->Html->link(
-						__('Organizations'),
-						['action' => 'organizations', 'id' => $venue['Venue']['id']],
 						['class' => 'btn btn-default btn-sm']
 					); ?>
 					<?php echo $this->Form->postLink(

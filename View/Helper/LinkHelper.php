@@ -15,6 +15,7 @@ class LinkHelper extends HtmlHelper {
 		}
 		return $this->link($title,
 			array_merge([
+				'admin' => false,
 				'controller' => 'editions',
 				'action' => 'view',
 				'slug' => $edition['Edition']['slug']
@@ -27,6 +28,7 @@ class LinkHelper extends HtmlHelper {
 	public function listEditionOrganizations($title, $edition = [], $options = [], $confirmMessage = false) {
 		return $this->link($title,
 			[
+				'admin' => false,
 				'controller' => 'organizations',
 				'action' => 'index',
 				'slug' => $edition['Edition']['slug']
@@ -39,6 +41,7 @@ class LinkHelper extends HtmlHelper {
 	public function listEditionVenues($title, $edition = [], $options = [], $confirmMessage = false) {
 		return $this->link($title,
 			[
+				'admin' => false,
 				'controller' => 'venues',
 				'action' => 'index',
 				'slug' => $edition['Edition']['slug']
@@ -63,6 +66,7 @@ class LinkHelper extends HtmlHelper {
 		}
 		return $this->link($title,
 			array_merge([
+				'admin' => false,
 				'controller' => 'organizations',
 				'action' => 'view',
 				'slug' => $organization['Edition']['slug'],
@@ -86,6 +90,7 @@ class LinkHelper extends HtmlHelper {
 		}
 		return $this->link($title,
 			array_merge([
+				'admin' => false,
 				'controller' => 'venues',
 				'action' => 'view',
 				'slug' => $venue['Edition']['slug'],
@@ -100,6 +105,7 @@ class LinkHelper extends HtmlHelper {
 	public function listEditionEvents($title, $edition = [], $options = [], $confirmMessage = false) {
 		return $this->link($title,
 			[
+				'admin' => false,
 				'controller' => 'events',
 				'action' => 'index',
 				'slug' => $edition['Edition']['slug']
@@ -129,6 +135,7 @@ class LinkHelper extends HtmlHelper {
 		}
 		return parent::url(
 			array_merge([
+				'admin' => false,
 				'controller' => 'events',
 				'action' => 'view',
 				'slug' => $event['Edition']['slug'],
@@ -151,6 +158,7 @@ class LinkHelper extends HtmlHelper {
 		}
 		return $this->link($title,
 			array_merge([
+				'admin' => false,
 				'controller' => 'users',
 				'action' => 'view',
 				'id' => $user['User']['id'],
@@ -173,6 +181,7 @@ class LinkHelper extends HtmlHelper {
 		}
 		return $this->link($title,
 			array_merge([
+				'admin' => false,
 				'controller' => 'tags',
 				'action' => 'view',
 				'slug' => $tag['Tag']['slug']

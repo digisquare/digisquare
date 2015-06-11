@@ -46,7 +46,30 @@ class VenuesController extends AppController {
 		$this->set(compact('venue'));
 	}
 
-	public function add() {
+	public function admin_index() {
+		$conditions = [];
+		$this->Paginator->settings['contain'] = ['Edition'];
+		$this->Paginator->settings['order'] = ['Venue.name' => 'asc'];
+		// Editions
+		if (isset($this->request->query['edition_id'])) {
+			$conditions['Venue.edition_id'] = $this->request->query['edition_id'];
+		} else if (isset($this->request->params['slug'])) {
+			$edition = $this->Venue->Edition->findBySlug($this->request->params['slug']);
+			$conditions['Venue.edition_id'] = $edition['Edition']['id'];
+			$this->set(compact('edition'));
+		} else if ($this->Session->check('Edition')) {
+			$conditions['Venue.edition_id'] = $this->Session->read('Edition.id');
+		}
+		// Page
+		if (isset($this->request->params['?']['page'])) {
+			$this->request->query['page'] = $this->request->params['?']['page'];
+		}
+		$this->Paginator->settings['conditions'] = $conditions;
+		$venues = $this->Paginator->paginate('Venue');
+		$this->set(compact('venues'));
+	}
+
+	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->Venue->create();
 			if ($this->Venue->save($this->request->data)) {
@@ -60,7 +83,7 @@ class VenuesController extends AppController {
 		$this->set(compact('editions'));
 	}
 
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		if (!$this->Venue->exists($id)) {
 			throw new NotFoundException(__('Invalid venue'));
 		}
@@ -86,7 +109,7 @@ class VenuesController extends AppController {
 		$this->set(compact('editions'));
 	}
 
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		$this->Venue->id = $id;
 		if (!$this->Venue->exists()) {
 			throw new NotFoundException(__('Invalid venue'));
@@ -100,7 +123,7 @@ class VenuesController extends AppController {
 		return $this->redirect(['action' => 'index']);
 	}
 
-	public function merge() {
+	public function admin_merge() {
 		if ($this->request->is('post') && isset($this->request->data['Venue']['merge'])) {
 			if ($this->Venue->merge($this->request->data)) {
 				$this->Session->setFlash(__('The venues were merged.'), 'message_success');
@@ -131,34 +154,19 @@ class VenuesController extends AppController {
 			]);
 			$this->set(compact('venue_1', 'venue_2'));
 		}
-		$venues = $this->Venue->find('list', ['order' => ['Venue.name' => 'ASC']]);
+		$venues = $this->Venue->find(
+			'list',
+			[
+				'conditions' => [
+					'Venue.edition_id' => $this->Session->read('Edition.id')
+				],
+				'order' => [
+					'Venue.name' => 'ASC'
+				]
+			]
+		);
 		$editions = $this->Venue->Edition->find('list');
 		$this->set(compact('venues', 'editions'));
-	}
-
-	public function admin_index() {
-		$conditions = [];
-		$this->Paginator->settings['contain'] = ['Edition'];
-		$this->Paginator->settings['order'] = ['Venue.name' => 'asc'];
-		// Editions
-		if (isset($this->request->query['edition_id'])) {
-			$conditions['Venue.edition_id'] = $this->request->query['edition_id'];
-		} else if (isset($this->request->params['slug'])) {
-			$edition = $this->Venue->Edition->findBySlug($this->request->params['slug']);
-			$conditions['Venue.edition_id'] = $edition['Edition']['id'];
-			$this->set(compact('edition'));
-		}
-		// Page
-		if (isset($this->request->params['?']['page'])) {
-			$this->request->query['page'] = $this->request->params['?']['page'];
-		}
-		$this->Paginator->settings['conditions'] = $conditions;
-		$venues = $this->Paginator->paginate('Venue');
-		$this->set([
-			'venues' => $venues,
-			'_serialize' => ['venues']
-		]);
-		return $venues;
 	}
 
 }

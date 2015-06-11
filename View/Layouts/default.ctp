@@ -60,6 +60,100 @@
 								$edition
 							); ?>
 						</li>
+						<?php if (1 == $this->Session->read('Auth.User.group_id')): ?>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									Admin <b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<?php echo $this->Html->link(
+											__('Add Event'),
+											[
+												'controller' => 'events',
+												'action' => 'add'
+											]
+										); ?>
+									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Import Event'),
+											[
+												'controller' => 'events',
+												'action' => 'import'
+											]
+										); ?>
+									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Upload Event'),
+											[
+												'controller' => 'events',
+												'action' => 'upload'
+											]
+										); ?>
+									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Import from GoogleCal'),
+											[
+												'controller' => 'google_calendar_events',
+												'action' => 'index'
+											]
+										); ?>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Add Organization'),
+											[
+												'controller' => 'organizations',
+												'action' => 'add'
+											]
+										); ?>
+									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Import Organization'),
+											[
+												'controller' => 'organizations',
+												'action' => 'import'
+											]
+										); ?>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Admin Venues'),
+											[
+												'admin' => true,
+												'controller' => 'venues',
+												'action' => 'index',
+											]
+										); ?>
+									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Add Venue'),
+											[
+												'controller' => 'venues',
+												'action' => 'add'
+											]
+										); ?>
+									</li>
+									<li>
+										<?php echo $this->Html->link(
+											__('Merge Venues'),
+											[
+												'admin' => true,
+												'controller' => 'venues',
+												'action' => 'merge'
+											]
+										); ?>
+									</li>
+								</ul>
+							</li>
+						<?php endif; ?>
 					</ul>
 					<?php if ($this->Session->check('Auth.User')): ?>
 						<?php if (!empty($this->Session->read('Auth.User.avatar'))) {
