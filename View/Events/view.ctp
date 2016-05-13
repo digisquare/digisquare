@@ -3,8 +3,14 @@
 		<?php if (1 == $this->Session->read('Auth.User.group_id')): ?>
 			<?php echo $this->Html->link(
 				'<i class="icon-plus-sign icon-white"></i> ' . __('Buffer'),
-				array('controller' => 'events', 'action' => 'buffer', 'id' => $event['Event']['id']),
-				array('escape' => false, 'class' => 'btn btn-primary pull-right')
+				['controller' => 'events', 'action' => 'buffer', 'id' => $event['Event']['id']],
+				['escape' => false, 'class' => 'btn btn-primary pull-right']
+			); ?>
+			<?php echo $this->Form->postLink(
+				'<i class="icon-plus-sign icon-white"></i> ' . __('Push'),
+				['controller' => 'events', 'action' => 'push', 'id' => $event['Event']['id']],
+				['escape' => false, 'class' => 'btn btn-primary pull-right', 'style' => 'margin-right:10px;'],
+				__('Are you sure you want to push this?')
 			); ?>
 		<?php endif; ?>
 		<h1><?php echo h($event['Event']['name']); ?></h1>

@@ -268,6 +268,27 @@ class EventsController extends AppController {
 		$this->set(compact('event'));
 	}
 
+	public function push($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$event = $this->Event->find('first', [
+			'contain' => ['Edition', 'Venue', 'Organization'],
+			'conditions' => ['Event.id' => $id]
+		]);
+		if ($this->request->is(['post', 'put'])) {
+			$this->loadModel('OneSignal');
+			try {
+				$this->OneSignal->push($event);
+			} catch (Exception $e) {
+				$this->Session->setFlash($e->getMessage(), 'message_error');
+				$this->redirect($this->referer());
+			}
+			$this->Session->setFlash(__('The event has been pushed.'), 'message_success');
+			return $this->redirect($this->referer());
+		}
+	}
+
 	public function credit() {
 		$events = $this->Event->find('all', [
 			'contain' => ['Organization', 'Tag'],
