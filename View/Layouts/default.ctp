@@ -300,6 +300,8 @@
 				['controller' => 'pages', 'action' => 'display', 'legal'],
 				['escape' => false]
 			); ?>
+			<a href="https://play.google.com/store/apps/details?id=net.digisquare.app"><img alt='Disponible sur Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/fr_badge_web_generic.png' height="50" style="margin-top:-13px"/></a>
+			<a href="https://itunes.apple.com/fr/app/digisquare/id1129249292"><img alt="Télécharger dans l'App Store" src="https://devimages.apple.com.edgekey.net/app-store/marketing/guidelines/images/badge-download-on-the-app-store-fr.svg" height="34" style="margin-top:-13px" /></a>
 			<?php echo $this->element('sql_dump'); ?>
 		</footer>
 	</div>
